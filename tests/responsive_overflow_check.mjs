@@ -18,6 +18,7 @@ const STATES = [
   { name: "home", tab: "home" },
   { name: "opportunities", tab: "opportunities" },
   { name: "pipeline-all", tab: "pipeline", filter: "all" },
+  { name: "pipeline-in-progress", tab: "pipeline", filter: "inProgress" },
   { name: "pipeline-applied", tab: "pipeline", filter: "applied" },
   { name: "pipeline-active", tab: "pipeline", filter: "active" },
   { name: "pipeline-interview", tab: "pipeline", filter: "interview" },

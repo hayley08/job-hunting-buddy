@@ -5,7 +5,8 @@
     "end": "2026-08-23T11:59:59+08:00"
   },
   "processedInputs": [
-    "data/inbox/2026-08-23_user-input.json"
+    "data/inbox/2026-08-23_user-input.json",
+    "data/inbox/2026-08-23_application-in-progress.json"
   ],
   "newApplications": [
     "app-texas-instruments-human-resources-generalist-2026-08-19",
@@ -39,6 +40,21 @@
       "jobId": "app-dji-human-resources-management-2026-07-17",
       "status": "Applied",
       "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+      "status": "Application In Progress",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-picc-campus-application-2026-08-23",
+      "status": "Application In Progress",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-lenovo-campus-resume-2026-08-23",
+      "status": "Application In Progress",
+      "sourceOfTruth": "user"
     }
   ],
   "newEvents": [],
@@ -50,11 +66,40 @@
   "dataConflicts": [],
   "manualOverrides": [],
   "unresolvedItems": [
-    "Need official JD/apply URL verification for TI, Insta360, DJI; OPPO URL points to application history center."
+    "Need official JD/apply URL verification for TI, Insta360, DJI; OPPO URL points to application history center.",
+    "Application In Progress must remain in pending actions until user confirms final submission."
   ],
   "nextRunMustRead": [
     "MASTER_REQUIREMENTS.md",
     "data/applications.json",
-    "data/handoffs/2026-08-23_handoff.json"
+    "data/handoffs/2026-08-23_handoff.json",
+    "data/daily/latest.json",
+    "data/jds.json"
+  ],
+  "unfinishedApplications": [
+    {
+      "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+      "company": "米哈游",
+      "title": "校园招聘岗位 9221",
+      "applicationStartedAt": "2026-08-23",
+      "applyUrl": "https://jobs.mihoyo.com/#/campus/resume/position/edit/9221",
+      "actionPriority": "HIGH"
+    },
+    {
+      "jobId": "app-picc-campus-application-2026-08-23",
+      "company": "中国人保",
+      "title": "校园招聘岗位",
+      "applicationStartedAt": "2026-08-23",
+      "applyUrl": "https://picc.zhiye.com/form?fromPage=job&jobAdId=0480763f-1b68-4ebf-8aec-b2b03cdeeab9&goto=custom%2Fcampus%3Fc1%3D8%26hideAll%3Dtrue&userId=366625856",
+      "actionPriority": "HIGH"
+    },
+    {
+      "jobId": "app-lenovo-campus-resume-2026-08-23",
+      "company": "联想",
+      "title": "校园招聘简历投递",
+      "applicationStartedAt": "2026-08-23",
+      "applyUrl": "https://talent.lenovo.com.cn/account/resume",
+      "actionPriority": "HIGH"
+    }
   ]
 }

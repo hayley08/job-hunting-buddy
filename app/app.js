@@ -1,5 +1,6 @@
 import { loadData, loadNavigation, saveNavigation } from "./store.js";
 import {
+  applicationInProgress,
   activeApplications,
   activeOpportunities,
   archivedRecords,
@@ -19,6 +20,7 @@ const tabs = [
 
 const pipelineFilters = [
   { id: "all", label: "全部" },
+  { id: "inProgress", label: "投递中" },
   { id: "applied", label: "已投递" },
   { id: "active", label: "流程中" },
   { id: "interview", label: "面试" },
@@ -127,17 +129,20 @@ function renderHome() {
   const kpis = computeKpis(state.applications || []);
   const upcoming = byUpcomingDate(state.events || []).slice(0, 6);
   const latestDaily = state.daily || {};
+  const pendingActions = getPendingActions();
 
   return `
     ${hero("Hayley Campus Job OS", "2027 内地校招 HR 求职工作台", "岗位发现 -> 投递 -> 测评/面试 -> 复盘 -> Story Bank")}
     ${renderWarnings()}
     <section class="kpi-grid">
+      ${kpi("投递中", kpis.inProgress)}
       ${kpi("已投递", kpis.applied)}
       ${kpi("筛选中", kpis.screening)}
       ${kpi("测评/笔试", kpis.assessment)}
       ${kpi("面试", kpis.interview)}
       ${kpi("Offer", kpis.offer)}
     </section>
+    ${renderPendingActions(pendingActions)}
     <section class="two-col">
       <article class="panel">
         <div class="panel-head">
@@ -194,10 +199,10 @@ function renderPipeline() {
         <p>Campus Application Pipeline · Last updated: ${latestDaily.runDate || "未记录"} 12:00 UTC+8</p>
       </div>
       <div class="pipeline-kpis">
+        ${miniKpi("投递中", kpis.inProgress)}
         ${miniKpi("已投递", kpis.applied)}
         ${miniKpi("测评/笔试", kpis.assessment)}
         ${miniKpi("面试", kpis.interview)}
-        ${miniKpi("Offer", kpis.offer)}
       </div>
     </section>
     <section class="table-panel">
@@ -319,8 +324,8 @@ function getPipelineRows() {
   const applications = activeApplications(state.applications || []).map((job) => ({
     ...job,
     rowType: inferApplicationRowType(job),
-    rowLabel: "已投递",
-    rowDate: job.appliedDate || job.statusUpdatedAt || job.foundDate || ""
+    rowLabel: statusLabel(job.currentStatus) || "已投递",
+    rowDate: job.applicationStartedAt || job.appliedDate || job.statusUpdatedAt || job.foundDate || ""
   }));
 
   const opportunities = activeOpportunities(state.opportunities || []).map((job) => ({
@@ -366,6 +371,7 @@ function findArchivedJob(jobId) {
 
 function inferApplicationRowType(job) {
   const status = job.currentStatus || "";
+  if (status === "Application In Progress") return "inProgress";
   if (status === "Offer") return "offer";
   if (["Rejected", "Withdrawn", "Closed", "Archived"].includes(status)) return "closed";
   if (status.includes("Interview")) return "interview";
@@ -377,6 +383,40 @@ function matchesPipelineFilter(row, filter) {
   if (filter === "jd") return false;
   if (filter === "active") return ["applied", "interview"].includes(row.rowType);
   return row.rowType === filter;
+}
+
+function getPendingActions() {
+  return applicationInProgress(state.applications || []).map((job) => ({
+    ...job,
+    actionPriority: deadlineDistance(job.deadline) !== "" ? "HIGH" : "HIGH",
+    reminder: inProgressReminder(job)
+  }));
+}
+
+function renderPendingActions(actions) {
+  if (!actions.length) return "";
+  return `
+    <section class="panel pending-actions high-priority">
+      <div class="panel-head">
+        <div>
+          <h2>需要行动</h2>
+          <p class="muted">投递中属于高优先级 Pending Action。</p>
+        </div>
+        <span>${actions.length}</span>
+      </div>
+      <div class="pending-list">
+        ${actions.map((job) => `
+          <article class="pending-action">
+            <div>
+              <strong>${escapeHtml(job.company || "未命名公司")} · ${escapeHtml(job.title || "未命名岗位")}</strong>
+              <p>${escapeHtml(job.reminder)}</p>
+            </div>
+            ${renderLink(job.applyUrl || job.jdUrl || job.officialUrl, "继续投递")}
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function renderJdKnowledge() {
@@ -497,15 +537,16 @@ function listBlock(items = [], className = "") {
 function renderPipelineRow(job) {
   const url = job.applyUrl || job.jdUrl || job.officialUrl || "";
   const latest = latestStatus(job);
+  const isInProgress = job.currentStatus === "Application In Progress";
   return `
-    <article class="pipeline-row" data-row-job="${escapeAttr(job.jobId)}" role="row">
+    <article class="pipeline-row ${isInProgress ? "application-in-progress" : ""}" data-row-job="${escapeAttr(job.jobId)}" role="row">
       <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></div>
-      <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</div>
+      <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}${isInProgress && url ? `<a class="continue-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">继续投递</a>` : ""}</div>
       <div class="cell" data-label="Base">${escapeHtml(job.location || job.base || "")}</div>
       <div class="cell" data-label="投递/记录日期">${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></div>
       <div class="cell" data-label="当前进度"><span class="status-pill ${statusClass(job.currentStatus)}">${escapeHtml(statusLabel(job.currentStatus) || job.currentStatus || job.rowLabel)}</span></div>
       <div class="cell" data-label="下一节点">${escapeHtml(nextNode(job))}</div>
-      <div class="cell cell-notes" data-label="备注">${escapeHtml(shortText(job.notes || (job.risks || []).join("；") || (job.matchReasons || []).join("；"), 100))}</div>
+      <div class="cell cell-notes" data-label="备注">${escapeHtml(shortText(isInProgress ? `⚠ 尚未完成投递。${inProgressReminder(job)}` : job.notes || (job.risks || []).join("；") || (job.matchReasons || []).join("；"), 120))}</div>
     </article>
   `;
 }
@@ -560,6 +601,7 @@ function latestStatus(job) {
 }
 
 function nextNode(job) {
+  if (job.currentStatus === "Application In Progress") return "完成申请";
   if (job.rowType === "todo") return "待投递";
   if (job.rowType === "watch") return "等待跟进";
   if (job.currentStatus === "Applied") return "等待筛选";
@@ -570,12 +612,44 @@ function nextNode(job) {
 }
 
 function statusClass(status = "") {
+  if (status === "Application In Progress") return "red";
   if (status === "Applied") return "blue";
   if (status.includes("Assessment") || status.includes("Written")) return "amber";
   if (status.includes("Interview")) return "purple";
   if (status === "Offer") return "green";
   if (["Rejected", "Withdrawn", "Closed", "Archived"].includes(status)) return "gray";
   return "teal";
+}
+
+function inProgressReminder(job) {
+  const days = daysSince(job.applicationStartedAt || job.statusUpdatedAt);
+  const started = job.applicationStartedAt ? `开始投递：${formatDate(job.applicationStartedAt)}` : "已开始投递";
+  const elapsed = days > 0 ? `，已开始投递 ${days} 天` : "";
+  const deadline = deadlineDistance(job.deadline);
+  return `⚠ 尚未完成，请继续申请。${started}${elapsed}${deadline ? `，${deadline}` : ""}`;
+}
+
+function deadlineDistance(value = "") {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const today = new Date();
+  const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const target = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const days = Math.ceil((target - start) / (24 * 60 * 60 * 1000));
+  if (days < 0) return `已过截止 ${Math.abs(days)} 天`;
+  if (days === 0) return "今天截止";
+  return `距截止还有 ${days} 天`;
+}
+
+function daysSince(value = "") {
+  if (!value) return 0;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 0;
+  const today = new Date();
+  const start = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const end = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  return Math.max(0, Math.floor((end - start) / (24 * 60 * 60 * 1000)));
 }
 
 function kpi(label, value) {

@@ -435,7 +435,7 @@
     "campusType": "Campus / Assistant",
     "salary": "",
     "experience": "Internship experience preferred",
-    "matchScore": 9.0,
+    "matchScore": 9,
     "matchReasons": [
       "HRBP方向非常明确，覆盖业务理解、组织人才需求和文化落地。",
       "与京东HRBP、字节业务招聘画像、Aon人才发展经历匹配。"
@@ -492,7 +492,7 @@
     "campusType": "Campus Recruitment",
     "salary": "",
     "experience": "Campus / early career",
-    "matchScore": 8.0,
+    "matchScore": 8,
     "matchReasons": [
       "Consumer electronics technology company with HR campus role.",
       "Broad HR direction fits early-career generalist target."
@@ -581,5 +581,167 @@
     "manualOverrides": {},
     "notes": "",
     "archived": false
+  },
+  {
+    "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+    "company": "米哈游",
+    "title": "校园招聘岗位 9221",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Gaming / Internet",
+    "market": "Mainland",
+    "source": "User Provided Apply Link",
+    "sourceJobId": "9221",
+    "jdUrl": "",
+    "applyUrl": "https://jobs.mihoyo.com/#/campus/resume/position/edit/9221",
+    "officialUrl": "https://jobs.mihoyo.com/#/campus/resume/position/edit/9221",
+    "foundDate": "2026-08-23",
+    "postedDate": "",
+    "applicationStartedAt": "2026-08-23",
+    "appliedDate": "",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "Campus Recruitment",
+    "salary": "",
+    "experience": "",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "Need capture exact role title and JD after application page is available."
+    ],
+    "risks": [
+      "Application started but not submitted."
+    ],
+    "currentStatus": "Application In Progress",
+    "statusUpdatedAt": "2026-08-23",
+    "statusHistory": [
+      {
+        "status": "Application In Progress",
+        "date": "2026-08-23",
+        "sourceOfTruth": "user",
+        "note": "User started application but has not completed submission.",
+        "notes": "User started application but has not completed submission."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "archived": false,
+    "actionPriority": "HIGH"
+  },
+  {
+    "jobId": "app-picc-campus-application-2026-08-23",
+    "company": "中国人保",
+    "title": "校园招聘岗位",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Insurance / Financial Services",
+    "market": "Mainland",
+    "source": "User Provided Apply Link",
+    "sourceJobId": "0480763f-1b68-4ebf-8aec-b2b03cdeeab9",
+    "jdUrl": "",
+    "applyUrl": "https://picc.zhiye.com/form?fromPage=job&jobAdId=0480763f-1b68-4ebf-8aec-b2b03cdeeab9&goto=custom%2Fcampus%3Fc1%3D8%26hideAll%3Dtrue&userId=366625856",
+    "officialUrl": "https://picc.zhiye.com/form?fromPage=job&jobAdId=0480763f-1b68-4ebf-8aec-b2b03cdeeab9&goto=custom%2Fcampus%3Fc1%3D8%26hideAll%3Dtrue&userId=366625856",
+    "foundDate": "2026-08-23",
+    "postedDate": "",
+    "applicationStartedAt": "2026-08-23",
+    "appliedDate": "",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "Campus Recruitment",
+    "salary": "",
+    "experience": "",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "Need capture exact role title and JD after application page is available."
+    ],
+    "risks": [
+      "Application started but not submitted."
+    ],
+    "currentStatus": "Application In Progress",
+    "statusUpdatedAt": "2026-08-23",
+    "statusHistory": [
+      {
+        "status": "Application In Progress",
+        "date": "2026-08-23",
+        "sourceOfTruth": "user",
+        "note": "User started application but has not completed submission.",
+        "notes": "User started application but has not completed submission."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "archived": false,
+    "actionPriority": "HIGH"
+  },
+  {
+    "jobId": "app-lenovo-campus-resume-2026-08-23",
+    "company": "联想",
+    "title": "校园招聘简历投递",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Technology / Hardware",
+    "market": "Mainland",
+    "source": "User Provided Apply Link",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://talent.lenovo.com.cn/account/resume",
+    "officialUrl": "https://talent.lenovo.com.cn/account/resume",
+    "foundDate": "2026-08-23",
+    "postedDate": "",
+    "applicationStartedAt": "2026-08-23",
+    "appliedDate": "",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "Campus Recruitment",
+    "salary": "",
+    "experience": "",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "Need capture exact role title and JD after application page is available."
+    ],
+    "risks": [
+      "Application started but not submitted."
+    ],
+    "currentStatus": "Application In Progress",
+    "statusUpdatedAt": "2026-08-23",
+    "statusHistory": [
+      {
+        "status": "Application In Progress",
+        "date": "2026-08-23",
+        "sourceOfTruth": "user",
+        "note": "User started application but has not completed submission.",
+        "notes": "User started application but has not completed submission."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "archived": false,
+    "actionPriority": "HIGH"
   }
 ]

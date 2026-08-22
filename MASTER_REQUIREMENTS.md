@@ -229,7 +229,9 @@ Desktop and tablet use a fixed left sidebar. Mobile uses a collapsed left rail /
 
 ## Dashboard KPI
 
-Default home page shows 已投递, 筛选中, 测评/笔试, 面试, Offer, 最近7天投递, and 最近7天进入面试. Conversion analytics must come from real `statusHistory`.
+Default home page shows 投递中, 已投递, 筛选中, 测评/笔试, 面试, Offer, 最近7天投递, and 最近7天进入面试. Conversion analytics must come from real `statusHistory`.
+
+All `Application In Progress` records must also appear in 首页 / 需要行动 as high-priority pending actions with a `继续投递` link when `applyUrl` exists.
 
 ## Upcoming
 
@@ -237,7 +239,16 @@ Home page must show Today, Tomorrow, and Next 7 Days for deadlines, assessments,
 
 ## Applications
 
-`applications.json` contains all clearly submitted jobs. It is the union of current applications, historical applications, and user-provided application facts. Do not overwrite history.
+`applications.json` contains all process-entered jobs: submitted jobs, applications in progress, historical applications, and user-provided application facts. Do not overwrite history.
+
+Application date fields:
+
+```text
+applicationStartedAt = user started the application flow
+appliedDate = confirmed final submission date only
+```
+
+If the user starts but does not complete an application, set `currentStatus = Application In Progress`, keep `appliedDate` empty, preserve `applyUrl`, and add a status history event. Do not count it as Applied.
 
 ## Reminder List
 
@@ -293,6 +304,7 @@ The 流程 filters must include:
 
 ```text
 全部
+投递中
 已投递
 流程中
 面试
@@ -405,6 +417,7 @@ Standard statuses:
 ```text
 Saved
 Recommended
+Application In Progress
 Applied
 Resume Screening
 Online Assessment
@@ -421,6 +434,25 @@ Archived
 ```
 
 Closed is not Rejected.
+
+Status semantics:
+
+```text
+待投递 = not started
+投递中 / Application In Progress = application flow started but final submission not confirmed
+已投递 / Applied = final submission confirmed
+```
+
+`Application In Progress` is a high-priority pending action. It must:
+
+- stay unarchived unless the user explicitly closes or withdraws it;
+- preserve `applicationStartedAt` separately from `appliedDate`;
+- preserve the `Application In Progress` event in `statusHistory` after later moving to `Applied`;
+- show a red/high-warning badge and `⚠ 尚未完成投递`;
+- show `继续投递` when `applyUrl` exists;
+- remain in Daily Run reminders until the user confirms submission.
+
+When the user says "xxx 投了一半，链接是 yyy", parse it as `Application In Progress`, not `Applied`. Only user language such as "已经投完了" / "提交成功" moves it to `Applied`.
 
 ## Story Bank
 
@@ -448,15 +480,15 @@ Archive includes Hong Kong old applications, Rejected, Closed, Withdrawn, Comple
 
 ## Daily Report
 
-Generate `reports/YYYY-MM-DD_daily-brief.md` with processing window, pipeline, status changes, upcoming, recommendations, interview prep, Story Bank updates, feedback processed, pending issues, conflicts, search/data failures, and Git/deploy status. Zero is a valid result.
+Generate `reports/YYYY-MM-DD_daily-brief.md` with processing window, pipeline, status changes, unfinished applications, upcoming, recommendations, interview prep, Story Bank updates, feedback processed, pending issues, conflicts, search/data failures, and Git/deploy status. Zero is a valid result.
 
 ## End-of-Run Checklist
 
-A run is complete only if raw inputs, corrections, feedback, overrides, pending queue, status history, events, JD snapshots, interview pack versions, handoff, memory, daily report, JSON validation, and Git/deploy status are handled or explicitly marked blocked.
+A run is complete only if raw inputs, corrections, feedback, overrides, unfinished applications, pending queue, status history, events, JD snapshots, interview pack versions, handoff, memory, daily report, JSON validation, and Git/deploy status are handled or explicitly marked blocked.
 
 ## Regression Tests
 
-Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, JD Missing behavior, raw JD preservation, original excerpt substring validation, stable jdHash, JD versioning, Interview Pack refresh only on JD change, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
+Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Application In Progress not counted as Applied KPI, Application In Progress pending actions, continue-apply links, `applicationStartedAt` separated from `appliedDate`, Application In Progress history preservation after Applied, unfinished applications not auto-archived, deadline-priority reminders, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, JD Missing behavior, raw JD preservation, original excerpt substring validation, stable jdHash, JD versioning, Interview Pack refresh only on JD change, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
 
 ## Execution Order
 

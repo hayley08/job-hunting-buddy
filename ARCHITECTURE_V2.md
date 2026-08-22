@@ -145,7 +145,7 @@ Desktop/tablet use a fixed left sidebar. Mobile uses a hamburger-triggered left 
 Mobile-first rules:
 
 - 44px+ tap targets.
-- Pipeline keeps a compact table with horizontal scroll and sticky company column where needed.
+- Pipeline uses responsive grid/card rows without whole-page horizontal scroll.
 - Drawers become full-screen panels.
 - One-tap copy for resume and story content.
 
@@ -201,6 +201,7 @@ Standard statuses:
 ```text
 Saved
 Recommended
+Application In Progress
 Applied
 Resume Screening
 Online Assessment
@@ -217,6 +218,8 @@ Archived
 ```
 
 All analytics must be derived from real `statusHistory`, not inferred from labels alone.
+
+`Application In Progress` means the user started an application flow but has not confirmed final submission. It is not Applied and must not count toward Applied KPI. It preserves `applicationStartedAt`, keeps `appliedDate` empty until final submission, keeps `applyUrl`, remains unarchived, and appears as a high-priority pending action with a `继续投递` link.
 
 ## Story Bank
 
@@ -236,6 +239,7 @@ Regression tests must verify:
 - No duplicate `jobId` or `sourceJobId`.
 - No bad URL or URL-job mismatch.
 - Applied jobs do not appear in Opportunities.
+- Application In Progress jobs do not count as Applied and remain in pending actions.
 - Archived Hong Kong records do not affect active KPI.
 - Reminder/watch rows are not auto-generated from `companies` or `archive`.
 - JD Knowledge preserves raw JD and validates excerpts as original substrings.

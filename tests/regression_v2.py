@@ -40,6 +40,18 @@ def main():
     opportunity_ids = {item.get("jobId") for item in opportunities}
     assert_true(not applied_ids.intersection(opportunity_ids), "applied job appears in opportunities")
 
+    in_progress = [item for item in active_apps if item.get("currentStatus") == "Application In Progress"]
+    assert_true(len(in_progress) == 3, "expected 3 Application In Progress records")
+    assert_true({item.get("company") for item in in_progress} == {"米哈游", "中国人保", "联想"}, "unexpected Application In Progress companies")
+    for item in in_progress:
+        assert_true(item.get("applyUrl", "").startswith("https://"), f"Application In Progress must preserve applyUrl: {item.get('jobId')}")
+        assert_true(item.get("applicationStartedAt") == "2026-08-23", f"applicationStartedAt missing: {item.get('jobId')}")
+        assert_true(not item.get("appliedDate"), f"Application In Progress must not have appliedDate: {item.get('jobId')}")
+        assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
+        assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
+    applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
+    assert_true(applied_kpi_count == 5, "Application In Progress must not be counted as Applied KPI")
+
     for item in applications:
         if item.get("currentStatus") == "Closed":
             assert_true(item.get("currentStatus") != "Rejected", "Closed counted as Rejected")
@@ -111,10 +123,16 @@ def main():
 
     app_js = (ROOT / "app" / "app.js").read_text(encoding="utf-8")
     css = (ROOT / "app" / "styles.css").read_text(encoding="utf-8")
+    master = (ROOT / "MASTER_REQUIREMENTS.md").read_text(encoding="utf-8")
     assert_true('label: "Story"' not in app_js, "Story must not be a first-level tab")
     assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
     assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
+    assert_true('label: "投递中"' in app_js, "pipeline must expose Application In Progress filter")
+    assert_true("continue-link" in app_js and "继续投递" in app_js, "Application In Progress must show continue apply action")
+    assert_true("renderPendingActions" in app_js and "需要行动" in app_js, "Application In Progress must appear in dashboard pending actions")
+    assert_true("deadlineDistance" in app_js and "距截止还有" in app_js, "deadline approaching should increase unfinished application reminder detail")
+    assert_true("preserve the `Application In Progress` event" in master, "Applied transition must preserve Application In Progress history rule")
     assert_true('label: "提醒列表"' in app_js, "pipeline must expose explicit reminder list filter")
     assert_true('label: "JD"' in app_js and "renderJdKnowledge" in app_js, "流程 tab must contain JD Knowledge sub-tab")
     assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")

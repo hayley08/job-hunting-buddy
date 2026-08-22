@@ -3,6 +3,7 @@ export const ACTIVE_MARKET = "Mainland";
 export const STATUS_LABELS = {
   Saved: "收藏",
   Recommended: "建议投递",
+  "Application In Progress": "投递中",
   Applied: "已投递",
   "Resume Screening": "简历筛选",
   "Online Assessment": "在线测评",
@@ -43,14 +44,19 @@ export function byUpcomingDate(events) {
 export function computeKpis(applications) {
   const active = activeApplications(applications);
   return {
+    inProgress: active.filter((job) => isApplicationInProgress(job)).length,
     applied: active.filter((job) => hasReached(job, "Applied")).length,
     screening: active.filter((job) => hasReached(job, "Resume Screening")).length,
     assessment: active.filter((job) => hasReached(job, "Online Assessment") || hasReached(job, "Written Test")).length,
     interview: active.filter((job) => ["HR Interview", "Business Interview", "Case Interview", "Final Interview"].some((status) => hasReached(job, status))).length,
     offer: active.filter((job) => hasReached(job, "Offer")).length,
-    last7Applied: active.filter((job) => withinDays(job.appliedDate || job.statusUpdatedAt, 7)).length,
+    last7Applied: active.filter((job) => hasReached(job, "Applied") && withinDays(job.appliedDate, 7)).length,
     last7Interview: active.filter((job) => (job.statusHistory || []).some((item) => item.status?.includes("Interview") && withinDays(item.date, 7))).length
   };
+}
+
+export function applicationInProgress(applications) {
+  return activeApplications(applications).filter((job) => isApplicationInProgress(job));
 }
 
 export function statusLabel(status) {
@@ -74,6 +80,10 @@ export function currentResume(resumes) {
 
 function hasReached(job, status) {
   return (job.statusHistory || []).some((item) => item.status === status) || job.currentStatus === status;
+}
+
+function isApplicationInProgress(job) {
+  return job.currentStatus === "Application In Progress";
 }
 
 function withinDays(value, days) {

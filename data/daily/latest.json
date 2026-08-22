@@ -1,6 +1,6 @@
 {
   "runDate": "2026-08-23",
-  "mode": "manual-application-backfill",
+  "mode": "manual-application-in-progress-update",
   "activeMarket": "Mainland",
   "processingWindow": {
     "start": "2026-08-22T12:00:00+08:00",
@@ -14,12 +14,19 @@
     "app-shopee-hr-specialist-shenzhen-2026-08-22",
     "app-dji-human-resources-management-2026-07-17"
   ],
-  "activeMainlandApplications": 5,
+  "activeMainlandApplications": 8,
   "activeOpportunities": 0,
   "finalRecommendedCount": 0,
   "notes": [
     "Backfilled user-provided applied roles: TI, OPPO, Insta360, Shopee, DJI.",
     "No business opportunity recommendations were generated in this update.",
-    "TI is marked englishInterviewPossible = true per user note."
+    "TI is marked englishInterviewPossible = true per user note.",
+    "Added Application In Progress status for miHoYo, PICC, and Lenovo. These are not counted as Applied until submission is confirmed."
+  ],
+  "applicationInProgressCount": 3,
+  "applicationInProgressIds": [
+    "app-mihoyo-campus-position-9221-2026-08-23",
+    "app-picc-campus-application-2026-08-23",
+    "app-lenovo-campus-resume-2026-08-23"
   ]
 }
