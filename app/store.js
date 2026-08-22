@@ -1,5 +1,6 @@
 const DATA_FILES = {
   applications: "data/applications.json",
+  applicationBackfill20260823: "data/application-backfills/2026-08-23.json",
   opportunities: "data/opportunities.json",
   events: "data/events.json",
   interviews: "data/interviews.json",
@@ -30,11 +31,27 @@ export async function loadData() {
   const errors = [];
   for (const [key, value, error] of entries) {
     state[key] = value ?? fallbackFor(key);
-    if (error) errors.push(error);
+    if (error && !key.startsWith("applicationBackfill")) errors.push(error);
   }
 
+  state.applications = mergeApplications(state.applications, [state.applicationBackfill20260823]);
   state.loadErrors = errors;
   return state;
+}
+
+function mergeApplications(base, backfillSets) {
+  const merged = [...(Array.isArray(base) ? base : [])];
+  const seen = new Set(merged.map((item) => item.jobId).filter(Boolean));
+
+  for (const backfill of backfillSets) {
+    for (const item of Array.isArray(backfill) ? backfill : []) {
+      if (!item.jobId || seen.has(item.jobId)) continue;
+      merged.push(item);
+      seen.add(item.jobId);
+    }
+  }
+
+  return merged;
 }
 
 function fallbackFor(key) {
