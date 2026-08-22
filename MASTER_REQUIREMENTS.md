@@ -203,14 +203,13 @@ Implement `manifest.json`, `service-worker.js`, Add to Home Screen, standalone d
 
 ## Main Navigation
 
-Mobile bottom navigation:
+Primary navigation is fixed to five first-level tabs:
 
 ```text
 首页
 机会
 流程
 面试
-Story
 我的
 ```
 
@@ -219,9 +218,12 @@ Pages:
 - Dashboard
 - Opportunities
 - Pipeline
-- Interview Center
-- Story Bank
-- My Resume / Records
+- Interview Workspace
+- My Settings / Records
+
+Story Bank and Resume Copy Tool are modules inside the 面试 tab. They must not appear as first-level navigation items.
+
+Desktop and tablet use a fixed left sidebar. Mobile uses a collapsed left rail / hamburger drawer. Do not restore the six-item bottom navigation.
 
 ## Dashboard KPI
 
@@ -349,7 +351,7 @@ Closed is not Rejected.
 
 ## Story Bank
 
-Story Bank is an independent tab and long-term interview asset. It is organized by competency and question type, not simply by company.
+Story Bank is a long-term interview asset inside the 面试 tab. It is organized by competency and question type, not simply by company.
 
 Core Introduction is stable and locked by default. Daily runs must not rewrite it unless the user explicitly approves.
 
@@ -359,13 +361,13 @@ Initial Story Bank must include JiaYuan, ByteDance, JD, Aon, Midea, and Binance 
 
 ## Interview Center
 
-Only assessment/written-test/interview-related jobs appear in Interview Center.
+The 面试 tab contains Interview Records, Resume Copy Tool, and Story Bank.
 
 Interview Packs are generated only when there is a new application, JD change, resume change, story change, interview-stage change, or explicit user request. If nothing changed, reuse the old version.
 
 ## Resume Versions
 
-Resume content preserves 复制中文, Copy English, and 查看全文. Each update creates a new version. Do not overwrite historical metadata.
+Resume Copy Tool must be available inside the 面试 tab. Resume content preserves 复制中文, Copy English, per-section copying, bullet-level copying when possible, and 查看全文. Each update creates a new version. Do not overwrite historical metadata.
 
 ## Archive / Records
 

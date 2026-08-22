@@ -110,14 +110,13 @@ Hong Kong records remain searchable in Records/Archive but are excluded from act
 
 ## UI Architecture
 
-The PWA has a fixed mobile bottom navigation:
+The PWA has five first-level navigation items:
 
 ```text
 首页
 机会
 流程
 面试
-Story
 我的
 ```
 
@@ -126,17 +125,19 @@ Pages:
 - Dashboard
 - Opportunities
 - Pipeline
-- Interview Center
-- Story Bank
-- My Resume / Records
+- Interview Workspace
+- My Settings / Records
+
+Story Bank and Resume Copy Tool are modules inside the 面试 tab, not first-level navigation items.
+
+Desktop/tablet use a fixed left sidebar. Mobile uses a hamburger-triggered left drawer to preserve vertical space for tables, timelines, interview notes, resume copy, and Story Bank content.
 
 Mobile-first rules:
 
 - 44px+ tap targets.
-- Tables collapse into cards.
+- Pipeline keeps a compact table with horizontal scroll and sticky company column where needed.
 - Drawers become full-screen panels.
 - One-tap copy for resume and story content.
-- No mandatory horizontal scroll on mobile.
 
 ## Search Pipeline
 
@@ -190,7 +191,7 @@ All analytics must be derived from real `statusHistory`, not inferred from label
 
 ## Story Bank
 
-Story Bank is a long-term interview asset and has its own tab. It is organized by competency and question type rather than by company.
+Story Bank is a long-term interview asset inside the 面试 tab. It is organized by competency and question type rather than by company.
 
 Story facts and answer versions are separated:
 

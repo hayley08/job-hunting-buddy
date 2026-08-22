@@ -1,25 +1,39 @@
 import { loadData, loadNavigation, saveNavigation } from "./store.js";
 import {
+  activeApplications,
   activeOpportunities,
   archivedRecords,
   byUpcomingDate,
   computeKpis,
   currentResume,
-  groupByStatus,
   statusLabel
 } from "./filters.js";
 
 const tabs = [
-  { id: "home", label: "首页" },
-  { id: "opportunities", label: "机会" },
-  { id: "pipeline", label: "流程" },
-  { id: "interviews", label: "面试" },
-  { id: "story", label: "Story" },
-  { id: "me", label: "我的" }
+  { id: "home", label: "首页", icon: "⌂" },
+  { id: "opportunities", label: "机会", icon: "◎" },
+  { id: "pipeline", label: "流程", icon: "▤" },
+  { id: "interviews", label: "面试", icon: "✦" },
+  { id: "me", label: "我的", icon: "⚙" }
+];
+
+const pipelineFilters = [
+  { id: "all", label: "全部" },
+  { id: "applied", label: "已投递" },
+  { id: "active", label: "流程中" },
+  { id: "interview", label: "面试" },
+  { id: "offer", label: "Offer" },
+  { id: "todo", label: "待投递" },
+  { id: "watch", label: "持续关注" },
+  { id: "historical", label: "往届参考" },
+  { id: "closed", label: "已结束" }
 ];
 
 let state = {};
-let activeTab = loadNavigation();
+let activeTab = normalizeTab(loadNavigation());
+let drawerOpen = false;
+let pipelineFilter = "all";
+let selectedJobId = "";
 
 init();
 
@@ -34,14 +48,55 @@ async function init() {
 
 function render() {
   document.querySelector("#app").innerHTML = `
-    <main class="screen">${renderCurrentTab()}</main>
-    ${renderNav()}
+    <div class="layout ${drawerOpen ? "drawer-open" : ""}">
+      ${renderSidebar()}
+      <div class="mobile-topbar">
+        <button class="menu-button" data-menu-toggle aria-label="打开导航">☰</button>
+        <strong>Campus OS</strong>
+      </div>
+      <main class="screen">${renderCurrentTab()}</main>
+      ${selectedJobId ? renderDetailDrawer() : ""}
+    </div>
   `;
 
+  bindInteractions();
+}
+
+function bindInteractions() {
   document.querySelectorAll("[data-tab]").forEach((button) => {
     button.addEventListener("click", () => {
-      activeTab = button.dataset.tab;
+      activeTab = normalizeTab(button.dataset.tab);
+      drawerOpen = false;
+      selectedJobId = "";
       saveNavigation(activeTab);
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-menu-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      drawerOpen = !drawerOpen;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      pipelineFilter = button.dataset.filter;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-row-job]").forEach((row) => {
+    row.addEventListener("click", () => {
+      selectedJobId = row.dataset.rowJob;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-drawer-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedJobId = "";
       render();
     });
   });
@@ -55,11 +110,15 @@ function render() {
   });
 }
 
+function normalizeTab(tab) {
+  if (tab === "story") return "interviews";
+  return tabs.some((item) => item.id === tab) ? tab : "home";
+}
+
 function renderCurrentTab() {
   if (activeTab === "opportunities") return renderOpportunities();
   if (activeTab === "pipeline") return renderPipeline();
-  if (activeTab === "interviews") return renderInterviews();
-  if (activeTab === "story") return renderStoryBank();
+  if (activeTab === "interviews") return renderInterviewWorkspace();
   if (activeTab === "me") return renderMe();
   return renderHome();
 }
@@ -102,9 +161,9 @@ function renderHome() {
         <span>${latestDaily.runDate || "未记录"}</span>
       </div>
       <div class="daily-grid">
+        <p><strong>新增投递</strong>${latestDaily.newApplications ?? 0}</p>
         <p><strong>新增推荐</strong>${latestDaily.finalRecommendedCount ?? 0}</p>
-        <p><strong>迁移投递</strong>${latestDaily.migratedApplications ?? 0}</p>
-        <p><strong>归档记录</strong>${latestDaily.archivedRecords ?? 0}</p>
+        <p><strong>活跃投递</strong>${latestDaily.activeMainlandApplications ?? kpis.applied}</p>
       </div>
     </section>
   `;
@@ -121,71 +180,124 @@ function renderOpportunities() {
 }
 
 function renderPipeline() {
-  const groups = groupByStatus(state.applications || []);
-  const statuses = Object.keys(groups);
+  const rows = getPipelineRows();
+  const filtered = rows.filter((row) => matchesPipelineFilter(row, pipelineFilter));
+  const kpis = computeKpis(state.applications || []);
+  const latestDaily = state.daily || {};
+
   return `
-    ${hero("流程", "投递漏斗", "Closed 不计入 Rejected，香港历史不进入活跃 KPI")}
-    <section class="stack">
-      ${statuses.length ? statuses.map((status) => `
-        <article class="panel">
-          <div class="panel-head"><h2>${statusLabel(status)}</h2><span>${groups[status].length} 个</span></div>
-          ${groups[status].map(renderCompactJob).join("")}
-        </article>
-      `).join("") : empty("当前没有内地活跃投递记录")}
+    <section class="pipeline-banner">
+      <div>
+        <p class="eyebrow">2027 Campus Recruitment · Mainland China</p>
+        <h1>校招流程</h1>
+        <p>Campus Application Pipeline · Last updated: ${latestDaily.runDate || "未记录"} 12:00 UTC+8</p>
+      </div>
+      <div class="pipeline-kpis">
+        ${miniKpi("已投递", kpis.applied)}
+        ${miniKpi("测评/笔试", kpis.assessment)}
+        ${miniKpi("面试", kpis.interview)}
+        ${miniKpi("Offer", kpis.offer)}
+      </div>
+    </section>
+    <section class="table-panel">
+      <div class="filter-row">
+        ${pipelineFilters.map((filter) => `<button class="${filter.id === pipelineFilter ? "active" : ""}" data-filter="${filter.id}">${filter.label}</button>`).join("")}
+      </div>
+      <div class="pipeline-table-wrap">
+        <table class="pipeline-table">
+          <thead>
+            <tr>
+              <th>公司</th>
+              <th>岗位</th>
+              <th>Base</th>
+              <th>投递/记录日期</th>
+              <th>当前进度</th>
+              <th>下一节点</th>
+              <th>备注</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtered.map(renderPipelineRow).join("") || `<tr><td colspan="7">${empty("当前筛选下暂无记录")}</td></tr>`}
+          </tbody>
+        </table>
+      </div>
     </section>
   `;
 }
 
-function renderInterviews() {
+function renderInterviewWorkspace() {
+  return `
+    ${hero("面试", "Interview Workspace", "面试记录、简历复制工具和 Story Bank 集中在这里")}
+    ${renderInterviewRecords()}
+    ${renderResumeCopyTool()}
+    ${renderStoryBankSection()}
+  `;
+}
+
+function renderInterviewRecords() {
   const interviews = state.interviews || [];
   const packs = state.interviewPacks || [];
   return `
-    ${hero("面试", "Interview Center", "测评、笔试、面试和复盘集中在这里")}
-    <section class="two-col">
-      <article class="panel">
-        <div class="panel-head"><h2>Interview Records</h2><span>${interviews.length}</span></div>
-        ${interviews.length ? interviews.map((item) => `<p>${item.company || item.jobId || "未命名"} · ${item.round || "未记录轮次"}</p>`).join("") : empty("暂无面试记录")}
-      </article>
-      <article class="panel">
-        <div class="panel-head"><h2>Interview Packs</h2><span>${packs.length}</span></div>
-        ${packs.length ? packs.map((item) => `<p>${item.jobId} · ${item.version}</p>`).join("") : empty("暂无面试包；有新投递或面试阶段变化时再生成")}
-      </article>
+    <section class="panel section-block">
+      <div class="panel-head">
+        <div>
+          <h2>面试记录 / Interview Records</h2>
+          <p class="muted">真实发生的测评、笔试、面试和复盘会沉淀在这里。</p>
+        </div>
+        <span>${interviews.length} records · ${packs.length} packs</span>
+      </div>
+      ${interviews.length ? interviews.map(renderInterviewRecord).join("") : empty("暂无面试记录；收到测评或面试后会写入 persistent interview data。")}
     </section>
   `;
 }
 
-function renderStoryBank() {
+function renderResumeCopyTool() {
+  const resume = currentResume(state.resumes || {});
+  return `
+    <section class="panel section-block">
+      <div class="panel-head">
+        <div>
+          <h2>Resume Copy Tool</h2>
+          <p class="muted">Resume Source · Last updated: ${formatDate(resume.updatedAt) || "未记录"} · Version ${resume.version || "未记录"}</p>
+        </div>
+        <span>${(resume.sections || []).length} sections</span>
+      </div>
+      ${(resume.sections || []).map(renderResumeSection).join("") || empty("暂无简历复制内容")}
+    </section>
+  `;
+}
+
+function renderStoryBankSection() {
   const bank = state.storyBank || {};
   const intro = bank.coreIntroduction || {};
   const stories = bank.stories || [];
   return `
-    ${hero("Story", "长期面试资产", "事实和答案版本分离，Core Introduction 默认锁定")}
-    <section class="panel important">
+    <section class="panel section-block important">
       <div class="panel-head">
-        <h2>Core Introduction</h2>
-        <span>${intro.locked ? "Locked" : "Editable"}</span>
+        <div>
+          <h2>Story Bank</h2>
+          <p class="muted">Interview Preparation Knowledge Base · Core Introduction 默认锁定。</p>
+        </div>
+        <span>${stories.length} stories</span>
       </div>
-      ${copyBlock("中文 60 秒", intro.introCN60)}
-      ${copyBlock("中文 120 秒", intro.introCN120)}
-      ${copyBlock("English 60 sec", intro.introEN60)}
-      ${copyBlock("English 120 sec", intro.introEN120)}
-      <p class="muted">${intro.storyline || ""}</p>
-    </section>
-    <section class="stack">
-      ${stories.map(renderStory).join("")}
+      <div class="intro-grid">
+        ${copyBlock("中文自我介绍 60 秒", intro.introCN60)}
+        ${copyBlock("中文自我介绍 120 秒", intro.introCN120)}
+        ${copyBlock("English Self Introduction 60 sec", intro.introEN60)}
+        ${copyBlock("English Self Introduction 120 sec", intro.introEN120)}
+      </div>
+      <p class="storyline">${escapeHtml(intro.storyline || "")}</p>
+      <div class="story-grid">
+        ${stories.map(renderStory).join("")}
+      </div>
     </section>
   `;
 }
 
 function renderMe() {
-  const resume = currentResume(state.resumes || {});
   const archived = archivedRecords(state.applications || [], state.archive || []);
   return `
-    ${hero("我的", "简历版本与历史记录", "香港旧数据在这里保留，不进入内地活跃面板")}
-    <section class="panel">
-      <div class="panel-head"><h2>简历版本：${resume.version || "未记录"}</h2><span>${resume.profile?.email || ""}</span></div>
-      ${(resume.sections || []).map(renderResumeSection).join("") || empty("暂无简历数据")}
-    </section>
+    ${hero("我的", "设置与历史记录", "香港旧数据在这里保留，不进入内地活跃面板")}
     <section class="panel">
       <div class="panel-head"><h2>Archive / Records</h2><span>${archived.length}</span></div>
       ${archived.slice(0, 20).map(renderCompactJob).join("") || empty("暂无归档记录")}
@@ -193,12 +305,181 @@ function renderMe() {
   `;
 }
 
-function renderNav() {
+function renderSidebar() {
   return `
-    <nav class="bottom-nav">
-      ${tabs.map((tab) => `<button class="${tab.id === activeTab ? "active" : ""}" data-tab="${tab.id}">${tab.label}</button>`).join("")}
-    </nav>
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>Campus OS</strong>
+        <span>Hayley HR</span>
+      </div>
+      <nav class="side-nav">
+        ${tabs.map((tab) => `<button class="${tab.id === activeTab ? "active" : ""}" data-tab="${tab.id}"><span>${tab.icon}</span>${tab.label}</button>`).join("")}
+      </nav>
+    </aside>
+    <div class="scrim" data-menu-toggle></div>
   `;
+}
+
+function getPipelineRows() {
+  const applications = activeApplications(state.applications || []).map((job) => ({
+    ...job,
+    rowType: inferApplicationRowType(job),
+    rowLabel: "已投递",
+    rowDate: job.appliedDate || job.statusUpdatedAt || job.foundDate || ""
+  }));
+
+  const opportunities = activeOpportunities(state.opportunities || []).map((job) => ({
+    ...job,
+    rowType: "todo",
+    rowLabel: "待投递",
+    rowDate: job.foundDate || job.postedDate || ""
+  }));
+
+  const appliedCompanies = new Set(applications.map((job) => normalizeKey(job.company)));
+  const watchlist = (state.companies || [])
+    .filter((company) => company.active && !appliedCompanies.has(normalizeKey(company.companyName)) && !appliedCompanies.has(normalizeKey(company.companyNameEn)))
+    .slice(0, 12)
+    .map((company) => ({
+      jobId: `watch-${company.companyId}`,
+      company: company.companyName,
+      title: `${company.companyNameEn || company.companyName} HR Campus Watch`,
+      location: "Mainland China",
+      market: "Mainland",
+      source: "Target Company Watchlist",
+      currentStatus: "持续关注",
+      rowType: "watch",
+      rowLabel: "持续关注",
+      rowDate: "",
+      notes: company.notes || "2027 HR校招待确认",
+      industry: company.industry,
+      jdUrl: company.campusSite || company.careerSite || "",
+      applyUrl: "",
+      officialUrl: company.campusSite || company.careerSite || ""
+    }));
+
+  const historical = (state.archive?.records || [])
+    .filter((job) => /trainee|管培|hr|human resources|c&b|talent|people/i.test(`${job.title} ${job.jobDescription || ""}`))
+    .slice(0, 8)
+    .map((job) => ({
+      ...job,
+      jobId: `historical-${job.jobId}`,
+      title: `${job.title}（Historical）`,
+      currentStatus: "往届有岗｜今年待确认",
+      rowType: "historical",
+      rowLabel: "往届参考",
+      rowDate: job.foundDate || job.postedDate || "",
+      notes: "历史优质岗位，作为今年关注线索",
+      market: "Mainland"
+    }));
+
+  return [...applications, ...opportunities, ...watchlist, ...historical];
+}
+
+function inferApplicationRowType(job) {
+  const status = job.currentStatus || "";
+  if (status === "Offer") return "offer";
+  if (["Rejected", "Withdrawn", "Closed", "Archived"].includes(status)) return "closed";
+  if (status.includes("Interview")) return "interview";
+  return "applied";
+}
+
+function matchesPipelineFilter(row, filter) {
+  if (filter === "all") return true;
+  if (filter === "active") return ["applied", "interview"].includes(row.rowType);
+  return row.rowType === filter;
+}
+
+function renderPipelineRow(job) {
+  const url = job.applyUrl || job.jdUrl || job.officialUrl || "";
+  const latest = latestStatus(job);
+  return `
+    <tr data-row-job="${escapeAttr(job.jobId)}">
+      <td class="sticky-col"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></td>
+      <td>${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</td>
+      <td>${escapeHtml(job.location || job.base || "")}</td>
+      <td>${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></td>
+      <td><span class="status-pill ${statusClass(job.currentStatus)}">${escapeHtml(statusLabel(job.currentStatus) || job.currentStatus || job.rowLabel)}</span></td>
+      <td>${escapeHtml(nextNode(job))}</td>
+      <td>${escapeHtml(shortText(job.notes || (job.risks || []).join("；") || (job.matchReasons || []).join("；"), 70))}</td>
+    </tr>
+  `;
+}
+
+function renderDetailDrawer() {
+  const job = getPipelineRows().find((item) => item.jobId === selectedJobId);
+  if (!job) return "";
+  const url = job.applyUrl || job.jdUrl || job.officialUrl || "";
+  return `
+    <aside class="detail-drawer">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">${escapeHtml(job.source || job.rowLabel || "")}</p>
+          <h2>${escapeHtml(job.company || "")}</h2>
+          <p>${escapeHtml(job.title || "")}</p>
+        </div>
+        <button data-drawer-close aria-label="关闭">×</button>
+      </div>
+      <div class="drawer-body">
+        <div class="tag-row">
+          ${tag(job.location)}
+          ${tag(job.industry)}
+          ${tag(job.jobFamily)}
+          ${tag(job.campusType)}
+        </div>
+        <h3>JD</h3>
+        <p>${escapeHtml(job.jdSnapshot || job.jobDescription || "暂无 JD snapshot")}</p>
+        <h3>Apply Link</h3>
+        <p>${url ? `<a href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${escapeHtml(url)}</a>` : "链接待验证"}</p>
+        <h3>Application Timeline</h3>
+        ${renderTimeline(job)}
+        <h3>Notes</h3>
+        <p>${escapeHtml(job.notes || "暂无备注")}</p>
+        <h3>Interview Pack</h3>
+        <p>${escapeHtml(job.interviewPackId || "暂无面试包；有面试或测评变化时生成。")}</p>
+        <h3>Historical Reference</h3>
+        <p>${escapeHtml(job.rowType === "historical" ? "往届参考，不代表今年已开放。" : "无")}</p>
+      </div>
+    </aside>
+  `;
+}
+
+function renderTimeline(job) {
+  const history = job.statusHistory || [];
+  if (!history.length) return empty("暂无状态历史");
+  return `<ol class="timeline">${history.map((item) => `<li><strong>${escapeHtml(formatDate(item.date))}</strong><span>${escapeHtml(statusLabel(item.status))}</span><small>${escapeHtml(item.notes || "")}</small></li>`).join("")}</ol>`;
+}
+
+function latestStatus(job) {
+  const history = job.statusHistory || [];
+  return history[history.length - 1] || {};
+}
+
+function nextNode(job) {
+  if (job.rowType === "todo") return "待投递";
+  if (job.rowType === "watch") return "等待开放";
+  if (job.rowType === "historical") return "今年待确认";
+  if (job.currentStatus === "Applied") return "等待筛选";
+  if (job.currentStatus === "Resume Screening") return "测评/面试通知";
+  if (job.currentStatus?.includes("Interview")) return "复盘/下一轮";
+  if (job.currentStatus === "Offer") return "Offer决策";
+  return "待更新";
+}
+
+function statusClass(status = "") {
+  if (status === "Applied") return "blue";
+  if (status.includes("Assessment") || status.includes("Written")) return "amber";
+  if (status.includes("Interview")) return "purple";
+  if (status === "Offer") return "green";
+  if (["Rejected", "Withdrawn", "Closed", "Archived"].includes(status)) return "gray";
+  return "teal";
+}
+
+function kpi(label, value) {
+  return `<article class="kpi"><span>${label}</span><strong>${value}</strong></article>`;
+}
+
+function miniKpi(label, value) {
+  return `<div class="mini-kpi"><span>${label}</span><strong>${value}</strong></div>`;
 }
 
 function hero(label, title, subtitle) {
@@ -209,10 +490,6 @@ function hero(label, title, subtitle) {
       <p>${subtitle}</p>
     </section>
   `;
-}
-
-function kpi(label, value) {
-  return `<article class="kpi"><span>${label}</span><strong>${value}</strong></article>`;
 }
 
 function renderWarnings() {
@@ -227,10 +504,10 @@ function renderJobCard(job) {
   return `
     <article class="job-card">
       <div class="panel-head">
-        <h2>${job.company || "未命名公司"}</h2>
-        <span>${job.source || "Unknown"}</span>
+        <h2>${escapeHtml(job.company || "未命名公司")}</h2>
+        <span>${escapeHtml(job.source || "Unknown")}</span>
       </div>
-      <h3>${job.title || "未命名岗位"}</h3>
+      <h3>${escapeHtml(job.title || "未命名岗位")}</h3>
       <div class="tag-row">
         ${tag(job.location)}
         ${tag(job.postedDate ? `发布 ${job.postedDate}` : "发布日期待验证")}
@@ -238,9 +515,9 @@ function renderJobCard(job) {
         ${tag(job.salary || "薪资未列出")}
         ${tag(job.experience || "经验未列出")}
       </div>
-      <p>${(job.matchReasons || []).join("；") || "等待下一次批处理生成推荐理由"}</p>
-      ${(job.gaps || []).length ? `<p class="risk">Gap：${job.gaps.join("；")}</p>` : ""}
-      ${(job.risks || []).length ? `<p class="risk">Risk：${job.risks.join("；")}</p>` : ""}
+      <p>${escapeHtml((job.matchReasons || []).join("；") || "等待下一次批处理生成推荐理由")}</p>
+      ${(job.gaps || []).length ? `<p class="risk">Gap：${escapeHtml(job.gaps.join("；"))}</p>` : ""}
+      ${(job.risks || []).length ? `<p class="risk">Risk：${escapeHtml(job.risks.join("；"))}</p>` : ""}
       <div class="actions">${renderLink(job.applyUrl || job.jdUrl || job.officialUrl, job.applyUrl ? "去投递" : "查看招聘页面")}</div>
     </article>
   `;
@@ -249,9 +526,9 @@ function renderJobCard(job) {
 function renderCompactJob(job) {
   return `
     <div class="compact-job">
-      <strong>${job.company || "未命名公司"}</strong>
-      <span>${job.title || "未命名岗位"}</span>
-      <small>${job.location || ""} · ${statusLabel(job.currentStatus)} · ${job.market || ""}</small>
+      <strong>${escapeHtml(job.company || "未命名公司")}</strong>
+      <span>${escapeHtml(job.title || "未命名岗位")}</span>
+      <small>${escapeHtml(job.location || "")} · ${escapeHtml(statusLabel(job.currentStatus))} · ${escapeHtml(job.market || "")}</small>
     </div>
   `;
 }
@@ -259,20 +536,30 @@ function renderCompactJob(job) {
 function renderEvent(event) {
   return `
     <div class="event">
-      <strong>${event.date || ""} ${event.time || ""}</strong>
-      <span>${event.company || event.jobId || "未关联岗位"} · ${event.eventType || "Event"}</span>
+      <strong>${escapeHtml(`${event.date || ""} ${event.time || ""}`)}</strong>
+      <span>${escapeHtml(event.company || event.jobId || "未关联岗位")} · ${escapeHtml(event.eventType || "Event")}</span>
     </div>
+  `;
+}
+
+function renderInterviewRecord(item) {
+  return `
+    <article class="record-row">
+      <strong>${escapeHtml(item.company || item.jobId || "未命名")}</strong>
+      <span>${escapeHtml(item.round || "未记录轮次")} · ${escapeHtml(item.date || "未记录日期")}</span>
+      <small>${escapeHtml((item.questions || []).join("；") || "暂无问题记录")}</small>
+    </article>
   `;
 }
 
 function renderStory(story) {
   return `
-    <article class="panel">
+    <article class="story-card">
       <div class="panel-head">
-        <h2>${story.title}</h2>
+        <h3>${escapeHtml(story.title)}</h3>
         <span>成熟度 ${story.maturityScore || 0}</span>
       </div>
-      <p>${story.facts?.situation || "Needs User Input"}</p>
+      <p>${escapeHtml(story.facts?.situation || "Needs User Input")}</p>
       <div class="tag-row">${(story.competencies || []).map(tag).join("")}</div>
     </article>
   `;
@@ -280,11 +567,14 @@ function renderStory(story) {
 
 function renderResumeSection(section) {
   return `
-    <details class="resume-section">
-      <summary>${section.title}</summary>
-      <p class="muted">${section.period || ""} · ${section.location || ""}</p>
+    <details class="resume-section" open>
+      <summary>${escapeHtml(section.title)}</summary>
+      <p class="muted">${escapeHtml(section.period || "")} · ${escapeHtml(section.location || "")}</p>
       ${copyBlock("复制中文", section.contentCN)}
       ${copyBlock("Copy English", section.contentEN)}
+      <div class="bullet-tools">
+        ${splitBullets(section.contentCN).map((bullet, index) => `<button data-label="复制 bullet" data-copy="${escapeAttr(bullet)}">复制中文 ${index + 1}</button>`).join("")}
+      </div>
       <div class="tag-row">${(section.tags || []).map(tag).join("")}</div>
     </details>
   `;
@@ -294,15 +584,22 @@ function copyBlock(label, text = "") {
   const safe = escapeHtml(text || "");
   return `
     <div class="copy-card">
-      <div class="panel-head"><h3>${label}</h3><button data-label="${label}" data-copy="${escapeAttr(text || "")}">${label}</button></div>
+      <div class="panel-head"><h3>${escapeHtml(label)}</h3><button data-label="${escapeAttr(label)}" data-copy="${escapeAttr(text || "")}">${escapeHtml(label)}</button></div>
       <p>${safe}</p>
     </div>
   `;
 }
 
+function splitBullets(text = "") {
+  return String(text)
+    .split(/\n+/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function renderLink(url, label) {
   if (!url) return `<span class="muted">链接待验证</span>`;
-  return `<a href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${label}</a>`;
+  return `<a href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`;
 }
 
 function tag(value) {
@@ -311,7 +608,25 @@ function tag(value) {
 }
 
 function empty(text) {
-  return `<div class="empty">${text}</div>`;
+  return `<div class="empty">${escapeHtml(text)}</div>`;
+}
+
+function shortText(value = "", max = 80) {
+  const text = String(value);
+  return text.length > max ? `${text.slice(0, max)}...` : text;
+}
+
+function formatDate(value = "") {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${month}/${day}`;
+}
+
+function normalizeKey(value = "") {
+  return String(value).trim().toLowerCase();
 }
 
 function escapeHtml(value = "") {

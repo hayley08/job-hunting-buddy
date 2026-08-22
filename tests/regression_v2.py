@@ -72,6 +72,14 @@ def main():
     sw = (ROOT / "service-worker.js").read_text(encoding="utf-8")
     assert_true("networkFirst" in sw and "/data/" in sw, "service worker must use network-first for JSON data")
 
+    app_js = (ROOT / "app" / "app.js").read_text(encoding="utf-8")
+    css = (ROOT / "app" / "styles.css").read_text(encoding="utf-8")
+    assert_true('label: "Story"' not in app_js, "Story must not be a first-level tab")
+    assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
+    assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
+    assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
+    assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-table" in css, "sidebar/mobile/table layout CSS missing")
+
     print("regression_v2: all checks passed")
 
 
