@@ -70,6 +70,7 @@ data/user-feedback.json
 memory.md
 data/applications.json
 data/opportunities.json
+data/jds.json
 data/events.json
 data/interviews.json
 data/story-bank.json
@@ -284,6 +285,65 @@ company + normalizedTitle + location
 
 Array index must never be used as an ID.
 
+## JD Knowledge
+
+JD Knowledge is a sub-tab inside 流程. It must not become a first-level navigation item.
+
+The 流程 filters must include:
+
+```text
+全部
+已投递
+流程中
+面试
+Offer
+待投递
+提醒列表
+已结束
+JD
+```
+
+JD data is stored in `data/jds.json` and linked to applications, opportunities, reminders, interview packs, and historical records by `jobId`. Do not duplicate canonical job objects.
+
+Every JD record must preserve raw source text when available:
+
+```json
+{
+  "jobId": "",
+  "jdRaw": "",
+  "jdSnapshot": "",
+  "jdCapturedAt": "",
+  "jdSource": "",
+  "jdUrl": "",
+  "jdHash": "",
+  "jdSummary": "",
+  "jdCoreResponsibilities": [],
+  "jdDistinctiveKeywords": [],
+  "jdUniqueRequirements": [],
+  "jdInterviewSignals": [],
+  "jdMustHave": [],
+  "jdNiceToHave": [],
+  "jdKeyOriginalExcerpt": [],
+  "jdVersions": []
+}
+```
+
+Raw JD rule:
+
+```text
+original JD text must be saved before summary
+```
+
+If only company/title/link exists, mark `jdStatus = JD Missing`. Do not generate summary, interview signals, or original excerpts from missing JD.
+
+`jdSummary` should extract what makes the role different from a generic HR role. `jdDistinctiveKeywords` prioritizes special HR modules, business context, employee population, systems, legal/regulatory scope, language requirements, geography, methodology, transformation, and digitalization.
+
+`jdKeyOriginalExcerpt` must be copied verbatim from `jdRaw` or `jdSnapshot`. Keep only the most distinctive 3-6 bullets or sentences, and never rewrite them for style.
+
+Long JD handling: store the full JD in JSON, but show summary, distinctive keywords, unique requirements, and original excerpts first. Full JD is collapsed by default.
+
+JD updates use `jdHash` plus `jdVersions`. Repeated identical JD must not duplicate. Changed JD creates a new version and marks `interviewPackNeedsRefresh = true`. Interview Packs refresh only when `jdHash` changes, not on every daily run.
+
 ## Target Directions
 
 Priority:
@@ -396,7 +456,7 @@ A run is complete only if raw inputs, corrections, feedback, overrides, pending 
 
 ## Regression Tests
 
-Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
+Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, JD Missing behavior, raw JD preservation, original excerpt substring validation, stable jdHash, JD versioning, Interview Pack refresh only on JD change, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
 
 ## Execution Order
 

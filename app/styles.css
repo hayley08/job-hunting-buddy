@@ -371,6 +371,79 @@ h3 {
   background: #f8fbfc;
 }
 
+.jd-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 160px));
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.jd-table {
+  min-width: 1120px;
+}
+
+.jd-record .jd-detail-row td {
+  padding: 0 12px 12px;
+  background: #fbfdff;
+}
+
+.jd-detail-row details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.jd-detail-row summary,
+.full-jd summary {
+  min-height: 44px;
+  padding: 12px;
+  color: var(--accent);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.jd-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 12px;
+}
+
+.jd-detail-grid section {
+  min-width: 0;
+}
+
+.jd-detail-grid .full-jd {
+  grid-column: 1 / -1;
+}
+
+.full-jd pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font: inherit;
+  color: var(--text);
+}
+
+.compact-tags {
+  margin: 0;
+}
+
+.compact-list,
+.quote-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.quote-list li {
+  margin-bottom: 8px;
+  color: var(--strong);
+}
+
 .pipeline-table td small {
   display: block;
   margin-top: 4px;
@@ -685,6 +758,11 @@ h3 {
 
   .pipeline-kpis {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jd-summary-strip,
+  .jd-detail-grid {
+    grid-template-columns: 1fr;
   }
 
   .pipeline-table {

@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,7 @@ def main():
     archive = archive_data if isinstance(archive_data, list) else archive_data.get("records", [])
     story_bank = load_json("data/story-bank.json")
     reminders = load_json("data/reminders.json")
+    jds = load_json("data/jds.json")
     pending = load_json("data/pending.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
@@ -54,6 +56,36 @@ def main():
     assert_true(all(item.get("sourceOfTruth") == "user" for item in reminders), "reminders must be explicit user-provided records")
     assert_true(all(item.get("status") == "提醒列表" for item in reminders), "reminders must stay in 提醒列表 status")
 
+    jd_ids = [item.get("jobId") for item in jds]
+    assert_true(len(jd_ids) == len(set(jd_ids)), "same job must not duplicate JD records")
+    expected_jd_ids = {item.get("jobId") for item in applications if item.get("jobId")}
+    expected_jd_ids.update(item.get("reminderId") for item in reminders if item.get("reminderId"))
+    assert_true(expected_jd_ids.issubset(set(jd_ids)), "applications and reminders must have JD or JD Missing records")
+
+    complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
+    missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
+    assert_true(len(complete_jds) == 4, "current backfill should include 4 structured JD records")
+    assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
+    for item in jds:
+        raw = item.get("jdRaw") or item.get("jdSnapshot") or ""
+        if item.get("jdStatus") == "JD Missing":
+            assert_true(not item.get("jdSummary"), f"JD Missing must not have generated summary: {item.get('jobId')}")
+            assert_true(not item.get("jdKeyOriginalExcerpt"), f"JD Missing must not have generated excerpts: {item.get('jobId')}")
+            assert_true(item.get("interviewPackNeedsRefresh") is False, f"missing JD must not refresh interview pack: {item.get('jobId')}")
+            continue
+        assert_true(raw, f"raw JD must be preserved: {item.get('jobId')}")
+        assert_true(item.get("jdSummary"), f"summary exists only after JD is captured: {item.get('jobId')}")
+        assert_true(item.get("jdHash") == hashlib.sha256(raw.strip().encode("utf-8")).hexdigest(), f"jdHash unstable or mismatched: {item.get('jobId')}")
+        assert_true(item.get("jdVersions"), f"jdVersions missing: {item.get('jobId')}")
+        assert_true(item["jdVersions"][-1].get("hash") == item.get("jdHash"), f"latest version hash must equal current JD hash: {item.get('jobId')}")
+        assert_true(item.get("interviewPackNeedsRefresh") is True, f"new/changed JD should mark interview pack refresh: {item.get('jobId')}")
+        for excerpt in item.get("jdKeyOriginalExcerpt", []):
+            assert_true(excerpt in raw, f"JD excerpt must be original substring: {item.get('jobId')} -> {excerpt}")
+
+    ti_jd = next(item for item in jds if item.get("jobId") == "app-texas-instruments-human-resources-generalist-2026-08-19")
+    assert_true(len(ti_jd.get("jdRaw", "")) > 1500, "Texas Instruments must be retained as long JD example")
+    assert_true("English communication" in ti_jd.get("jdDistinctiveKeywords", []), "TI distinctive keywords must capture English signal")
+
     required_files = [
         "index.html",
         "app/app.js",
@@ -67,6 +99,7 @@ def main():
         "ARCHITECTURE_V2.md",
         "SKILL.md",
         "memory.md",
+        "data/jds.json",
         "data/daily/latest.json",
         "reports/2026-08-22_daily-brief.md",
     ]
@@ -83,6 +116,7 @@ def main():
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
     assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
     assert_true('label: "提醒列表"' in app_js, "pipeline must expose explicit reminder list filter")
+    assert_true('label: "JD"' in app_js and "renderJdKnowledge" in app_js, "流程 tab must contain JD Knowledge sub-tab")
     assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")
     assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-table" in css, "sidebar/mobile/table layout CSS missing")

@@ -9,6 +9,7 @@ const DATA_FILES = {
   resumes: "data/resumes.json",
   companies: "data/companies.json",
   reminders: "data/reminders.json",
+  jds: "data/jds.json",
   archive: "data/archive.json",
   feedback: "data/user-feedback.json",
   pending: "data/pending.json",

@@ -56,6 +56,7 @@ data/user-feedback.json
 memory.md
 data/applications.json
 data/opportunities.json
+data/jds.json
 data/events.json
 data/interviews.json
 data/story-bank.json
@@ -75,6 +76,7 @@ Primary active data:
 
 - `data/applications.json`: submitted or process-entered jobs.
 - `data/opportunities.json`: unsubmitted opportunities only.
+- `data/jds.json`: JD Knowledge records linked by `jobId`.
 - `data/events.json`: deadlines, assessments, interviews, follow-ups.
 - `data/interviews.json`: interview reviews.
 - `data/interview-packs.json`: generated interview preparation packs.
@@ -136,6 +138,8 @@ Pages:
 
 Story Bank and Resume Copy Tool are modules inside the 面试 tab, not first-level navigation items.
 
+Pipeline has internal filters, including `JD`. JD Knowledge is a Pipeline sub-tab, not a primary navigation item.
+
 Desktop/tablet use a fixed left sidebar. Mobile uses a hamburger-triggered left drawer to preserve vertical space for tables, timelines, interview notes, resume copy, and Story Bank content.
 
 Mobile-first rules:
@@ -168,6 +172,25 @@ Only jobs satisfying all gates can be recommended:
 - Salary acceptable or clearly marked as unknown risk where allowed.
 - Job direction matches HR target.
 - Not archived or already applied.
+
+## JD Knowledge Data Flow
+
+JD capture uses the same canonical `jobId` as applications, opportunities, reminders, historical records, and interview packs.
+
+```text
+user/platform JD
+-> persist raw JD
+-> match jobId
+-> compute jdHash
+-> detect duplicate/change
+-> extract JD structure
+-> update JD Knowledge
+-> mark interview pack refresh only if jdHash changed
+```
+
+`data/jds.json` stores raw JD, snapshot, summary, distinctive keywords, unique requirements, must-have, nice-to-have, interview signals, key original excerpts, version history, and refresh flags. Missing JD is represented explicitly with `jdStatus = JD Missing` and empty generated fields.
+
+`jdKeyOriginalExcerpt` must be a verbatim substring of `jdRaw` or `jdSnapshot`.
 
 ## Status Semantics
 
@@ -215,6 +238,8 @@ Regression tests must verify:
 - Applied jobs do not appear in Opportunities.
 - Archived Hong Kong records do not affect active KPI.
 - Reminder/watch rows are not auto-generated from `companies` or `archive`.
+- JD Knowledge preserves raw JD and validates excerpts as original substrings.
+- JD Missing records do not generate summaries or interview signals.
 - Closed is not counted as Rejected.
 - Required `statusHistory` exists.
 - Dates are valid.

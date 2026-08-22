@@ -25,7 +25,8 @@ const pipelineFilters = [
   { id: "offer", label: "Offer" },
   { id: "todo", label: "待投递" },
   { id: "watch", label: "提醒列表" },
-  { id: "closed", label: "已结束" }
+  { id: "closed", label: "已结束" },
+  { id: "jd", label: "JD" }
 ];
 
 let state = {};
@@ -183,6 +184,7 @@ function renderPipeline() {
   const filtered = rows.filter((row) => matchesPipelineFilter(row, pipelineFilter));
   const kpis = computeKpis(state.applications || []);
   const latestDaily = state.daily || {};
+  const isJdTab = pipelineFilter === "jd";
 
   return `
     <section class="pipeline-banner">
@@ -202,7 +204,7 @@ function renderPipeline() {
       <div class="filter-row">
         ${pipelineFilters.map((filter) => `<button class="${filter.id === pipelineFilter ? "active" : ""}" data-filter="${filter.id}">${filter.label}</button>`).join("")}
       </div>
-      <div class="pipeline-table-wrap">
+      ${isJdTab ? renderJdKnowledge() : `<div class="pipeline-table-wrap">
         <table class="pipeline-table">
           <thead>
             <tr>
@@ -219,7 +221,7 @@ function renderPipeline() {
             ${filtered.map(renderPipelineRow).join("") || `<tr><td colspan="7">${empty("当前筛选下暂无记录")}</td></tr>`}
           </tbody>
         </table>
-      </div>
+      </div>`}
     </section>
   `;
 }
@@ -355,6 +357,19 @@ function getPipelineRows() {
   return [...applications, ...opportunities, ...reminders];
 }
 
+function getJdRows() {
+  const jobsById = new Map(getPipelineRows().map((job) => [job.jobId, job]));
+  return (state.jds || []).map((jd) => ({
+    ...jd,
+    job: jobsById.get(jd.jobId) || findArchivedJob(jd.jobId) || {}
+  }));
+}
+
+function findArchivedJob(jobId) {
+  const archive = Array.isArray(state.archive) ? state.archive : state.archive && state.archive.records || [];
+  return [...(state.applications || []), ...archive].find((job) => job.jobId === jobId) || {};
+}
+
 function inferApplicationRowType(job) {
   const status = job.currentStatus || "";
   if (status === "Offer") return "offer";
@@ -365,8 +380,131 @@ function inferApplicationRowType(job) {
 
 function matchesPipelineFilter(row, filter) {
   if (filter === "all") return true;
+  if (filter === "jd") return false;
   if (filter === "active") return ["applied", "interview"].includes(row.rowType);
   return row.rowType === filter;
+}
+
+function renderJdKnowledge() {
+  const rows = getJdRows();
+  const completeCount = rows.filter((row) => row.jdStatus !== "JD Missing").length;
+  const missingCount = rows.length - completeCount;
+  return `
+    <div class="jd-summary-strip">
+      ${miniKpi("已保存 JD", completeCount)}
+      ${miniKpi("JD Missing", missingCount)}
+      ${miniKpi("需刷新面试包", rows.filter((row) => row.interviewPackNeedsRefresh).length)}
+    </div>
+    <div class="pipeline-table-wrap">
+      <table class="pipeline-table jd-table">
+        <thead>
+          <tr>
+            <th>公司</th>
+            <th>岗位</th>
+            <th>JD重点</th>
+            <th>差异关键词</th>
+            <th>核心要求</th>
+            <th>更新时间</th>
+          </tr>
+        </thead>
+        ${rows.map(renderJdRow).join("") || `<tbody><tr><td colspan="6">${empty("暂无 JD 记录")}</td></tr></tbody>`}
+      </table>
+    </div>
+  `;
+}
+
+function renderJdRow(jd) {
+  const job = jd.job || {};
+  const title = job.title || jd.jobId;
+  const company = job.company || "未关联岗位";
+  const url = jd.jdUrl || job.jdUrl || job.applyUrl || job.officialUrl || "";
+  const summary = jd.jdStatus === "JD Missing" ? "JD Missing：仅有岗位/投递记录，尚未保存原始 JD。" : jd.jdSummary;
+  const mustHave = (jd.jdMustHave || []).slice(0, 4);
+  return `
+    <tbody class="jd-record">
+      <tr>
+        <td class="sticky-col"><strong>${escapeHtml(company)}</strong><small>${escapeHtml(jd.jdStatus || "")}</small></td>
+        <td>${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(title)}</a>` : escapeHtml(title)}</td>
+        <td>${escapeHtml(shortText(summary || "JD Missing", 110))}</td>
+        <td><div class="tag-row compact-tags">${(jd.jdDistinctiveKeywords || []).slice(0, 5).map(tag).join("") || tag("JD Missing")}</div></td>
+        <td>${mustHave.length ? `<ul class="compact-list">${mustHave.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : `<span class="muted">待补 JD</span>`}</td>
+        <td>${escapeHtml(formatDate(jd.jdCapturedAt) || "未捕获")}</td>
+      </tr>
+      <tr class="jd-detail-row">
+        <td colspan="6">
+          <details>
+            <summary>展开 JD Detail</summary>
+            ${renderJdDetails(jd)}
+          </details>
+        </td>
+      </tr>
+    </tbody>
+  `;
+}
+
+function renderJdDetails(jd) {
+  if (jd.jdStatus === "JD Missing") {
+    return `
+      <div class="jd-detail-grid">
+        <section>
+          <h3>JD Summary</h3>
+          <p>JD Missing：当前只有岗位记录，还没有原始 JD。不会生成 summary、面试信号或原文 excerpt。</p>
+        </section>
+        <section>
+          <h3>Source</h3>
+          <p>${escapeHtml(jd.jdSource || "未记录")} ${jd.jdUrl ? `· ${escapeHtml(jd.jdUrl)}` : ""}</p>
+        </section>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="jd-detail-grid">
+      <section>
+        <h3>JD Summary</h3>
+        <p>${escapeHtml(jd.jdSummary || "")}</p>
+      </section>
+      <section>
+        <h3>与普通 HR 岗相比的差异</h3>
+        ${listBlock(jd.jdUniqueRequirements)}
+      </section>
+      <section>
+        <h3>Distinctive Keywords</h3>
+        <div class="tag-row">${(jd.jdDistinctiveKeywords || []).map(tag).join("")}</div>
+      </section>
+      <section>
+        <h3>Must Have</h3>
+        ${listBlock(jd.jdMustHave)}
+      </section>
+      <section>
+        <h3>Nice to Have</h3>
+        ${listBlock(jd.jdNiceToHave)}
+      </section>
+      <section>
+        <h3>Interview Signals</h3>
+        ${listBlock(jd.jdInterviewSignals)}
+      </section>
+      <section>
+        <h3>Key Original Excerpt</h3>
+        ${listBlock(jd.jdKeyOriginalExcerpt, "quote-list")}
+      </section>
+      <section>
+        <h3>JD Versioning</h3>
+        <p class="muted">Hash: ${escapeHtml(jd.jdHash || "missing")} · Refresh: ${escapeHtml(jd.interviewPackNeedsRefresh ? jd.refreshReason || "yes" : "no")}</p>
+      </section>
+      <section class="full-jd">
+        <details>
+          <summary>展开完整 JD</summary>
+          <pre>${escapeHtml(jd.jdRaw || jd.jdSnapshot || "")}</pre>
+        </details>
+      </section>
+    </div>
+  `;
+}
+
+function listBlock(items = [], className = "") {
+  if (!items.length) return `<p class="muted">待补充</p>`;
+  return `<ul class="${escapeAttr(className)}">${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 }
 
 function renderPipelineRow(job) {
