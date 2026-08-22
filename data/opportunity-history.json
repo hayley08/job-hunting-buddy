@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-23T01:20:00+08:00",
+  "snapshots": [
+    {
+      "recommendationDate": "2026-08-23",
+      "capturedAt": "2026-08-23T01:20:00+08:00",
+      "jobIds": []
+    },
+    {
+      "recommendationDate": "2026-08-22",
+      "capturedAt": "2026-08-22T23:14:12+08:00",
+      "jobIds": []
+    }
+  ]
+}

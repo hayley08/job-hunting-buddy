@@ -78,6 +78,7 @@ Primary active data:
 
 - `data/applications.json`: submitted or process-entered jobs.
 - `data/opportunities.json`: unsubmitted opportunities only.
+- `data/opportunity-history.json`: append-only daily recommendation snapshot index containing dates and canonical `jobId` references, including zero-result days.
 - `data/jds.json`: JD Knowledge records linked by `jobId`.
 - `data/events.json`: deadlines, assessments, interviews, follow-ups.
 - `data/interviews.json`: interview reviews.
@@ -96,6 +97,8 @@ Daily artifacts:
 - `reports/YYYY-MM-DD_daily-brief.md`
 - `snapshots/YYYY-MM-DD_campus-dashboard.html`
 - `data/handoffs/YYYY-MM-DD_handoff.json`
+
+The home page reads data freshness from `data/daily/latest.json` and deployed code identity from `/api/version`; these values are intentionally independent. Historical opportunity views resolve snapshot `jobId` references across canonical opportunities, applications, and archive data so status changes do not erase prior recommendations.
 
 ## Markets
 

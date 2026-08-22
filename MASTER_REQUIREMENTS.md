@@ -83,6 +83,7 @@ data/user-feedback.json
 memory.md
 data/applications.json
 data/opportunities.json
+data/opportunity-history.json
 data/jds.json
 data/events.json
 data/interviews.json
@@ -218,6 +219,17 @@ Implement `manifest.json`, `service-worker.js`, Add to Home Screen, standalone d
 
 The stable Preview access point for V2 is the Vercel branch URL for `feature/campus-job-os-v2`, not a commit-specific Preview URL. HTML, JavaScript, CSS, the manifest, and JSON must use online-first freshness with cached offline fallback. JSON requests must bypass HTTP and browser caches while online. Offline support must never make stale campus-recruitment data the normal online experience.
 
+## Version Visibility
+
+The top of the home page must show lightweight, independently sourced freshness information:
+
+```text
+Last updated: YYYY-MM-DD HH:mm UTC+8
+Web version: <commit short SHA>
+```
+
+`Last updated` is the structured job-search data update time and must come from daily/data metadata. `Web version` is the deployed code commit and must come from the deployment environment. Never substitute the data date for the code version or imply that a newer deployment necessarily contains newer job data.
+
 ## Main Navigation
 
 Primary navigation is fixed to five first-level tabs:
@@ -279,7 +291,29 @@ If the user says "请添加 xxx 进提醒列表" or provides a current reminder 
 
 ## Opportunities
 
-`opportunities.json` contains unsubmitted opportunities only.
+`opportunities.json` contains current canonical unsubmitted opportunities. Applied jobs may move to `applications.json`, but their historical recommendation membership must remain in `data/opportunity-history.json` and continue resolving to the canonical job by `jobId`.
+
+The 机会 tab is an append-only recommendation history, not a replace-on-each-run list. It must provide date filters:
+
+```text
+全部
+MM/DD
+MM/DD
+...
+```
+
+Each Daily Run appends one snapshot for that run date, including a valid zero-result snapshot, and must never delete or overwrite earlier snapshot dates. Snapshot membership is stored as `jobId` references; canonical job objects must not be duplicated.
+
+Every recommended job preserves:
+
+```text
+firstRecommendedAt
+recommendationDate
+recommendationDates
+currentStatus
+```
+
+`firstRecommendedAt` never changes. `recommendationDate` records the first recommendation date for compatibility, while `recommendationDates` contains every date on which the job was recommended. If an opportunity later becomes Applied, Closed, expired, Rejected, Withdrawn, or Archived, it must remain visible under its historical recommendation dates while showing its latest canonical status. Status changes update the canonical record; they do not remove historical snapshot membership.
 
 Source priority:
 
@@ -291,7 +325,7 @@ Public Web
 JobsDB
 ```
 
-Applied jobs must be removed from Opportunities.
+Applied jobs must be removed from the current unsubmitted canonical opportunity collection, but never from historical opportunity snapshots.
 
 ## Job Identity
 
@@ -504,6 +538,8 @@ A run is complete only if raw inputs, corrections, feedback, overrides, unfinish
 ## Regression Tests
 
 Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Application In Progress not counted as Applied KPI, Application In Progress pending actions, continue-apply links, `applicationStartedAt` separated from `appliedDate`, Application In Progress history preservation after Applied, unfinished applications not auto-archived, deadline-priority reminders, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, JD Missing behavior, raw JD preservation, original excerpt substring validation, stable jdHash, JD versioning, Interview Pack refresh only on JD change, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
+
+Regression tests must also verify independent data/code version display, immutable opportunity snapshot dates, canonical `jobId` references, recommendation metadata preservation, zero-result daily snapshots, and continued historical visibility after an opportunity changes to Applied, Closed, expired, Rejected, Withdrawn, or Archived.
 
 ## Execution Order
 

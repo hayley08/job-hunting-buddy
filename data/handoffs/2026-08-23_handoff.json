@@ -6,7 +6,9 @@
   },
   "processedInputs": [
     "data/inbox/2026-08-23_user-input.json",
-    "data/inbox/2026-08-23_application-in-progress.json"
+    "data/inbox/2026-08-23_application-in-progress.json",
+    "data/inbox/2026-08-23_cross-thread-vercel-cache-rule.json",
+    "data/inbox/2026-08-23_version-opportunity-history-ux.json"
   ],
   "newApplications": [
     "app-texas-instruments-human-resources-generalist-2026-08-19",
@@ -65,6 +67,11 @@
   "searchIssues": [],
   "dataConflicts": [],
   "manualOverrides": [],
+  "uxRuleUpdates": [
+    "Home shows independent dataUpdatedAt and deployed commit short SHA.",
+    "Opportunity history is append-only by recommendation date and canonical jobId, including zero-result snapshots.",
+    "Historical recommendations remain visible with current canonical status after application, closure, expiry, rejection, withdrawal, or archive."
+  ],
   "unresolvedItems": [
     "Need official JD/apply URL verification for TI, Insta360, DJI; OPPO URL points to application history center.",
     "Application In Progress must remain in pending actions until user confirms final submission."
@@ -74,7 +81,8 @@
     "data/applications.json",
     "data/handoffs/2026-08-23_handoff.json",
     "data/daily/latest.json",
-    "data/jds.json"
+    "data/jds.json",
+    "data/opportunity-history.json"
   ],
   "unfinishedApplications": [
     {

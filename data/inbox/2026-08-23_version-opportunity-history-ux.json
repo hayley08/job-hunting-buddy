@@ -1,0 +1,14 @@
+{
+  "inputDate": "2026-08-23",
+  "receivedAt": "2026-08-23T12:30:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-23T12:30:00+08:00",
+  "processedByRun": "2026-08-23-version-opportunity-history-ux",
+  "requirements": [
+    "Home must show independent structured-data update time and deployed commit short SHA.",
+    "Opportunity recommendations are append-only by date and must support All and MM/DD filters.",
+    "Daily runs append today's opportunity snapshot, including zero results, without deleting prior dates.",
+    "Recommended jobs preserve firstRecommendedAt, recommendationDate, recommendationDates, and latest currentStatus.",
+    "Applied, closed, expired, rejected, withdrawn, or archived jobs remain visible on historical recommendation dates with current status."
+  ]
+}

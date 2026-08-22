@@ -13,12 +13,13 @@ Every daily run must read these files before searching or editing data:
 5. `data/pending.json`
 6. `data/applications.json`
 7. `data/opportunities.json`
-8. `data/events.json`
-9. `data/interviews.json`
-10. `data/story-bank.json`
-11. `data/resumes.json`
-12. `data/companies.json`
-13. every `data/inbox/*.json` where `processed = false`
+8. `data/opportunity-history.json`
+9. `data/events.json`
+10. `data/interviews.json`
+11. `data/story-bank.json`
+12. `data/resumes.json`
+13. `data/companies.json`
+14. every `data/inbox/*.json` where `processed = false`
 
 Do not depend on Codex chat history as memory.
 
@@ -50,15 +51,16 @@ Hong Kong data is archive-only:
 5. Update applications, events, interviews, and Story Bank.
 6. Search new Mainland campus HR opportunities.
 7. Validate links, freshness, status, job identity, and relevance.
-8. Write JSON data.
-9. Update the PWA dashboard data.
-10. Generate `data/daily/YYYY-MM-DD.json`.
-11. Generate `reports/YYYY-MM-DD_daily-brief.md`.
-12. Generate `snapshots/YYYY-MM-DD_campus-dashboard.html`.
-13. Append `memory.md`.
-14. Write `data/handoffs/YYYY-MM-DD_handoff.json`.
-15. Run regression tests.
-16. Commit when the Git repository is valid.
+8. Append today's immutable opportunity snapshot by `jobId`, including when the result is zero; never delete prior dates.
+9. Write JSON data while preserving `firstRecommendedAt`, `recommendationDate`, `recommendationDates`, and current canonical status.
+10. Update the PWA dashboard data.
+11. Generate `data/daily/YYYY-MM-DD.json`.
+12. Generate `reports/YYYY-MM-DD_daily-brief.md`.
+13. Generate `snapshots/YYYY-MM-DD_campus-dashboard.html`.
+14. Append `memory.md`.
+15. Write `data/handoffs/YYYY-MM-DD_handoff.json`.
+16. Run regression tests.
+17. Commit when the Git repository is valid.
 
 ## Quality Rules
 
@@ -68,7 +70,7 @@ Never show a job as ready to apply when the URL, company, title, or active statu
 
 Closed is not Rejected.
 
-Applied jobs must not appear in Opportunities.
+Applied jobs must not remain in the current unsubmitted canonical opportunity collection, but their historical recommendation snapshot membership must remain visible.
 
 Core Introduction is locked by default and cannot be rewritten by an automated daily run.
 

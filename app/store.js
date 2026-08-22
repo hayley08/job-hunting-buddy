@@ -2,6 +2,7 @@ const DATA_FILES = {
   applications: "data/applications.json",
   applicationBackfill20260823: "data/application-backfills/2026-08-23.json",
   opportunities: "data/opportunities.json",
+  opportunityHistory: "data/opportunity-history.json",
   events: "data/events.json",
   interviews: "data/interviews.json",
   interviewPacks: "data/interview-packs.json",
@@ -13,7 +14,8 @@ const DATA_FILES = {
   archive: "data/archive.json",
   feedback: "data/user-feedback.json",
   pending: "data/pending.json",
-  daily: "data/daily/latest.json"
+  daily: "data/daily/latest.json",
+  version: "/api/version"
 };
 
 export async function loadData() {
@@ -33,7 +35,7 @@ export async function loadData() {
   const errors = [];
   for (const [key, value, error] of entries) {
     state[key] = value ?? fallbackFor(key);
-    if (error && !key.startsWith("applicationBackfill")) errors.push(error);
+    if (error && !key.startsWith("applicationBackfill") && key !== "version") errors.push(error);
   }
 
   state.applications = mergeApplications(state.applications, [state.applicationBackfill20260823]);
@@ -57,7 +59,7 @@ function mergeApplications(base, backfillSets) {
 }
 
 function fallbackFor(key) {
-  if (["storyBank", "resumes", "daily"].includes(key)) return {};
+  if (["storyBank", "resumes", "daily", "version", "opportunityHistory"].includes(key)) return {};
   return [];
 }
 

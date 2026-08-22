@@ -35,6 +35,7 @@ let state = {};
 let activeTab = normalizeTab(loadNavigation());
 let drawerOpen = false;
 let pipelineFilter = "all";
+let opportunityDateFilter = "all";
 let selectedJobId = "";
 
 init();
@@ -98,6 +99,13 @@ function bindInteractions() {
     });
   });
 
+  document.querySelectorAll("[data-opportunity-date]").forEach((button) => {
+    button.addEventListener("click", () => {
+      opportunityDateFilter = button.dataset.opportunityDate;
+      render();
+    });
+  });
+
   document.querySelectorAll("[data-row-job]").forEach((row) => {
     row.addEventListener("click", () => {
       selectedJobId = row.dataset.rowJob;
@@ -142,6 +150,7 @@ function renderHome() {
 
   return `
     ${hero("Hayley Campus Job OS", "2027 内地校招 HR 求职工作台", "岗位发现 -> 投递 -> 测评/面试 -> 复盘 -> Story Bank")}
+    ${renderVersionInfo(latestDaily, state.version || {})}
     ${renderWarnings()}
     <section class="kpi-grid">
       ${kpi("投递中", kpis.inProgress)}
@@ -184,13 +193,43 @@ function renderHome() {
 }
 
 function renderOpportunities() {
-  const jobs = activeOpportunities(state.opportunities || []);
+  const snapshots = getOpportunitySnapshots();
+  const dates = snapshots.map((snapshot) => snapshot.recommendationDate);
+  const selectedIds = opportunityDateFilter === "all"
+    ? [...new Set(snapshots.flatMap((snapshot) => snapshot.jobIds || []))]
+    : snapshots.find((snapshot) => snapshot.recommendationDate === opportunityDateFilter)?.jobIds || [];
+  const jobs = selectedIds.map(findOpportunityHistoryJob).filter(Boolean);
   return `
-    ${hero("机会", "尚未投递的内地校招机会", "只展示通过校验且未投递的岗位")}
+    ${hero("机会", "内地校招机会历史", "按推荐日期保留历史结果；状态变化不会删除旧推荐")}
+    <section class="opportunity-date-filter" aria-label="推荐日期">
+      <button class="${opportunityDateFilter === "all" ? "active" : ""}" data-opportunity-date="all">全部</button>
+      ${dates.map((date) => `<button class="${opportunityDateFilter === date ? "active" : ""}" data-opportunity-date="${escapeAttr(date)}">${escapeHtml(formatDate(date))}</button>`).join("")}
+    </section>
     <section class="stack">
-      ${jobs.length ? jobs.map(renderJobCard).join("") : empty("当前没有通过验证的内地校招新机会。0 条比低质量推荐更好。")}
+      ${jobs.length ? jobs.map(renderJobCard).join("") : empty("该日期没有通过验证的新机会。零结果快照仍会保留。")}
     </section>
   `;
+}
+
+function renderVersionInfo(daily, version) {
+  return `
+    <section class="version-strip" aria-label="版本信息">
+      <span>Last updated: <strong>${escapeHtml(formatUpdatedAt(daily.dataUpdatedAt || daily.updatedAt || daily.runDate))}</strong></span>
+      <span>Web version: <strong>${escapeHtml(version.commitShortSha || "unavailable")}</strong></span>
+    </section>
+  `;
+}
+
+function getOpportunitySnapshots() {
+  return [...(state.opportunityHistory?.snapshots || [])]
+    .filter((snapshot) => snapshot.recommendationDate)
+    .sort((a, b) => b.recommendationDate.localeCompare(a.recommendationDate));
+}
+
+function findOpportunityHistoryJob(jobId) {
+  const archive = Array.isArray(state.archive) ? state.archive : state.archive && state.archive.records || [];
+  return [...(state.opportunities || []), ...(state.applications || []), ...archive]
+    .find((job) => job.jobId === jobId);
 }
 
 function renderPipeline() {
@@ -696,6 +735,8 @@ function renderJobCard(job) {
       </div>
       <h3>${escapeHtml(job.title || "未命名岗位")}</h3>
       <div class="tag-row">
+        ${tag(statusLabel(job.currentStatus || "Recommended"))}
+        ${tag(job.firstRecommendedAt ? `首次推荐 ${formatDate(job.firstRecommendedAt)}` : "首次推荐时间待补")}
         ${tag(job.location)}
         ${tag(job.postedDate ? `发布 ${job.postedDate}` : "发布日期待验证")}
         ${tag(job.deadline ? `截止 ${job.deadline}` : "Deadline 未记录")}
@@ -810,6 +851,24 @@ function formatDate(value = "") {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${month}/${day}`;
+}
+
+function formatUpdatedAt(value = "") {
+  if (!value) return "未记录";
+  const normalized = /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T12:00:00+08:00` : value;
+  const date = new Date(normalized);
+  if (Number.isNaN(date.getTime())) return value;
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(date);
+  const get = (type) => parts.find((part) => part.type === type)?.value || "";
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")} UTC+8`;
 }
 
 function escapeHtml(value = "") {

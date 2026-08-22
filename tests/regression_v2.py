@@ -17,6 +17,7 @@ def assert_true(condition, message):
 def main():
     applications = load_json("data/applications.json")
     opportunities = load_json("data/opportunities.json")
+    opportunity_history = load_json("data/opportunity-history.json")
     archive_data = load_json("data/archive.json")
     archive = archive_data if isinstance(archive_data, list) else archive_data.get("records", [])
     story_bank = load_json("data/story-bank.json")
@@ -39,6 +40,18 @@ def main():
     applied_ids = {item.get("jobId") for item in applications if item.get("currentStatus") == "Applied"}
     opportunity_ids = {item.get("jobId") for item in opportunities}
     assert_true(not applied_ids.intersection(opportunity_ids), "applied job appears in opportunities")
+
+    snapshots = opportunity_history.get("snapshots", [])
+    snapshot_dates = [item.get("recommendationDate") for item in snapshots]
+    assert_true(len(snapshot_dates) == len(set(snapshot_dates)), "opportunity snapshot date must be unique and append-only")
+    assert_true({"2026-08-22", "2026-08-23"}.issubset(set(snapshot_dates)), "historical zero-result snapshots must be preserved")
+    canonical_ids = {item.get("jobId") for item in applications + opportunities + archive if item.get("jobId")}
+    assert_true(all(set(item.get("jobIds", [])).issubset(canonical_ids) for item in snapshots), "snapshot must reference canonical jobId values")
+    for item in opportunities:
+        assert_true(item.get("firstRecommendedAt"), f"firstRecommendedAt missing: {item.get('jobId')}")
+        assert_true(item.get("recommendationDate"), f"recommendationDate missing: {item.get('jobId')}")
+        assert_true(item.get("recommendationDates"), f"recommendationDates missing: {item.get('jobId')}")
+        assert_true(item.get("recommendationDate") == item.get("recommendationDates", [None])[0], f"first recommendation date drifted: {item.get('jobId')}")
 
     in_progress = [item for item in active_apps if item.get("currentStatus") == "Application In Progress"]
     assert_true(len(in_progress) == 3, "expected 3 Application In Progress records")
@@ -112,6 +125,7 @@ def main():
         "SKILL.md",
         "memory.md",
         "data/jds.json",
+        "data/opportunity-history.json",
         "data/daily/latest.json",
         "reports/2026-08-22_daily-brief.md",
     ]
@@ -136,6 +150,7 @@ def main():
     css = (ROOT / "app" / "styles.css").read_text(encoding="utf-8")
     master = (ROOT / "MASTER_REQUIREMENTS.md").read_text(encoding="utf-8")
     assert_true("Cross-Thread Persistence Rule" in master, "cross-thread persistence rule missing")
+    assert_true("Version Visibility" in master and "append-only recommendation history" in master, "long-term UX rules missing")
     assert_true('label: "Story"' not in app_js, "Story must not be a first-level tab")
     assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
@@ -143,6 +158,9 @@ def main():
     assert_true('label: "投递中"' in app_js, "pipeline must expose Application In Progress filter")
     assert_true("continue-link" in app_js and "继续投递" in app_js, "Application In Progress must show continue apply action")
     assert_true("renderPendingActions" in app_js and "需要行动" in app_js, "Application In Progress must appear in dashboard pending actions")
+    assert_true("renderVersionInfo" in app_js and "commitShortSha" in app_js and "dataUpdatedAt" in app_js, "home must show separate data and code versions")
+    assert_true("data-opportunity-date" in app_js and "getOpportunitySnapshots" in app_js, "opportunity date history UI missing")
+    assert_true("findOpportunityHistoryJob" in app_js, "historical opportunity status must resolve from canonical jobs")
     assert_true('registration.update()' in app_js and '"controllerchange"' in app_js, "PWA must promptly activate and reload after shell updates")
     assert_true("deadlineDistance" in app_js and "距截止还有" in app_js, "deadline approaching should increase unfinished application reminder detail")
     assert_true("preserve the `Application In Progress` event" in master, "Applied transition must preserve Application In Progress history rule")
@@ -151,6 +169,9 @@ def main():
     assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")
     assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-grid" in css, "sidebar/mobile/responsive pipeline layout CSS missing")
+
+    version_api = (ROOT / "api" / "version.js").read_text(encoding="utf-8")
+    assert_true("VERCEL_GIT_COMMIT_SHA" in version_api and "no-store" in version_api, "deployment version endpoint must expose uncached commit SHA")
 
     print("regression_v2: all checks passed")
 

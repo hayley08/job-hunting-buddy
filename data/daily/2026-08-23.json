@@ -1,5 +1,6 @@
 {
   "runDate": "2026-08-23",
+  "dataUpdatedAt": "2026-08-23T01:20:00+08:00",
   "mode": "manual-application-backfill",
   "activeMarket": "Mainland",
   "processingWindow": {
