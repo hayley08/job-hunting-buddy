@@ -119,7 +119,7 @@ def main():
     assert_true('label: "JD"' in app_js and "renderJdKnowledge" in app_js, "流程 tab must contain JD Knowledge sub-tab")
     assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")
     assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
-    assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-table" in css, "sidebar/mobile/table layout CSS missing")
+    assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-grid" in css, "sidebar/mobile/responsive pipeline layout CSS missing")
 
     print("regression_v2: all checks passed")
 

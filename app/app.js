@@ -204,23 +204,17 @@ function renderPipeline() {
       <div class="filter-row">
         ${pipelineFilters.map((filter) => `<button class="${filter.id === pipelineFilter ? "active" : ""}" data-filter="${filter.id}">${filter.label}</button>`).join("")}
       </div>
-      ${isJdTab ? renderJdKnowledge() : `<div class="pipeline-table-wrap">
-        <table class="pipeline-table">
-          <thead>
-            <tr>
-              <th>公司</th>
-              <th>岗位</th>
-              <th>Base</th>
-              <th>投递/记录日期</th>
-              <th>当前进度</th>
-              <th>下一节点</th>
-              <th>备注</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${filtered.map(renderPipelineRow).join("") || `<tr><td colspan="7">${empty("当前筛选下暂无记录")}</td></tr>`}
-          </tbody>
-        </table>
+      ${isJdTab ? renderJdKnowledge() : `<div class="pipeline-grid" role="table" aria-label="Application pipeline">
+        <div class="pipeline-grid-head" role="row">
+          <span>公司</span>
+          <span>岗位</span>
+          <span>Base</span>
+          <span>投递/记录日期</span>
+          <span>当前进度</span>
+          <span>下一节点</span>
+          <span>备注</span>
+        </div>
+        ${filtered.map(renderPipelineRow).join("") || empty("当前筛选下暂无记录")}
       </div>`}
     </section>
   `;
@@ -395,20 +389,16 @@ function renderJdKnowledge() {
       ${miniKpi("JD Missing", missingCount)}
       ${miniKpi("需刷新面试包", rows.filter((row) => row.interviewPackNeedsRefresh).length)}
     </div>
-    <div class="pipeline-table-wrap">
-      <table class="pipeline-table jd-table">
-        <thead>
-          <tr>
-            <th>公司</th>
-            <th>岗位</th>
-            <th>JD重点</th>
-            <th>差异关键词</th>
-            <th>核心要求</th>
-            <th>更新时间</th>
-          </tr>
-        </thead>
-        ${rows.map(renderJdRow).join("") || `<tbody><tr><td colspan="6">${empty("暂无 JD 记录")}</td></tr></tbody>`}
-      </table>
+    <div class="jd-grid" role="table" aria-label="JD Knowledge">
+      <div class="jd-grid-head" role="row">
+        <span>公司</span>
+        <span>岗位</span>
+        <span>JD重点</span>
+        <span>差异关键词</span>
+        <span>核心要求</span>
+        <span>更新时间</span>
+      </div>
+      ${rows.map(renderJdRow).join("") || empty("暂无 JD 记录")}
     </div>
   `;
 }
@@ -420,25 +410,22 @@ function renderJdRow(jd) {
   const url = jd.jdUrl || job.jdUrl || job.applyUrl || job.officialUrl || "";
   const summary = jd.jdStatus === "JD Missing" ? "JD Missing：仅有岗位/投递记录，尚未保存原始 JD。" : jd.jdSummary;
   const mustHave = (jd.jdMustHave || []).slice(0, 4);
+  const hiddenMustHave = Math.max((jd.jdMustHave || []).length - mustHave.length, 0);
   return `
-    <tbody class="jd-record">
-      <tr>
-        <td class="sticky-col"><strong>${escapeHtml(company)}</strong><small>${escapeHtml(jd.jdStatus || "")}</small></td>
-        <td>${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(title)}</a>` : escapeHtml(title)}</td>
-        <td>${escapeHtml(shortText(summary || "JD Missing", 110))}</td>
-        <td><div class="tag-row compact-tags">${(jd.jdDistinctiveKeywords || []).slice(0, 5).map(tag).join("") || tag("JD Missing")}</div></td>
-        <td>${mustHave.length ? `<ul class="compact-list">${mustHave.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : `<span class="muted">待补 JD</span>`}</td>
-        <td>${escapeHtml(formatDate(jd.jdCapturedAt) || "未捕获")}</td>
-      </tr>
-      <tr class="jd-detail-row">
-        <td colspan="6">
-          <details>
-            <summary>展开 JD Detail</summary>
-            ${renderJdDetails(jd)}
-          </details>
-        </td>
-      </tr>
-    </tbody>
+    <article class="jd-record" role="row">
+      <div class="jd-main">
+        <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(company)}</strong><small>${escapeHtml(jd.jdStatus || "")}</small></div>
+        <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer">${escapeHtml(title)}</a>` : escapeHtml(title)}</div>
+        <div class="cell cell-summary" data-label="JD重点">${escapeHtml(shortText(summary || "JD Missing", 160))}</div>
+        <div class="cell cell-tags" data-label="差异关键词"><div class="tag-row compact-tags">${(jd.jdDistinctiveKeywords || []).slice(0, 6).map(tag).join("") || tag("JD Missing")}</div></div>
+        <div class="cell cell-must" data-label="核心要求">${mustHave.length ? `<ul class="compact-list">${mustHave.slice(0, 3).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}${hiddenMustHave ? `<li class="muted">+${hiddenMustHave}</li>` : ""}</ul>` : `<span class="muted">待补 JD</span>`}</div>
+        <div class="cell cell-date" data-label="更新时间">${escapeHtml(formatDate(jd.jdCapturedAt) || "未捕获")}</div>
+      </div>
+      <details class="jd-detail-row">
+        <summary>展开 JD Detail</summary>
+        ${renderJdDetails(jd)}
+      </details>
+    </article>
   `;
 }
 
@@ -511,15 +498,15 @@ function renderPipelineRow(job) {
   const url = job.applyUrl || job.jdUrl || job.officialUrl || "";
   const latest = latestStatus(job);
   return `
-    <tr data-row-job="${escapeAttr(job.jobId)}">
-      <td class="sticky-col"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></td>
-      <td>${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</td>
-      <td>${escapeHtml(job.location || job.base || "")}</td>
-      <td>${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></td>
-      <td><span class="status-pill ${statusClass(job.currentStatus)}">${escapeHtml(statusLabel(job.currentStatus) || job.currentStatus || job.rowLabel)}</span></td>
-      <td>${escapeHtml(nextNode(job))}</td>
-      <td>${escapeHtml(shortText(job.notes || (job.risks || []).join("；") || (job.matchReasons || []).join("；"), 70))}</td>
-    </tr>
+    <article class="pipeline-row" data-row-job="${escapeAttr(job.jobId)}" role="row">
+      <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></div>
+      <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</div>
+      <div class="cell" data-label="Base">${escapeHtml(job.location || job.base || "")}</div>
+      <div class="cell" data-label="投递/记录日期">${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></div>
+      <div class="cell" data-label="当前进度"><span class="status-pill ${statusClass(job.currentStatus)}">${escapeHtml(statusLabel(job.currentStatus) || job.currentStatus || job.rowLabel)}</span></div>
+      <div class="cell" data-label="下一节点">${escapeHtml(nextNode(job))}</div>
+      <div class="cell cell-notes" data-label="备注">${escapeHtml(shortText(job.notes || (job.risks || []).join("；") || (job.matchReasons || []).join("；"), 100))}</div>
+    </article>
   `;
 }
 
