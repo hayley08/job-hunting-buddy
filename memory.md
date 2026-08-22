@@ -16,3 +16,5 @@
 - Backfilled 5 Mainland applied campus HR roles from user input: TI, OPPO, Insta360, Shopee, DJI.
 - TI application requires English interview preparation.
 - Applied roles were kept out of opportunities.
+- Reminder list policy fixed: pipeline reminders are explicit-only, not auto-generated from target companies or archive records.
+- Added 15 user-image reminder entries from "更新目前投递公司" for 外企 and 汽车 roles.

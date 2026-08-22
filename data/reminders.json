@@ -1,0 +1,152 @@
+[
+  {
+    "reminderId": "reminder-jabil-hr-2026-08-23",
+    "company": "捷普",
+    "title": "HR 人力资源",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-parker-hannifin-hr-mt-2026-08-23",
+    "company": "派克汉尼汾",
+    "title": "人力资源管培生",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-ti-hr-mt-2026-08-23",
+    "company": "德州仪器",
+    "title": "人力资源管培生项目",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司；TI 已有 Applied 记录，仍保留此提醒名称用于对照。"
+  },
+  {
+    "reminderId": "reminder-spbt-hr-mt-2026-08-23",
+    "company": "斯巴特",
+    "title": "人力资源管培生",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-volkswagen-hr-compliance-consulting-2026-08-23",
+    "company": "大众",
+    "title": "HR Compliance Consulting",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-panasonic-hr-recruiting-2026-08-23",
+    "company": "松下",
+    "title": "人事招聘专员",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-vesync-hr-mt-2026-08-23",
+    "company": "VeSync",
+    "title": "HR管培",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-forvia-hr-mt-2026-08-23",
+    "company": "佛吉亚",
+    "title": "人力资源管培生",
+    "category": "外企",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-seres-hr-specialist-2026-08-23",
+    "company": "赛力斯",
+    "title": "人力资源专员",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-chery-hr-specialist-2026-08-23",
+    "company": "奇瑞",
+    "title": "人力资源专员",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-saic-operations-hr-2026-08-23",
+    "company": "上汽",
+    "title": "运营管理（人力资源）",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-xpeng-td-culture-trainee-2026-08-23",
+    "company": "小鹏汽车",
+    "title": "人才发展培训生 / 企业文化培训生",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-baic-hr-management-2026-08-23",
+    "company": "北汽",
+    "title": "人力资源管理",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-dreame-hrbp-2026-08-23",
+    "company": "追觅",
+    "title": "HRBP",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  },
+  {
+    "reminderId": "reminder-geely-hr-role-2026-08-23",
+    "company": "吉利",
+    "title": "人力资源岗",
+    "category": "汽车",
+    "status": "提醒列表",
+    "addedDate": "2026-08-23",
+    "sourceOfTruth": "user",
+    "notes": "来自用户图片：更新目前投递公司。"
+  }
+]

@@ -75,6 +75,7 @@ data/interviews.json
 data/story-bank.json
 data/resumes.json
 data/companies.json
+data/reminders.json
 data/pending.json
 latest data/handoffs/*.json
 data/inbox/*.json where processed = false
@@ -237,6 +238,18 @@ Home page must show Today, Tomorrow, and Next 7 Days for deadlines, assessments,
 
 `applications.json` contains all clearly submitted jobs. It is the union of current applications, historical applications, and user-provided application facts. Do not overwrite history.
 
+## Reminder List
+
+`data/reminders.json` contains only companies or roles the user explicitly asks to add to the reminder list, including lists supplied by image or text. The system must not auto-generate reminder, watchlist, or historical-reference rows from `data/companies.json`, `data/archive.json`, old recommendations, or keyword matches.
+
+Reminder list rule:
+
+```text
+explicit user add/list only
+```
+
+If the user says "请添加 xxx 进提醒列表" or provides a current reminder list, add it. Otherwise, keep target companies and archive records as reference data only.
+
 ## Opportunities
 
 `opportunities.json` contains unsubmitted opportunities only.
@@ -383,7 +396,7 @@ A run is complete only if raw inputs, corrections, feedback, overrides, pending 
 
 ## Regression Tests
 
-Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
+Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.
 
 ## Execution Order
 

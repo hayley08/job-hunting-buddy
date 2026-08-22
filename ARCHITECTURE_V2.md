@@ -28,7 +28,7 @@ GitHub repository
 -> Mobile Add to Home Screen
 ```
 
-The GitHub repository is the source of truth for application code and structured job-search data. Vercel deploys the production branch. This workspace currently is not a valid Git repository, so branch creation and commits are blocked until the project is moved into or repaired as a real Git repo.
+The GitHub repository is the source of truth for application code and structured job-search data. Vercel deploys the production branch. V2 development happens on `feature/campus-job-os-v2`; do not merge into `main` before user acceptance.
 
 ## Daily Run Contract
 
@@ -61,6 +61,7 @@ data/interviews.json
 data/story-bank.json
 data/resumes.json
 data/companies.json
+data/reminders.json
 data/pending.json
 data/handoffs/latest handoff
 data/inbox/*.json where processed = false
@@ -80,6 +81,7 @@ Primary active data:
 - `data/story-bank.json`: stable stories, answer versions, question training.
 - `data/resumes.json`: resume versions and copyable experience blocks.
 - `data/companies.json`: target company list and priority rules.
+- `data/reminders.json`: explicit user-added reminder list only.
 - `data/pending.json`: unresolved data or workflow issues.
 - `data/user-feedback.json`: user feedback ledger.
 - `data/archive.json`: Hong Kong historical data and old recommendations.
@@ -107,6 +109,10 @@ archived = true
 ```
 
 Hong Kong records remain searchable in Records/Archive but are excluded from active dashboard KPI and daily search unless explicitly reopened by the user.
+
+## Reminder List Policy
+
+Pipeline reminder rows are explicit-only. The system must not create reminders from target companies, historical recommendations, archive records, or inferred company interest. A row enters `data/reminders.json` only when the user directly asks to add it or provides a current reminder list in text/image form.
 
 ## UI Architecture
 
@@ -208,6 +214,7 @@ Regression tests must verify:
 - No bad URL or URL-job mismatch.
 - Applied jobs do not appear in Opportunities.
 - Archived Hong Kong records do not affect active KPI.
+- Reminder/watch rows are not auto-generated from `companies` or `archive`.
 - Closed is not counted as Rejected.
 - Required `statusHistory` exists.
 - Dates are valid.
@@ -218,6 +225,6 @@ Regression tests must verify:
 - Processed inbox files are not reprocessed.
 - Handoff exists after a completed run.
 
-## Current Known Constraint
+## Current Repository State
 
-This workspace is not a valid Git repository despite containing a `.git` directory. The requested branch `feature/campus-job-os-v2` and Git commit cannot be created until the repository is repaired or moved into a valid Git checkout.
+Development is connected to `hayley08/job-hunting-buddy` on `feature/campus-job-os-v2`. `main` is the Vercel production branch and must remain untouched until V2 is accepted.

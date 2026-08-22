@@ -19,6 +19,7 @@ def main():
     archive_data = load_json("data/archive.json")
     archive = archive_data if isinstance(archive_data, list) else archive_data.get("records", [])
     story_bank = load_json("data/story-bank.json")
+    reminders = load_json("data/reminders.json")
     pending = load_json("data/pending.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
@@ -49,6 +50,9 @@ def main():
 
     assert_true(any(item.get("pendingId") == "pending-git-branch" for item in pending), "Git blocker missing from pending queue")
     assert_true(handoff.get("runDate") == "2026-08-22", "handoff missing or wrong date")
+    assert_true(len(reminders) == 15, "user-image reminder list should contain 15 entries")
+    assert_true(all(item.get("sourceOfTruth") == "user" for item in reminders), "reminders must be explicit user-provided records")
+    assert_true(all(item.get("status") == "提醒列表" for item in reminders), "reminders must stay in 提醒列表 status")
 
     required_files = [
         "index.html",
@@ -78,6 +82,9 @@ def main():
     assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
     assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
+    assert_true('label: "提醒列表"' in app_js, "pipeline must expose explicit reminder list filter")
+    assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")
+    assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-table" in css, "sidebar/mobile/table layout CSS missing")
 
     print("regression_v2: all checks passed")

@@ -24,8 +24,7 @@ const pipelineFilters = [
   { id: "interview", label: "面试" },
   { id: "offer", label: "Offer" },
   { id: "todo", label: "待投递" },
-  { id: "watch", label: "持续关注" },
-  { id: "historical", label: "往届参考" },
+  { id: "watch", label: "提醒列表" },
   { id: "closed", label: "已结束" }
 ];
 
@@ -335,44 +334,25 @@ function getPipelineRows() {
     rowDate: job.foundDate || job.postedDate || ""
   }));
 
-  const appliedCompanies = new Set(applications.map((job) => normalizeKey(job.company)));
-  const watchlist = (state.companies || [])
-    .filter((company) => company.active && !appliedCompanies.has(normalizeKey(company.companyName)) && !appliedCompanies.has(normalizeKey(company.companyNameEn)))
-    .slice(0, 12)
-    .map((company) => ({
-      jobId: `watch-${company.companyId}`,
-      company: company.companyName,
-      title: `${company.companyNameEn || company.companyName} HR Campus Watch`,
-      location: "Mainland China",
-      market: "Mainland",
-      source: "Target Company Watchlist",
-      currentStatus: "持续关注",
-      rowType: "watch",
-      rowLabel: "持续关注",
-      rowDate: "",
-      notes: company.notes || "2027 HR校招待确认",
-      industry: company.industry,
-      jdUrl: company.campusSite || company.careerSite || "",
-      applyUrl: "",
-      officialUrl: company.campusSite || company.careerSite || ""
-    }));
+  const reminders = (state.reminders || []).map((item) => ({
+    jobId: item.reminderId,
+    company: item.company,
+    title: item.title,
+    location: item.location || "",
+    market: item.market || "Mainland",
+    source: "User Reminder List",
+    currentStatus: item.status || "提醒列表",
+    rowType: "watch",
+    rowLabel: "提醒列表",
+    rowDate: item.addedDate || "",
+    notes: item.notes || "用户明确加入提醒列表",
+    industry: item.category || "",
+    jdUrl: item.url || "",
+    applyUrl: item.applyUrl || "",
+    officialUrl: item.officialUrl || ""
+  }));
 
-  const historical = (state.archive?.records || [])
-    .filter((job) => /trainee|管培|hr|human resources|c&b|talent|people/i.test(`${job.title} ${job.jobDescription || ""}`))
-    .slice(0, 8)
-    .map((job) => ({
-      ...job,
-      jobId: `historical-${job.jobId}`,
-      title: `${job.title}（Historical）`,
-      currentStatus: "往届有岗｜今年待确认",
-      rowType: "historical",
-      rowLabel: "往届参考",
-      rowDate: job.foundDate || job.postedDate || "",
-      notes: "历史优质岗位，作为今年关注线索",
-      market: "Mainland"
-    }));
-
-  return [...applications, ...opportunities, ...watchlist, ...historical];
+  return [...applications, ...opportunities, ...reminders];
 }
 
 function inferApplicationRowType(job) {
@@ -437,7 +417,7 @@ function renderDetailDrawer() {
         <h3>Interview Pack</h3>
         <p>${escapeHtml(job.interviewPackId || "暂无面试包；有面试或测评变化时生成。")}</p>
         <h3>Historical Reference</h3>
-        <p>${escapeHtml(job.rowType === "historical" ? "往届参考，不代表今年已开放。" : "无")}</p>
+        <p>${escapeHtml(job.rowType === "watch" ? "来自用户明确提醒列表，不由系统自动生成。" : "无")}</p>
       </div>
     </aside>
   `;
@@ -456,8 +436,7 @@ function latestStatus(job) {
 
 function nextNode(job) {
   if (job.rowType === "todo") return "待投递";
-  if (job.rowType === "watch") return "等待开放";
-  if (job.rowType === "historical") return "今年待确认";
+  if (job.rowType === "watch") return "等待跟进";
   if (job.currentStatus === "Applied") return "等待筛选";
   if (job.currentStatus === "Resume Screening") return "测评/面试通知";
   if (job.currentStatus?.includes("Interview")) return "复盘/下一轮";
@@ -623,10 +602,6 @@ function formatDate(value = "") {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${month}/${day}`;
-}
-
-function normalizeKey(value = "") {
-  return String(value).trim().toLowerCase();
 }
 
 function escapeHtml(value = "") {
