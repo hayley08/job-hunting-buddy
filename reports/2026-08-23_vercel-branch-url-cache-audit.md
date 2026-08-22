@@ -1,0 +1,26 @@
+# Vercel Branch URL and PWA Cache Audit - 2026-08-23
+
+## Deployment Finding
+
+- GitHub is connected to Vercel and every push to `feature/campus-job-os-v2` creates a Preview deployment.
+- Vercel automatically maintains a stable Git branch URL that follows the latest successful deployment on the branch.
+- Commit-specific Preview URLs are immutable snapshots and must not be bookmarked as the daily V2 URL.
+- The exact branch URL must be copied from Vercel Deployment -> Domains, the Share dialog's Branch link, or the GitHub PR's Visit Preview action. Public GitHub deployment metadata exposes only the commit URL and is insufficient to verify the exact branch alias string.
+
+## Previous Cache Strategy
+
+- `data/*.json`: network-first with `fetch(..., { cache: "no-store" })` and cached offline fallback.
+- HTML, JavaScript, CSS, and manifest: cache-first under a fixed cache name.
+- Vercel already sent `no-store` for JSON and `no-cache` for the service worker, but did not explicitly revalidate HTML and app assets.
+
+## Corrected Cache Strategy
+
+- Navigation/HTML: network-first, browser HTTP cache bypassed, cached offline fallback.
+- JavaScript/CSS/manifest: network-first, browser HTTP cache bypassed, cached offline fallback.
+- `data/*.json`: network-first with `no-store`, cached offline fallback.
+- Vercel headers: JSON `no-store`; HTML, app assets, manifest, and service worker `no-cache, max-age=0, must-revalidate`.
+- Cache name versioned so activation removes the old cache.
+
+## Operational Rule
+
+Use the stable branch URL on desktop and mobile. A URL containing a random deployment hash points permanently to that commit and cannot become the latest deployment merely by refreshing.

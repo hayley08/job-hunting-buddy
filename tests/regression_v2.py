@@ -120,10 +120,22 @@ def main():
 
     sw = (ROOT / "service-worker.js").read_text(encoding="utf-8")
     assert_true("networkFirst" in sw and "/data/" in sw, "service worker must use network-first for JSON data")
+    assert_true("cacheFirst" not in sw, "app shell must not remain cache-first")
+    assert_true('event.request.mode === "navigate"' in sw, "HTML navigation must use network-first")
+    assert_true('pathname.startsWith("/app/")' in sw, "app shell assets must use network-first")
+    assert_true('cache: "no-store"' in sw, "online freshness must bypass browser HTTP cache")
+
+    vercel = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+    header_rules = {item["source"]: item["headers"][0]["value"] for item in vercel.get("headers", [])}
+    assert_true(header_rules.get("/data/(.*).json") == "no-store, max-age=0", "JSON must be no-store on Vercel")
+    assert_true("must-revalidate" in header_rules.get("/", ""), "root HTML must revalidate")
+    assert_true("must-revalidate" in header_rules.get("/index.html", ""), "index HTML must revalidate")
+    assert_true("must-revalidate" in header_rules.get("/app/(.*)", ""), "app assets must revalidate")
 
     app_js = (ROOT / "app" / "app.js").read_text(encoding="utf-8")
     css = (ROOT / "app" / "styles.css").read_text(encoding="utf-8")
     master = (ROOT / "MASTER_REQUIREMENTS.md").read_text(encoding="utf-8")
+    assert_true("Cross-Thread Persistence Rule" in master, "cross-thread persistence rule missing")
     assert_true('label: "Story"' not in app_js, "Story must not be a first-level tab")
     assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
@@ -131,6 +143,7 @@ def main():
     assert_true('label: "投递中"' in app_js, "pipeline must expose Application In Progress filter")
     assert_true("continue-link" in app_js and "继续投递" in app_js, "Application In Progress must show continue apply action")
     assert_true("renderPendingActions" in app_js and "需要行动" in app_js, "Application In Progress must appear in dashboard pending actions")
+    assert_true('registration.update()' in app_js and '"controllerchange"' in app_js, "PWA must promptly activate and reload after shell updates")
     assert_true("deadlineDistance" in app_js and "距截止还有" in app_js, "deadline approaching should increase unfinished application reminder detail")
     assert_true("preserve the `Application In Progress` event" in master, "Applied transition must preserve Application In Progress history rule")
     assert_true('label: "提醒列表"' in app_js, "pipeline must expose explicit reminder list filter")

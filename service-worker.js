@@ -1,4 +1,4 @@
-const CACHE_NAME = "hayley-campus-os-v2";
+const CACHE_NAME = "hayley-campus-os-v2-20260823-1";
 const SHELL_ASSETS = [
   "/",
   "/index.html",
@@ -26,32 +26,34 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
+  if (event.request.method !== "GET" || url.origin !== self.location.origin) return;
+
   if (url.pathname.startsWith("/data/") && url.pathname.endsWith(".json")) {
-    event.respondWith(networkFirst(event.request));
+    event.respondWith(networkFirst(event.request, { bypassCache: true }));
     return;
   }
 
-  event.respondWith(cacheFirst(event.request));
+  if (event.request.mode === "navigate" || isShellAsset(url.pathname)) {
+    event.respondWith(networkFirst(event.request, { bypassCache: true }));
+  }
 });
 
-async function networkFirst(request) {
+function isShellAsset(pathname) {
+  return pathname === "/" ||
+    pathname === "/index.html" ||
+    pathname === "/manifest.json" ||
+    pathname.startsWith("/app/");
+}
+
+async function networkFirst(request, { bypassCache = false } = {}) {
   const cache = await caches.open(CACHE_NAME);
   try {
-    const response = await fetch(request, { cache: "no-store" });
-    cache.put(request, response.clone());
+    const response = await fetch(request, bypassCache ? { cache: "no-store" } : undefined);
+    if (response.ok) await cache.put(request, response.clone());
     return response;
   } catch (error) {
-    const cached = await cache.match(request);
+    const cached = await cache.match(request, { ignoreSearch: true });
     if (cached) return cached;
     throw error;
   }
-}
-
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  const response = await fetch(request);
-  cache.put(request, response.clone());
-  return response;
 }

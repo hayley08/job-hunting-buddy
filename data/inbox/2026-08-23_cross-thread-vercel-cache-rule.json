@@ -1,0 +1,20 @@
+{
+  "inputDate": "2026-08-23",
+  "receivedAt": "2026-08-23T12:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-23T12:00:00+08:00",
+  "processedByRun": "2026-08-23-vercel-branch-url-cache-audit",
+  "requirements": [
+    "Chat history is not the source of truth; material requirements and decisions must be persisted in the repository.",
+    "Meaningful completed changes must be committed so a future thread can reconstruct state without prior chat.",
+    "Keep main and the Vercel Production Branch unchanged; continue on feature/campus-job-os-v2.",
+    "Use a stable Vercel branch URL that follows the latest successful feature branch deployment.",
+    "Keep the PWA, prioritize JSON freshness, refresh HTML/app-shell promptly, and retain offline fallback without long-lived stale campus data."
+  ],
+  "result": {
+    "requirementsPersisted": true,
+    "cacheStrategyUpdated": true,
+    "productionBranchChanged": false,
+    "mainChanged": false
+  }
+}

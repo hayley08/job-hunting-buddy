@@ -30,6 +30,8 @@ GitHub repository
 
 The GitHub repository is the source of truth for application code and structured job-search data. Vercel deploys the production branch. V2 development happens on `feature/campus-job-os-v2`; do not merge into `main` before user acceptance.
 
+Preview access uses Vercel's stable Git branch URL for `feature/campus-job-os-v2`. Commit-specific Preview URLs are immutable snapshots and are not the daily-use entry point. The service worker uses network-first requests for navigation, app-shell assets, and JSON, with cache only as an offline fallback. Vercel sends `no-store` for JSON and revalidation headers for HTML/app-shell assets and the service worker.
+
 ## Daily Run Contract
 
 Daily run time:

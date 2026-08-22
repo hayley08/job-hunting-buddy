@@ -22,3 +22,5 @@
 - Backfilled structured JD records for Texas Instruments, Insta360, Shopee, and DJI; OPPO, archived HK roles, and reminder-list roles are marked JD Missing until raw JD is provided.
 - Fixed global responsive width: Pipeline and JD rows now use adaptive grids/cards; automated Chrome overflow checks cover 1440, 1280, 1024, 768, 430, 390, and 375 widths.
 - Added long-term `Application In Progress` / 投递中 status. 米哈游、中国人保、联想 are marked 投递中 with applyUrl, applicationStartedAt = 2026-08-23, empty appliedDate, high-priority pending action, and JD Missing.
+- Added the cross-thread persistence rule: material requirements, overrides, and raw job/application facts must be persisted in the repository and meaningful completed work committed; chat history is never the source of truth.
+- V2 daily access must use the stable Vercel branch URL for `feature/campus-job-os-v2`, not immutable commit Preview URLs. PWA navigation, app-shell assets, and JSON are network-first with offline cache fallback; JSON is always freshness-first while online.

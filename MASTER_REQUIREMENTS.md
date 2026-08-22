@@ -27,6 +27,19 @@ PWA + GitHub + Vercel + JSON
 
 No real-time AI is required in the PWA. AI-generated recommendations, summaries, story suggestions, and interview packs are produced during the daily batch run and written to JSON.
 
+## Cross-Thread Persistence Rule
+
+Chat history is not the source of truth.
+
+Before ending a working session, and immediately after any material user decision or change:
+
+- Persist new requirements and manual overrides to the appropriate repository documentation or structured ledger.
+- Persist raw job and application information to the appropriate JSON/data files.
+- Update `memory.md` only when durable cross-thread context is needed; do not use it as a transient activity log.
+- Commit meaningful completed changes.
+
+A future Codex thread must be able to reconstruct the current project state from the repository without access to previous conversation history. Never leave a material user requirement only inside chat history.
+
 ## Active Market
 
 Active market:
@@ -202,6 +215,8 @@ Do not create `final.html`, `latest2.html`, or similar throwaway dashboard names
 ## PWA Requirements
 
 Implement `manifest.json`, `service-worker.js`, Add to Home Screen, standalone display, mobile app-like layout, offline shell, and network-first JSON loading. The service worker must not cause phones to keep stale JSON after GitHub/Vercel updates.
+
+The stable Preview access point for V2 is the Vercel branch URL for `feature/campus-job-os-v2`, not a commit-specific Preview URL. HTML, JavaScript, CSS, the manifest, and JSON must use online-first freshness with cached offline fallback. JSON requests must bypass HTTP and browser caches while online. Offline support must never make stale campus-recruitment data the normal online experience.
 
 ## Main Navigation
 
