@@ -1,0 +1,20 @@
+{
+  "runDate": "2026-08-22",
+  "mode": "migration",
+  "activeMarket": "Mainland",
+  "processingWindow": {
+    "start": "2026-08-21T12:00:00+08:00",
+    "end": "2026-08-22T11:59:59+08:00"
+  },
+  "archivedHongKongRecords": 43,
+  "migratedApplications": 6,
+  "activeOpportunities": 0,
+  "finalRecommendedCount": 0,
+  "storyBankStories": 17,
+  "gitStatus": "blocked",
+  "notes": [
+    "Campus OS V2 migration completed.",
+    "Hong Kong records are archive-only.",
+    "Git branch and commit are blocked because this workspace is not a valid Git repository."
+  ]
+}

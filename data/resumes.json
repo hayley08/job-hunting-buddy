@@ -1,0 +1,100 @@
+{
+  "currentVersion": "2026-08-22-migration",
+  "versions": [
+    {
+      "version": "2026-08-22-migration",
+      "updatedAt": "2026-08-22T23:14:12+08:00",
+      "profile": {
+        "name": "Hayley Chen",
+        "chineseName": "陈卉仪",
+        "email": "hayley@example.com",
+        "phone": "[redacted-phone]",
+        "target": "Early-career HR roles in HRBP, COE, C&B, OD, Learning & Development, HR Operations, and Employee Experience."
+      },
+      "sections": [
+        {
+          "sectionId": "binance",
+          "title": "币安 / Binance - 薪酬福利实习生 COE / C&B Intern",
+          "period": "2026年02月 - 至今",
+          "location": "香港",
+          "contentCN": "【数字化管理】整理内部员工保险文件知识库，实现90%+文件可查率；通过Clawbot搭建一体化Wellbeing Portal，根据需求整合内部活动以及外部健康资源，预计6月上线推广。\n【福利运营】全流程支持菲律宾、越南、巴西多国人寿、医疗险及全球EAP的合同续约，端到端处理成本测算、供应商议价、合同签署、员工Briefing以及记录归档，有效压降保费涨幅；越南HC涨50%的情况下保持整体保费成本涨幅在20%以内。\n【活动运营】独立落地3场健康线上讲座及员工分享活动，场均满意度稳定4.0/5.0以上，提升员工健康参与度；开发Wellness Webinar的Clawbot Skill，实现自动进行数据记录与场次分析，提升人工复盘效率。",
+          "contentEN": "Established a standardized benefit knowledge base and visual dashboard for centralized management of insurance contracts and relevant documents, achieving 90%+ document accessibility. Built an integrated wellbeing portal via internal bot to connect internal tools and external resources, greatly improving employee self-service efficiency.\nLed end-to-end renewal of medical insurance in the Philippines, Vietnam and Brazil, including cost estimation, multi-round vendor negotiation, contract signing and employee briefing, successfully cutting premium growth and optimizing annual benefit budget; controlled premium cost growth within 2% in Vietnam.\nIndependently launched 3 wellness webinars and one employee sharing session with a stable average satisfaction score above 4.0/5.0. Developed an activity data dashboard and built automated data recording and analysis capabilities via Clawbot Skill, boosting manual review efficiency by over 60% and supporting real-time data accumulation.",
+          "tags": [
+            "C&B",
+            "Talent Development",
+            "HR Digitalization",
+            "Employee Experience",
+            "Vendor Management"
+          ],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "aon",
+          "title": "怡安翰威特咨询 / Aon Hewitt Consulting - 组织与绩效管理实习生 / Intern of Performance and Talent Development",
+          "period": "2025年04月 - 2025年08月",
+          "location": "广州",
+          "contentCN": "【访谈建模】更新集团企业在新背景下的经营领导力素质要求，对管理层进行访谈，结合对战略文件的编码和数据分析，基于怡安素质库模型建立对该国企客户的领导力素质模型，并定义子维度展现。\n【人才测评】结合BEI访谈，进行关键行为提取，引入AI打分作为辅助，针对被测评者的各素质项进行分析及打分，交付BEI个人报告；组织360测评，梳理评价关系；策划沙盘测评，结合素质模型设计沙盘评分方案。\n【报告输出】输出结合各个测评结果产出总结报告；利用AI辅助做文献分析、相关质性研究，输出韧性领导力专题报告。",
+          "contentEN": "Conducted management interviews to update leadership competency requirements; developed a leadership quality model for a state-owned enterprise client by coding strategic documents and defining sub-dimensions based on the Aon Competency Library.\nExtracted key behaviors via BEI interviews; introduced AI scoring to evaluate competencies; organized a 360-degree assessment and designed a sandtable evaluation scheme aligned with the competency model.\nDelivered individual assessment reports and produced an integrated summary report based on full evaluation results.",
+          "tags": [
+            "Talent Development"
+          ],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "midea",
+          "title": "美的国际 / Midea International Business - 薪酬绩效实习生 国际业务部 / Compensation & Performance Intern",
+          "period": "2024年11月 - 2025年04月",
+          "location": "佛山",
+          "contentCN": "【薪酬绩效】参与绩效政策简化改革及绩效沟通新界面中英文发版，组织2次UAT及后续答疑；参与新并购公司TLSC的绩效政策分权拆解，分解对比薪酬绩效相关流程及审批流；参与人力变革3.0案头研究，重新整合3批顾问的调查底稿。\n【外派管理】参与EOR新供应商的议价与引入，同时进行海外属地挂靠人员梳理，将所有遗留在事业部的Local Hire员工信息归真到海外BU；调研分析埃及及印尼员工广领员工的保险及其他津贴福利水平，更新埃及工厂保险；参与2025年度外派福利政策整理与宣贯。\n【政策整合】福利水平分析，主动发现问题并形成清晰的外派员工探索福利指引手册。\n【数据治理】参与人力数字化变革中信息基础数据治理项目，与IT持续更新适用所有BU的统一人员信息字段，与海外BU HR对齐，目前已实现Band类员工信息完整度从10%达到90%。",
+          "contentEN": "Supported corporate KPI policy simplification and the bilingual release of a new performance communication interface. Executed 2 UAT cycles for the performance system upgrade and managed post-launch user support.\nMapped 15+ compensation workflows through RACI matrix analysis for M&A integration of the TLSC entity, and consolidated 3 batches of consultant research for HR transformation policy alignment.\nAssisted EOR vendor procurement through negotiation and onboarding. Centralized legacy Local Hire records to overseas BU systems.\nBenchmarked Egypt and Indonesia benefit packages, updated Egypt insurance schemes, and developed expatriate family visitation guidelines during 2025 policy consolidation.\nStandardized cross-BU employee data fields with IT and overseas BU HR teams, achieving Band-level profile completeness growth from 10% to 90%.",
+          "tags": [
+            "C&B",
+            "HR Digitalization",
+            "Vendor Management"
+          ],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "jd",
+          "title": "京东工业 / JD.com Industry - HRBP实习生 BOM业务部&工业国际团队 / HRBP & Sales Support Intern",
+          "period": "2024年05月 - 2024年08月",
+          "location": "北京",
+          "contentCN": "【招聘对齐】协助进行组织架构调整的设计和汇报；根据经分侧拆分的GMV目标月度调整人力预算及HC，与招聘侧对齐招聘节奏，为各业务部门提发展情况动态调整HC分配，进行社招招聘需求提报。\n【人才考评】完成Q2绩效核算、Q3目标制定；组织部门年中晋升项目及日常转正会。\n【培训运营】运营“夏季专业力大练兵”“中区域商品方案岗&解决方案岗（内称店长&院长）”的系列培训，前期宣发、现场主持、组织培训11场。",
+          "contentEN": "Aligned with recruitment and accounting colleagues to output the latest annual manpower budget of the department based on structure inventory.\nOrganized the \"Spitball Conference\" to collect dissatisfaction from overseas colleagues in the field, collected 58 spitballs, and set up 3 special improvement groups.\nCooperated with the COE team, interviewed 18 employees, and focused on improving the positioning of the Merchandise Solutions position.",
+          "tags": [
+            "HRBP",
+            "Talent Development"
+          ],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "tiktok",
+          "title": "北京字节跳动科技有限公司 / TikTok Shop - HR实习生 国际化电商 / HR Intern International E-Commerce",
+          "period": "2023年07月 - 2023年11月",
+          "location": "上海",
+          "contentCN": "【需求对齐】支持国际化电商某五个团队Q3&Q4需求，共计headcount 38个，跨时区与用人团队不断对齐招聘画像，与用人部门HRBP对齐用人标准与人头数，形成针对不同岗位的画像文档。\n【人才获取】从人才库与第三方平台多渠道捞取予用人经理评估简历超1500份，面试转化率10%，对对标公司的目标团队进行定向mapping形成系统导图；为提高到面转化率，通过cold call联系人选，实现确定意向、交换诉求、信息交流、转化为流程等结果。\n【成果产出】每周团队保持在2个及以上offer，为国际化电商实习生需求贡献10+offer，直接产出6个高阶offer，其中包含3个高阶人选，获得某temu人选在HR面中的高度评价。",
+          "contentEN": "Supported Q3 and Q4 hiring requirements for 5 international e-commerce groups, covering 38 positions. Aligned recruitment profiles and hiring standards with HRBP and hiring managers.\nSourced over 1,500 resumes through talent pools and third-party platforms. Achieved a stable interview conversion rate of 10% and mapped target teams of benchmarking companies to create a systematic roadmap.\nImplemented cold-call outreach to improve interview attendance, facilitating intention confirmation, demand and information exchange, and process conversion.\nContributed 10+ offers to international e-commerce internship needs and directly delivered 6 regular-employee offers.",
+          "tags": [
+            "HRBP",
+            "Talent Development"
+          ],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "bytedance",
+          "title": "ByteDance - HR Intern, International E-commerce",
+          "period": "2023-07 - 2023-11",
+          "location": "Shanghai",
+          "contentCN": "北京字节跳动科技有限公司｜HR 实习生（国际化电商）：支持国际化电商多个团队 Q3/Q4 需求，共计 headcount 38 个；跨时区与用人团队沟通招聘画像，并与 HRBP 对齐用人标准与业务转化问题；从人才库与第三方平台多渠道捞取候选人，评估简历超 1500 份；通过 cold call 联系候选人，推动意向确认、信息交流、转化和流程跟进；每周团队保持 2 个及以上 offer，为实习生需求贡献 10+ offer。",
+          "contentEN": "ByteDance | HR Intern, International E-commerce: Supported Q3/Q4 hiring needs across multiple international e-commerce teams with 38 headcount in total; communicated with hiring teams across time zones to clarify candidate profiles and aligned hiring standards with HRBPs; sourced candidates from internal talent pools and external platforms, reviewing over 1,500 resumes; conducted cold calls to confirm interest, exchange information, and drive conversion; helped the team maintain at least two offers per week and contributed 10+ internship offers.",
+          "tags": [
+            "HRBP",
+            "Talent Development"
+          ],
+          "suitableRoles": []
+        }
+      ],
+      "sourceOfTruth": "migration"
+    }
+  ]
+}

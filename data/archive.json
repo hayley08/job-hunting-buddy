@@ -1,0 +1,1592 @@
+{
+  "market": "HongKong",
+  "archived": true,
+  "records": [
+    {
+      "jobId": "hk-ifast-financial-hk-limited-human-resources-executive-c-b-2026-07-12",
+      "company": "iFAST Financial (HK) Limited",
+      "title": "Human Resources Executive (C&B)",
+      "location": "Hong Kong",
+      "industry": "Financial Services / FinTech",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/iFAST-Financial-(HK)-Limited-jobs",
+      "applyUrl": "https://hk.jobsdb.com/iFAST-Financial-(HK)-Limited-jobs",
+      "foundDate": "2026-07-12",
+      "postedDate": "2026-07-12",
+      "salary": "Not listed",
+      "experience": "1-3 years HR / C&B experience preferred",
+      "jobDescription": "C&B-focused HR role in a listed financial technology group.",
+      "matchScore": 8.8,
+      "matchReasons": [
+        "C&B direction strongly matches Binance and Midea compensation, benefits, insurance, and HR data experience."
+      ],
+      "risks": [
+        "Title is Executive; may require more independent C&B ownership."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-harbour-city-estates-limited-assistant-human-resources-officer-organisational-development-2026-07-12",
+      "company": "Harbour City Estates Limited",
+      "title": "Assistant Human Resources Officer (Organisational Development)",
+      "location": "Tsim Sha Tsui, Hong Kong",
+      "industry": "Property / Retail",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93235586?cid=SKL-CareerGuide",
+      "applyUrl": "https://hk.jobsdb.com/job/93235586?cid=SKL-CareerGuide",
+      "foundDate": "2026-07-12",
+      "postedDate": "2026-07-07",
+      "salary": "Not listed",
+      "experience": "Early-career HR / OD experience preferred",
+      "jobDescription": "Organisational Development role connected to HR initiatives, employee engagement, and internal people projects.",
+      "matchScore": 8.7,
+      "matchReasons": [
+        "OD is one of Hayley's priority tracks; Aon competency model and assessment experience can be emphasized."
+      ],
+      "risks": [
+        "Need verify whether responsibilities include enough OD substance instead of routine HR administration."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-tung-wah-group-of-hospitals-assistant-human-resources-officer-employee-learning-development-2026-07-12",
+      "company": "Tung Wah Group of Hospitals",
+      "title": "Assistant Human Resources Officer (Employee Learning & Development)",
+      "location": "Sheung Wan, Hong Kong",
+      "industry": "Healthcare / Social Services",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93241922?cid=SKL-CareerGuide",
+      "applyUrl": "https://hk.jobsdb.com/job/93241922?cid=SKL-CareerGuide",
+      "foundDate": "2026-07-12",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "0-3 years relevant HR or training experience preferred",
+      "jobDescription": "Learning and development coordination role in a large Hong Kong non-profit healthcare and social service organization.",
+      "matchScore": 8.4,
+      "matchReasons": [
+        "Learning & Development direction is aligned with Hayley's HR, training operations, and wellness project experience."
+      ],
+      "risks": [
+        "Salary is not listed; confirm whether the role is too administrative before applying."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-the-university-of-hong-kong-learning-development-assistant-2026-07-12",
+      "company": "The University of Hong Kong",
+      "title": "Learning & Development Assistant",
+      "location": "Pok Fu Lam, Hong Kong",
+      "industry": "Education",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93201572?cid=SKL-CareerGuide",
+      "applyUrl": "https://hk.jobsdb.com/job/93201572?cid=SKL-CareerGuide",
+      "foundDate": "2026-07-12",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Entry-level to 2 years",
+      "jobDescription": "Learning and development support role in a major university environment.",
+      "matchScore": 8.1,
+      "matchReasons": [
+        "Strong fit with training operations, event coordination, and HR project documentation experience."
+      ],
+      "risks": [
+        "May be coordination-heavy; review JD carefully before tailoring resume."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-gleneagles-hospital-hong-kong-human-resources-assistant-learning-development-1-year-contract-2026-07-10",
+      "company": "Gleneagles Hospital Hong Kong",
+      "title": "Human Resources Assistant (Learning & Development) (1-year contract)",
+      "location": "Southern District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/Gleneagles-Hospital-Hong-Kong-jobs",
+      "applyUrl": "https://hk.jobsdb.com/Gleneagles-Hospital-Hong-Kong-jobs",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Learning & Development, HR Operations, Employee Training",
+      "matchScore": 9.2,
+      "matchReasons": [
+        "公开列表显示该岗为 Human Resources Assistant (Learning & Development)，公司为香港私营医院平台；Hayley 在 Aon 做过人才发展、BEI/360 测评和报告，在 Binance 独立落地 wellness webinars，在 JD 做过培训运营与员工反馈会，能支撑培训项目执行、员工沟通、数据记录和跨部门协作。"
+      ],
+      "risks": [
+        "1 年合约岗位，需确认续约/转正空间；医院环境可能涉及较多培训行政和现场协调，但整体方向符合 L&D。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-west-kowloon-cultural-district-authority-graduate-intern-human-resources-12-months-contract-period-2026-07-10",
+      "company": "West Kowloon Cultural District Authority",
+      "title": "Graduate Intern (Human Resources) - 12 months contract period",
+      "location": "Hong Kong SAR",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/graduate-intern-human-resources-%E2%80%93-12-months-contract-period-at-west-kowloon-cultural-district-authority-4426967937",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/graduate-intern-human-resources-%E2%80%93-12-months-contract-period-at-west-kowloon-cultural-district-authority-4426967937",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Graduate Intern, HR Operations, Culture Sector",
+      "matchScore": 9.1,
+      "matchReasons": [
+        "该岗位明确为 Graduate Intern (Human Resources)，12 个月合约，适合 0-3 年和研究生毕业前后过渡。Hayley 有 Binance、Aon、Midea、JD、TikTok 多段 HR 实习，英语工作能力和跨文化沟通适合文化机构的 HR 项目、员工沟通和数据整理。"
+      ],
+      "risks": [
+        "LinkedIn 详情页需要登录才能查看更多 JD；12 个月合约，需确认毕业时间、签证与每周工作安排。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-siemens-ltd-intern-people-organization-2026-07-10",
+      "company": "Siemens Ltd",
+      "title": "Intern - People & Organization",
+      "location": "Kwun Tong, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/Siemens-jobs",
+      "applyUrl": "https://hk.jobsdb.com/Siemens-jobs",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "People & Organization, HR Operations, L&D, C&B",
+      "matchScore": 8.9,
+      "matchReasons": [
+        "公开列表显示职责包括 P&O/HR 行政支持、员工记录维护、数据管理、招聘、L&D、C&B 和雇主品牌支持；Hayley 的 Binance C&B、Midea HR 数据治理、Aon 人才发展和 JD 培训运营都能直接对应。"
+      ],
+      "risks": [
+        "兼职实习岗位，需确认工作时长是否与 CUHK 课程/现工作冲突；职责含招聘支持但不是纯招聘岗。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-华勤技术股份有限公司-人力资源专员-2026-07-10",
+      "company": "华勤技术股份有限公司",
+      "title": "人力资源专员",
+      "location": "南昌",
+      "industry": "",
+      "market": "HongKong",
+      "source": "BOSS",
+      "sourceJobId": "",
+      "jdUrl": "https://www.zhipin.com/job_detail/6112583c4400f6e803x_2dm6GFBV.html",
+      "applyUrl": "https://www.zhipin.com/job_detail/6112583c4400f6e803x_2dm6GFBV.html",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Specialist, HR Operations, Manufacturing HR",
+      "matchScore": 8.7,
+      "matchReasons": [
+        "岗位为南昌人力资源专员，面向在校/应届硕士，和 Hayley 研究生学历及 0-3 年 HR 目标一致。Hayley 在 Midea 做过制造业/国际业务 HR 数据治理、薪酬绩效、EOR 供应商和员工信息标准化，也有 JD HRBP 支持经历，适合沟通 HR operations 或 HRBP 入门岗。"
+      ],
+      "risks": [
+        "BOSS 页面公开信息有限，仅显示南昌、在校/应届、硕士；需登录确认 JD 细节、是否倒班驻厂、招聘占比和薪资。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-ex-io-hr-admin-officer-open-to-fresh-graduates-2026-07-10",
+      "company": "EX.IO",
+      "title": "HR & Admin Officer (Open to Fresh Graduates)",
+      "location": "Hong Kong SAR",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/hr-admin-officer-open-to-fresh-graduates-at-ex-io-4296418594",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/hr-admin-officer-open-to-fresh-graduates-at-ex-io-4296418594",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Generalist, HR Admin, People Operations",
+      "matchScore": 8.3,
+      "matchReasons": [
+        "岗位明确 open to fresh graduates，适合 Hayley 0-3 年 HR 入口。她的 Binance C&B、Midea HR 系统/UAT、JD 员工会议和 Aon 人才项目经历可包装成 HR operations/generalist 支持能力；但需确认 admin 占比。"
+      ],
+      "risks": [
+        "标题含 Admin，需确认行政比例、是否承担 office management 为主；详情页可能需要登录查看完整 JD。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-uniqlo-hong-kong-assistant-officer-hrbp-2026-07-10",
+      "company": "UNIQLO Hong Kong",
+      "title": "Assistant Officer, HRBP",
+      "location": "Hong Kong",
+      "industry": "Retail",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/",
+      "applyUrl": "https://hk.jobsdb.com/",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "0-3 years HRBP or retail HR experience",
+      "jobDescription": "Assistant HRBP role supporting business people operations in retail.",
+      "matchScore": 8.2,
+      "matchReasons": [
+        "HRBP support and business-facing HR experience can connect to JD and ByteDance intern experience."
+      ],
+      "risks": [
+        "Retail HR may include store operations support; verify admin/recruitment ratio."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-omnicom-media-group-greater-china-limited-temporary-human-resources-assistant-fresh-graduate-welcome-2026-07-10",
+      "company": "Omnicom Media Group Greater China Limited",
+      "title": "Temporary Human Resources Assistant (fresh graduate welcome)",
+      "location": "Cyberport, Southern District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/zh/human-resources-executive-jobs/in-Cyberport-Southern-District/contract-temp",
+      "applyUrl": "https://hk.jobsdb.com/zh/human-resources-executive-jobs/in-Cyberport-Southern-District/contract-temp",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Assistant, HR Generalist, MNC",
+      "matchScore": 8,
+      "matchReasons": [
+        "公开列表显示 fresh graduate welcome、MNC、Global 4As media agency、university student welcome；Hayley 的英文工作环境、跨团队 HR 项目、员工活动和 HR 数据整理适合短期 HR assistant/generalist 支持。"
+      ],
+      "risks": [
+        "临时合约且已接近截止；需确认合同长度、是否有转正机会，以及 admin/recruitment 占比。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-ul-solutions-people-operations-specialist-2026-07-10",
+      "company": "UL Solutions",
+      "title": "People Operations Specialist",
+      "location": "Hong Kong",
+      "industry": "Testing / Certification",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://www.linkedin.com/jobs/",
+      "applyUrl": "https://www.linkedin.com/jobs/",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "1-3 years People Operations experience",
+      "jobDescription": "People Operations role in a global testing, inspection, and certification company.",
+      "matchScore": 8,
+      "matchReasons": [
+        "People operations, HR process, documentation, and cross-region stakeholder work match Hayley's prior internships."
+      ],
+      "risks": [
+        "Need verify visa and work authorization requirements."
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-南昌药妆-人事-培训专员-2026-07-10",
+      "company": "南昌药妆",
+      "title": "人事/培训专员",
+      "location": "南昌",
+      "industry": "",
+      "market": "HongKong",
+      "source": "BOSS",
+      "sourceJobId": "",
+      "jdUrl": "https://m.zhipin.com/job_detail/507699707f5e74531X162tq8FlVW.html",
+      "applyUrl": "https://m.zhipin.com/job_detail/507699707f5e74531X162tq8FlVW.html",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Training, HR Admin, Retail HR",
+      "matchScore": 6.5,
+      "matchReasons": [
+        "岗位包含人事和培训，能关联 Hayley 在 JD 的培训运营、Binance 员工活动和 Aon 人才发展经历；但行业和 JD 透明度较低，需确认不是销售或高招聘 KPI 岗。"
+      ],
+      "risks": [
+        "BOSS 公开页只确认岗位名、地点和培训/人事方向，薪资与完整 JD 不可见；零售/药妆行业可能包含门店招聘、考勤和销售培训。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-ctf-life-officer-agency-development-2026-07-10",
+      "company": "CTF Life",
+      "title": "Officer, Agency Development",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "公开网页",
+      "sourceJobId": "",
+      "jdUrl": "https://www.ctflife.com.hk/en/join-us/talent",
+      "applyUrl": "https://www.ctflife.com.hk/en/join-us/talent",
+      "foundDate": "2026-07-10",
+      "postedDate": "2026-07-10",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Agency Development, Distribution Operations, Insurance",
+      "matchScore": 6.2,
+      "matchReasons": [
+        "岗位名为 Agency Development，可能涉及代理渠道培训、发展项目或分销运营；Hayley 的 C&B、员工沟通、培训项目和数据整理可迁移。但公开信息不足，不能作为高匹配推荐。"
+      ],
+      "risks": [
+        "保险 agency 方向天然存在销售/代理人支持边界风险；公开页只列出岗位名称，需确认是否有销售 KPI、cold call 或招募代理人指标。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-university-of-hong-kong-assistant-human-resources-officer-2026-07-08",
+      "company": "University of Hong Kong",
+      "title": "Assistant Human Resources Officer",
+      "location": "Pok Fu Lam, Southern District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93201572",
+      "applyUrl": "https://hk.jobsdb.com/job/93201572",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Training & Organisation Development, L&D, HR Communications",
+      "matchScore": 9.4,
+      "matchReasons": [
+        "JD 公开要点包含培训项目行政与后勤支持、内部沟通/宣传材料、培训记录和数据库整理；与 Hayley 在 Aon 的人才发展测评、Binance 员工健康讲座、京东培训运营和 Midea HR 数据治理高度匹配。"
+      ],
+      "risks": [
+        "公开列表显示为 T&OD/training support，需进入 JobsDB 详情页确认是否为合约岗及是否要求本地 HR 政策经验。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-conpak-cpa-limited-human-resources-assistant-2026-07-08",
+      "company": "Conpak CPA Limited",
+      "title": "Human Resources Assistant",
+      "location": "Tsim Sha Tsui, Yau Tsim Mong District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93202467",
+      "applyUrl": "https://hk.jobsdb.com/job/93202467",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "C&B, HR Generalist, HR Operations",
+      "matchScore": 9,
+      "matchReasons": [
+        "公开要点为 all-rounded C&B generalist duties、细心和 Excel 能力、发展机会；Hayley 在 Binance 处理多国保险续约、供应商议价、员工 briefing，在 Midea 做薪酬流程/RACI/海外员工数据，非常适合入门 HR generalist/C&B。"
+      ],
+      "risks": [
+        "会计师事务所 HR Assistant 可能偏 C&B/generalist 执行，需确认招聘占比和是否需要香港 payroll/MPF 经验。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-lsg-group-human-resources-assistant-2026-07-08",
+      "company": "LSG Group",
+      "title": "Human Resources Assistant",
+      "location": "Airport Area, Islands District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93185313",
+      "applyUrl": "https://hk.jobsdb.com/job/93185313",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "All-round HR, HR Operations, Employee Support",
+      "matchScore": 8.8,
+      "matchReasons": [
+        "公开要点写明 all-round HR functions、fresh graduates welcomed、career development；Hayley 有 Binance/Midea/JD/TikTok 多段 HR 实习，可覆盖员工沟通、数据整理、培训/绩效支持和英文工作环境。"
+      ],
+      "risks": [
+        "地点在机场区域，需确认通勤、排班和现场运营支持比例；若招聘或行政占比过高则降级。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-ipsos-hr-and-admin-officer-assistant-fresh-grad-welcome-2026-07-08",
+      "company": "Ipsos",
+      "title": "HR and Admin Officer / Assistant (Fresh Grad Welcome)",
+      "location": "Hung Hom, Kowloon City District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92907019",
+      "applyUrl": "https://hk.jobsdb.com/job/92907019",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-06-24",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Generalist, HR Operations, HR Admin",
+      "matchScore": 8.1,
+      "matchReasons": [
+        "Ipsos 是国际化环境，岗位欢迎 fresh grad 且强调 all-round HR exposure；Hayley 的英文工作能力、跨团队 HR 项目、员工沟通和 HR 数据整理可支撑入门 generalist。"
+      ],
+      "risks": [
+        "岗位标题含 Admin，公开要点只确认 MNC environment/all-round HR exposure/fresh grad welcome；需确认不是行政为主或招聘为主。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-chubb-fire-security-people-services-specialist-2026-07-08",
+      "company": "Chubb Fire & Security",
+      "title": "People Services Specialist",
+      "location": "Kowloon Bay, Kwun Tong District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93190924",
+      "applyUrl": "https://hk.jobsdb.com/job/93190924",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "People Services, HR Operations, HR Transformation",
+      "matchScore": 7.8,
+      "matchReasons": [
+        "公开要点包括香港/澳门/中国区域 exposure、跨国环境、HR transformation and process improvement；Hayley 在 Midea 做 HR 数据字段治理，在 Binance 做福利知识库和 wellbeing portal，可形成 People Ops/流程改进叙事。"
+      ],
+      "risks": [
+        "Specialist title 可能要求独立 HR shared services 经验；公开要点强调区域支持与转型，适合冲刺但不应作为最稳妥岗位。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-hyatt-centric-human-resources-trainee-6-months-2026-07-08",
+      "company": "Hyatt Centric",
+      "title": "Human Resources Trainee (6 months)",
+      "location": "North Point, Eastern District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92697421",
+      "applyUrl": "https://hk.jobsdb.com/job/92697421",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-06-13",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Trainee, Employee Engagement, HR Operations",
+      "matchScore": 7.7,
+      "matchReasons": [
+        "公开要点包含 assist in various HR functions、drive associate engagement、administrative support；与 Hayley 的员工活动、培训运营、员工沟通和 HR generalist 入门目标匹配。"
+      ],
+      "risks": [
+        "发布时间较久且为 6 个月 trainee；酒店岗位可能有较多现场行政和员工活动执行。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-morgan-mckinley-business-training-officer-2026-07-08",
+      "company": "Morgan McKinley",
+      "title": "Business Training Officer",
+      "location": "Central and Western District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93202171",
+      "applyUrl": "https://hk.jobsdb.com/job/93202171",
+      "foundDate": "2026-07-08",
+      "postedDate": "2026-07-08",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Training, Business Training, L&D Adjacent",
+      "matchScore": 6.3,
+      "matchReasons": [
+        "若岗位本质是培训项目执行，可关联 Hayley 在 Binance wellness webinar、JD 培训运营、Aon 人才发展项目的经历；但 HR 属性不够明确，不能作为高匹配推荐。"
+      ],
+      "risks": [
+        "公开要点为 1-2 年经验/fresh graduates welcome、Cantonese、public speaking、高曝光平台，但 title 偏 business training，需确认是否含销售 KPI、业务培训或 cold call。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-hong-kong-technology-venture-company-limited-hktv-learning-development-assistant-2026-07-07",
+      "company": "Hong Kong Technology Venture Company Limited (HKTV)",
+      "title": "Learning & Development Assistant",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/",
+      "applyUrl": "https://hk.jobsdb.com/",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Learning & Development, Training, Employee Engagement",
+      "matchScore": 9.6,
+      "matchReasons": [
+        "L&D 入门方向与 Aon 领导力模型/360 测评、Binance 员工讲座、京东员工反馈会高度相关，且不是纯招聘或销售岗。"
+      ],
+      "risks": [
+        "需在 JobsDB 详情页确认是否有较多行政或活动执行工作；整体仍是 L&D 方向。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-west-kowloon-cultural-district-authority-graduate-intern-human-resources-2026-07-07",
+      "company": "West Kowloon Cultural District Authority",
+      "title": "Graduate Intern, Human Resources",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://www.linkedin.com/jobs/",
+      "applyUrl": "https://www.linkedin.com/jobs/",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Intern, HR Ops, Organisation Development",
+      "matchScore": 9.3,
+      "matchReasons": [
+        "公共文化机构 HR 实习/早期岗位，适合用 CUHK 背景、英文协作和多段 HR 实习切入；比纯招聘更贴近 HR operations/OD。"
+      ],
+      "risks": [
+        "实习/合约性质需确认；可能竞争强，但经验门槛适合。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-west-kowloon-cultural-district-authority-human-resources-assistant-organisation-development-2026-07-07",
+      "company": "West Kowloon Cultural District Authority",
+      "title": "Human Resources Assistant (Organisation Development)",
+      "location": "West Kowloon Cultural District",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93037202",
+      "applyUrl": "https://hk.jobsdb.com/job/93037202",
+      "foundDate": "2026-07-07",
+      "postedDate": "2026-07-01",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Organisation Development, L&D, Employee Engagement",
+      "matchScore": 9.1,
+      "matchReasons": [
+        "OD/L&D 与 Aon 绩效与人才发展、360 测评、领导力模型和员工沟通项目高度匹配。"
+      ],
+      "risks": [
+        "固定期限合同；需要确认合同长度和是否可续。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-shinewing-risk-services-limited-human-resources-assistant-2026-07-07",
+      "company": "SHINEWING Risk Services Limited",
+      "title": "Human Resources Assistant",
+      "location": "Wan Chai",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92963834",
+      "applyUrl": "https://hk.jobsdb.com/job/92963834",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Assistant, HR Generalist, HR Ops",
+      "matchScore": 8.9,
+      "matchReasons": [
+        "0 年经验友好，专业服务公司环境适合强调 IELTS 7.0、英文工作语言、员工沟通、项目协调和 HR 数据整理。"
+      ],
+      "risks": [
+        "需确认招聘和行政占比；若 JD 偏纯 admin，则降级为备选。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-citybus-limited-assistant-compensation-benefits-1-year-contract-2026-07-07",
+      "company": "Citybus Limited",
+      "title": "Assistant, Compensation & Benefits (1-Year Contract)",
+      "location": "Chai Wan",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92963665",
+      "applyUrl": "https://hk.jobsdb.com/job/92963665",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Compensation & Benefits, HR Operations",
+      "matchScore": 8.4,
+      "matchReasons": [
+        "与 Binance 福利、保险续约、员工 briefings、Midea 薪酬流程和海外员工数据标准化经历直接相关。"
+      ],
+      "risks": [
+        "1 年合约；可能要求香港 payroll、MPF 或 Oracle HCM 实操。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-pure-international-hk-limited-assistant-human-resources-officer-2026-07-07",
+      "company": "PURE International (HK) Limited",
+      "title": "Assistant Human Resources Officer",
+      "location": "Central & Western",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92907834",
+      "applyUrl": "https://hk.jobsdb.com/job/92907834",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Officer, HR Generalist, People Operations",
+      "matchScore": 8,
+      "matchReasons": [
+        "助理级 HR Officer 适合从多段 HR 实习转入香港 HR generalist；可突出员工活动、英文沟通和 HR operations。"
+      ],
+      "risks": [
+        "可能包含较多招聘和门店/前线支持；投递前确认招聘占比。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-china-life-insurance-overseas-company-limited-agency-training-agency-administration-2026-07-07",
+      "company": "China Life Insurance (Overseas) Company Limited",
+      "title": "Agency Training / Agency Administration",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/",
+      "applyUrl": "https://hk.jobsdb.com/",
+      "foundDate": "2026-07-07",
+      "postedDate": "待核实",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "Agency Training, Agency Operations",
+      "matchScore": 6.2,
+      "matchReasons": [
+        "如果职责确认为培训运营、渠道培训或 distribution operations，可与培训协调、员工沟通、英文协作经历关联；否则应排除。"
+      ],
+      "risks": [
+        "Agency 岗位销售/代理人管理风险较高，不能作为高匹配推荐。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-texas-instruments-human-resources-development-program-2026-07-06",
+      "company": "Texas Instruments",
+      "title": "Human Resources Development Program",
+      "location": "Shanghai, China",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://cn.linkedin.com/jobs/view/human-resources-development-program-at-texas-instruments-4385254514",
+      "applyUrl": "https://cn.linkedin.com/jobs/view/human-resources-development-program-at-texas-instruments-4385254514",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-02",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR 管培, HRBP, C&B, Employee Relations",
+      "matchScore": 9.8,
+      "matchReasons": [
+        "HR development program 明确面向早期职业，轮岗覆盖 HRBP、recruiting、compensation、development、employee relations，与你的国际 HR 和 C&B 经历高度匹配。"
+      ],
+      "risks": [
+        "地点为上海；竞争强，需要突出 HRBP/COE/C&B/员工关系轮岗潜力。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-visa-people-solutions-associate-2026-07-06",
+      "company": "Visa",
+      "title": "People Solutions Associate",
+      "location": "Shanghai, China",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://cn.linkedin.com/jobs/view/people-solutions-associate-at-visa-4423366295",
+      "applyUrl": "https://cn.linkedin.com/jobs/view/people-solutions-associate-at-visa-4423366295",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-02",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "People Operations, HR Ops",
+      "matchScore": 9.6,
+      "matchReasons": [
+        "Visa 全球 People/HR service role，覆盖员工与经理支持、HR 流程、员工数据、People program execution，非常贴合 HR Ops 定位。"
+      ],
+      "risks": [
+        "地点为上海；需确认是否接受应届或 0-2 年经验。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-dun-bradstreet-hr-operations-specialist-2026-07-06",
+      "company": "Dun & Bradstreet",
+      "title": "HR Operations Specialist",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/hr-operations-specialist-r-19403-at-dun-bradstreet-4431587749",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/hr-operations-specialist-r-19403-at-dun-bradstreet-4431587749",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-03",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, C&B, Employee Engagement",
+      "matchScore": 9.4,
+      "matchReasons": [
+        "覆盖 employee lifecycle、Workday、payroll/tax/benefits、MPF/insurance、employee activities 和 HR process improvement，正好承接 Binance/Midea HR Ops 与福利经验。"
+      ],
+      "risks": [
+        "可能要求一定 HR operations 经验；但职责与实习经历高度贴合。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-qima-hr-specialist-hr-assistant-2026-07-06",
+      "company": "QIMA",
+      "title": "HR Specialist (HR Assistant)",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/hr-specialist-hr-assistant-at-qima-4427566744",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/hr-specialist-hr-assistant-at-qima-4427566744",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-03",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, HR Generalist, C&B",
+      "matchScore": 9.1,
+      "matchReasons": [
+        "QIMA 5000+ 全球公司，岗位覆盖员工关系、C&B、入离职、payroll、benefits、training、engagement，且 previous HR internship is a plus。"
+      ],
+      "risks": [
+        "含 recruitment 和 admin support，但 JD 也覆盖 ER/C&B/onboarding/training/engagement，不是纯 admin。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-moneyhero-senior-associate-people-operations-2026-07-06",
+      "company": "MoneyHero",
+      "title": "Senior Associate, People Operations",
+      "location": "Central & Western District, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/senior-associate-people-operations-at-moneyhero-4435375598",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/senior-associate-people-operations-at-moneyhero-4435375598",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-01",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "People Operations, C&B, HR Ops",
+      "matchScore": 8.7,
+      "matchReasons": [
+        "NASDAQ 上市平台，People Ops 覆盖 payroll、compliance、employee experience、regional People & Talent initiatives，与 C&B/HR Ops 经历匹配。"
+      ],
+      "risks": [
+        "Senior Associate 可能要求更强 payroll/ops ownership；应届风险中等。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-mercer-rewards-talent-strategy-consulting-analyst-2026-07-06",
+      "company": "Mercer",
+      "title": "Rewards & Talent Strategy Consulting Analyst",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/rewards-talent-strategy-consulting-analyst-at-mercer-4418087878",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/rewards-talent-strategy-consulting-analyst-at-mercer-4418087878",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-04",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "C&B, Rewards, Talent Strategy",
+      "matchScore": 8.4,
+      "matchReasons": [
+        "Mercer/Marsh McLennan 外企咨询平台，Rewards/C&B survey、job evaluation、sales incentive、talent strategy 与 Aon/Midea/Binance 经历强相关。"
+      ],
+      "risks": [
+        "JD 包含 business development、sales proposals 和 cold calls，需确认是否接受这部分工作。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-hong-kong-interbank-clearing-ltd-officer-human-resources-2026-07-06",
+      "company": "Hong Kong Interbank Clearing Ltd",
+      "title": "Officer (Human Resources)",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://mail.google.com/mail/#all/19f32e59be4ec05a",
+      "applyUrl": "https://mail.google.com/mail/#all/19f32e59be4ec05a",
+      "foundDate": "2026-07-06",
+      "postedDate": "",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, HR Generalist",
+      "matchScore": 8.3,
+      "matchReasons": [
+        "Financial infrastructure HR role aligns with HR Ops / Generalist."
+      ],
+      "risks": [
+        "具体 JD 未在确认邮件中展示；等待雇主后续或平台状态更新。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-worldwide-flight-services-holding-s-a-human-resources-officer-2026-07-06",
+      "company": "Worldwide Flight Services Holding S.A.",
+      "title": "Human Resources Officer",
+      "location": "Airport Area",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://mail.google.com/mail/#all/19f32e6cdcc84771",
+      "applyUrl": "https://mail.google.com/mail/#all/19f32e6cdcc84771",
+      "foundDate": "2026-07-06",
+      "postedDate": "",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, HR Generalist",
+      "matchScore": 8.1,
+      "matchReasons": [
+        "HR Officer title fits HR generalist / operations track."
+      ],
+      "risks": [
+        "具体 JD 未在确认邮件中展示；关注现场运营和班次要求。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-hop-lun-assistant-hr-officer-1-year-contract-2026-07-06",
+      "company": "Hop Lun",
+      "title": "(Assistant) HR Officer (1 Year Contract)",
+      "location": "Kowloon, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/assistant-hr-officer-1-year-contract-at-hop-lun-4424299025",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/assistant-hr-officer-1-year-contract-at-hop-lun-4424299025",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-03",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, C&B",
+      "matchScore": 8,
+      "matchReasons": [
+        "覆盖 payroll、statutory contributions、contract preparation、benefits、leave、attendance、HRIS，与 C&B/HR Ops 经历匹配。"
+      ],
+      "risks": [
+        "要求 1-3 年 HR payroll/operations 经验；1 年合同。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-kerry-properties-limited-officer-human-resources-2026-07-06",
+      "company": "Kerry Properties Limited",
+      "title": "Officer, Human Resources",
+      "location": "Quarry Bay, Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "LinkedIn",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.linkedin.com/jobs/view/officer-human-resources-at-kerry-properties-limited-4433165163",
+      "applyUrl": "https://hk.linkedin.com/jobs/view/officer-human-resources-at-kerry-properties-limited-4433165163",
+      "foundDate": "2026-07-06",
+      "postedDate": "2026-07-03",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Ops, HR Generalist",
+      "matchScore": 7.2,
+      "matchReasons": [
+        "上市地产集团 HR generalist 岗，覆盖 employee lifecycle、HR systems、reports、labour compliance 和 HR projects，但年限较高。"
+      ],
+      "risks": [
+        "要求至少 3 年相关经验，且 mass recruitment/TA 占比不低。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-the-chinese-general-chamber-of-commerce-assistant-executive-officer-education-training-department-2026-07-06",
+      "company": "The Chinese General Chamber of Commerce",
+      "title": "Assistant Executive Officer (Education & Training Department)",
+      "location": "Hong Kong",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://mail.google.com/mail/#all/19f306592c6b700d",
+      "applyUrl": "https://mail.google.com/mail/#all/19f306592c6b700d",
+      "foundDate": "2026-07-06",
+      "postedDate": "",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "L&D / Training",
+      "matchScore": 6.5,
+      "matchReasons": [
+        "Training / education exposure may support HR L&D positioning."
+      ],
+      "risks": [
+        "非纯 HR 岗位，可能偏教育项目/商会行政；关注后续邮件。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-conrad-hong-kong-human-resources-coordinator-2026-07-02",
+      "company": "Conrad Hong Kong",
+      "title": "Human Resources Coordinator",
+      "location": "Admiralty",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92651498",
+      "applyUrl": "https://hk.jobsdb.com/job/92651498",
+      "foundDate": "2026-07-02",
+      "postedDate": "2026-06-11",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "L&D / Training, Employee Engagement, HR Ops",
+      "matchScore": 9.2,
+      "matchReasons": [
+        "Hilton 体系外企/上市集团背景，Fresh graduates welcomed，契合 wellness、员工活动、入职和培训运营。"
+      ],
+      "risks": [
+        "发布较久；酒店现场协调较多，但不是纯 admin。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-yesstyle-com-limited-hr-assistant-assistant-hr-officer-2026-07-02",
+      "company": "YesStyle.com Limited",
+      "title": "HR Assistant / (Assistant) HR Officer",
+      "location": "Kwai Chung",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92973184",
+      "applyUrl": "https://hk.jobsdb.com/job/92973184",
+      "foundDate": "2026-07-02",
+      "postedDate": "2026-06-27",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "C&B, HR Ops",
+      "matchScore": 8.6,
+      "matchReasons": [
+        "C&B、福利、保险、供应商和国际化电商背景与 Binance/Midea/ByteDance 经历贴合。"
+      ],
+      "risks": [
+        "Payroll 经验偏硬；需突出薪酬、福利、保险、HR 数据和合规。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-osim-hk-co-limited-human-resources-assistant-c-b-2026-07-02",
+      "company": "OSIM (HK) Co. Limited",
+      "title": "Human Resources Assistant (C&B)",
+      "location": "Sha Tin",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92960961",
+      "applyUrl": "https://hk.jobsdb.com/job/92960961",
+      "foundDate": "2026-07-02",
+      "postedDate": "2026-06-26",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "C&B, HR Ops",
+      "matchScore": 7.4,
+      "matchReasons": [
+        "C&B、保险福利、供应商和成本测算经历可支撑，但年限风险较高。"
+      ],
+      "risks": [
+        "要求 3 年 C&B，略高于应届；可备选。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    },
+    {
+      "jobId": "hk-openrice-limited-human-resources-assistant-assistant-human-resources-officer-2026-07-02",
+      "company": "OpenRice Limited",
+      "title": "Human Resources Assistant / Assistant Human Resources Officer",
+      "location": "Quarry Bay",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/92880934",
+      "applyUrl": "https://hk.jobsdb.com/job/92880934",
+      "foundDate": "2026-07-02",
+      "postedDate": "2026-06-23",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "HR Generalist, HR Ops",
+      "matchScore": 6.8,
+      "matchReasons": [
+        "互联网平台背景能承接字节国际化电商经历，但方向风险较高。"
+      ],
+      "risks": [
+        "招聘和 admin 占比不低；投前需确认是否偏 Generalist/HR Ops。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    }
+  ],
+  "duplicates": [
+    {
+      "jobId": "hk-west-kowloon-cultural-district-authority-human-resources-assistant-organisation-development-2026-07-02",
+      "company": "West Kowloon Cultural District Authority",
+      "title": "Human Resources Assistant (Organisation Development)",
+      "location": "West Kowloon Cultural District",
+      "industry": "",
+      "market": "HongKong",
+      "source": "JobsDB",
+      "sourceJobId": "",
+      "jdUrl": "https://hk.jobsdb.com/job/93037202",
+      "applyUrl": "https://hk.jobsdb.com/job/93037202",
+      "foundDate": "2026-07-02",
+      "postedDate": "2026-07-01",
+      "salary": "Not listed",
+      "experience": "Not listed",
+      "jobDescription": "L&D / Training, Employee Engagement",
+      "matchScore": 8.8,
+      "matchReasons": [
+        "贴合 Aon OD、测评项目、京东培训运营和 Binance 员工体验经历。"
+      ],
+      "risks": [
+        "固定期限合同；含协调和执行，但 OD/L&D 指向明确。"
+      ],
+      "currentStatus": "Archived",
+      "statusHistory": [
+        {
+          "status": "Archived",
+          "date": "2026-08-22",
+          "sourceOfTruth": "migration",
+          "notes": "Hong Kong historical recommendation archived during Campus OS V2 migration."
+        }
+      ],
+      "sourceOfTruth": "migration",
+      "archived": true,
+      "notes": "Migrated from HR dashboard historical Hong Kong data."
+    }
+  ]
+}

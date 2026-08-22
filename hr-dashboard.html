@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HR Job Tracker</title>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #d8dee7;
+      --green: #0f8f61;
+      --blue: #2563eb;
+      --amber: #b7791f;
+      --red: #b42318;
+      --ink: #111827;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 24px 32px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .metric, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .metric {
+      padding: 16px;
+      min-height: 96px;
+    }
+
+    .metric .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .metric .value {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .metric .note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .panel {
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 6px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    button.active {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: #eff6ff;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 920px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 11px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      background: #fafafa;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tag.jobsdb { background: #e8f7f1; color: var(--green); }
+    .tag.linkedin { background: #eaf1ff; color: var(--blue); }
+    .tag.applied { background: #e8f7f1; color: var(--green); }
+    .tag.started { background: #fff7e6; color: var(--amber); }
+    .tag.alert { background: #eef2f7; color: #475569; }
+    .tag.blocked { background: #fff1f0; color: var(--red); }
+
+    .funnel {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .funnel-step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbfdff;
+      min-height: 112px;
+    }
+
+    .funnel-step strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .funnel-step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .muted { color: var(--muted); }
+    .risk { color: var(--amber); }
+
+    @media (max-width: 900px) {
+      header { padding: 20px; }
+      main { padding: 16px; }
+      .grid, .two-col, .funnel { grid-template-columns: 1fr; }
+      table { min-width: 820px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hayley HR Job Tracker</h1>
+    <p>Last generated: 2026-07-06  |  Sources tested: Gmail connected, Feishu Base blocked in Codex keychain</p>
+  </header>
+
+  <main>
+    <section class="grid" aria-label="summary metrics">
+      <div class="metric">
+        <div class="label">近 7 天投递成功</div>
+        <div class="value">6</div>
+        <div class="note">来自 JobsDB 邮件确认</div>
+      </div>
+      <div class="metric">
+        <div class="label">进行中/未完成</div>
+        <div class="value">1</div>
+        <div class="note">HAESL application started</div>
+      </div>
+      <div class="metric">
+        <div class="label">拒信/面试邮件</div>
+        <div class="value">0</div>
+        <div class="note">本次 Gmail 搜索未发现</div>
+      </div>
+      <div class="metric">
+        <div class="label">新岗位提醒</div>
+        <div class="value">8+</div>
+        <div class="note">JobsDB + LinkedIn 提醒中可筛</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>投递漏斗</h2>
+      <div class="funnel">
+        <div class="funnel-step">
+          <strong>8+</strong>
+          <span>新岗位/提醒</span>
+          <div class="bar"><i style="width:100%"></i></div>
+        </div>
+        <div class="funnel-step">
+          <strong>7</strong>
+          <span>进入投递池</span>
+          <div class="bar"><i style="width:88%"></i></div>
+        </div>
+        <div class="funnel-step">
+          <strong>6</strong>
+          <span>已投递</span>
+          <div class="bar"><i style="width:75%"></i></div>
+        </div>
+        <div class="funnel-step">
+          <strong>0</strong>
+          <span>面试/HR 回复</span>
+          <div class="bar"><i style="width:0%"></i></div>
+        </div>
+        <div class="funnel-step">
+          <strong>0</strong>
+          <span>拒信/过期</span>
+          <div class="bar"><i style="width:0%"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel">
+        <h2>已投递岗位</h2>
+        <div class="toolbar" data-target="applications">
+          <button class="active" data-filter="all">全部</button>
+          <button data-filter="2026-07-05">7 月 5 日</button>
+          <button data-filter="2026-07-03">7 月 3 日</button>
+        </div>
+        <div class="table-wrap">
+          <table id="applications">
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>公司</th>
+                <th>岗位</th>
+                <th>平台</th>
+                <th>状态</th>
+                <th>备注</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-date="2026-07-05">
+                <td>2026-07-05</td>
+                <td>Worldwide Flight Services Holding S.A.</td>
+                <td>Human Resources Officer</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td>邮件确认 successfully submitted</td>
+              </tr>
+              <tr data-date="2026-07-05">
+                <td>2026-07-05</td>
+                <td>Hong Kong Interbank Clearing Ltd</td>
+                <td>Officer (Human Resources)</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td>金融基础设施公司，HR 方向匹配</td>
+              </tr>
+              <tr data-date="2026-07-05">
+                <td>2026-07-05</td>
+                <td>The Chinese General Chamber of Commerce</td>
+                <td>Assistant Executive Officer (Education & Training Department)</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td>偏 training/education ops，需后续判断 HR 相关度</td>
+              </tr>
+              <tr data-date="2026-07-03">
+                <td>2026-07-03</td>
+                <td>Ping An Digital Bank (International) Limited</td>
+                <td>Assistant, Human Resources and Administration</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td class="risk">含 Administration，后续面试需强调 HR 而非行政</td>
+              </tr>
+              <tr data-date="2026-07-03">
+                <td>2026-07-03</td>
+                <td>Siemens Ltd</td>
+                <td>Intern - People & Organization</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td>强匹配：People/Organization，适合应届生</td>
+              </tr>
+              <tr data-date="2026-07-03">
+                <td>2026-07-03</td>
+                <td>Tory Burch Far East Limited</td>
+                <td>Intern, Talent (Human Resources - Training)</td>
+                <td><span class="tag jobsdb">JobsDB</span></td>
+                <td><span class="tag applied">已投递</span></td>
+                <td>强匹配：L&D/Training 方向</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>待处理提醒</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>事项</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-07-05</td>
+                <td>Hong Kong Aero Engine Services Limited - Human Resources Summer Intern</td>
+                <td><span class="tag started">已开始未完成</span></td>
+              </tr>
+              <tr>
+                <td>2026-07-06</td>
+                <td>飞书 Base 在 Codex 进程中仍读不到 user token</td>
+                <td><span class="tag blocked">需修复</span></td>
+              </tr>
+              <tr>
+                <td>2026-07-06</td>
+                <td>Gmail 连接器已连接 hayley@example.com</td>
+                <td><span class="tag applied">可用</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>每日新岗位/平台提醒</h2>
+      <div class="toolbar" data-target="jobAlerts">
+        <button class="active" data-filter="all">全部</button>
+        <button data-filter="JobsDB">JobsDB</button>
+        <button data-filter="LinkedIn">LinkedIn</button>
+      </div>
+      <div class="table-wrap">
+        <table id="jobAlerts">
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>平台</th>
+              <th>公司</th>
+              <th>岗位/方向</th>
+              <th>初筛判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Hong Kong Aero Engine Services Limited (HAESL)</td>
+              <td>Human Resources Summer Intern (Part-time Contract)</td>
+              <td>值得补投；Excel/组织能力要求，适合应届实习背景</td>
+            </tr>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Kam Lung Motor Group Limited</td>
+              <td>Assistant Human Resources Officer</td>
+              <td>可筛；full spectrum HR + HRIS + 1 year experience</td>
+            </tr>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Malvern College Hong Kong Limited</td>
+              <td>Practical HR experience in international school</td>
+              <td>可筛；HR 实操机会，需确认 admin 比重</td>
+            </tr>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Mandatory Provident Fund Schemes Authority</td>
+              <td>HR policies/programmes + recruitment</td>
+              <td>中高匹配；政策/项目好，但招聘占比需核实</td>
+            </tr>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Popular Holdings Limited</td>
+              <td>Training & staff activities</td>
+              <td>L&D/员工活动方向可看</td>
+            </tr>
+            <tr data-platform="JobsDB">
+              <td>2026-07-05</td>
+              <td><span class="tag jobsdb">JobsDB</span></td>
+              <td>Citybus Limited</td>
+              <td>Fresh graduates welcomed</td>
+              <td>可筛；需确认是否 HR 岗位而非运营岗</td>
+            </tr>
+            <tr data-platform="LinkedIn">
+              <td>2026-07-04</td>
+              <td><span class="tag linkedin">LinkedIn</span></td>
+              <td>SCG China</td>
+              <td>HR Operation - Shanghai</td>
+              <td>方向匹配；需从 LinkedIn 打开 JD 确认经验要求</td>
+            </tr>
+            <tr data-platform="LinkedIn">
+              <td>2026-07-04</td>
+              <td><span class="tag linkedin">LinkedIn</span></td>
+              <td>LinkedIn people recommendation</td>
+              <td>Regional HR Compliance / C&B contacts</td>
+              <td>不是岗位；可作为 networking 线索</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>数据说明</h2>
+      <p class="muted">本页为静态快照。Email connector status redacted。飞书 Base 在用户 CMD 中可用，但当前 Codex 进程调用 lark-cli 仍返回 token_missing，因此此版未从 Base 拉取记录。</p>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll(".toolbar").forEach(function (toolbar) {
+      var table = document.getElementById(toolbar.dataset.target);
+      toolbar.addEventListener("click", function (event) {
+        if (event.target.tagName !== "BUTTON") return;
+        toolbar.querySelectorAll("button").forEach(function (button) {
+          button.classList.remove("active");
+        });
+        event.target.classList.add("active");
+        var filter = event.target.dataset.filter;
+        table.querySelectorAll("tbody tr").forEach(function (row) {
+          var value = row.dataset.date || row.dataset.platform || "";
+          row.style.display = filter === "all" || value === filter ? "" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>

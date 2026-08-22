@@ -1,0 +1,46 @@
+# Environment and secrets
+.env
+.env.*
+*.env
+secrets/
+secret/
+*.pem
+*.key
+*.p12
+*.pfx
+*_token*
+*token*.txt
+*cookie*
+*credentials*
+
+# Local connector/auth state
+.agents/
+.codex/
+.codex-tmp/
+lark_payloads*/
+logs/
+outputs/
+
+# Python / Node / build caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+.cache/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.log

@@ -1,0 +1,324 @@
+{
+  "coreIntroduction": {
+    "version": "v0",
+    "updatedAt": "2026-08-22T23:14:12+08:00",
+    "introCN60": "Needs User Input",
+    "introCN120": "Needs User Input",
+    "introEN60": "Needs User Input",
+    "introEN120": "Needs User Input",
+    "storyline": "学生组织中的组织管理兴趣 -> 理解业务为什么需要人 -> 人才标准与人才评价 -> 薪酬绩效、制度与国际 HR -> C&B、员工体验与 HR Digitalization -> 成为既理解业务又具备专业 HR 能力的人",
+    "locked": true
+  },
+  "stories": [
+    {
+      "storyId": "story-家园-从成员到行政组长",
+      "title": "家园 - 从成员到行政组长",
+      "facts": {
+        "company": "家园",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-家园-组织制度建设",
+      "title": "家园 - 组织制度建设",
+      "facts": {
+        "company": "家园",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-字节-从关键词筛选到理解业务",
+      "title": "字节 - 从关键词筛选到理解业务",
+      "facts": {
+        "company": "字节",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-字节-与-hm-对齐岗位画像",
+      "title": "字节 - 与 HM 对齐岗位画像",
+      "facts": {
+        "company": "字节",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-jd-headcount-planning",
+      "title": "JD - Headcount Planning",
+      "facts": {
+        "company": "JD",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-jd-业务沟通",
+      "title": "JD - 业务沟通",
+      "facts": {
+        "company": "JD",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-aon-bei访谈",
+      "title": "Aon - BEI访谈",
+      "facts": {
+        "company": "Aon",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-aon-领导力模型",
+      "title": "Aon - 领导力模型",
+      "facts": {
+        "company": "Aon",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-aon-ai评分辅助",
+      "title": "Aon - AI评分辅助",
+      "facts": {
+        "company": "Aon",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-midea-海外员工数据治理",
+      "title": "Midea - 海外员工数据治理",
+      "facts": {
+        "company": "Midea",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-midea-eor供应商",
+      "title": "Midea - EOR供应商",
+      "facts": {
+        "company": "Midea",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-midea-uat",
+      "title": "Midea - UAT",
+      "facts": {
+        "company": "Midea",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-binance-多国保险续约",
+      "title": "Binance - 多国保险续约",
+      "facts": {
+        "company": "Binance",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-binance-越南保险成本控制",
+      "title": "Binance - 越南保险成本控制",
+      "facts": {
+        "company": "Binance",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-binance-wellbeing-portal",
+      "title": "Binance - Wellbeing Portal",
+      "facts": {
+        "company": "Binance",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-binance-wellness-webinar",
+      "title": "Binance - Wellness Webinar",
+      "facts": {
+        "company": "Binance",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    },
+    {
+      "storyId": "story-binance-clawbot-skill",
+      "title": "Binance - Clawbot Skill",
+      "facts": {
+        "company": "Binance",
+        "role": "",
+        "situation": "Needs User Input",
+        "task": "Needs User Input",
+        "actions": [],
+        "results": [],
+        "constraints": []
+      },
+      "competencies": [],
+      "answerVersions": [],
+      "reflection": "",
+      "maturityScore": 0,
+      "manualOverrides": {}
+    }
+  ],
+  "questionTraining": {
+    "pg8": [],
+    "organizationObservation": []
+  }
+}

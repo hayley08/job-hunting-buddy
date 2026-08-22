@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hayley HR 投递工作台</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #fff;
+      --text: #1f2937;
+      --muted: #667085;
+      --line: #d9dee7;
+      --blue: #2563eb;
+      --green: #12805c;
+      --amber: #b76e00;
+      --red: #b42318;
+      --teal: #087f8c;
+      --purple: #6941c6;
+      --soft-blue: #e8f0ff;
+      --soft-green: #e7f6ef;
+      --soft-amber: #fff3d6;
+      --soft-red: #ffe8e5;
+      --soft-teal: #e2f5f7;
+      --soft-purple: #f0e9ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    header {
+      background: #202938;
+      color: white;
+      padding: 22px 28px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .banner {
+      border: 1px solid #ffd166;
+      background: var(--soft-amber);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .banner strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .banner span {
+      color: #624400;
+      font-size: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .metric, .panel, .job-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .metric {
+      padding: 16px;
+      min-height: 96px;
+    }
+
+    .metric .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .metric .value {
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .metric .note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin: 24px 0 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      min-height: 36px;
+    }
+
+    button.active {
+      border-color: var(--blue);
+      background: var(--soft-blue);
+      color: #174ea6;
+      font-weight: 600;
+    }
+
+    .recommend-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .job-card {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 286px;
+    }
+
+    .job-card h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .job-meta {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .job-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      background: var(--soft-blue);
+      color: #174ea6;
+      white-space: nowrap;
+    }
+
+    .badge.green { background: var(--soft-green); color: var(--green); }
+    .badge.amber { background: var(--soft-amber); color: #7a4b00; }
+    .badge.red { background: var(--soft-red); color: var(--red); }
+    .badge.teal { background: var(--soft-teal); color: var(--teal); }
+    .badge.purple { background: var(--soft-purple); color: var(--purple); }
+    .badge.boss { background: #e9f7ef; color: #00a35c; }
+    .badge.linkedin { background: #e6f1fb; color: #0a66c2; }
+    .badge.jobsdb { background: #e8f6ee; color: #168445; }
+
+    .score {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .score strong {
+      font-size: 24px;
+    }
+
+    .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    a.action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      min-height: 36px;
+      padding: 8px 12px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    a.secondary {
+      background: white;
+      color: var(--blue);
+      border: 1px solid var(--line);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .funnel {
+      display: grid;
+      gap: 10px;
+    }
+
+    .funnel-row {
+      display: grid;
+      grid-template-columns: 94px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .bar-track {
+      height: 24px;
+      background: #edf1f7;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      min-width: 2px;
+      background: var(--blue);
+      border-radius: 6px;
+    }
+
+    .bar.green { background: var(--green); }
+    .bar.amber { background: var(--amber); }
+    .bar.teal { background: var(--teal); }
+
+    .todo-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .todo {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfe;
+    }
+
+    .todo strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .todo p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: white;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      background: #f9fafb;
+    }
+
+    .muted { color: var(--muted); }
+
+    @media (max-width: 980px) {
+      .metrics, .recommend-grid, .layout { grid-template-columns: 1fr; }
+      header, main { padding-left: 16px; padding-right: 16px; }
+      .banner { align-items: flex-start; flex-direction: column; }
+      .funnel-row { grid-template-columns: 76px 1fr 34px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hayley HR 投递工作台</h1>
+    <p id="updated"></p>
+  </header>
+
+  <main>
+    <section class="banner" id="nextBanner"></section>
+
+    <section class="metrics">
+      <div class="metric">
+        <div class="label">建议投递</div>
+        <div class="value" id="recommendedJobs">0</div>
+        <div class="note">按权重从高到低</div>
+      </div>
+      <div class="metric">
+        <div class="label">已投递</div>
+        <div class="value" id="appliedJobs">0</div>
+        <div class="note">来自 Base + Gmail</div>
+      </div>
+      <div class="metric">
+        <div class="label">有后续</div>
+        <div class="value" id="followupJobs">0</div>
+        <div class="note">沟通 / 面试 / 谈薪</div>
+      </div>
+      <div class="metric">
+        <div class="label">Offer</div>
+        <div class="value" id="offerJobs">0</div>
+        <div class="note">状态为 Offer</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>建议投递岗位</h2>
+          <p>平台只作为来源标识；卡片按 10 分权重排序。公司质量 3 分、岗位匹配 4 分、经验门槛 2 分、风险与时效 1 分。</p>
+        </div>
+      </div>
+      <div class="recommend-grid" id="recommendCards"></div>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <h2>投递漏斗</h2>
+        <div class="funnel" id="funnel"></div>
+      </div>
+      <div class="panel">
+        <h2>需要行动</h2>
+        <div class="todo-list" id="todoList"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>岗位底表</h2>
+          <p>只展示已经投递或进入流程的岗位；未投递推荐不会放进这里。</p>
+        </div>
+        <div class="tabs" id="statusTabs"></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>岗位</th>
+              <th>公司 / 地点</th>
+              <th>来源</th>
+              <th>状态</th>
+              <th>匹配</th>
+              <th>日期</th>
+              <th>后续 / 风险</th>
+              <th>链接</th>
+            </tr>
+          </thead>
+          <tbody id="jobRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const generatedAt = "2026-07-06 02:55 Asia/Shanghai";
+    const dashboardPath = "C:/Users/dscwife/Documents/Codex/2026-07-02/outlook-email-app-connector-4aaab2856305417b993eca9a216aaf6e-2/hr-live-dashboard.html";
+    const statusFilters = ["全部", "已投递", "沟通中", "面试中", "谈薪中", "Offer"];
+
+    const jobs = [
+      {
+        title: "Human Resources Development Program",
+        company: "Texas Instruments",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-02",
+        followup: "今日 LinkedIn 新增；建议优先手动投递。",
+        risk: "地点为上海；竞争强，需要突出 HRBP/COE/C&B/员工关系轮岗潜力。",
+        url: "https://cn.linkedin.com/jobs/view/human-resources-development-program-at-texas-instruments-4385254514",
+        location: "Shanghai, China",
+        match: "高",
+        direction: "HR 管培, HRBP, C&B, Employee Relations",
+        reason: "HR development program 明确面向早期职业，轮岗覆盖 HRBP、recruiting、compensation、development、employee relations，与你的国际 HR 和 C&B 经历高度匹配。",
+        score: 9.8,
+        scoreReason: "上市外企/5000+ 3.0；岗位匹配 4.0；应届友好 2.0；时效 0.8。",
+        recommended: true
+      },
+      {
+        title: "People Solutions Associate",
+        company: "Visa",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-02",
+        followup: "今日 LinkedIn 新增；建议优先手动投递。",
+        risk: "地点为上海；需确认是否接受应届或 0-2 年经验。",
+        url: "https://cn.linkedin.com/jobs/view/people-solutions-associate-at-visa-4423366295",
+        location: "Shanghai, China",
+        match: "高",
+        direction: "People Operations, HR Ops",
+        reason: "Visa 全球 People/HR service role，覆盖员工与经理支持、HR 流程、员工数据、People program execution，非常贴合 HR Ops 定位。",
+        score: 9.6,
+        scoreReason: "上市外企/5000+ 3.0；岗位匹配 3.8；经验门槛 1.8；时效 1.0。",
+        recommended: true
+      },
+      {
+        title: "HR Operations Specialist",
+        company: "Dun & Bradstreet",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-03",
+        followup: "今日 LinkedIn 新增；建议优先手动投递。",
+        risk: "可能要求一定 HR operations 经验；但职责与实习经历高度贴合。",
+        url: "https://hk.linkedin.com/jobs/view/hr-operations-specialist-r-19403-at-dun-bradstreet-4431587749",
+        location: "Hong Kong",
+        match: "高",
+        direction: "HR Ops, C&B, Employee Engagement",
+        reason: "覆盖 employee lifecycle、Workday、payroll/tax/benefits、MPF/insurance、employee activities 和 HR process improvement，正好承接 Binance/Midea HR Ops 与福利经验。",
+        score: 9.4,
+        scoreReason: "上市外企/5000+ 3.0；岗位匹配 4.0；经验门槛 1.5；时效 0.9。",
+        recommended: true
+      },
+      {
+        title: "HR Specialist (HR Assistant)",
+        company: "QIMA",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-03",
+        followup: "今日 LinkedIn 新增；建议优先手动投递。",
+        risk: "含 recruitment 和 admin support，但 JD 也覆盖 ER/C&B/onboarding/training/engagement，不是纯 admin。",
+        url: "https://hk.linkedin.com/jobs/view/hr-specialist-hr-assistant-at-qima-4427566744",
+        location: "Hong Kong",
+        match: "高",
+        direction: "HR Ops, HR Generalist, C&B",
+        reason: "QIMA 5000+ 全球公司，岗位覆盖员工关系、C&B、入离职、payroll、benefits、training、engagement，且 previous HR internship is a plus。",
+        score: 9.1,
+        scoreReason: "外企/5000+ 2.8；岗位匹配 3.7；经验门槛 1.8；方向风险 0.8。",
+        recommended: true
+      },
+      {
+        title: "Senior Associate, People Operations",
+        company: "MoneyHero",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-01",
+        followup: "今日 LinkedIn 新增；可作为冲刺投递。",
+        risk: "Senior Associate 可能要求更强 payroll/ops ownership；应届风险中等。",
+        url: "https://hk.linkedin.com/jobs/view/senior-associate-people-operations-at-moneyhero-4435375598",
+        location: "Central & Western District, Hong Kong",
+        match: "高",
+        direction: "People Operations, C&B, HR Ops",
+        reason: "NASDAQ 上市平台，People Ops 覆盖 payroll、compliance、employee experience、regional People & Talent initiatives，与 C&B/HR Ops 经历匹配。",
+        score: 8.7,
+        scoreReason: "上市/区域平台 2.8；岗位匹配 3.6；Senior 门槛 1.2；时效 1.1。",
+        recommended: true
+      },
+      {
+        title: "Rewards & Talent Strategy Consulting Analyst",
+        company: "Mercer",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-04",
+        followup: "今日 LinkedIn 新增；适合作为 C&B/Rewards 方向投递。",
+        risk: "JD 包含 business development、sales proposals 和 cold calls，需确认是否接受这部分工作。",
+        url: "https://hk.linkedin.com/jobs/view/rewards-talent-strategy-consulting-analyst-at-mercer-4418087878",
+        location: "Hong Kong",
+        match: "高",
+        direction: "C&B, Rewards, Talent Strategy",
+        reason: "Mercer/Marsh McLennan 外企咨询平台，Rewards/C&B survey、job evaluation、sales incentive、talent strategy 与 Aon/Midea/Binance 经历强相关。",
+        score: 8.4,
+        scoreReason: "上市外企/专业平台 3.0；岗位匹配 3.6；经验门槛 1.4；BD/cold call 风险 0.4。",
+        recommended: true
+      },
+      {
+        title: "(Assistant) HR Officer (1 Year Contract)",
+        company: "Hop Lun",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-03",
+        followup: "今日 LinkedIn 新增；可作为 HR Ops/C&B 备选。",
+        risk: "要求 1-3 年 HR payroll/operations 经验；1 年合同。",
+        url: "https://hk.linkedin.com/jobs/view/assistant-hr-officer-1-year-contract-at-hop-lun-4424299025",
+        location: "Kowloon, Hong Kong",
+        match: "中",
+        direction: "HR Ops, C&B",
+        reason: "覆盖 payroll、statutory contributions、contract preparation、benefits、leave、attendance、HRIS，与 C&B/HR Ops 经历匹配。",
+        score: 8.0,
+        scoreReason: "公司规模/行业 2.1；岗位匹配 3.7；经验门槛 1.2；合同风险 1.0。",
+        recommended: true
+      },
+      {
+        title: "Officer, Human Resources",
+        company: "Kerry Properties Limited",
+        source: "LinkedIn",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-06",
+        appliedDate: "",
+        postedDate: "2026-07-03",
+        followup: "今日 LinkedIn 新增；因年限和招聘占比，放在备选。",
+        risk: "要求至少 3 年相关经验，且 mass recruitment/TA 占比不低。",
+        url: "https://hk.linkedin.com/jobs/view/officer-human-resources-at-kerry-properties-limited-4433165163",
+        location: "Quarry Bay, Hong Kong",
+        match: "中",
+        direction: "HR Ops, HR Generalist",
+        reason: "上市地产集团 HR generalist 岗，覆盖 employee lifecycle、HR systems、reports、labour compliance 和 HR projects，但年限较高。",
+        score: 7.2,
+        scoreReason: "上市/规模 3.0；岗位匹配 2.8；经验门槛 0.6；TA/年限风险 0.8。",
+        recommended: true
+      },
+      {
+        title: "Human Resources Assistant (Organisation Development)",
+        company: "West Kowloon Cultural District Authority",
+        source: "JobsDB",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-02",
+        appliedDate: "",
+        postedDate: "2026-07-01",
+        followup: "等待用户确认是否投递。",
+        risk: "固定期限合同；含协调和执行，但 OD/L&D 指向明确。",
+        url: "https://hk.jobsdb.com/job/93037202",
+        location: "West Kowloon Cultural District",
+        match: "高",
+        direction: "L&D / Training, Employee Engagement",
+        reason: "贴合 Aon OD、测评项目、京东培训运营和 Binance 员工体验经历。",
+        score: 8.8,
+        scoreReason: "法定机构/大型项目平台 2.5；岗位匹配 3.8；经验门槛 1.6；时效风险 0.9。",
+        recommended: true
+      },
+      {
+        title: "Human Resources Coordinator",
+        company: "Conrad Hong Kong",
+        source: "JobsDB",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-02",
+        appliedDate: "",
+        postedDate: "2026-06-11",
+        followup: "等待用户确认是否投递。",
+        risk: "发布较久；酒店现场协调较多，但不是纯 admin。",
+        url: "https://hk.jobsdb.com/job/92651498",
+        location: "Admiralty",
+        match: "高",
+        direction: "L&D / Training, Employee Engagement, HR Ops",
+        reason: "Hilton 体系外企/上市集团背景，Fresh graduates welcomed，契合 wellness、员工活动、入职和培训运营。",
+        score: 9.2,
+        scoreReason: "上市集团/外企/大规模 3.0；岗位匹配 3.7；经验门槛 2.0；发布较久扣 0.5。",
+        recommended: true
+      },
+      {
+        title: "HR Assistant / (Assistant) HR Officer",
+        company: "YesStyle.com Limited",
+        source: "JobsDB",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-02",
+        appliedDate: "",
+        postedDate: "2026-06-27",
+        followup: "等待用户确认是否投递。",
+        risk: "Payroll 经验偏硬；需突出薪酬、福利、保险、HR 数据和合规。",
+        url: "https://hk.jobsdb.com/job/92973184",
+        location: "Kwai Chung",
+        match: "高",
+        direction: "C&B, HR Ops",
+        reason: "C&B、福利、保险、供应商和国际化电商背景与 Binance/Midea/ByteDance 经历贴合。",
+        score: 8.6,
+        scoreReason: "中大型跨境电商 2.4；岗位匹配 4.0；经验门槛 1.4；时效 0.8。",
+        recommended: true
+      },
+      {
+        title: "Human Resources Assistant (C&B)",
+        company: "OSIM (HK) Co. Limited",
+        source: "JobsDB",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-02",
+        appliedDate: "",
+        postedDate: "2026-06-26",
+        followup: "等待用户确认是否投递。",
+        risk: "要求 3 年 C&B，略高于应届；可备选。",
+        url: "https://hk.jobsdb.com/job/92960961",
+        location: "Sha Tin",
+        match: "中",
+        direction: "C&B, HR Ops",
+        reason: "C&B、保险福利、供应商和成本测算经历可支撑，但年限风险较高。",
+        score: 7.4,
+        scoreReason: "品牌/区域规模 2.0；岗位匹配 3.5；经验门槛 0.9；时效 1.0。",
+        recommended: true
+      },
+      {
+        title: "Human Resources Assistant / Assistant Human Resources Officer",
+        company: "OpenRice Limited",
+        source: "JobsDB",
+        status: "新发现",
+        statusGroup: "建议投递",
+        foundDate: "2026-07-02",
+        appliedDate: "",
+        postedDate: "2026-06-23",
+        followup: "等待用户确认是否投递。",
+        risk: "招聘和 admin 占比不低；投前需确认是否偏 Generalist/HR Ops。",
+        url: "https://hk.jobsdb.com/job/92880934",
+        location: "Quarry Bay",
+        match: "中",
+        direction: "HR Generalist, HR Ops",
+        reason: "互联网平台背景能承接字节国际化电商经历，但方向风险较高。",
+        score: 6.8,
+        scoreReason: "平台型公司 2.1；岗位匹配 2.9；经验门槛 1.4；方向/admin 风险 0.4。",
+        recommended: true
+      },
+      {
+        title: "Human Resources Officer",
+        company: "Worldwide Flight Services Holding S.A.",
+        source: "JobsDB",
+        status: "已投",
+        statusGroup: "已投递",
+        foundDate: "2026-07-06",
+        appliedDate: "2026-07-05",
+        postedDate: "",
+        followup: "2026-07-05 JobsDB confirmed submitted via Gmail.",
+        risk: "具体 JD 未在确认邮件中展示；关注现场运营和班次要求。",
+        url: "https://mail.google.com/mail/#all/19f32e6cdcc84771",
+        location: "Airport Area",
+        match: "高",
+        direction: "HR Ops, HR Generalist",
+        reason: "HR Officer title fits HR generalist / operations track.",
+        score: 8.1,
+        scoreReason: "已投记录，不参与建议排序。",
+        recommended: false
+      },
+      {
+        title: "Officer (Human Resources)",
+        company: "Hong Kong Interbank Clearing Ltd",
+        source: "JobsDB",
+        status: "已投",
+        statusGroup: "已投递",
+        foundDate: "2026-07-06",
+        appliedDate: "2026-07-05",
+        postedDate: "",
+        followup: "2026-07-05 JobsDB confirmed submitted via Gmail.",
+        risk: "具体 JD 未在确认邮件中展示；等待雇主后续或平台状态更新。",
+        url: "https://mail.google.com/mail/#all/19f32e59be4ec05a",
+        location: "Hong Kong",
+        match: "高",
+        direction: "HR Ops, HR Generalist",
+        reason: "Financial infrastructure HR role aligns with HR Ops / Generalist.",
+        score: 8.3,
+        scoreReason: "已投记录，不参与建议排序。",
+        recommended: false
+      },
+      {
+        title: "Assistant Executive Officer (Education & Training Department)",
+        company: "The Chinese General Chamber of Commerce",
+        source: "JobsDB",
+        status: "已投",
+        statusGroup: "已投递",
+        foundDate: "2026-07-06",
+        appliedDate: "2026-07-05",
+        postedDate: "",
+        followup: "2026-07-05 JobsDB confirmed submitted via Gmail.",
+        risk: "非纯 HR 岗位，可能偏教育项目/商会行政；关注后续邮件。",
+        url: "https://mail.google.com/mail/#all/19f306592c6b700d",
+        location: "Hong Kong",
+        match: "中",
+        direction: "L&D / Training",
+        reason: "Training / education exposure may support HR L&D positioning.",
+        score: 6.5,
+        scoreReason: "已投记录，不参与建议排序。",
+        recommended: false
+      }
+    ];
+
+    let activeStatus = "全部";
+    const appliedGroups = new Set(["已投递", "沟通中", "面试中", "谈薪中", "Offer"]);
+    const actionWords = ["笔试", "面试", "interview", "assessment", "test", "complete", "补充", "回复", "安排"];
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, ch => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[ch]));
+    }
+
+    function hasAction(job) {
+      const text = `${job.status} ${job.followup} ${job.risk}`.toLowerCase();
+      return actionWords.some(word => text.includes(word.toLowerCase()));
+    }
+
+    function platformBadge(source) {
+      const klass = source === "BOSS" ? "boss" : source === "LinkedIn" ? "linkedin" : source === "JobsDB" ? "jobsdb" : "";
+      return `<span class="badge ${klass}">${escapeHtml(source)}</span>`;
+    }
+
+    function badge(text) {
+      const value = text || "未填";
+      const klass = value === "高" || value === "Offer" ? "green" : value === "中" || value === "新发现" ? "amber" : value === "已投" || value === "已投递" ? "teal" : value === "拒" ? "red" : "";
+      return `<span class="badge ${klass}">${escapeHtml(value)}</span>`;
+    }
+
+    function tableJobs() {
+      return jobs.filter(job => appliedGroups.has(job.statusGroup) && (activeStatus === "全部" || job.statusGroup === activeStatus));
+    }
+
+    function renderTabs() {
+      document.getElementById("statusTabs").innerHTML = statusFilters.map(status =>
+        `<button class="${status === activeStatus ? "active" : ""}" data-status="${status}">${status}</button>`
+      ).join("");
+      document.querySelectorAll("[data-status]").forEach(btn => btn.onclick = () => {
+        activeStatus = btn.dataset.status;
+        render();
+      });
+    }
+
+    function renderMetrics() {
+      const recommended = jobs.filter(j => j.recommended).length;
+      const applied = jobs.filter(j => appliedGroups.has(j.statusGroup)).length;
+      const followups = jobs.filter(j => ["沟通中", "面试中", "谈薪中", "Offer"].includes(j.statusGroup) || hasAction(j)).length;
+      const offers = jobs.filter(j => j.statusGroup === "Offer").length;
+      document.getElementById("recommendedJobs").textContent = recommended;
+      document.getElementById("appliedJobs").textContent = applied;
+      document.getElementById("followupJobs").textContent = followups;
+      document.getElementById("offerJobs").textContent = offers;
+
+      const funnelItems = [
+        ["建议投递", recommended, "amber"],
+        ["已投递", applied, "teal"],
+        ["沟通中", jobs.filter(j => j.statusGroup === "沟通中").length, "blue"],
+        ["面试中", jobs.filter(j => j.statusGroup === "面试中").length, "blue"],
+        ["谈薪中", jobs.filter(j => j.statusGroup === "谈薪中").length, "green"],
+        ["Offer", offers, "green"]
+      ];
+      const max = Math.max(...funnelItems.map(item => item[1]), 1);
+      document.getElementById("funnel").innerHTML = funnelItems.map(([label, value, color]) => {
+        const width = Math.max((value / max) * 100, value > 0 ? 8 : 0);
+        return `<div class="funnel-row"><div>${label}</div><div class="bar-track"><div class="bar ${color}" style="width:${width}%"></div></div><strong>${value}</strong></div>`;
+      }).join("");
+    }
+
+    function renderBanner() {
+      const action = jobs.find(hasAction);
+      const best = jobs.filter(j => j.recommended).sort((a, b) => b.score - a.score)[0];
+      const next = action || best;
+      document.getElementById("nextBanner").innerHTML = next
+        ? `<div><strong>下一个优先处理：${escapeHtml(next.company)}</strong><span>${hasAction(next) ? "需要查看后续要求。" : `建议优先投递，当前评分 ${next.score}/10。`}</span></div><a class="action secondary" href="${escapeHtml(next.url)}" target="_blank">打开</a>`
+        : `<div><strong>暂无待行动事项</strong><span>当前没有面试、笔试或必须回复的记录。</span></div>`;
+    }
+
+    function renderRecommendations() {
+      const recs = jobs.filter(j => j.recommended).sort((a, b) => b.score - a.score);
+      document.getElementById("recommendCards").innerHTML = recs.map(job => `
+        <article class="job-card">
+          <div class="badges">${platformBadge(job.source)}${badge(job.match)}${badge(job.status)}</div>
+          <div class="score"><strong>${job.score.toFixed(1)}</strong><span>/ 10</span></div>
+          <h3>${escapeHtml(job.company)} - ${escapeHtml(job.title)}</h3>
+          <div class="job-meta">${escapeHtml(job.location)} · ${escapeHtml(job.direction)} · 发布 ${escapeHtml(job.postedDate || "待核实")}</div>
+          <p>${escapeHtml(job.reason)}</p>
+          <p class="muted">${escapeHtml(job.scoreReason)}</p>
+          <p class="muted">${escapeHtml(job.risk)}</p>
+          <div class="actions">
+            <a class="action" href="${escapeHtml(job.url)}" target="_blank">去投递</a>
+            <a class="action secondary" href="${escapeHtml(job.url)}" target="_blank">查看 JD</a>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderTodos() {
+      const actions = jobs.filter(hasAction);
+      document.getElementById("todoList").innerHTML = actions.length
+        ? actions.map(j => `<div class="todo"><strong>${escapeHtml(j.company)} - ${escapeHtml(j.status)}</strong><p>${escapeHtml(j.followup || j.risk)}</p></div>`).join("")
+        : `<div class="todo"><strong>暂无面试/笔试待办</strong><p>目前 Gmail 和 Base 没有识别到需要立刻处理的后续。收到新邮件或你发 bot 后会更新这里。</p></div>`;
+    }
+
+    function renderTable() {
+      const rows = tableJobs();
+      document.getElementById("jobRows").innerHTML = rows.length
+        ? rows.map(job => `
+          <tr>
+            <td><strong>${escapeHtml(job.title)}</strong><div class="muted">${escapeHtml(job.direction)}</div></td>
+            <td>${escapeHtml(job.company)}<div class="muted">${escapeHtml(job.location)}</div></td>
+            <td>${platformBadge(job.source)}</td>
+            <td>${badge(job.statusGroup)}</td>
+            <td>${badge(job.match)}</td>
+            <td><div>投递 ${escapeHtml(job.appliedDate || "未填")}</div><div class="muted">发现 ${escapeHtml(job.foundDate || "未填")}</div></td>
+            <td><div>${escapeHtml(job.followup)}</div><div class="muted">${escapeHtml(job.risk)}</div></td>
+            <td><a class="action secondary" href="${escapeHtml(job.url)}" target="_blank">打开</a></td>
+          </tr>
+        `).join("")
+        : `<tr><td colspan="8" class="muted">当前状态筛选下没有记录。</td></tr>`;
+    }
+
+    function render() {
+      document.getElementById("updated").textContent = `最后更新：${generatedAt}；文件：${dashboardPath}`;
+      renderTabs();
+      renderMetrics();
+      renderBanner();
+      renderRecommendations();
+      renderTodos();
+      renderTable();
+    }
+
+    render();
+  </script>
+</body>
+</html>
