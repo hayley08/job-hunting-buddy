@@ -10,3 +10,9 @@
 - Core Introduction in Story Bank is locked and currently marked `Needs User Input`.
 - Story Bank has been scaffolded from known resume experience themes; facts still need user confirmation.
 - Workspace Git metadata is invalid, so `feature/campus-job-os-v2` and commits are blocked until the repository is repaired or moved into a valid GitHub repo.
+
+## 2026-08-23
+
+- Backfilled 5 Mainland applied campus HR roles from user input: TI, OPPO, Insta360, Shopee, DJI.
+- TI application requires English interview preparation.
+- Applied roles were kept out of opportunities.

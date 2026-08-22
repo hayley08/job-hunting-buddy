@@ -1,0 +1,48 @@
+{
+  "inputDate": "2026-08-23",
+  "receivedAt": "2026-08-23T00:35:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-23T00:35:00+08:00",
+  "processedByRun": "2026-08-23-manual-application-backfill",
+  "applications": [
+    {
+      "appliedDate": "2026-08-19",
+      "company": "Texas Instruments",
+      "title": "Human Resources Generalist / HR Management Trainee",
+      "note": "Emphasize English interview."
+    },
+    {
+      "appliedDate": "2026-08-17",
+      "company": "OPPO",
+      "title": "人力资源",
+      "url": "https://careers.oppo.com/university/oppo/center/history"
+    },
+    {
+      "appliedDate": "2026-08-18",
+      "company": "Insta360 / 影石",
+      "title": "HRBP助理"
+    },
+    {
+      "appliedDate": "2026-08-22",
+      "company": "Shopee",
+      "title": "人力资源专员",
+      "location": "深圳",
+      "url": "https://app.mokahr.com/campus_apply/shopee/2962?recommendCode=DSvNcFCM#/candidateHome/applications"
+    },
+    {
+      "appliedDate": "2026-07-17",
+      "company": "DJI / 大疆",
+      "title": "人力资源管理"
+    }
+  ],
+  "statusUpdates": [],
+  "events": [],
+  "jobDescriptions": [],
+  "interviewNotes": [],
+  "storyNotes": [],
+  "resumeUpdates": [],
+  "feedback": [],
+  "other": [
+    "Manual backfill from user message in Codex."
+  ]
+}

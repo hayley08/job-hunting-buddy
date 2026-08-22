@@ -1,0 +1,60 @@
+{
+  "runDate": "2026-08-23",
+  "processingWindow": {
+    "start": "2026-08-22T12:00:00+08:00",
+    "end": "2026-08-23T11:59:59+08:00"
+  },
+  "processedInputs": [
+    "data/inbox/2026-08-23_user-input.json"
+  ],
+  "newApplications": [
+    "app-texas-instruments-human-resources-generalist-2026-08-19",
+    "app-oppo-human-resources-2026-08-17",
+    "app-insta360-hrbp-assistant-2026-08-18",
+    "app-shopee-hr-specialist-shenzhen-2026-08-22",
+    "app-dji-human-resources-management-2026-07-17"
+  ],
+  "statusChanges": [
+    {
+      "jobId": "app-texas-instruments-human-resources-generalist-2026-08-19",
+      "status": "Applied",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-oppo-human-resources-2026-08-17",
+      "status": "Applied",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-insta360-hrbp-assistant-2026-08-18",
+      "status": "Applied",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-shopee-hr-specialist-shenzhen-2026-08-22",
+      "status": "Applied",
+      "sourceOfTruth": "user"
+    },
+    {
+      "jobId": "app-dji-human-resources-management-2026-07-17",
+      "status": "Applied",
+      "sourceOfTruth": "user"
+    }
+  ],
+  "newEvents": [],
+  "interviewPackUpdates": [],
+  "storyBankUpdates": [],
+  "feedbackProcessed": [],
+  "feedbackPending": [],
+  "searchIssues": [],
+  "dataConflicts": [],
+  "manualOverrides": [],
+  "unresolvedItems": [
+    "Need official JD/apply URL verification for TI, Insta360, DJI; OPPO URL points to application history center."
+  ],
+  "nextRunMustRead": [
+    "MASTER_REQUIREMENTS.md",
+    "data/applications.json",
+    "data/handoffs/2026-08-23_handoff.json"
+  ]
+}
