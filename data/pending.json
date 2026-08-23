@@ -17,5 +17,14 @@
     "content": "阿里千问岗位尚未投递；用户准备向他人获取内推码。",
     "nextAction": "获得内推码后从岗位名称红色超链接继续填写并提交；提交完成前不得计入 Applied。",
     "sourceOfTruth": "user"
+  },
+  {
+    "pendingId": "pending-github-push-d2bcbe1",
+    "createdAt": "2026-08-24T02:20:00+08:00",
+    "category": "deployment",
+    "status": "open",
+    "content": "Commit d2bcbe1 is complete locally, but four push attempts failed because the environment could not connect to github.com:443.",
+    "nextAction": "Retry `git push origin feature/campus-job-os-v2`; after success, resolve this item and verify the GitHub/Vercel deployment check.",
+    "sourceOfTruth": "system"
   }
 ]

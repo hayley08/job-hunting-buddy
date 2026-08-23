@@ -65,5 +65,13 @@
     "The Alibaba Qwen application record is distinct from the seed-run Alibaba AI-HR VERIFY opportunity."
   ],
   "safety": {"autoApplied": false, "mainMerged": false},
-  "branch": "feature/campus-job-os-v2"
+  "branch": "feature/campus-job-os-v2",
+  "deployment": {
+    "localCommit": "d2bcbe1",
+    "pushStatus": "BLOCKED_NETWORK",
+    "pushAttempts": 4,
+    "blocker": "Could not connect to github.com:443 from the current environment.",
+    "stableBranchUrl": "https://job-hunting-buddy-git-feature-campus-688ec5-hayley08s-projects.vercel.app",
+    "vercelStatus": "NOT_TRIGGERED_FOR_D2BCBE1"
+  }
 }
