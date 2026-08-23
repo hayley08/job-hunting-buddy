@@ -87,5 +87,11 @@
     "Deep-search missing target companies, especially automotive and FMCG watchlist names, without repeating documented expired/recruiting-heavy results.",
     "Improve official adapters so exact sourceJobId and JD pages are captured instead of company-level portals."
   ],
-  "safety": {"autoApplied": false, "mainMerged": false}
+  "safety": {"autoApplied": false, "mainMerged": false},
+  "deployment": {
+    "branch": "feature/campus-job-os-v2",
+    "stableBranchUrl": "https://job-hunting-buddy-git-feature-campus-688ec5-hayley08s-projects.vercel.app",
+    "deploymentProtection": "VERCEL_LOGIN_REQUIRED_FOR_UNAUTHENTICATED_VISITORS",
+    "githubVercelCheck": "success"
+  }
 }

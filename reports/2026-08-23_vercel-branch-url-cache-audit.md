@@ -5,7 +5,9 @@
 - GitHub is connected to Vercel and every push to `feature/campus-job-os-v2` creates a Preview deployment.
 - Vercel automatically maintains a stable Git branch URL that follows the latest successful deployment on the branch.
 - Commit-specific Preview URLs are immutable snapshots and must not be bookmarked as the daily V2 URL.
-- The exact branch URL must be copied from Vercel Deployment -> Domains, the Share dialog's Branch link, or the GitHub PR's Visit Preview action. Public GitHub deployment metadata exposes only the commit URL and is insufficient to verify the exact branch alias string.
+- Verified stable branch alias: `https://job-hunting-buddy-git-feature-campus-688ec5-hayley08s-projects.vercel.app`.
+- The alias was recovered from the Vercel Preview check output for `feature/campus-job-os-v2`. It is the URL to bookmark on desktop and mobile.
+- Vercel Deployment Protection is enabled: an unauthenticated request redirects to Vercel login. This does not make the alias unstable; use it while signed into the authorized Vercel account, or adjust Preview Deployment Protection separately if broader access is desired.
 
 ## Previous Cache Strategy
 
