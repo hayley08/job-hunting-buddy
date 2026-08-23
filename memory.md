@@ -30,3 +30,9 @@
 - Completed the 2026-08-23 `SEED_TEST_RUN`: 25 role candidates searched, 13 classified results (3 APPLY_NOW, 1 OPEN, 2 WATCH, 1 UPCOMING, 1 HISTORICAL, 5 VERIFY), 10 excluded and 2 duplicates removed. The baseline, 25-company watchlist, QA report and seed handoff are durable repo sources for the 2026-08-24 12:00 run.
 - Exact verified apply/job links in the seed are PDD `452278`, Positec `461662`, SMIC `J13293`, and Beisen `J14756`. Alibaba AI-HR, RichInfo, OneRobotics, Tencent and NIO require re-verification; do not surface apply actions for them.
 - Pipeline UX rule: for `Application In Progress`, the job title itself is the red bold hyperlink; do not render a separate continue-apply button in the Pipeline table.
+
+## 2026-08-24
+
+- User reported 中国人保「广东省管培」、米哈游「人力资源（岗位 9221）」和施耐德电气「人力资源实习生（131792）」 as Applied on 2026-08-24. 米哈游 and 中国人保 were transitioned from `Application In Progress` while preserving their 2026-08-23 status history; 施耐德 was added as a new Applied record.
+- User supplied complete raw JDs for 米哈游 and 施耐德电气. They are stored and structured in `data/jds.json`; 米哈游 spans HRBP/ER/recruiting, OD/performance/C&B/L&D, employer brand/culture/training and AI workflow, while Schneider spans recruiting, L&D, C&B and HR operations.
+- 阿里千问 cartId `100100540113` is explicitly not submitted. Keep it `Application In Progress`, high priority, with empty `appliedDate`, until the user obtains a referral code and confirms submission. Exact title/JD/location remain missing; do not conflate it with the separate Alibaba AI-HR VERIFY opportunity from the seed search.

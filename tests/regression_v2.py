@@ -55,16 +55,21 @@ def main():
         assert_true(item.get("recommendationDate") == item.get("recommendationDates", [None])[0], f"first recommendation date drifted: {item.get('jobId')}")
 
     in_progress = [item for item in active_apps if item.get("currentStatus") == "Application In Progress"]
-    assert_true(len(in_progress) == 3, "expected 3 Application In Progress records")
-    assert_true({item.get("company") for item in in_progress} == {"米哈游", "中国人保", "联想"}, "unexpected Application In Progress companies")
+    assert_true(len(in_progress) == 2, "expected 2 Application In Progress records")
+    assert_true({item.get("company") for item in in_progress} == {"联想", "阿里千问"}, "unexpected Application In Progress companies")
     for item in in_progress:
         assert_true(item.get("applyUrl", "").startswith("https://"), f"Application In Progress must preserve applyUrl: {item.get('jobId')}")
-        assert_true(item.get("applicationStartedAt") == "2026-08-23", f"applicationStartedAt missing: {item.get('jobId')}")
+        assert_true(item.get("applicationStartedAt") in {"2026-08-23", "2026-08-24"}, f"applicationStartedAt missing: {item.get('jobId')}")
         assert_true(not item.get("appliedDate"), f"Application In Progress must not have appliedDate: {item.get('jobId')}")
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 5, "Application In Progress must not be counted as Applied KPI")
+    assert_true(applied_kpi_count == 8, "Application In Progress must not be counted as Applied KPI")
+    assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
+    assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
+    assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
+    qwen = next(item for item in active_apps if item.get("company") == "阿里千问")
+    assert_true(qwen.get("currentStatus") == "Application In Progress" and not qwen.get("appliedDate"), "Qwen must remain not submitted")
 
     for item in applications:
         if item.get("currentStatus") == "Closed":
@@ -92,7 +97,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 13, "seed baseline should include 13 structured JD records including partial/historical captures")
+    assert_true(len(complete_jds) == 15, "manual update should include 15 structured JD records including partial/historical captures")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     for item in jds:
         raw = item.get("jdRaw") or item.get("jdSnapshot") or ""

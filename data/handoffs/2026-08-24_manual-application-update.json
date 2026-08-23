@@ -1,0 +1,69 @@
+{
+  "runDate": "2026-08-24",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "completedAt": "2026-08-24T02:11:00+08:00",
+  "processedInputs": ["data/inbox/2026-08-24_application-updates.json"],
+  "applicationChanges": [
+    {
+      "jobId": "app-picc-campus-application-2026-08-23",
+      "company": "中国人保",
+      "title": "广东省管培",
+      "fromStatus": "Application In Progress",
+      "toStatus": "Applied",
+      "appliedDate": "2026-08-24",
+      "jdStatus": "JD Missing"
+    },
+    {
+      "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+      "company": "米哈游",
+      "title": "人力资源（岗位 9221）",
+      "fromStatus": "Application In Progress",
+      "toStatus": "Applied",
+      "appliedDate": "2026-08-24",
+      "jdStatus": "Complete JD"
+    },
+    {
+      "jobId": "app-schneider-electric-hr-intern-131792-2026-08-24",
+      "company": "施耐德电气",
+      "title": "人力资源实习生",
+      "fromStatus": null,
+      "toStatus": "Applied",
+      "appliedDate": "2026-08-24",
+      "jdStatus": "Complete JD"
+    },
+    {
+      "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+      "company": "阿里千问",
+      "title": "2027届校招岗位（职位名称待确认）",
+      "fromStatus": null,
+      "toStatus": "Application In Progress",
+      "appliedDate": "",
+      "jdStatus": "JD Missing",
+      "blocker": "Waiting for referral code"
+    }
+  ],
+  "countsAfterUpdate": {
+    "activeMainlandApplications": 10,
+    "applied": 8,
+    "applicationInProgress": 2,
+    "newlyCapturedCompleteJDs": 2,
+    "totalStructuredOrPartialJDs": 15
+  },
+  "durablePaths": {
+    "rawInput": "data/inbox/2026-08-24_application-updates.json",
+    "applications": "data/applications.json",
+    "jds": "data/jds.json",
+    "pending": "data/pending.json",
+    "daily": "data/daily/2026-08-24_manual.json",
+    "latest": "data/daily/latest.json"
+  },
+  "nextRunMustKnow": [
+    "Do not count Alibaba Qwen as Applied until the user explicitly confirms submission.",
+    "Ask for or capture the exact Alibaba Qwen job title and JD when available; cartId is 100100540113.",
+    "PICC currently links to the authenticated personal delivery record page and still lacks a captured JD.",
+    "Use the full miHoYo and Schneider JDs in data/jds.json for interview preparation.",
+    "The Alibaba Qwen application record is distinct from the seed-run Alibaba AI-HR VERIFY opportunity."
+  ],
+  "safety": {"autoApplied": false, "mainMerged": false},
+  "branch": "feature/campus-job-os-v2"
+}

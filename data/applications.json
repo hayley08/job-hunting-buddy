@@ -585,39 +585,44 @@
   {
     "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
     "company": "米哈游",
-    "title": "校园招聘岗位 9221",
+    "title": "人力资源（岗位 9221）",
     "businessUnit": "",
     "location": "Mainland China",
     "industry": "Gaming / Internet",
     "market": "Mainland",
     "source": "User Provided Apply Link",
     "sourceJobId": "9221",
-    "jdUrl": "",
-    "applyUrl": "https://jobs.mihoyo.com/#/campus/resume/position/edit/9221",
-    "officialUrl": "https://jobs.mihoyo.com/#/campus/resume/position/edit/9221",
+    "jdUrl": "https://jobs.mihoyo.com/#/campus/resume/position/preview/9221",
+    "applyUrl": "https://jobs.mihoyo.com/#/campus/resume/position/preview/9221",
+    "officialUrl": "https://jobs.mihoyo.com/#/campus/resume/position/preview/9221",
     "foundDate": "2026-08-23",
     "postedDate": "",
     "applicationStartedAt": "2026-08-23",
-    "appliedDate": "",
+    "appliedDate": "2026-08-24",
     "deadline": "",
     "jobDescription": "",
     "jdSnapshot": "",
-    "jdCapturedAt": "",
-    "jdKeywords": [],
-    "jobFamily": "",
+    "jdCapturedAt": "2026-08-24T02:11:00+08:00",
+    "jdKeywords": ["HRBP", "Employee Relations", "Organization Development", "Performance", "Compensation & Benefits", "Learning & Development", "Employer Branding", "AI Workflow"],
+    "jobFamily": "HR Generalist / COE / HRBP",
     "campusType": "Campus Recruitment",
     "salary": "",
     "experience": "",
-    "matchScore": 0,
-    "matchReasons": [],
+    "matchScore": 9.3,
+    "matchReasons": [
+      "岗位覆盖 HRBP、组织发展、绩效、薪酬福利、学习发展和 HR 产品，与用户的 HC planning、C&B、TD、competency assessment、HR digitalization 经历高度重合。",
+      "JD 明确重视 AI 工具与工作流重构，能直接承接用户的 AI / automation 经验。"
+    ],
     "gaps": [
-      "Need capture exact role title and JD after application page is available."
+      "具体分流方向会在 BP/员工关系/招聘、OD/绩效/C&B/L&D、雇主品牌/文化/培训之间变化。",
+      "游戏行业经历是加分项，需用对游戏与科技的真实兴趣补足。"
     ],
     "risks": [
-      "Application started but not submitted."
+      "招聘可能是部分分流方向，需在面试中突出综合 HR 与策略模块偏好。",
+      "线下面试集中完成，准备节奏可能较快。"
     ],
-    "currentStatus": "Application In Progress",
-    "statusUpdatedAt": "2026-08-23",
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-24",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -625,6 +630,13 @@
         "sourceOfTruth": "user",
         "note": "User started application but has not completed submission.",
         "notes": "User started application but has not completed submission."
+      },
+      {
+        "status": "Applied",
+        "date": "2026-08-24",
+        "sourceOfTruth": "user",
+        "note": "User included this role in the 2026-08-24 submitted application list and supplied the full JD.",
+        "notes": "User included this role in the 2026-08-24 submitted application list and supplied the full JD."
       }
     ],
     "englishInterviewPossible": false,
@@ -632,14 +644,14 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "notes": "用户于 2026-08-24 报告已投递，并补充完整人力资源岗位介绍。",
     "archived": false,
     "actionPriority": "HIGH"
   },
   {
     "jobId": "app-picc-campus-application-2026-08-23",
     "company": "中国人保",
-    "title": "校园招聘岗位",
+    "title": "广东省管培",
     "businessUnit": "",
     "location": "Mainland China",
     "industry": "Insurance / Financial Services",
@@ -647,12 +659,12 @@
     "source": "User Provided Apply Link",
     "sourceJobId": "0480763f-1b68-4ebf-8aec-b2b03cdeeab9",
     "jdUrl": "",
-    "applyUrl": "https://picc.zhiye.com/form?fromPage=job&jobAdId=0480763f-1b68-4ebf-8aec-b2b03cdeeab9&goto=custom%2Fcampus%3Fc1%3D8%26hideAll%3Dtrue&userId=366625856",
-    "officialUrl": "https://picc.zhiye.com/form?fromPage=job&jobAdId=0480763f-1b68-4ebf-8aec-b2b03cdeeab9&goto=custom%2Fcampus%3Fc1%3D8%26hideAll%3Dtrue&userId=366625856",
+    "applyUrl": "https://picc.zhiye.com/personal/deliveryRecord",
+    "officialUrl": "https://picc.zhiye.com/personal/deliveryRecord",
     "foundDate": "2026-08-23",
     "postedDate": "",
     "applicationStartedAt": "2026-08-23",
-    "appliedDate": "",
+    "appliedDate": "2026-08-24",
     "deadline": "",
     "jobDescription": "",
     "jdSnapshot": "",
@@ -665,13 +677,13 @@
     "matchScore": 0,
     "matchReasons": [],
     "gaps": [
-      "Need capture exact role title and JD after application page is available."
+      "完整 JD、具体城市和岗位编号仍待补充。"
     ],
     "risks": [
-      "Application started but not submitted."
+      "当前链接是个人投递记录页，可能需要登录后才能查看具体岗位。"
     ],
-    "currentStatus": "Application In Progress",
-    "statusUpdatedAt": "2026-08-23",
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-24",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -679,6 +691,13 @@
         "sourceOfTruth": "user",
         "note": "User started application but has not completed submission.",
         "notes": "User started application but has not completed submission."
+      },
+      {
+        "status": "Applied",
+        "date": "2026-08-24",
+        "sourceOfTruth": "user",
+        "note": "User reported 中国人保-广东省管培 in the 2026-08-24 submitted application list.",
+        "notes": "User reported 中国人保-广东省管培 in the 2026-08-24 submitted application list."
       }
     ],
     "englishInterviewPossible": false,
@@ -686,7 +705,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "notes": "用户于 2026-08-24 报告已投递；链接更新为中国人保个人投递记录页。",
     "archived": false,
     "actionPriority": "HIGH"
   },
@@ -741,6 +760,119 @@
     "sourceOfTruth": "user",
     "manualOverrides": {},
     "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
+    "archived": false,
+    "actionPriority": "HIGH"
+  },
+  {
+    "jobId": "app-schneider-electric-hr-intern-131792-2026-08-24",
+    "company": "施耐德电气",
+    "title": "人力资源实习生",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Energy Management / Industrial Technology",
+    "market": "Mainland",
+    "source": "User Provided Official Apply Link",
+    "sourceJobId": "131792",
+    "jdUrl": "https://zhcareers-se.icims.com/jobs/131792/%e4%ba%ba%e5%8a%9b%e8%b5%84%e6%ba%90%e5%ae%9e%e4%b9%a0%e7%94%9f/job?mode=submit_apply&from=assessment",
+    "applyUrl": "https://zhcareers-se.icims.com/jobs/131792/%e4%ba%ba%e5%8a%9b%e8%b5%84%e6%ba%90%e5%ae%9e%e4%b9%a0%e7%94%9f/job?mode=submit_apply&from=assessment",
+    "officialUrl": "https://zhcareers-se.icims.com/jobs/131792/%e4%ba%ba%e5%8a%9b%e8%b5%84%e6%ba%90%e5%ae%9e%e4%b9%a0%e7%94%9f/job?mode=submit_apply&from=assessment",
+    "foundDate": "2026-08-24",
+    "postedDate": "",
+    "applicationStartedAt": "2026-08-24",
+    "appliedDate": "2026-08-24",
+    "deadline": "",
+    "jobDescription": "支持员工全生命周期的人力资源实习，覆盖人才招聘协调、学习发展、薪酬福利及员工运营。",
+    "jdSnapshot": "用户于 2026-08-24 提供完整 JD；原文保存在 data/jds.json。",
+    "jdCapturedAt": "2026-08-24T02:11:00+08:00",
+    "jdKeywords": ["Talent Acquisition", "Learning & Development", "Compensation & Benefits", "HR Operations", "Employee Experience"],
+    "jobFamily": "HR Operations / HR Generalist Intern",
+    "campusType": "Internship",
+    "salary": "",
+    "experience": "Student / Entry Level",
+    "matchScore": 8.7,
+    "matchReasons": [
+      "岗位横跨招聘、L&D、C&B 和员工运营，与用户的薪酬福利、人才发展、员工体验和 HR 运营经历形成直接对应。",
+      "强调技术工具适应、数据准确性和员工体验，能承接用户的 HR digitalization、data 与 automation 优势。"
+    ],
+    "gaps": [
+      "这是实习岗位而非明确 2027 校招正式岗。",
+      "JD 未提供具体城市、实习时长和每周出勤要求。"
+    ],
+    "risks": [
+      "招聘协调工作占一定比重，需要确认实际模块轮转和 C&B/L&D 深度。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-24",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-08-24",
+        "sourceOfTruth": "user",
+        "note": "User included Schneider Electric HR Intern in the 2026-08-24 submitted application list and supplied the full JD.",
+        "notes": "User included Schneider Electric HR Intern in the 2026-08-24 submitted application list and supplied the full JD."
+      }
+    ],
+    "englishInterviewPossible": true,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "用户于 2026-08-24 报告已投递并提供完整 JD。",
+    "archived": false,
+    "actionPriority": "MEDIUM"
+  },
+  {
+    "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+    "company": "阿里千问",
+    "title": "2027届校招岗位（职位名称待确认）",
+    "businessUnit": "千问",
+    "location": "Mainland China",
+    "industry": "Internet / AI",
+    "market": "Mainland",
+    "source": "User Provided Official Apply Link",
+    "sourceJobId": "100100540113",
+    "jdUrl": "",
+    "applyUrl": "https://campus-talent.alibaba.com/personal/resume/fill?campusType=freshman&cartIds=100100540113&batchId=100000760001&code=",
+    "officialUrl": "https://campus-talent.alibaba.com/personal/resume/fill?campusType=freshman&cartIds=100100540113&batchId=100000760001&code=",
+    "foundDate": "2026-08-24",
+    "postedDate": "",
+    "applicationStartedAt": "2026-08-24",
+    "appliedDate": "",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "2027 Fresh Graduate Campus Recruitment",
+    "salary": "",
+    "experience": "Fresh Graduate",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "职位名称、JD、城市和岗位方向尚未从当前简历填写链接中确认。"
+    ],
+    "risks": [
+      "尚未投递；用户正在等待内推码。",
+      "在确认职位详情前无法完成匹配评分。"
+    ],
+    "currentStatus": "Application In Progress",
+    "statusUpdatedAt": "2026-08-24",
+    "statusHistory": [
+      {
+        "status": "Application In Progress",
+        "date": "2026-08-24",
+        "sourceOfTruth": "user",
+        "note": "Not submitted. User is waiting to obtain a referral code before applying.",
+        "notes": "Not submitted. User is waiting to obtain a referral code before applying."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "⚠ 尚未投递，等待向他人获取内推码后继续。",
     "archived": false,
     "actionPriority": "HIGH"
   }

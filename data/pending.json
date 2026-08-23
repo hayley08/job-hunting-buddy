@@ -7,5 +7,15 @@
     "content": "Workspace .git directory is not a valid Git repository; cannot create feature/campus-job-os-v2 or commit until repaired.",
     "nextAction": "Resolved: formal repository is valid on feature/campus-job-os-v2.",
     "resolvedAt": "2026-08-23T21:30:00+08:00"
+  },
+  {
+    "pendingId": "pending-alibaba-qwen-referral-code-2026-08-24",
+    "createdAt": "2026-08-24T02:11:00+08:00",
+    "category": "application",
+    "status": "open",
+    "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+    "content": "阿里千问岗位尚未投递；用户准备向他人获取内推码。",
+    "nextAction": "获得内推码后从岗位名称红色超链接继续填写并提交；提交完成前不得计入 Applied。",
+    "sourceOfTruth": "user"
   }
 ]
