@@ -14,6 +14,8 @@ Every daily run must read these files before searching or editing data:
 6. `data/applications.json`
 7. `data/opportunities.json`
 8. `data/opportunity-history.json`
+9. `data/historical-opportunities.json`
+10. `data/target-company-watchlist.json`
 9. `data/events.json`
 10. `data/interviews.json`
 11. `data/story-bank.json`
@@ -75,3 +77,7 @@ Applied jobs must not remain in the current unsubmitted canonical opportunity co
 Core Introduction is locked by default and cannot be rewritten by an automated daily run.
 
 Story facts are stable facts. Interview review may add answer versions or reflections, but must not rewrite facts unless the user explicitly corrects them.
+
+For an explicitly authorized `SEED_TEST_RUN`, skip the normal time-window restriction only for that run, perform real source searches, write a seed QA report and seed handoff, and restore the normal window for the next `DAILY_RUN`. Never auto-submit applications.
+
+For seed and daily opportunity searches, persist the full target-company status set even when no HR job is found. Store closed historical non-application jobs separately, keep snapshot membership by `jobId`, and expose an apply action only when company, title, sourceJobId and exact URL are verified.

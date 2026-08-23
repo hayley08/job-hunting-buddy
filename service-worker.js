@@ -1,4 +1,4 @@
-const CACHE_NAME = "hayley-campus-os-v2-20260823-1";
+const CACHE_NAME = "hayley-campus-os-v2-20260823-2";
 const SHELL_ASSETS = [
   "/",
   "/index.html",
@@ -47,13 +47,20 @@ function isShellAsset(pathname) {
 
 async function networkFirst(request, { bypassCache = false } = {}) {
   const cache = await caches.open(CACHE_NAME);
+  const cacheKey = normalizedCacheKey(request);
   try {
     const response = await fetch(request, bypassCache ? { cache: "no-store" } : undefined);
-    if (response.ok) await cache.put(request, response.clone());
+    if (response.ok) await cache.put(cacheKey, response.clone());
     return response;
   } catch (error) {
-    const cached = await cache.match(request, { ignoreSearch: true });
+    const cached = await cache.match(cacheKey);
     if (cached) return cached;
     throw error;
   }
+}
+
+function normalizedCacheKey(request) {
+  const url = new URL(request.url);
+  url.search = "";
+  return new Request(url.toString(), { method: "GET" });
 }

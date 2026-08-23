@@ -9,7 +9,7 @@
 - Daily run time is 12:00 Asia/Shanghai, processing yesterday 12:00 through today 11:59.
 - Core Introduction in Story Bank is locked and currently marked `Needs User Input`.
 - Story Bank has been scaffolded from known resume experience themes; facts still need user confirmation.
-- Workspace Git metadata is invalid, so `feature/campus-job-os-v2` and commits are blocked until the repository is repaired or moved into a valid GitHub repo.
+- The original generated workspace had invalid Git metadata; the formal repository at `C:\Users\dscwife\Documents\Codex\2026-07-02\job-hunting-buddy` is valid and `feature/campus-job-os-v2` is the only working branch for V2.
 
 ## 2026-08-23
 
@@ -26,3 +26,6 @@
 - V2 daily access must use the stable Vercel branch URL for `feature/campus-job-os-v2`, not immutable commit Preview URLs. PWA navigation, app-shell assets, and JSON are network-first with offline cache fallback; JSON is always freshness-first while online.
 - Home must expose data `Last updated` separately from deployed web commit short SHA so mobile users can verify freshness.
 - Opportunity recommendations are append-only daily snapshots by canonical `jobId`; date filters preserve historical visibility after later status changes, including zero-result days.
+- Completed the 2026-08-23 `SEED_TEST_RUN`: 25 role candidates searched, 13 classified results (3 APPLY_NOW, 1 OPEN, 2 WATCH, 1 UPCOMING, 1 HISTORICAL, 5 VERIFY), 10 excluded and 2 duplicates removed. The baseline, 25-company watchlist, QA report and seed handoff are durable repo sources for the 2026-08-24 12:00 run.
+- Exact verified apply/job links in the seed are PDD `452278`, Positec `461662`, SMIC `J13293`, and Beisen `J14756`. Alibaba AI-HR, RichInfo, OneRobotics, Tencent and NIO require re-verification; do not surface apply actions for them.
+- Pipeline UX rule: for `Application In Progress`, the job title itself is the red bold hyperlink; do not render a separate continue-apply button in the Pipeline table.

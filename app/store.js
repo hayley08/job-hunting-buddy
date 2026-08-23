@@ -2,7 +2,9 @@ const DATA_FILES = {
   applications: "data/applications.json",
   applicationBackfill20260823: "data/application-backfills/2026-08-23.json",
   opportunities: "data/opportunities.json",
+  historicalOpportunities: "data/historical-opportunities.json",
   opportunityHistory: "data/opportunity-history.json",
+  targetCompanyWatchlist: "data/target-company-watchlist.json",
   events: "data/events.json",
   interviews: "data/interviews.json",
   interviewPacks: "data/interview-packs.json",
@@ -59,7 +61,7 @@ function mergeApplications(base, backfillSets) {
 }
 
 function fallbackFor(key) {
-  if (["storyBank", "resumes", "daily", "version", "opportunityHistory"].includes(key)) return {};
+  if (["storyBank", "resumes", "daily", "version", "opportunityHistory", "targetCompanyWatchlist"].includes(key)) return {};
   return [];
 }
 

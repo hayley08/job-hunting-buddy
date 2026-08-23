@@ -18,6 +18,7 @@
 - Navigation/HTML: network-first, browser HTTP cache bypassed, cached offline fallback.
 - JavaScript/CSS/manifest: network-first, browser HTTP cache bypassed, cached offline fallback.
 - `data/*.json`: network-first with `no-store`, cached offline fallback.
+- Cache-busting query parameters are removed from the Cache Storage key, so every successful online JSON response replaces the same offline fallback entry instead of accumulating older timestamped copies.
 - Vercel headers: JSON `no-store`; HTML, app assets, manifest, and service worker `no-cache, max-age=0, must-revalidate`.
 - Cache name versioned so activation removes the old cache.
 

@@ -1,0 +1,91 @@
+{
+  "runDate": "2026-08-23",
+  "runType": "SEED_TEST_RUN",
+  "completedAt": "2026-08-23T21:30:00+08:00",
+  "processedInputs": ["data/inbox/2026-08-23_seed-test-run-request.json"],
+  "baselinePaths": {
+    "daily": "data/daily/2026-08-23_seed.json",
+    "qa": "reports/2026-08-23_seed-search-qa.md",
+    "opportunities": "data/opportunities.json",
+    "historicalOpportunities": "data/historical-opportunities.json",
+    "opportunityHistory": "data/opportunity-history.json",
+    "targetWatchlist": "data/target-company-watchlist.json",
+    "jdStore": "data/jds.json"
+  },
+  "counts": {
+    "searchCandidates": 25,
+    "uniqueAfterDedup": 23,
+    "passedInitialScreen": 13,
+    "applyNow": 3,
+    "open": 1,
+    "watch": 2,
+    "upcoming": 1,
+    "historical": 1,
+    "verify": 5,
+    "excluded": 10,
+    "duplicatesRemoved": 2,
+    "brokenLinks": 0,
+    "unverifiedLinks": 9,
+    "jdCaptured": 9,
+    "targetCompaniesChecked": 25
+  },
+  "verifiedExactJobIds": [
+    "opp-pdd-hr-management-trainee-shanghai-2027",
+    "opp-positec-hr-specialist-suzhou-2027",
+    "opp-smic-human-resources-zhangjiang-j13293-2027",
+    "opp-beisen-system-support-consultant-j14756-2027"
+  ],
+  "verifyFirstNextRun": [
+    "opp-alibaba-ai-hr-digitalization-intern-2027",
+    "opp-richinfo-hr-management-trainee-2027",
+    "opp-onerobotics-hr-specialist-2027",
+    "opp-tencent-hr-trainee-2027-lead",
+    "opp-nio-od-intern-shanghai-2027-lead"
+  ],
+  "exclusionPatterns": [
+    "pure recruitment / TA without broader HR content",
+    "sales-heavy general management trainee with HR only as a possible future destination",
+    "wrong cohort or clearly expired page",
+    "unverifiable company/job identity",
+    "non-HR programme",
+    "experience barrier without graduate signal"
+  ],
+  "targetCompanyBaseline": {
+    "OPEN": 1,
+    "CAMPUS_OPEN_HR_UNKNOWN": 6,
+    "UPCOMING": 1,
+    "NOT_FOUND_YET": 10,
+    "HISTORICAL_REFERENCE": 6,
+    "CLOSED": 1
+  },
+  "uxChanges": [
+    "Pipeline Application In Progress rows no longer render a separate continue button; the job title is the red bold link.",
+    "Opportunities are grouped into APPLY_NOW, OPEN, WATCH, UPCOMING, HISTORICAL and VERIFY.",
+    "Opportunity cards show score, source tier, timestamps, reason, risk, JD status and link-integrity state.",
+    "The 25-company watchlist is visible and persists even when no HR opening was found."
+  ],
+  "normalRun": {
+    "runType": "DAILY_RUN",
+    "runAt": "2026-08-24T12:00:00+08:00",
+    "processingWindow": {"start": "2026-08-23T12:00:00+08:00", "end": "2026-08-24T11:59:59+08:00"}
+  },
+  "nextRunMustRead": [
+    "MASTER_REQUIREMENTS.md",
+    "memory.md",
+    "data/handoffs/2026-08-23_seed_handoff.json",
+    "reports/2026-08-23_seed-search-qa.md",
+    "data/daily/2026-08-23_seed.json",
+    "data/opportunities.json",
+    "data/historical-opportunities.json",
+    "data/opportunity-history.json",
+    "data/target-company-watchlist.json",
+    "data/user-feedback.json",
+    "data/inbox/"
+  ],
+  "nextRunPriorities": [
+    "Re-verify Alibaba, RichInfo, OneRobotics, Tencent and NIO against exact official or P1/P2 job pages.",
+    "Deep-search missing target companies, especially automotive and FMCG watchlist names, without repeating documented expired/recruiting-heavy results.",
+    "Improve official adapters so exact sourceJobId and JD pages are captured instead of company-level portals."
+  ],
+  "safety": {"autoApplied": false, "mainMerged": false}
+}

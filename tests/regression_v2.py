@@ -17,6 +17,7 @@ def assert_true(condition, message):
 def main():
     applications = load_json("data/applications.json")
     opportunities = load_json("data/opportunities.json")
+    historical_opportunities = load_json("data/historical-opportunities.json")
     opportunity_history = load_json("data/opportunity-history.json")
     archive_data = load_json("data/archive.json")
     archive = archive_data if isinstance(archive_data, list) else archive_data.get("records", [])
@@ -26,7 +27,7 @@ def main():
     pending = load_json("data/pending.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
-    job_ids = [item.get("jobId") for item in applications + opportunities + archive if item.get("jobId")]
+    job_ids = [item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")]
     assert_true(len(job_ids) == len(set(job_ids)), "duplicate jobId detected")
 
     active_apps = [item for item in applications if item.get("market") == "Mainland" and not item.get("archived")]
@@ -45,9 +46,9 @@ def main():
     snapshot_dates = [item.get("recommendationDate") for item in snapshots]
     assert_true(len(snapshot_dates) == len(set(snapshot_dates)), "opportunity snapshot date must be unique and append-only")
     assert_true({"2026-08-22", "2026-08-23"}.issubset(set(snapshot_dates)), "historical zero-result snapshots must be preserved")
-    canonical_ids = {item.get("jobId") for item in applications + opportunities + archive if item.get("jobId")}
+    canonical_ids = {item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")}
     assert_true(all(set(item.get("jobIds", [])).issubset(canonical_ids) for item in snapshots), "snapshot must reference canonical jobId values")
-    for item in opportunities:
+    for item in opportunities + historical_opportunities:
         assert_true(item.get("firstRecommendedAt"), f"firstRecommendedAt missing: {item.get('jobId')}")
         assert_true(item.get("recommendationDate"), f"recommendationDate missing: {item.get('jobId')}")
         assert_true(item.get("recommendationDates"), f"recommendationDates missing: {item.get('jobId')}")
@@ -75,7 +76,8 @@ def main():
     assert_true(core.get("introCN60") == "Needs User Input", "core introduction changed unexpectedly")
     assert_true(len(story_bank.get("stories", [])) >= 17, "initial Story Bank scaffold incomplete")
 
-    assert_true(any(item.get("pendingId") == "pending-git-branch" for item in pending), "Git blocker missing from pending queue")
+    git_pending = next(item for item in pending if item.get("pendingId") == "pending-git-branch")
+    assert_true(git_pending.get("status") == "resolved", "obsolete Git blocker must be resolved in formal repository")
     assert_true(handoff.get("runDate") == "2026-08-22", "handoff missing or wrong date")
     assert_true(len(reminders) == 15, "user-image reminder list should contain 15 entries")
     assert_true(all(item.get("sourceOfTruth") == "user" for item in reminders), "reminders must be explicit user-provided records")
@@ -85,11 +87,12 @@ def main():
     assert_true(len(jd_ids) == len(set(jd_ids)), "same job must not duplicate JD records")
     expected_jd_ids = {item.get("jobId") for item in applications if item.get("jobId")}
     expected_jd_ids.update(item.get("reminderId") for item in reminders if item.get("reminderId"))
+    expected_jd_ids.update(item.get("jobId") for item in opportunities + historical_opportunities if item.get("jobId"))
     assert_true(expected_jd_ids.issubset(set(jd_ids)), "applications and reminders must have JD or JD Missing records")
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 4, "current backfill should include 4 structured JD records")
+    assert_true(len(complete_jds) == 13, "seed baseline should include 13 structured JD records including partial/historical captures")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     for item in jds:
         raw = item.get("jdRaw") or item.get("jdSnapshot") or ""
@@ -125,8 +128,13 @@ def main():
         "SKILL.md",
         "memory.md",
         "data/jds.json",
+        "data/historical-opportunities.json",
         "data/opportunity-history.json",
+        "data/target-company-watchlist.json",
         "data/daily/latest.json",
+        "data/daily/2026-08-23_seed.json",
+        "data/handoffs/2026-08-23_seed_handoff.json",
+        "reports/2026-08-23_seed-search-qa.md",
         "reports/2026-08-22_daily-brief.md",
     ]
     for path in required_files:
@@ -138,6 +146,7 @@ def main():
     assert_true('event.request.mode === "navigate"' in sw, "HTML navigation must use network-first")
     assert_true('pathname.startsWith("/app/")' in sw, "app shell assets must use network-first")
     assert_true('cache: "no-store"' in sw, "online freshness must bypass browser HTTP cache")
+    assert_true("normalizedCacheKey" in sw and "url.search = \"\"" in sw, "latest JSON response must replace the same offline fallback cache entry")
 
     vercel = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
     header_rules = {item["source"]: item["headers"][0]["value"] for item in vercel.get("headers", [])}
@@ -156,11 +165,15 @@ def main():
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
     assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
     assert_true('label: "投递中"' in app_js, "pipeline must expose Application In Progress filter")
-    assert_true("continue-link" in app_js and "继续投递" in app_js, "Application In Progress must show continue apply action")
+    assert_true("in-progress-job-link" in app_js, "Application In Progress job title must be the continue-apply link")
+    assert_true("continue-link" not in app_js, "pipeline must not render a separate continue-apply button")
     assert_true("renderPendingActions" in app_js and "需要行动" in app_js, "Application In Progress must appear in dashboard pending actions")
     assert_true("renderVersionInfo" in app_js and "commitShortSha" in app_js and "dataUpdatedAt" in app_js, "home must show separate data and code versions")
     assert_true("data-opportunity-date" in app_js and "getOpportunitySnapshots" in app_js, "opportunity date history UI missing")
     assert_true("findOpportunityHistoryJob" in app_js, "historical opportunity status must resolve from canonical jobs")
+    assert_true("historicalOpportunities" in app_js and "targetCompanyWatchlist" in app_js, "historical opportunity and target watchlist UI must load durable data")
+    assert_true(all(label in app_js for label in ["建议立即投递", "当前可投", "持续关注", "即将开放", "往届参考", "待核实"]), "opportunity classification labels missing")
+    assert_true('job.linkStatus === "VERIFIED"' in app_js and "链接待核实" in app_js, "unverified links must not render an apply action")
     assert_true('registration.update()' in app_js and '"controllerchange"' in app_js, "PWA must promptly activate and reload after shell updates")
     assert_true("deadlineDistance" in app_js and "距截止还有" in app_js, "deadline approaching should increase unfinished application reminder detail")
     assert_true("preserve the `Application In Progress` event" in master, "Applied transition must preserve Application In Progress history rule")
@@ -169,6 +182,16 @@ def main():
     assert_true("state.companies || []" not in app_js, "pipeline must not auto-generate reminders from target companies")
     assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-grid" in css, "sidebar/mobile/responsive pipeline layout CSS missing")
+    assert_true(".watchlist-grid" in css and ".opportunity-meta" in css, "responsive opportunity/watchlist styles missing")
+
+    seed_daily = load_json("data/daily/2026-08-23_seed.json")
+    assert_true(seed_daily.get("runType") == "SEED_TEST_RUN", "seed run type missing")
+    assert_true(seed_daily.get("classificationCounts") == {"APPLY_NOW": 3, "OPEN": 1, "WATCH": 2, "UPCOMING": 1, "HISTORICAL": 1, "VERIFY": 5}, "seed classification counts drifted")
+    assert_true(seed_daily.get("targetCompanyCheckedCount") == 25, "target company baseline must include 25 companies")
+    watchlist = load_json("data/target-company-watchlist.json")
+    assert_true(watchlist.get("count") == 25 and len(watchlist.get("companies", [])) == 25, "target watchlist count mismatch")
+    inbox_seed = load_json("data/inbox/2026-08-23_seed-test-run-request.json")
+    assert_true(inbox_seed.get("processed") is True and inbox_seed.get("processedByRun"), "seed request must be marked processed")
 
     version_api = (ROOT / "api" / "version.js").read_text(encoding="utf-8")
     assert_true("VERCEL_GIT_COMMIT_SHA" in version_api and "no-store" in version_api, "deployment version endpoint must expose uncached commit SHA")

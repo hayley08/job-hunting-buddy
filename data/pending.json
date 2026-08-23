@@ -3,8 +3,9 @@
     "pendingId": "pending-git-branch",
     "createdAt": "2026-08-22T23:14:12+08:00",
     "category": "workflow",
-    "status": "open",
+    "status": "resolved",
     "content": "Workspace .git directory is not a valid Git repository; cannot create feature/campus-job-os-v2 or commit until repaired.",
-    "nextAction": "Move project into a valid GitHub repository or repair .git."
+    "nextAction": "Resolved: formal repository is valid on feature/campus-job-os-v2.",
+    "resolvedAt": "2026-08-23T21:30:00+08:00"
   }
 ]

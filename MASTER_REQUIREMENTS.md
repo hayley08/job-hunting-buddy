@@ -83,7 +83,9 @@ data/user-feedback.json
 memory.md
 data/applications.json
 data/opportunities.json
+data/historical-opportunities.json
 data/opportunity-history.json
+data/target-company-watchlist.json
 data/jds.json
 data/events.json
 data/interviews.json
@@ -293,6 +295,8 @@ If the user says "请添加 xxx 进提醒列表" or provides a current reminder 
 
 `opportunities.json` contains current canonical unsubmitted opportunities. Applied jobs may move to `applications.json`, but their historical recommendation membership must remain in `data/opportunity-history.json` and continue resolving to the canonical job by `jobId`.
 
+Closed/expired historical recommendation records that are not applications are stored in `data/historical-opportunities.json`; they remain resolvable from historical snapshots but must not enter active pipeline/KPI counts. Current company-level `WATCH`, `UPCOMING`, and `VERIFY` leads may remain in `opportunities.json`, while only `APPLY_NOW` and `OPEN` enter the pipeline todo surface.
+
 The 机会 tab is an append-only recommendation history, not a replace-on-each-run list. It must provide date filters:
 
 ```text
@@ -447,6 +451,80 @@ Exclude:
 Cold Call-heavy
 ```
 
+Recruiting content is not an automatic exclusion when the same role also has material HRBP, OD, TD, C&B, HR Operations, employee experience, or other broad HR responsibilities. Classify based on the actual work mix.
+
+## Search Run Types
+
+Normal runs use `DAILY_RUN` and the fixed yesterday 12:00 through today 11:59 UTC+8 window. A user-authorized initialization run may use `SEED_TEST_RUN` outside that window. A seed run must be explicitly marked and must create a baseline daily artifact, QA report, and seed handoff for the next normal run.
+
+Searches must be real source searches, not mock data or schema-only runs. Search quality is more important than result count; zero or a few strong recommendations are valid.
+
+## Opportunity Classification and Scoring
+
+Every searched result must use exactly one classification:
+
+```text
+APPLY_NOW
+OPEN
+WATCH
+UPCOMING
+HISTORICAL
+VERIFY
+```
+
+The UI labels are 建议立即投递, 当前可投, 持续关注, 即将开放, 往届参考, 待核实. These classifications are not application statuses.
+
+Match Score remains a 10-point score:
+
+```text
+Candidate Fit: 4
+Entry Barrier: 2
+Company / Growth: 2
+Freshness / Validity: 2
+```
+
+Recommendation reasons must explicitly connect JD evidence to named resume experience. Generic fit statements are prohibited. Every record must also state material risks, such as recruiting-heavy scope, non-priority location, high experience threshold, internship-only status, administrative scope, uncertain language requirement, missing JD, or unverified link.
+
+Roles explicitly requiring 4+ years without graduate/early-career signals cannot be high priority. They may be Low Priority / Reference or excluded. Pure recruitment/TA, headhunting, cold-call-heavy, sales, front desk, pure administration, insurance agent, and nominal-HR sales roles are excluded.
+
+## Target Company Watchlist Search
+
+Daily and seed searches must separately check the active target companies and user reminder companies using multiple campus and HR-module keyword combinations, not only `HR`. Target company search statuses are:
+
+```text
+OPEN
+CAMPUS_OPEN_HR_UNKNOWN
+UPCOMING
+NOT_FOUND_YET
+HISTORICAL_REFERENCE
+CLOSED
+```
+
+Target companies remain in the watchlist even when no current 2027 HR opening is found. When a target company changes from WATCH / no-current-opening to OPEN, record it under 今日新开.
+
+The complete current watchlist state is persisted in `data/target-company-watchlist.json`, including the check timestamp, status, evidence URL when available, and a concise note. It is never reconstructed from chat history.
+
+## Search Sources and Lead Handling
+
+Search source priority:
+
+```text
+P0 official company careers / campus / graduate pages
+P1 BOSS / LinkedIn
+P2 牛客 / university career sites / reliable campus aggregators
+P3 public-web / community leads
+```
+
+P3 results remain leads until verified against P0-P2 when possible. Historical references must state their year. Full JD content must be saved before summarization; title-only findings are `JD Missing` and must not be completed by inference.
+
+## Search QA and Feedback Loop
+
+Every completed search run records candidate counts, screening counts, classifications, exclusions, duplicates, broken/unverified links, experience rejections, pure-recruitment rejections, expiry rejections, source/adapter failures, low-confidence results, and top recommendations. The next run must read the prior QA and handoff before searching.
+
+Search feedback is persisted in `data/user-feedback.json` as `positive_search_feedback`, `negative_search_feedback`, or `search_preference` and must affect subsequent ranking/searches.
+
+The system may search, recommend, save, analyze, and provide links. It must never automatically submit an application.
+
 ## Mainland Priority
 
 Priority cities: 北京, 上海, 深圳, 广州, 杭州.
@@ -498,7 +576,8 @@ Status semantics:
 - preserve `applicationStartedAt` separately from `appliedDate`;
 - preserve the `Application In Progress` event in `statusHistory` after later moving to `Applied`;
 - show a red/high-warning badge and `⚠ 尚未完成投递`;
-- show `继续投递` when `applyUrl` exists;
+- in 流程, use the red bold job title itself as the apply/continue hyperlink when `applyUrl` exists; do not render a separate `继续投递` button that can disrupt row alignment;
+- in 首页 / 需要行动, a compact `继续投递` action may remain when `applyUrl` exists;
 - remain in Daily Run reminders until the user confirms submission.
 
 When the user says "xxx 投了一半，链接是 yyy", parse it as `Application In Progress`, not `Applied`. Only user language such as "已经投完了" / "提交成功" moves it to `Applied`.

@@ -1,0 +1,32 @@
+{
+  "inputDate": "2026-08-23",
+  "receivedAt": "2026-08-23T20:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-23T21:30:00+08:00",
+  "processedByRun": "2026-08-23-seed-test-run",
+  "sourceOfTruth": "user",
+  "runType": "SEED_TEST_RUN",
+  "uxCorrection": {
+    "surface": "Pipeline",
+    "requirement": "Remove the separate continue-apply button. Make the in-progress job title itself a red bold hyperlink so rows remain aligned."
+  },
+  "seedRunRequirements": {
+    "market": "Mainland China",
+    "candidateScope": "2027 campus / fresh graduate / junior 0-3 years HR roles",
+    "specialWindow": "Not limited by the normal processing window for this seed run only",
+    "normalRunResumesAt": "2026-08-24T12:00:00+08:00",
+    "directions": ["HRBP", "HR Generalist", "HR Operations", "People Operations", "COE", "C&B", "Talent Development", "OD", "L&D", "Employee Experience", "Employee Engagement", "HR Digitalization", "HR Transformation", "HR Analytics", "HR Management Trainee"],
+    "classifications": ["APPLY_NOW", "OPEN", "WATCH", "UPCOMING", "HISTORICAL", "VERIFY"],
+    "targetCompanyStatuses": ["OPEN", "CAMPUS_OPEN_HR_UNKNOWN", "UPCOMING", "NOT_FOUND_YET", "HISTORICAL_REFERENCE", "CLOSED"],
+    "sourcePriority": ["P0 official", "P1 BOSS/LinkedIn", "P2 reliable campus sources", "P3 lead only"],
+    "matchScore": {"candidateFit": 4, "entryBarrier": 2, "companyGrowth": 2, "freshnessValidity": 2},
+    "requiredOutputs": ["reports/2026-08-23_seed-search-qa.md", "data/daily/2026-08-23_seed.json", "data/handoffs/2026-08-23_seed_handoff.json"],
+    "mustPerformRealSearch": true,
+    "mustValidateLinkIdentity": true,
+    "mustCheckTargetCompanies": true,
+    "mustPreserveHistoricalResults": true,
+    "mustCaptureRawJdWhenAvailable": true,
+    "mustNotAutoApply": true,
+    "qualityOverQuantity": true
+  }
+}

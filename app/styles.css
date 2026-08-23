@@ -348,6 +348,64 @@ h3 {
   color: var(--danger);
 }
 
+.in-progress-job-link {
+  color: var(--danger) !important;
+  font-weight: 800;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.opportunity-group {
+  margin-top: 24px;
+}
+
+.opportunity-jd {
+  margin-top: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.opportunity-jd summary {
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.opportunity-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 12px 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.link-unverified {
+  color: var(--danger);
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.watchlist-grid article {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.watchlist-grid article > strong,
+.watchlist-grid article > span {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.watchlist-grid p {
+  overflow-wrap: anywhere;
+}
+
 .pipeline-banner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);

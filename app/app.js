@@ -31,12 +31,22 @@ const pipelineFilters = [
   { id: "jd", label: "JD" }
 ];
 
+const opportunityClassifications = [
+  { id: "APPLY_NOW", label: "建议立即投递" },
+  { id: "OPEN", label: "当前可投" },
+  { id: "WATCH", label: "持续关注" },
+  { id: "UPCOMING", label: "即将开放" },
+  { id: "HISTORICAL", label: "往届参考" },
+  { id: "VERIFY", label: "待核实" }
+];
+
 let state = {};
 let activeTab = normalizeTab(loadNavigation());
 let drawerOpen = false;
 let pipelineFilter = "all";
 let opportunityDateFilter = "all";
 let selectedJobId = "";
+let serviceWorkerReloading = false;
 
 init();
 
@@ -47,9 +57,8 @@ async function init() {
     }).catch(() => {});
 
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      const reloadKey = "campus-os-sw-reloaded";
-      if (sessionStorage.getItem(reloadKey)) return;
-      sessionStorage.setItem(reloadKey, "true");
+      if (serviceWorkerReloading) return;
+      serviceWorkerReloading = true;
       window.location.reload();
     });
   }
@@ -205,10 +214,53 @@ function renderOpportunities() {
       <button class="${opportunityDateFilter === "all" ? "active" : ""}" data-opportunity-date="all">全部</button>
       ${dates.map((date) => `<button class="${opportunityDateFilter === date ? "active" : ""}" data-opportunity-date="${escapeAttr(date)}">${escapeHtml(formatDate(date))}</button>`).join("")}
     </section>
-    <section class="stack">
-      ${jobs.length ? jobs.map(renderJobCard).join("") : empty("该日期没有通过验证的新机会。零结果快照仍会保留。")}
+    ${jobs.length ? opportunityClassifications.map((group) => renderOpportunityGroup(group, jobs)).join("") : `<section class="stack">${empty("该日期没有通过验证的新机会。零结果快照仍会保留。")}</section>`}
+    ${renderTargetCompanyWatchlist()}
+  `;
+}
+
+function renderOpportunityGroup(group, jobs) {
+  const grouped = jobs.filter((job) => job.classification === group.id);
+  if (!grouped.length) return "";
+  return `
+    <section class="opportunity-group">
+      <div class="panel-head"><h2>${group.label}</h2><span>${grouped.length}</span></div>
+      <div class="stack">${grouped.map(renderJobCard).join("")}</div>
     </section>
   `;
+}
+
+function renderTargetCompanyWatchlist() {
+  const watchlist = state.targetCompanyWatchlist || {};
+  const companies = watchlist.companies || [];
+  if (!companies.length) return "";
+  return `
+    <section class="panel target-watchlist">
+      <div class="panel-head">
+        <div><h2>Target Company Watchlist</h2><p class="muted">本次已检查 ${companies.length} 家；没有 HR opening 的公司仍会保留。</p></div>
+        <span>${escapeHtml(watchlist.checkedAt ? formatUpdatedAt(watchlist.checkedAt) : "")}</span>
+      </div>
+      <div class="watchlist-grid">
+        ${companies.map((item) => `
+          <article>
+            <strong>${escapeHtml(item.company)}</strong>
+            <span class="status-pill ${targetStatusClass(item.status)}">${escapeHtml(item.status)}</span>
+            <p>${escapeHtml(item.note || "")}</p>
+            ${item.sourceUrl ? `<a href="${escapeAttr(item.sourceUrl)}" target="_blank" rel="noreferrer">查看核验来源</a>` : `<small>本轮未找到可靠链接</small>`}
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function targetStatusClass(status = "") {
+  if (status === "OPEN") return "green";
+  if (status === "UPCOMING") return "purple";
+  if (status === "CLOSED") return "gray";
+  if (status === "CAMPUS_OPEN_HR_UNKNOWN") return "blue";
+  if (status === "HISTORICAL_REFERENCE") return "amber";
+  return "teal";
 }
 
 function renderVersionInfo(daily, version) {
@@ -228,7 +280,7 @@ function getOpportunitySnapshots() {
 
 function findOpportunityHistoryJob(jobId) {
   const archive = Array.isArray(state.archive) ? state.archive : state.archive && state.archive.records || [];
-  return [...(state.opportunities || []), ...(state.applications || []), ...archive]
+  return [...(state.opportunities || []), ...(state.historicalOpportunities || []), ...(state.applications || []), ...archive]
     .find((job) => job.jobId === jobId);
 }
 
@@ -244,7 +296,7 @@ function renderPipeline() {
       <div>
         <p class="eyebrow">2027 Campus Recruitment · Mainland China</p>
         <h1>校招流程</h1>
-        <p>Campus Application Pipeline · Last updated: ${latestDaily.runDate || "未记录"} 12:00 UTC+8</p>
+        <p>Campus Application Pipeline · Last updated: ${escapeHtml(formatUpdatedAt(latestDaily.dataUpdatedAt || latestDaily.runDate))}</p>
       </div>
       <div class="pipeline-kpis">
         ${miniKpi("投递中", kpis.inProgress)}
@@ -589,7 +641,7 @@ function renderPipelineRow(job) {
   return `
     <article class="pipeline-row ${isInProgress ? "application-in-progress" : ""}" data-row-job="${escapeAttr(job.jobId)}" role="row">
       <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></div>
-      <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span>${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}${isInProgress && url ? `<a class="continue-link" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">继续投递</a>` : ""}</div>
+      <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link ${isInProgress ? "in-progress-job-link" : ""}" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span class="${isInProgress ? "in-progress-job-link" : ""}">${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</div>
       <div class="cell" data-label="Base">${escapeHtml(job.location || job.base || "")}</div>
       <div class="cell" data-label="投递/记录日期">${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></div>
       <div class="cell" data-label="当前进度"><span class="status-pill ${statusClass(job.currentStatus)}">${escapeHtml(statusLabel(job.currentStatus) || job.currentStatus || job.rowLabel)}</span></div>
@@ -727,26 +779,40 @@ function renderWarnings() {
 }
 
 function renderJobCard(job) {
+  const classification = opportunityClassifications.find((item) => item.id === job.classification)?.label || job.classification || "待分类";
+  const exactLinkVerified = job.linkStatus === "VERIFIED" && (job.applyUrl || job.jdUrl);
+  const exactUrl = job.applyUrl || job.jdUrl || "";
   return `
     <article class="job-card">
       <div class="panel-head">
         <h2>${escapeHtml(job.company || "未命名公司")}</h2>
-        <span>${escapeHtml(job.source || "Unknown")}</span>
+        <span>${escapeHtml(classification)} · ${escapeHtml(job.source || "Unknown")}</span>
       </div>
       <h3>${escapeHtml(job.title || "未命名岗位")}</h3>
       <div class="tag-row">
-        ${tag(statusLabel(job.currentStatus || "Recommended"))}
+        ${tag(`Match ${Number(job.matchScore || 0).toFixed(1)}/10`)}
+        ${tag(classification)}
+        ${job.currentStatus && job.currentStatus !== "Recommended" ? tag(statusLabel(job.currentStatus)) : ""}
         ${tag(job.firstRecommendedAt ? `首次推荐 ${formatDate(job.firstRecommendedAt)}` : "首次推荐时间待补")}
         ${tag(job.location)}
+        ${tag(job.sourcePriority || "来源等级待核实")}
         ${tag(job.postedDate ? `发布 ${job.postedDate}` : "发布日期待验证")}
         ${tag(job.deadline ? `截止 ${job.deadline}` : "Deadline 未记录")}
         ${tag(job.salary || "薪资未列出")}
         ${tag(job.experience || "经验未列出")}
       </div>
-      <p>${escapeHtml((job.matchReasons || []).join("；") || "等待下一次批处理生成推荐理由")}</p>
+      <p><strong>推荐原因：</strong>${escapeHtml((job.matchReasons || []).join("；") || "等待下一次批处理生成推荐理由")}</p>
       ${(job.gaps || []).length ? `<p class="risk">Gap：${escapeHtml(job.gaps.join("；"))}</p>` : ""}
       ${(job.risks || []).length ? `<p class="risk">Risk：${escapeHtml(job.risks.join("；"))}</p>` : ""}
-      <div class="actions">${renderLink(job.applyUrl || job.jdUrl || job.officialUrl, job.applyUrl ? "去投递" : "查看招聘页面")}</div>
+      <details class="opportunity-jd">
+        <summary>JD · ${escapeHtml(job.jdStatus || "JD Missing")}</summary>
+        <p>${escapeHtml(job.jdSummary || job.jdSnapshot || "JD Missing：只发现岗位/项目标题，不补写不存在的职责。")}</p>
+      </details>
+      <div class="opportunity-meta"><span>发现：${escapeHtml(formatUpdatedAt(job.foundAt || job.firstRecommendedAt))}</span><span>Source Job ID：${escapeHtml(job.sourceJobId || "未提供")}</span></div>
+      <div class="actions">
+        ${exactLinkVerified ? renderLink(exactUrl, "查看并投递") : `<strong class="link-unverified">链接待核实</strong>`}
+        ${!exactLinkVerified && job.sourceUrl ? renderLink(job.sourceUrl, "查看来源页面") : ""}
+      </div>
     </article>
   `;
 }

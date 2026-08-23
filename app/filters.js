@@ -24,7 +24,12 @@ export function activeApplications(applications) {
 }
 
 export function activeOpportunities(opportunities) {
-  return opportunities.filter((job) => job.market === ACTIVE_MARKET && !job.archived);
+  return opportunities.filter((job) =>
+    job.market === ACTIVE_MARKET &&
+    !job.archived &&
+    ["APPLY_NOW", "OPEN"].includes(job.classification) &&
+    !["Closed", "Expired", "Rejected", "Withdrawn", "Archived"].includes(job.currentStatus)
+  );
 }
 
 export function archivedRecords(applications, archive) {

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "runType": "SEED_TEST_RUN",
+  "checkedAt": "2026-08-23T21:30:00+08:00",
+  "count": 25,
+  "companies": [
+    {"company": "字节跳动", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方 2027 项目入口可访问，本轮未核实当前 HR 具体岗。", "sourceUrl": "https://jobs.bytedance.com/campus/page-6272Gc"},
+    {"company": "腾讯", "status": "HISTORICAL_REFERENCE", "note": "发现 2027 人力资源培训生 P3 线索，未找到官方同名职位。", "sourceUrl": "https://offers.51mee.com/offer-detail/NN4V6H2Y.html"},
+    {"company": "阿里巴巴", "status": "HISTORICAL_REFERENCE", "note": "找到 AI-HR 和综合 HR 的 2027 实习页面，但页面均显示已结束，需等待新批次。", "sourceUrl": "https://www.nowcoder.com/jobs/detail/446422"},
+    {"company": "美团", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方校招入口存在，但当前抓取结果为 0 个职位，未找到 HR。", "sourceUrl": "https://zhaopin.meituan.com/web/campus"},
+    {"company": "京东", "status": "NOT_FOUND_YET", "note": "本轮组合关键词未发现可信 2027 HR opening；保留继续监测。"},
+    {"company": "华为", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方 2027 实习生招聘已开放，未找到 HR 具体岗位。", "sourceUrl": "https://career.huawei.com/cn/campus-recruitment"},
+    {"company": "比亚迪", "status": "UPCOMING", "note": "官方页面显示 26 届结束、27 届即将开放。", "sourceUrl": "https://job.byd.com/portal/mobile/school-home"},
+    {"company": "美的", "status": "CLOSED", "note": "官方海外校招页面当前显示投递结束，未发现 2027 HR。", "sourceUrl": "https://careers.midea.com/recruit-school-out/"},
+    {"company": "宝洁", "status": "NOT_FOUND_YET", "note": "本轮未发现可核验的中国大陆 2027 HR opening。"},
+    {"company": "联合利华", "status": "NOT_FOUND_YET", "note": "中国招聘主页可访问，但本轮未发现 2027 中国 HR 具体岗。", "sourceUrl": "https://careers.unilever.com/en/china"},
+    {"company": "捷普", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方学生项目和 HR 职类存在，未找到中国大陆 2027 HR 具体岗。", "sourceUrl": "https://careers.jabil.com/cn/students-internship-apprenticeship-programs.html"},
+    {"company": "派克汉尼汾", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 中国 HR 管培信息。"},
+    {"company": "德州仪器", "status": "OPEN", "note": "用户已有 Human Resources Generalist 的 Applied 记录；提醒仍保留对照。", "sourceUrl": "https://careers.ti.com/"},
+    {"company": "斯巴特", "status": "HISTORICAL_REFERENCE", "note": "只找到往届/较旧的人力资源管培线索。"},
+    {"company": "大众", "status": "NOT_FOUND_YET", "note": "本轮未核实中国大陆 2027 HR Compliance/HR opening。"},
+    {"company": "松下", "status": "NOT_FOUND_YET", "note": "只找到通用招聘入口，未核实 2027 人事岗位。"},
+    {"company": "VeSync", "status": "HISTORICAL_REFERENCE", "note": "找到往届校园信息和非中国 HR 行政岗位，未发现大陆 2027 HR 管培。"},
+    {"company": "佛吉亚", "status": "HISTORICAL_REFERENCE", "note": "只找到往届 HR 管培参考；当前官方招聘未核实 2027 HR。"},
+    {"company": "赛力斯", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 人力资源专员 opening。"},
+    {"company": "奇瑞", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 人力资源专员 opening。"},
+    {"company": "上汽", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方校园招聘入口存在，未定位运营管理（人力资源）具体岗。", "sourceUrl": "https://campus.saicmotor.com/"},
+    {"company": "小鹏汽车", "status": "NOT_FOUND_YET", "note": "本轮未核实 2027 人才发展/企业文化培训生 opening。"},
+    {"company": "北汽", "status": "HISTORICAL_REFERENCE", "note": "只找到往届校园招聘人力资源管理参考。"},
+    {"company": "追觅", "status": "NOT_FOUND_YET", "note": "本轮未核实 2027 HRBP 校招 opening。"},
+    {"company": "吉利", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方校招入口存在，未定位 2027 人力资源具体岗。", "sourceUrl": "https://campus.geely.com/"}
+  ]
+}

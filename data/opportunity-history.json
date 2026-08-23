@@ -1,11 +1,26 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-23T01:20:00+08:00",
+  "updatedAt": "2026-08-23T21:30:00+08:00",
   "snapshots": [
     {
       "recommendationDate": "2026-08-23",
-      "capturedAt": "2026-08-23T01:20:00+08:00",
-      "jobIds": []
+      "capturedAt": "2026-08-23T21:30:00+08:00",
+      "runType": "SEED_TEST_RUN",
+      "jobIds": [
+        "opp-pdd-hr-management-trainee-shanghai-2027",
+        "opp-positec-hr-specialist-suzhou-2027",
+        "opp-smic-human-resources-zhangjiang-j13293-2027",
+        "opp-beisen-system-support-consultant-j14756-2027",
+        "opp-bytedance-2027-hr-watch",
+        "opp-huawei-2027-hr-watch",
+        "opp-byd-2027-campus-hr-upcoming",
+        "hist-agora-hr-management-trainee-shanghai-2027",
+        "opp-alibaba-ai-hr-digitalization-intern-2027",
+        "opp-richinfo-hr-management-trainee-2027",
+        "opp-onerobotics-hr-specialist-2027",
+        "opp-tencent-hr-trainee-2027-lead",
+        "opp-nio-od-intern-shanghai-2027-lead"
+      ]
     },
     {
       "recommendationDate": "2026-08-22",

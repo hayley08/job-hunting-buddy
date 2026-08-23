@@ -78,7 +78,9 @@ Primary active data:
 
 - `data/applications.json`: submitted or process-entered jobs.
 - `data/opportunities.json`: unsubmitted opportunities only.
+- `data/historical-opportunities.json`: closed/expired historical recommendations that are not application records; excluded from active pipeline/KPIs.
 - `data/opportunity-history.json`: append-only daily recommendation snapshot index containing dates and canonical `jobId` references, including zero-result days.
+- `data/target-company-watchlist.json`: durable per-company search status and evidence for core targets plus explicit user reminder companies.
 - `data/jds.json`: JD Knowledge records linked by `jobId`.
 - `data/events.json`: deadlines, assessments, interviews, follow-ups.
 - `data/interviews.json`: interview reviews.
@@ -98,7 +100,7 @@ Daily artifacts:
 - `snapshots/YYYY-MM-DD_campus-dashboard.html`
 - `data/handoffs/YYYY-MM-DD_handoff.json`
 
-The home page reads data freshness from `data/daily/latest.json` and deployed code identity from `/api/version`; these values are intentionally independent. Historical opportunity views resolve snapshot `jobId` references across canonical opportunities, applications, and archive data so status changes do not erase prior recommendations.
+The home page reads data freshness from `data/daily/latest.json` and deployed code identity from `/api/version`; these values are intentionally independent. Historical opportunity views resolve snapshot `jobId` references across canonical opportunities, historical opportunities, applications, and archive data so status changes do not erase prior recommendations. Only `APPLY_NOW` and `OPEN` opportunity records enter the active pipeline todo surface.
 
 ## Markets
 
