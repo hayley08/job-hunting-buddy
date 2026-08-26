@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "runType": "SEED_TEST_RUN",
-  "checkedAt": "2026-08-23T21:30:00+08:00",
+  "runType": "SINGLE_URL_IMPORT",
+  "checkedAt": "2026-08-26T16:26:22+08:00",
   "count": 25,
   "companies": [
     {"company": "字节跳动", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方 2027 项目入口可访问，本轮未核实当前 HR 具体岗。", "sourceUrl": "https://jobs.bytedance.com/campus/page-6272Gc"},
@@ -25,7 +25,7 @@
     {"company": "赛力斯", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 人力资源专员 opening。"},
     {"company": "奇瑞", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 人力资源专员 opening。"},
     {"company": "上汽", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方校园招聘入口存在，未定位运营管理（人力资源）具体岗。", "sourceUrl": "https://campus.saicmotor.com/"},
-    {"company": "小鹏汽车", "status": "NOT_FOUND_YET", "note": "本轮未核实 2027 人才发展/企业文化培训生 opening。"},
+    {"company": "小鹏汽车", "status": "OPEN", "note": "官方页面核实 2027 HRBP培训生（机器人），深圳，校招正式岗。", "sourceUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail"},
     {"company": "北汽", "status": "HISTORICAL_REFERENCE", "note": "只找到往届校园招聘人力资源管理参考。"},
     {"company": "追觅", "status": "NOT_FOUND_YET", "note": "本轮未核实 2027 HRBP 校招 opening。"},
     {"company": "吉利", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方校招入口存在，未定位 2027 人力资源具体岗。", "sourceUrl": "https://campus.geely.com/"}

@@ -8,7 +8,8 @@ This package defines the long-running job recommendation architecture.
 JobSource
 ├── LinkedInAdapter
 ├── JobsDBAdapter
-└── BossAdapter
+├── BossAdapter
+└── SingleUrlAdapter (explicit URL only)
 
 search_job_sources()
 ↓
@@ -50,6 +51,22 @@ platform.
 
 For BOSS, `source` is always `BOSS`.
 
+## Single URL Import
+
+```powershell
+python -m job_agent.import_url "https://company.example/job/detail"
+```
+
+Use `--dry-run` to fetch and normalize without writing. A successful import
+reuses `normalize_job()` and the shared dedup keys, then upserts the existing
+`data/opportunities.json`, `data/jds.json`, and
+`data/opportunity-history.json` stores. It never registers itself in the daily
+LinkedIn / JobsDB / BOSS search list.
+
+Feishu career detail URLs use the site's public official job-detail API.
+Other sites are accepted when the page exposes valid `JobPosting` JSON-LD.
+Unsupported or blocked pages fail with an explicit reason and are not saved.
+
 ## BOSS Adapter Rules
 
 `BossAdapter` is not a one-off scraper. It is a source adapter that:
@@ -83,4 +100,3 @@ BOSS has uneven company quality, so the pipeline keeps quality high:
 - Salary must be known and monthly lower bound must be at least 12K.
 - Admin/recruitment/sales/headhunter/insurance-agent roles are filtered.
 - If no BOSS role passes all filters on a given day, return zero BOSS roles.
-

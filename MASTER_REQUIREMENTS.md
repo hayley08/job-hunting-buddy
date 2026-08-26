@@ -537,6 +537,20 @@ Priority company types: 互联网大厂, 知名外企, 大型汽车, 大型制�
 
 For every opportunity, validate `jobId`, `sourceJobId`, company, title, and URL. If inconsistent, mark `Link Unverified` and do not show one-click apply.
 
+### Single Job URL Import
+
+When the user provides one job-detail URL, the system may run the single-URL importer. It must:
+
+- fetch the real page or its official structured job-detail endpoint;
+- map the result through the existing `Job` model, normalization, deduplication, opportunity storage, JD storage, and opportunity-history flow;
+- preserve the exact user-provided URL in the existing URL fields;
+- save the complete original JD before any extractive or AI summary;
+- use only fields already present in the canonical opportunity and JD schemas;
+- return a specific failure reason and write no invented job when title, company, URL identity, or JD cannot be verified;
+- remain independent of the LinkedIn, JobsDB, and BOSS daily adapters unless explicitly invoked for one URL.
+
+Deduplication remains `sourceJobId -> canonical URL -> company + normalized title + location`; a repeated identical URL import updates the existing canonical record/JD rather than creating another job.
+
 ## Status
 
 Standard statuses:

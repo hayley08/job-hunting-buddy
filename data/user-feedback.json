@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "feedbackId": "feedback-2026-08-26-single-job-url-import",
+    "createdAt": "2026-08-26T16:26:22+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Add a single job URL import that reuses the current Job schema, normalization, deduplication and storage; preserve the exact URL and complete raw JD; never invent failed captures or affect LinkedIn/JobsDB/BOSS adapters.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-08-26T16:26:22+08:00"
+  }
+]

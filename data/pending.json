@@ -22,9 +22,11 @@
     "pendingId": "pending-github-push-d2bcbe1",
     "createdAt": "2026-08-24T02:20:00+08:00",
     "category": "deployment",
-    "status": "open",
+    "status": "resolved",
     "content": "Commit d2bcbe1 is complete locally, but four push attempts failed because the environment could not connect to github.com:443.",
     "nextAction": "Retry `git push origin feature/campus-job-os-v2`; after success, resolve this item and verify the GitHub/Vercel deployment check.",
-    "sourceOfTruth": "system"
+    "sourceOfTruth": "system",
+    "resolvedAt": "2026-08-24T20:24:57+08:00",
+    "resolution": "Both commits were pushed; GitHub and Vercel reported the feature-branch deployment successful."
   }
 ]

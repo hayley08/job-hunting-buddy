@@ -1,0 +1,45 @@
+{
+  "runDate": "2026-08-26",
+  "runType": "SINGLE_URL_IMPORT",
+  "completedAt": "2026-08-26T16:26:22+08:00",
+  "processedInputs": ["data/inbox/2026-08-26_single-url-7669694331025262911.json"],
+  "feature": {
+    "command": "python -m job_agent.import_url <job-url>",
+    "dryRun": "python -m job_agent.import_url <job-url> --dry-run",
+    "adapter": "job_agent/adapters/single_url.py",
+    "normalization": "job_agent.pipeline.normalize_job",
+    "dedup": "job_agent.pipeline.job_dedupe_keys",
+    "storage": "job_agent.storage.save_single_url_import",
+    "canonicalStores": [
+      "data/opportunities.json",
+      "data/jds.json",
+      "data/opportunity-history.json"
+    ]
+  },
+  "realTest": {
+    "url": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
+    "jobId": "opp-single-url-7669694331025262911",
+    "sourceJobId": "7669694331025262911",
+    "company": "小鹏集团",
+    "title": "【27届校招】HRBP培训生（机器人）",
+    "location": "深圳",
+    "postedDate": "2026-08-03",
+    "activeStatus": "OPEN",
+    "jdHash": "3245363eb3f1a6c3da4ba5dea1112475d26e087a103996c6cdc0a8ad5cf97dea",
+    "checks": {
+      "titleCorrect": true,
+      "originalUrlPreserved": true,
+      "fullJdCaptured": true,
+      "noNewOpportunityFields": true,
+      "noNewJdFields": true,
+      "duplicateRecords": 0,
+      "secondImportAction": "duplicate_unchanged"
+    }
+  },
+  "safety": {
+    "autoApplied": false,
+    "mainMerged": false,
+    "existingDailyAdaptersChanged": false
+  },
+  "branch": "feature/campus-job-os-v2"
+}

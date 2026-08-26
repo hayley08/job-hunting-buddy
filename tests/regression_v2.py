@@ -45,7 +45,7 @@ def main():
     snapshots = opportunity_history.get("snapshots", [])
     snapshot_dates = [item.get("recommendationDate") for item in snapshots]
     assert_true(len(snapshot_dates) == len(set(snapshot_dates)), "opportunity snapshot date must be unique and append-only")
-    assert_true({"2026-08-22", "2026-08-23"}.issubset(set(snapshot_dates)), "historical zero-result snapshots must be preserved")
+    assert_true({"2026-08-22", "2026-08-23", "2026-08-26"}.issubset(set(snapshot_dates)), "historical and URL-import snapshots must be preserved")
     canonical_ids = {item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")}
     assert_true(all(set(item.get("jobIds", [])).issubset(canonical_ids) for item in snapshots), "snapshot must reference canonical jobId values")
     for item in opportunities + historical_opportunities:
@@ -97,7 +97,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 15, "manual update should include 15 structured JD records including partial/historical captures")
+    assert_true(len(complete_jds) == 16, "single URL import should include 16 structured JD records including partial/historical captures")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     for item in jds:
         raw = item.get("jdRaw") or item.get("jdSnapshot") or ""
@@ -119,6 +119,17 @@ def main():
     assert_true(len(ti_jd.get("jdRaw", "")) > 1500, "Texas Instruments must be retained as long JD example")
     assert_true("English communication" in ti_jd.get("jdDistinctiveKeywords", []), "TI distinctive keywords must capture English signal")
 
+    xiaopeng_url = "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail"
+    xiaopeng = next(item for item in opportunities if item.get("sourceJobId") == "7669694331025262911")
+    assert_true(xiaopeng.get("title") == "【27届校招】HRBP培训生（机器人）", "single URL import title mismatch")
+    assert_true(all(xiaopeng.get(key) == xiaopeng_url for key in ("sourceUrl", "applyUrl", "jdUrl", "officialUrl")), "single URL import changed the original URL")
+    xiaopeng_jd = next(item for item in jds if item.get("jobId") == xiaopeng.get("jobId"))
+    assert_true("负责对接业务部门" in xiaopeng_jd.get("jdRaw", "") and "能接受省内短途出差" in xiaopeng_jd.get("jdRaw", ""), "single URL import did not preserve the complete JD")
+    existing_opportunity_keys = {key for item in opportunities if item is not xiaopeng for key in item}
+    existing_jd_keys = {key for item in jds if item is not xiaopeng_jd for key in item}
+    assert_true(set(xiaopeng).issubset(existing_opportunity_keys), "single URL import added opportunity schema fields")
+    assert_true(set(xiaopeng_jd).issubset(existing_jd_keys), "single URL import added JD schema fields")
+
     required_files = [
         "index.html",
         "app/app.js",
@@ -139,6 +150,9 @@ def main():
         "data/daily/latest.json",
         "data/daily/2026-08-23_seed.json",
         "data/handoffs/2026-08-23_seed_handoff.json",
+        "job_agent/import_url.py",
+        "job_agent/adapters/single_url.py",
+        "job_agent/storage.py",
         "reports/2026-08-23_seed-search-qa.md",
         "reports/2026-08-22_daily-brief.md",
     ]

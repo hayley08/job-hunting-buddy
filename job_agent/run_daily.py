@@ -9,6 +9,7 @@ from adapters.boss import BossAdapter
 from adapters.jobsdb import JobsDBAdapter
 from adapters.linkedin import LinkedInAdapter
 from job_agent.pipeline import run_recommendation_pipeline
+from job_agent.storage import append_dashboard_jobs
 
 
 def parse_args() -> argparse.Namespace:
@@ -48,11 +49,8 @@ def main() -> None:
         if not payload and not args.allow_empty:
             print(f"Skip writing {args.write}: no qualified jobs returned.")
             return
-        if existing_jobs:
-            payload = [*existing_jobs, *payload]
-        args.write.parent.mkdir(parents=True, exist_ok=True)
-        args.write.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(f"Wrote {len(payload)} total jobs to {args.write}.")
+        append_dashboard_jobs(args.write, result.jobs, existing_jobs)
+        print(f"Wrote {len(existing_jobs) + len(payload)} total jobs to {args.write}.")
 
 
 if __name__ == "__main__":

@@ -36,3 +36,9 @@
 - User reported 中国人保「广东省管培」、米哈游「人力资源（岗位 9221）」和施耐德电气「人力资源实习生（131792）」 as Applied on 2026-08-24. 米哈游 and 中国人保 were transitioned from `Application In Progress` while preserving their 2026-08-23 status history; 施耐德 was added as a new Applied record.
 - User supplied complete raw JDs for 米哈游 and 施耐德电气. They are stored and structured in `data/jds.json`; 米哈游 spans HRBP/ER/recruiting, OD/performance/C&B/L&D, employer brand/culture/training and AI workflow, while Schneider spans recruiting, L&D, C&B and HR operations.
 - 阿里千问 cartId `100100540113` is explicitly not submitted. Keep it `Application In Progress`, high priority, with empty `appliedDate`, until the user obtains a referral code and confirms submission. Exact title/JD/location remain missing; do not conflate it with the separate Alibaba AI-HR VERIFY opportunity from the seed search.
+
+## 2026-08-26
+
+- Added opt-in single job URL import. It maps real page/API data into the existing `Job` model, shared normalization and dedup keys, then upserts the existing `opportunities.json`, `jds.json`, and `opportunity-history.json` stores. It does not run as part of LinkedIn, JobsDB, or BOSS daily search.
+- The importer preserves the exact user URL in all canonical URL fields, stores full raw JD before derived fields, and fails without writing if title/company/JD cannot be verified. Feishu career pages use the public official job-detail endpoint; other sites require valid JobPosting JSON-LD.
+- Real import baseline: 小鹏集团「【27届校招】HRBP培训生（机器人）」 (`sourceJobId=7669694331025262911`), 深圳, posted 2026-08-03, official URL `https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail`. Target-company status moved to OPEN.

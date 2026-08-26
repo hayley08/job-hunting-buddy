@@ -23,14 +23,25 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "deadline": "2026-09-30",
     "salary": "12-18K × 16薪",
     "experience": "2027届，本科及以上",
     "matchScore": 9.4,
-    "matchScoreBreakdown": {"candidateFit": 3.8, "entryBarrier": 2.0, "companyGrowth": 1.9, "freshnessValidity": 1.7},
-    "matchReasons": ["JD 的人力流程与信息效率方向覆盖员工全生命周期、绩效、薪酬、培训、流程诊断、系统落地和员工体验；用户在京东做过 HC planning，在 Aon 有 C&B、competency assessment 和人才发展经历，并持续使用 AI/自动化改进 HR 工作，因此匹配点集中在业务理解、数据与流程优化，而不只是招聘执行。"],
-    "risks": ["岗位按招聘配置、人力流程与信息效率、员工关系三个方向分流，最终方向需要在投递或面试时确认；官方站确认 2027 校招开放，但具体岗位详情来自牛客。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.8,
+      "entryBarrier": 2.0,
+      "companyGrowth": 1.9,
+      "freshnessValidity": 1.7
+    },
+    "matchReasons": [
+      "JD 的人力流程与信息效率方向覆盖员工全生命周期、绩效、薪酬、培训、流程诊断、系统落地和员工体验；用户在京东做过 HC planning，在 Aon 有 C&B、competency assessment 和人才发展经历，并持续使用 AI/自动化改进 HR 工作，因此匹配点集中在业务理解、数据与流程优化，而不只是招聘执行。"
+    ],
+    "risks": [
+      "岗位按招聘配置、人力流程与信息效率、员工关系三个方向分流，最终方向需要在投递或面试时确认；官方站确认 2027 校招开放，但具体岗位详情来自牛客。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "三方向 HR 管培：招聘配置；员工生命周期、绩效、薪酬、培训和 HR 系统流程优化；员工关系与全球 HR 协作。"
   },
@@ -58,14 +69,25 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "deadline": "2026-09-18",
     "salary": "7-10K × 12薪",
     "experience": "2027届，本科及以上",
     "matchScore": 9.6,
-    "matchScoreBreakdown": {"candidateFit": 4.0, "entryBarrier": 2.0, "companyGrowth": 1.7, "freshnessValidity": 1.9},
-    "matchReasons": ["JD 同时强调人才盘点、继任者计划、组织诊断、架构优化、敬业度调研、组织健康数据看板和数字化 HR 工具；用户在 Aon 做过 competency assessment、C&B 与人才发展，在京东做过 HC planning，并有 HR data/AI automation 实践，和岗位的 OD+TD+数据组合高度对应。"],
-    "risks": ["地点是苏州而非北京/上海/深圳；第三方页面虽可立即申请，正式投递前仍应确认公司招聘门户中的同名岗位。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 4.0,
+      "entryBarrier": 2.0,
+      "companyGrowth": 1.7,
+      "freshnessValidity": 1.9
+    },
+    "matchReasons": [
+      "JD 同时强调人才盘点、继任者计划、组织诊断、架构优化、敬业度调研、组织健康数据看板和数字化 HR 工具；用户在 Aon 做过 competency assessment、C&B 与人才发展，在京东做过 HC planning，并有 HR data/AI automation 实践，和岗位的 OD+TD+数据组合高度对应。"
+    ],
+    "risks": [
+      "地点是苏州而非北京/上海/深圳；第三方页面虽可立即申请，正式投递前仍应确认公司招聘门户中的同名岗位。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "支持员工发展体系、人才盘点与继任，执行 OD 项目，维护组织健康数据看板，并推动 HR 流程和数字工具落地。"
   },
@@ -93,13 +115,24 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "salary": "未披露",
     "experience": "2027届，硕士",
     "matchScore": 9.1,
-    "matchScoreBreakdown": {"candidateFit": 3.6, "entryBarrier": 1.9, "companyGrowth": 1.9, "freshnessValidity": 1.7},
-    "matchReasons": ["官方 JD 覆盖招聘、培训、组织、人才、干部、绩效、薪酬福利和员工服务；用户已有 HRBP/HC planning、C&B、人才发展、competency assessment 和国际 HR 经验，可用多模块经历解释为何适合综合人力方向，且半导体平台符合行业优先级。"],
-    "risks": ["学历门槛明确为硕士；岗位会分配到某一模块，具体模块和团队在页面上未说明。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.6,
+      "entryBarrier": 1.9,
+      "companyGrowth": 1.9,
+      "freshnessValidity": 1.7
+    },
+    "matchReasons": [
+      "官方 JD 覆盖招聘、培训、组织、人才、干部、绩效、薪酬福利和员工服务；用户已有 HRBP/HC planning、C&B、人才发展、competency assessment 和国际 HR 经验，可用多模块经历解释为何适合综合人力方向，且半导体平台符合行业优先级。"
+    ],
+    "risks": [
+      "学历门槛明确为硕士；岗位会分配到某一模块，具体模块和团队在页面上未说明。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "在招聘、培训、组织、人才、干部、绩效、薪酬福利或员工服务中的某一人力模块工作。"
   },
@@ -125,13 +158,24 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "salary": "150-160元/天",
     "experience": "2027届本科，4天/周，至少3个月",
     "matchScore": 7.2,
-    "matchScoreBreakdown": {"candidateFit": 3.0, "entryBarrier": 1.8, "companyGrowth": 1.4, "freshnessValidity": 1.0},
-    "matchReasons": ["岗位围绕基础人事、假勤、薪酬、绩效等 HR 系统场景做需求理解、问题诊断、培训和最佳实践赋能；用户的 C&B、HR data 和 AI/automation 经验能支持业务理解与数字化工具落地。"],
-    "risks": ["本质是 HR SaaS 客户支持/顾问，不是企业内部 HR；是转正实习且地点优先级较低，适合作为补充而非首选。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.0,
+      "entryBarrier": 1.8,
+      "companyGrowth": 1.4,
+      "freshnessValidity": 1.0
+    },
+    "matchReasons": [
+      "岗位围绕基础人事、假勤、薪酬、绩效等 HR 系统场景做需求理解、问题诊断、培训和最佳实践赋能；用户的 C&B、HR data 和 AI/automation 经验能支持业务理解与数字化工具落地。"
+    ],
+    "risks": [
+      "本质是 HR SaaS 客户支持/顾问，不是企业内部 HR；是转正实习且地点优先级较低，适合作为补充而非首选。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "面向客户的人力资源信息化系统支持，覆盖基础人事、假勤、薪酬、绩效、培训和复杂业务场景诊断。"
   },
@@ -156,12 +200,23 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "2027项目存在；HR具体岗待开放/核实",
     "matchScore": 7.8,
-    "matchScoreBreakdown": {"candidateFit": 3.4, "entryBarrier": 1.3, "companyGrowth": 2.0, "freshnessValidity": 1.1},
-    "matchReasons": ["用户已有 TikTok Shop 国际电商招聘、跨时区 hiring manager alignment 和 HRBP 协作经历，若 2027 HRBP/People/TD 岗开放会有直接业务语境优势。"],
-    "risks": ["本轮只确认官方 2027 项目入口，未确认当前可投的 HR 具体岗位，不能作为投递链接。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.4,
+      "entryBarrier": 1.3,
+      "companyGrowth": 2.0,
+      "freshnessValidity": 1.1
+    },
+    "matchReasons": [
+      "用户已有 TikTok Shop 国际电商招聘、跨时区 hiring manager alignment 和 HRBP 协作经历，若 2027 HRBP/People/TD 岗开放会有直接业务语境优势。"
+    ],
+    "risks": [
+      "本轮只确认官方 2027 项目入口，未确认当前可投的 HR 具体岗位，不能作为投递链接。"
+    ],
     "jdStatus": "JD Missing"
   },
   {
@@ -185,12 +240,23 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "2027项目开放；HR具体岗待确认",
     "matchScore": 7.5,
-    "matchScoreBreakdown": {"candidateFit": 3.1, "entryBarrier": 1.3, "companyGrowth": 2.0, "freshnessValidity": 1.1},
-    "matchReasons": ["大型全球化科技制造平台与用户的国际 HR、vendor management、人才与组织项目经历方向一致，值得持续监测 HRBP、人才发展和薪酬福利岗位。"],
-    "risks": ["仅确认 2027 招聘项目存在，本轮未发现可对应 HR 标题和 sourceJobId 的当前 opening。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.1,
+      "entryBarrier": 1.3,
+      "companyGrowth": 2.0,
+      "freshnessValidity": 1.1
+    },
+    "matchReasons": [
+      "大型全球化科技制造平台与用户的国际 HR、vendor management、人才与组织项目经历方向一致，值得持续监测 HRBP、人才发展和薪酬福利岗位。"
+    ],
+    "risks": [
+      "仅确认 2027 招聘项目存在，本轮未发现可对应 HR 标题和 sourceJobId 的当前 opening。"
+    ],
     "jdStatus": "JD Missing"
   },
   {
@@ -214,12 +280,23 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "官方提示27届即将开放",
     "matchScore": 7.6,
-    "matchScoreBreakdown": {"candidateFit": 3.1, "entryBarrier": 1.4, "companyGrowth": 1.9, "freshnessValidity": 1.2},
-    "matchReasons": ["新能源汽车和大型制造业符合行业优先级；用户的 HC planning、C&B、人才发展与 HR digitalization 能覆盖未来 HRBP/COE/人力运营岗位。"],
-    "risks": ["官方当前仅给出 27 届即将开放信号，尚无 HR 岗位标题、JD 或投递入口。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.1,
+      "entryBarrier": 1.4,
+      "companyGrowth": 1.9,
+      "freshnessValidity": 1.2
+    },
+    "matchReasons": [
+      "新能源汽车和大型制造业符合行业优先级；用户的 HC planning、C&B、人才发展与 HR digitalization 能覆盖未来 HRBP/COE/人力运营岗位。"
+    ],
+    "risks": [
+      "官方当前仅给出 27 届即将开放信号，尚无 HR 岗位标题、JD 或投递入口。"
+    ],
     "jdStatus": "JD Missing"
   },
   {
@@ -244,13 +321,24 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "deadline": "2027-04-24（页面字段）",
     "experience": "本科及以上，2027届实习",
     "matchScore": 9.5,
-    "matchScoreBreakdown": {"candidateFit": 4.0, "entryBarrier": 2.0, "companyGrowth": 2.0, "freshnessValidity": 1.5},
-    "matchReasons": ["JD 直接覆盖招聘、绩效、薪酬、人才发展场景中的 AI 机会识别、LLM/RPA MVP、HR 数据治理、组织健康和人才流动分析；用户已有 C&B、talent development、competency assessment、HR data 与 AI/automation 经验，是本轮内容匹配度最高的岗位之一。"],
-    "risks": ["牛客页面同时显示“已结束”和 2027-04-24 截止，状态互相冲突；未找到阿里官方同一 sourceJobId 页面，因此不提供投递按钮。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 4.0,
+      "entryBarrier": 2.0,
+      "companyGrowth": 2.0,
+      "freshnessValidity": 1.5
+    },
+    "matchReasons": [
+      "JD 直接覆盖招聘、绩效、薪酬、人才发展场景中的 AI 机会识别、LLM/RPA MVP、HR 数据治理、组织健康和人才流动分析；用户已有 C&B、talent development、competency assessment、HR data 与 AI/automation 经验，是本轮内容匹配度最高的岗位之一。"
+    ],
+    "risks": [
+      "牛客页面同时显示“已结束”和 2027-04-24 截止，状态互相冲突；未找到阿里官方同一 sourceJobId 页面，因此不提供投递按钮。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "识别 HR 场景中的 AI 机会，将管理问题结构化，协同落地 LLM/RPA MVP，并做 HR 数据治理、组织健康和人才流动分析。"
   },
@@ -276,14 +364,25 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "deadline": "2027-05-31（第三方页面字段）",
     "salary": "面议",
     "experience": "2027届本科及以上",
     "matchScore": 8.4,
-    "matchScoreBreakdown": {"candidateFit": 3.7, "entryBarrier": 2.0, "companyGrowth": 1.3, "freshnessValidity": 1.4},
-    "matchReasons": ["轮岗覆盖招聘、人才发展、组织发展、人力运营和 HRBP，且要求人力数据分析；用户在京东、Aon 和 TikTok Shop 的 HC planning、人才项目、C&B 与业务协作经历可以对应多模块轮岗。"],
-    "risks": ["牛客显示可申请，但彩讯官网校招页当前显示 0 个职位，两处状态冲突；需先向官方确认岗位仍开放。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.7,
+      "entryBarrier": 2.0,
+      "companyGrowth": 1.3,
+      "freshnessValidity": 1.4
+    },
+    "matchReasons": [
+      "轮岗覆盖招聘、人才发展、组织发展、人力运营和 HRBP，且要求人力数据分析；用户在京东、Aon 和 TikTok Shop 的 HC planning、人才项目、C&B 与业务协作经历可以对应多模块轮岗。"
+    ],
+    "risks": [
+      "牛客显示可申请，但彩讯官网校招页当前显示 0 个职位，两处状态冲突；需先向官方确认岗位仍开放。"
+    ],
     "jdStatus": "Current JD",
     "jdSummary": "在招聘、人才发展、组织发展和人力运营轮岗，参与培训、员工关系、HR 数据分析并支持 HRBP。"
   },
@@ -309,12 +408,23 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "2027届应届生",
     "matchScore": 7.6,
-    "matchScoreBreakdown": {"candidateFit": 3.0, "entryBarrier": 2.0, "companyGrowth": 1.7, "freshnessValidity": 0.9},
-    "matchReasons": ["AI 机器人和智能制造符合行业优先级，公告明确列出 2027 人力资源专员；用户的 HR 数字化与国际业务经历可能适合高速增长、全球布局团队。"],
-    "risks": ["只核实到官方校园招聘入口和公开招聘简章，未在官方页面抓到该岗位的独立详情、sourceJobId 或完整 JD。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.0,
+      "entryBarrier": 2.0,
+      "companyGrowth": 1.7,
+      "freshnessValidity": 0.9
+    },
+    "matchReasons": [
+      "AI 机器人和智能制造符合行业优先级，公告明确列出 2027 人力资源专员；用户的 HR 数字化与国际业务经历可能适合高速增长、全球布局团队。"
+    ],
+    "risks": [
+      "只核实到官方校园招聘入口和公开招聘简章，未在官方页面抓到该岗位的独立详情、sourceJobId 或完整 JD。"
+    ],
     "jdStatus": "JD Missing"
   },
   {
@@ -337,12 +447,23 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "面向2027及以后毕业生的公开线索",
     "matchScore": 7.9,
-    "matchScoreBreakdown": {"candidateFit": 3.4, "entryBarrier": 1.8, "companyGrowth": 2.0, "freshnessValidity": 0.7},
-    "matchReasons": ["培训生方向重视沟通、分析、产品/技术理解，用户在 TikTok Shop、京东和 Aon 的业务协作、人才与数据项目可作为综合 HR 能力证据。"],
-    "risks": ["P3 线索，未找到腾讯官方或 P1/P2 的同名岗位详情与投递入口；不能据此直接投递。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.4,
+      "entryBarrier": 1.8,
+      "companyGrowth": 2.0,
+      "freshnessValidity": 0.7
+    },
+    "matchReasons": [
+      "培训生方向重视沟通、分析、产品/技术理解，用户在 TikTok Shop、京东和 Aon 的业务协作、人才与数据项目可作为综合 HR 能力证据。"
+    ],
+    "risks": [
+      "P3 线索，未找到腾讯官方或 P1/P2 的同名岗位详情与投递入口；不能据此直接投递。"
+    ],
     "jdStatus": "Partial JD",
     "jdSummary": "公开线索描述沟通、创意、分析与产品技术方向培养，并提到获得转正机会；官方岗位待核验。"
   },
@@ -366,13 +487,67 @@
     "foundAt": "2026-08-23T21:30:00+08:00",
     "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
     "recommendationDate": "2026-08-23",
-    "recommendationDates": ["2026-08-23"],
+    "recommendationDates": [
+      "2026-08-23"
+    ],
     "experience": "2027/2028硕士，4天/周，至少6个月",
     "matchScore": 8.3,
-    "matchScoreBreakdown": {"candidateFit": 3.8, "entryBarrier": 1.5, "companyGrowth": 1.9, "freshnessValidity": 1.1},
-    "matchReasons": ["JD 线索聚焦组织管理项目、数据、系统和运营设计；用户在 Aon 的 competency assessment、人才发展及数据经验，与京东 HC planning 能形成较直接的 OD 证据链。"],
-    "risks": ["仅有 P3 聚合来源，未核实蔚来官方同名岗位；硕士、每周4天和至少6个月的时间门槛需要确认。"],
+    "matchScoreBreakdown": {
+      "candidateFit": 3.8,
+      "entryBarrier": 1.5,
+      "companyGrowth": 1.9,
+      "freshnessValidity": 1.1
+    },
+    "matchReasons": [
+      "JD 线索聚焦组织管理项目、数据、系统和运营设计；用户在 Aon 的 competency assessment、人才发展及数据经验，与京东 HC planning 能形成较直接的 OD 证据链。"
+    ],
+    "risks": [
+      "仅有 P3 聚合来源，未核实蔚来官方同名岗位；硕士、每周4天和至少6个月的时间门槛需要确认。"
+    ],
     "jdStatus": "Partial JD",
     "jdSummary": "支持组织管理项目，参与数据、系统、设计和运营工作；完整官方 JD 待核实。"
+  },
+  {
+    "jobId": "opp-single-url-7669694331025262911",
+    "sourceJobId": "7669694331025262911",
+    "company": "小鹏集团",
+    "title": "【27届校招】HRBP培训生（机器人）",
+    "location": "深圳",
+    "market": "Mainland",
+    "industry": "互联网 / 电子 / 网游",
+    "jobFamily": "HRBP / OD / Talent Development / Performance / C&B / Employee Relations",
+    "campusType": "校招 / 正式",
+    "classification": "OPEN",
+    "currentStatus": "Saved",
+    "source": "小鹏集团官方招聘",
+    "sourcePriority": "P0",
+    "sourceUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
+    "applyUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
+    "jdUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
+    "officialUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
+    "linkStatus": "VERIFIED",
+    "postedDate": "2026-08-03",
+    "foundDate": "2026-08-26",
+    "foundAt": "2026-08-26T16:26:22+08:00",
+    "firstRecommendedAt": "2026-08-26T16:26:22+08:00",
+    "recommendationDate": "2026-08-26",
+    "recommendationDates": [
+      "2026-08-26"
+    ],
+    "salary": "未披露",
+    "experience": "2027届，统招本科及以上",
+    "matchScore": 0,
+    "matchScoreBreakdown": {
+      "candidateFit": 0,
+      "entryBarrier": 0,
+      "companyGrowth": 0,
+      "freshnessValidity": 0
+    },
+    "matchReasons": [],
+    "risks": [
+      "单岗位 URL 导入只保存网页事实；尚未执行个性化匹配评分。"
+    ],
+    "jdStatus": "Current JD",
+    "jdSummary": "1、负责对接业务部门，有效落实执行各类人力资源管理工作，包括组织发展及、培训、绩效考核、员工关系等；2、根据公司的人力资源规划和政策规范，有效贯彻、执行公司的人力编制、人才培养和薪酬绩效方案等"
   }
 ]

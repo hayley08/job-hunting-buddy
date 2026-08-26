@@ -89,24 +89,47 @@ def normalize_job(job: Job) -> Job:
 
 
 def deduplicate_job(job: Job, seen: set[str], existing: set[str]) -> bool:
-    key = job_dedupe_key(job)
-    if key in seen or key in existing:
+    keys = job_dedupe_keys(job)
+    if keys & seen or keys & existing:
         return False
-    seen.add(key)
+    seen.update(keys)
     return True
 
 
 def job_dedupe_key(job: Job) -> str:
+    """Return the highest-priority identity key for backwards compatibility."""
+    keys = job_dedupe_keys(job)
+    for prefix in ("id|", "url|", "sig|"):
+        match = next((key for key in keys if key.startswith(prefix)), None)
+        if match:
+            return match
+    return "sig|||"
+
+
+def job_dedupe_keys(job: Job) -> set[str]:
+    """Return every usable identity key in the repository's priority order.
+
+    Keeping all keys prevents a record with a source id from bypassing an
+    already-saved record that has the same canonical URL or signature.
+    """
+    keys: set[str] = set()
+    source = _normalized_text(job.source)
     if job.jobId:
-        return f"{job.source.lower()}|id|{job.jobId.lower()}"
+        keys.add(f"id|{source}|{job.jobId.strip().lower()}")
     parsed = urlparse(job.canonicalUrl or job.url)
     path = parsed.path.rstrip("/").lower()
     if parsed.netloc and path:
-        return f"{job.source.lower()}|url|{parsed.netloc.lower()}{path}"
-    normalized_title = " ".join(job.title.lower().split())
-    normalized_company = " ".join(job.company.lower().split())
-    normalized_location = " ".join(job.location.lower().split())
-    return f"{job.source.lower()}|sig|{normalized_company}|{normalized_title}|{normalized_location}"
+        keys.add(f"url|{parsed.netloc.lower()}{path}")
+    normalized_title = _normalized_text(job.title)
+    normalized_company = _normalized_text(job.company)
+    normalized_location = _normalized_text(job.location)
+    if normalized_title and normalized_company:
+        keys.add(f"sig|{normalized_company}|{normalized_title}|{normalized_location}")
+    return keys
+
+
+def _normalized_text(value: str) -> str:
+    return " ".join(str(value or "").lower().split())
 
 
 def existing_dedupe_keys(existing_jobs: Iterable[dict]) -> set[str]:
@@ -119,16 +142,16 @@ def existing_dedupe_keys(existing_jobs: Iterable[dict]) -> set[str]:
             source=raw.get("source", ""),
             salary=raw.get("salary", ""),
             experience=raw.get("experience", ""),
-            url=raw.get("url", ""),
+            url=raw.get("url") or raw.get("sourceUrl") or raw.get("applyUrl") or raw.get("jdUrl", ""),
             foundDate=raw.get("foundDate", ""),
             jobDescription=raw.get("jobDescription", ""),
             companySize=raw.get("companySize", ""),
             industry=raw.get("industry", ""),
-            jobId=raw.get("jobId", ""),
-            canonicalUrl=raw.get("canonicalUrl", raw.get("url", "")),
+            jobId=raw.get("sourceJobId") or raw.get("jobId", ""),
+            canonicalUrl=raw.get("canonicalUrl") or raw.get("sourceUrl") or raw.get("applyUrl") or raw.get("jdUrl") or raw.get("url", ""),
             postedDate=raw.get("postedDate"),
         )
-        keys.add(job_dedupe_key(normalize_job(job)))
+        keys.update(job_dedupe_keys(normalize_job(job)))
     return keys
 
 
