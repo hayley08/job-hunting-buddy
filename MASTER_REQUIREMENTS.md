@@ -551,6 +551,8 @@ When the user provides one job-detail URL, the system may run the single-URL imp
 
 Deduplication remains `sourceJobId -> canonical URL -> company + normalized title + location`; a repeated identical URL import updates the existing canonical record/JD rather than creating another job.
 
+When the user explicitly reports the imported URL as submitted, the canonical job must move from Opportunities into the existing Applications funnel with `currentStatus = Applied`, the user-reported `appliedDate`, and an append-only status-history event. Its historical opportunity snapshot and full JD must remain available.
+
 ## Status
 
 Standard statuses:

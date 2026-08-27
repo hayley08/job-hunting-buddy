@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from dataclasses import dataclass, field
-from urllib.parse import urlparse
+from urllib.parse import parse_qsl, urlencode, urlparse
 
 from job_agent.adapters.base import JobSource
 from job_agent.filters import (
@@ -119,7 +119,13 @@ def job_dedupe_keys(job: Job) -> set[str]:
     parsed = urlparse(job.canonicalUrl or job.url)
     path = parsed.path.rstrip("/").lower()
     if parsed.netloc and path:
-        keys.add(f"url|{parsed.netloc.lower()}{path}")
+        identity_query = [
+            (key.lower(), value)
+            for key, value in parse_qsl(parsed.query, keep_blank_values=False)
+            if key.lower() in {"id", "jobid", "jobunionid", "positionid", "reqid"}
+        ]
+        query = f"?{urlencode(sorted(identity_query))}" if identity_query else ""
+        keys.add(f"url|{parsed.netloc.lower()}{path}{query}")
     normalized_title = _normalized_text(job.title)
     normalized_company = _normalized_text(job.company)
     normalized_location = _normalized_text(job.location)

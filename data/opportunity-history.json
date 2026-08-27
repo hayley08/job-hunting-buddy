@@ -1,7 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-26T16:30:08+08:00",
+  "updatedAt": "2026-08-27T20:43:39+08:00",
   "snapshots": [
+    {
+      "recommendationDate": "2026-08-27",
+      "capturedAt": "2026-08-27T20:41:25+08:00",
+      "runType": "SINGLE_URL_IMPORT",
+      "jobIds": [
+        "opp-single-url-7670507853891455273",
+        "opp-single-url-4694828828",
+        "opp-single-url-7669694331025262911"
+      ]
+    },
     {
       "recommendationDate": "2026-08-26",
       "capturedAt": "2026-08-26T16:26:22+08:00",

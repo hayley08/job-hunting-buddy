@@ -16,3 +16,6 @@ adapter folder and registering it in the daily runner.
 fetches exactly one user-provided detail URL, returns the same unified `Job`
 object as every other adapter, and leaves filtering/search behavior for
 LinkedIn, JobsDB, and BOSS unchanged.
+
+It currently reads Feishu Careers and Meituan from their official public job
+detail endpoints, with `JobPosting` JSON-LD as the generic fallback.

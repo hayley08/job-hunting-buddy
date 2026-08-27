@@ -506,48 +506,5 @@
     ],
     "jdStatus": "Partial JD",
     "jdSummary": "支持组织管理项目，参与数据、系统、设计和运营工作；完整官方 JD 待核实。"
-  },
-  {
-    "jobId": "opp-single-url-7669694331025262911",
-    "sourceJobId": "7669694331025262911",
-    "company": "小鹏集团",
-    "title": "【27届校招】HRBP培训生（机器人）",
-    "location": "深圳",
-    "market": "Mainland",
-    "industry": "互联网 / 电子 / 网游",
-    "jobFamily": "HRBP / OD / Talent Development / Performance / C&B / Employee Relations",
-    "campusType": "校招 / 正式",
-    "classification": "OPEN",
-    "currentStatus": "Saved",
-    "source": "小鹏集团官方招聘",
-    "sourcePriority": "P0",
-    "sourceUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
-    "applyUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
-    "jdUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
-    "officialUrl": "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail",
-    "linkStatus": "VERIFIED",
-    "postedDate": "2026-08-03",
-    "foundDate": "2026-08-26",
-    "foundAt": "2026-08-26T16:26:22+08:00",
-    "firstRecommendedAt": "2026-08-26T16:26:22+08:00",
-    "recommendationDate": "2026-08-26",
-    "recommendationDates": [
-      "2026-08-26"
-    ],
-    "salary": "未披露",
-    "experience": "2027届，统招本科及以上",
-    "matchScore": 0,
-    "matchScoreBreakdown": {
-      "candidateFit": 0,
-      "entryBarrier": 0,
-      "companyGrowth": 0,
-      "freshnessValidity": 0
-    },
-    "matchReasons": [],
-    "risks": [
-      "单岗位 URL 导入只保存网页事实；尚未执行个性化匹配评分。"
-    ],
-    "jdStatus": "Current JD",
-    "jdSummary": "1、负责对接业务部门，有效落实执行各类人力资源管理工作，包括组织发展及、培训、绩效考核、员工关系等；2、根据公司的人力资源规划和政策规范，有效贯彻、执行公司的人力编制、人才培养和薪酬绩效方案等"
   }
 ]

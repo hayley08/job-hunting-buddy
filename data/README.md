@@ -17,3 +17,5 @@ Every recommendation preserves `firstRecommendedAt`, `recommendationDate`, `reco
 
 The explicit single-URL importer writes into these same canonical stores. It
 does not create a parallel job table or a second schema.
+If the user reports the URL as submitted, the same canonical `jobId` moves to
+`applications.json`; its JD record and opportunity-history membership remain.

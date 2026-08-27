@@ -1,0 +1,22 @@
+{
+  "inputDate": "2026-08-27",
+  "receivedAt": "2026-08-27T20:43:37+08:00",
+  "processed": true,
+  "processedAt": "2026-08-27T20:43:37+08:00",
+  "processedByRun": "SINGLE_URL_IMPORT",
+  "originalUrl": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4694828828&jobShareType=1&highlightType=campus",
+  "result": {
+    "action": "duplicate_unchanged",
+    "jobId": "opp-single-url-4694828828",
+    "sourceJobId": "4694828828",
+    "title": "AI组织转型",
+    "company": "美团",
+    "location": "北京市/上海市",
+    "postedDate": "2026-08-17",
+    "jdHash": "b4d0d4c5cec88da3d9358978dac69e1af003bae7a455a7fede11a92b92eba550"
+  },
+  "notes": [
+    "The original user-provided URL is preserved exactly in the canonical job and JD records.",
+    "The full raw JD was captured before any summary fields were generated."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "inputDate": "2026-08-27",
+  "receivedAt": "2026-08-27T20:43:36+08:00",
+  "processed": true,
+  "processedAt": "2026-08-27T20:43:36+08:00",
+  "processedByRun": "SINGLE_URL_IMPORT",
+  "originalUrl": "https://bambulab.jobs.feishu.cn/campus/position/7670507853891455273/detail",
+  "result": {
+    "action": "duplicate_unchanged",
+    "jobId": "opp-single-url-7670507853891455273",
+    "sourceJobId": "7670507853891455273",
+    "title": "服务运营 - 培训方向",
+    "company": "Bambulab",
+    "location": "深圳",
+    "postedDate": "2026-08-05",
+    "jdHash": "6850fbd043348cb0dfc581621f5f72676e41b3118163fe38102ef89de73004e7"
+  },
+  "notes": [
+    "The original user-provided URL is preserved exactly in the canonical job and JD records.",
+    "The full raw JD was captured before any summary fields were generated."
+  ]
+}

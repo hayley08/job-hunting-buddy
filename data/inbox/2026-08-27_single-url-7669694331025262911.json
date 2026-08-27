@@ -1,0 +1,22 @@
+{
+  "inputDate": "2026-08-27",
+  "receivedAt": "2026-08-27T20:43:39+08:00",
+  "processed": true,
+  "processedAt": "2026-08-27T20:43:39+08:00",
+  "processedByRun": "SINGLE_URL_IMPORT",
+  "originalUrl": "https://xiaopeng.jobs.feishu.cn/campus/position/7669694331025262911/detail",
+  "result": {
+    "action": "duplicate_unchanged",
+    "jobId": "opp-single-url-7669694331025262911",
+    "sourceJobId": "7669694331025262911",
+    "title": "【27届校招】HRBP培训生（机器人）",
+    "company": "小鹏集团",
+    "location": "深圳",
+    "postedDate": "2026-08-03",
+    "jdHash": "3245363eb3f1a6c3da4ba5dea1112475d26e087a103996c6cdc0a8ad5cf97dea"
+  },
+  "notes": [
+    "The original user-provided URL is preserved exactly in the canonical job and JD records.",
+    "The full raw JD was captured before any summary fields were generated."
+  ]
+}

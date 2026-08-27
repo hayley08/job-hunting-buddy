@@ -164,6 +164,91 @@ def save_single_url_import(job: Job, original_url: str, now: datetime | None = N
     )
 
 
+def mark_job_applied(job_id: str, applied_date: str, original_url: str) -> dict[str, Any]:
+    """Move an imported opportunity into the existing application funnel."""
+    opportunities_path = DATA / "opportunities.json"
+    applications_path = DATA / "applications.json"
+    jds_path = DATA / "jds.json"
+    opportunities = load_json_array(opportunities_path)
+    applications = load_json_array(applications_path)
+    jds = load_json_array(jds_path)
+
+    existing = next((item for item in applications if item.get("jobId") == job_id), None)
+    if existing is not None:
+        existing.update(
+            {
+                "jdUrl": original_url,
+                "applyUrl": original_url,
+                "officialUrl": original_url,
+                "appliedDate": applied_date,
+                "currentStatus": "Applied",
+                "statusUpdatedAt": applied_date,
+                "sourceOfTruth": "user",
+                "archived": False,
+            }
+        )
+        if not any(event.get("status") == "Applied" and event.get("date") == applied_date for event in existing.get("statusHistory", [])):
+            existing.setdefault("statusHistory", []).append(_applied_event(applied_date))
+        write_json(applications_path, applications)
+        return existing
+
+    opportunity = next((item for item in opportunities if item.get("jobId") == job_id), None)
+    if opportunity is None:
+        raise ValueError(f"Cannot mark unknown job as applied: {job_id}")
+    jd = next((item for item in jds if item.get("jobId") == job_id), {})
+    record = {
+        "jobId": job_id,
+        "company": opportunity.get("company", ""),
+        "title": opportunity.get("title", ""),
+        "businessUnit": "",
+        "location": opportunity.get("location", ""),
+        "industry": opportunity.get("industry", ""),
+        "market": opportunity.get("market", "Mainland"),
+        "source": opportunity.get("source", ""),
+        "sourceJobId": opportunity.get("sourceJobId", ""),
+        "jdUrl": original_url,
+        "applyUrl": original_url,
+        "officialUrl": original_url,
+        "foundDate": opportunity.get("foundDate", applied_date),
+        "postedDate": opportunity.get("postedDate", ""),
+        "appliedDate": applied_date,
+        "deadline": opportunity.get("deadline", ""),
+        "jobDescription": jd.get("jdRaw", ""),
+        "jdSnapshot": jd.get("jdSnapshot", ""),
+        "jdCapturedAt": jd.get("jdCapturedAt", ""),
+        "jdKeywords": jd.get("jdDistinctiveKeywords", []),
+        "jobFamily": opportunity.get("jobFamily", ""),
+        "campusType": opportunity.get("campusType", ""),
+        "salary": opportunity.get("salary", ""),
+        "experience": opportunity.get("experience", ""),
+        "matchScore": opportunity.get("matchScore", 0),
+        "matchReasons": opportunity.get("matchReasons", []),
+        "gaps": [],
+        "risks": opportunity.get("risks", []),
+        "currentStatus": "Applied",
+        "statusUpdatedAt": applied_date,
+        "statusHistory": [_applied_event(applied_date)],
+        "englishInterviewPossible": False,
+        "technicalInterviewPossible": False,
+        "interviewPackId": "",
+        "sourceOfTruth": "user",
+        "manualOverrides": {},
+        "notes": f"用户于 {applied_date} 报告已投递；岗位事实与完整 JD 来自官方职位页面。",
+        "archived": False,
+    }
+    _assert_schema_subset(record, applications, "application")
+    applications.append(record)
+    opportunities.remove(opportunity)
+    write_json(applications_path, applications)
+    write_json(opportunities_path, opportunities)
+    return record
+
+
+def _applied_event(applied_date: str) -> dict[str, str]:
+    note = "User reported this official job URL as a submitted application."
+    return {"status": "Applied", "date": applied_date, "sourceOfTruth": "user", "note": note, "notes": note}
+
+
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default

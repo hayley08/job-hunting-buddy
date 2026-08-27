@@ -63,8 +63,18 @@ reuses `normalize_job()` and the shared dedup keys, then upserts the existing
 `data/opportunity-history.json` stores. It never registers itself in the daily
 LinkedIn / JobsDB / BOSS search list.
 
+When the user explicitly reports that the job was submitted:
+
+```powershell
+python -m job_agent.import_url "https://company.example/job/detail" --applied-date 2026-08-27
+```
+
+This moves the canonical record into the existing application funnel and keeps
+its historical recommendation snapshot and JD record intact.
+
 Feishu career detail URLs use the site's public official job-detail API.
-Other sites are accepted when the page exposes valid `JobPosting` JSON-LD.
+Meituan detail URLs use Meituan's official public job-detail API. Other sites
+are accepted when the page exposes valid `JobPosting` JSON-LD.
 Unsupported or blocked pages fail with an explicit reason and are not saved.
 
 ## BOSS Adapter Rules

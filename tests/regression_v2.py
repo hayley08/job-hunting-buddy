@@ -45,7 +45,7 @@ def main():
     snapshots = opportunity_history.get("snapshots", [])
     snapshot_dates = [item.get("recommendationDate") for item in snapshots]
     assert_true(len(snapshot_dates) == len(set(snapshot_dates)), "opportunity snapshot date must be unique and append-only")
-    assert_true({"2026-08-22", "2026-08-23", "2026-08-26"}.issubset(set(snapshot_dates)), "historical and URL-import snapshots must be preserved")
+    assert_true({"2026-08-22", "2026-08-23", "2026-08-26", "2026-08-27"}.issubset(set(snapshot_dates)), "historical and URL-import snapshots must be preserved")
     canonical_ids = {item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")}
     assert_true(all(set(item.get("jobIds", [])).issubset(canonical_ids) for item in snapshots), "snapshot must reference canonical jobId values")
     for item in opportunities + historical_opportunities:
@@ -64,7 +64,7 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 8, "Application In Progress must not be counted as Applied KPI")
+    assert_true(applied_kpi_count == 11, "Application In Progress must not be counted as Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
@@ -97,7 +97,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 16, "single URL import should include 16 structured JD records including partial/historical captures")
+    assert_true(len(complete_jds) == 18, "single URL imports should include 18 structured JD records including partial/historical captures")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     for item in jds:
         raw = item.get("jdRaw") or item.get("jdSnapshot") or ""
@@ -119,16 +119,23 @@ def main():
     assert_true(len(ti_jd.get("jdRaw", "")) > 1500, "Texas Instruments must be retained as long JD example")
     assert_true("English communication" in ti_jd.get("jdDistinctiveKeywords", []), "TI distinctive keywords must capture English signal")
 
-    xiaopeng_url = "https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail"
-    xiaopeng = next(item for item in opportunities if item.get("sourceJobId") == "7669694331025262911")
+    xiaopeng_url = "https://xiaopeng.jobs.feishu.cn/campus/position/7669694331025262911/detail"
+    xiaopeng = next(item for item in applications if item.get("sourceJobId") == "7669694331025262911")
     assert_true(xiaopeng.get("title") == "【27届校招】HRBP培训生（机器人）", "single URL import title mismatch")
-    assert_true(all(xiaopeng.get(key) == xiaopeng_url for key in ("sourceUrl", "applyUrl", "jdUrl", "officialUrl")), "single URL import changed the original URL")
+    assert_true(all(xiaopeng.get(key) == xiaopeng_url for key in ("applyUrl", "jdUrl", "officialUrl")), "single URL import changed the original URL")
+    assert_true(xiaopeng.get("currentStatus") == "Applied" and xiaopeng.get("appliedDate") == "2026-08-27", "Xiaopeng application transition missing")
     xiaopeng_jd = next(item for item in jds if item.get("jobId") == xiaopeng.get("jobId"))
     assert_true("负责对接业务部门" in xiaopeng_jd.get("jdRaw", "") and "能接受省内短途出差" in xiaopeng_jd.get("jdRaw", ""), "single URL import did not preserve the complete JD")
-    existing_opportunity_keys = {key for item in opportunities if item is not xiaopeng for key in item}
+    existing_application_keys = {key for item in applications if item is not xiaopeng for key in item}
     existing_jd_keys = {key for item in jds if item is not xiaopeng_jd for key in item}
-    assert_true(set(xiaopeng).issubset(existing_opportunity_keys), "single URL import added opportunity schema fields")
+    assert_true(set(xiaopeng).issubset(existing_application_keys), "single URL import added application schema fields")
     assert_true(set(xiaopeng_jd).issubset(existing_jd_keys), "single URL import added JD schema fields")
+
+    bambu = next(item for item in applications if item.get("sourceJobId") == "7670507853891455273")
+    meituan = next(item for item in applications if item.get("sourceJobId") == "4694828828")
+    assert_true(bambu.get("title") == "服务运营 - 培训方向" and bambu.get("currentStatus") == "Applied", "Bambu Lab application missing")
+    assert_true(meituan.get("title") == "AI组织转型" and meituan.get("location") == "北京市/上海市", "Meituan application facts missing")
+    assert_true("AI在改变什么底层逻辑" in next(item for item in jds if item.get("jobId") == meituan.get("jobId")).get("jdRaw", ""), "Meituan full JD missing")
 
     required_files = [
         "index.html",

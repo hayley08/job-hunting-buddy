@@ -7,7 +7,7 @@ from html import unescape
 from html.parser import HTMLParser
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 from urllib.request import Request, urlopen
 
 from job_agent.adapters.base import JobSource
@@ -58,7 +58,59 @@ class SingleUrlAdapter(JobSource):
         parsed = urlparse(self.url)
         if parsed.hostname and parsed.hostname.endswith(".jobs.feishu.cn"):
             return [self._parse_feishu_job(html)]
+        if parsed.hostname in {"zhaopin.meituan.com", "jobs.meituan.com"}:
+            return [self._parse_meituan_job(parsed)]
         return [self._parse_json_ld_job(html)]
+
+    def _parse_meituan_job(self, parsed) -> Job:
+        job_union_id = _text(parse_qs(parsed.query).get("jobUnionId", [""])[0])
+        if not job_union_id:
+            raise JobImportError("美团招聘 URL 中未找到 jobUnionId")
+        api_url = f"{parsed.scheme}://{parsed.netloc}/api/official/job/getJobDetail"
+        payload = self._fetch_json_post(api_url, {"jobUnionId": job_union_id, "jobShareType": 1})
+        detail = payload.get("data")
+        if payload.get("status") != 1 or not isinstance(detail, dict):
+            raise JobImportError(f"美团招聘页面抓取失败：{payload.get('message') or '职位详情接口未返回岗位'}")
+
+        title = _text(detail.get("name"))
+        duty = _text(detail.get("jobDuty"))
+        requirement = _text(detail.get("jobRequirement"))
+        if not title:
+            raise JobImportError("美团招聘页面未返回岗位名称")
+        if not duty and not requirement:
+            raise JobImportError("美团招聘页面未返回职位描述或职位要求")
+        cities = [_text(item.get("name")) for item in detail.get("cityList", []) if isinstance(item, dict)]
+        departments = [_text(item.get("name")) for item in detail.get("department", []) if isinstance(item, dict)]
+        project_name = _text(detail.get("projectName"))
+        job_category = _text(detail.get("jobFamilyGroup") or detail.get("jobFamily"))
+        active = _text(detail.get("jobStatus")) == "000"
+        return Job(
+            title=title,
+            company="美团",
+            location="/".join(value for value in cities if value) or "未披露",
+            source=parsed.netloc.lower(),
+            salary="未披露",
+            experience=_infer_experience(f"{title} {project_name}", requirement),
+            url=self.url,
+            foundDate=today_iso(),
+            postedDate=_unix_milliseconds_to_date(detail.get("firstPostTime")),
+            jobDescription=_join_jd(duty, requirement),
+            companySize="",
+            industry=job_category,
+            jobId=_text(detail.get("jobUnionId")) or job_union_id,
+            canonicalUrl=self.url,
+            lastVerifiedAt=today_iso(),
+            activeStatus="active" if active else "unverified",
+            validationSource="official_api",
+            validation={
+                "status": "verified" if active else "unverified",
+                "source": "official_api",
+                "campusType": project_name,
+                "jobCategory": job_category,
+                "department": "/".join(value for value in departments if value),
+            },
+            risk="" if active else "页面未确认岗位仍在线",
+        )
 
     def _parse_feishu_job(self, html: str) -> Job:
         parsed = urlparse(self.url)
@@ -210,6 +262,33 @@ class SingleUrlAdapter(JobSource):
         raw = self._fetch_text(url)
         try:
             payload = json.loads(raw)
+        except json.JSONDecodeError as error:
+            raise JobImportError("岗位详情接口未返回有效 JSON") from error
+        if not isinstance(payload, dict):
+            raise JobImportError("岗位详情接口返回了意外的数据格式")
+        return payload
+
+    def _fetch_json_post(self, url: str, body: dict[str, Any]) -> dict[str, Any]:
+        request = Request(
+            url,
+            data=json.dumps(body).encode("utf-8"),
+            headers={
+                "User-Agent": "Mozilla/5.0 (compatible; CampusJobSearchOS/2.0)",
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Referer": self.url,
+            },
+            method="POST",
+        )
+        try:
+            with urlopen(request, timeout=self.timeout_seconds) as response:
+                payload = json.loads(response.read(2_000_000).decode("utf-8", "ignore"))
+        except HTTPError as error:
+            raise JobImportError(f"岗位详情接口返回 HTTP {error.code}") from error
+        except URLError as error:
+            raise JobImportError(f"无法连接岗位详情接口：{error.reason}") from error
+        except TimeoutError as error:
+            raise JobImportError("访问岗位详情接口超时") from error
         except json.JSONDecodeError as error:
             raise JobImportError("岗位详情接口未返回有效 JSON") from error
         if not isinstance(payload, dict):

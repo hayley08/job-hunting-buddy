@@ -1,0 +1,53 @@
+{
+  "runDate": "2026-08-27",
+  "runType": "SINGLE_URL_IMPORT",
+  "completedAt": "2026-08-27T20:41:25+08:00",
+  "processedInputs": [
+    "data/inbox/2026-08-27_application-update.json",
+    "data/inbox/2026-08-27_single-url-7670507853891455273.json",
+    "data/inbox/2026-08-27_single-url-4694828828.json",
+    "data/inbox/2026-08-27_single-url-7669694331025262911.json"
+  ],
+  "applications": [
+    {
+      "jobId": "opp-single-url-7670507853891455273",
+      "sourceJobId": "7670507853891455273",
+      "company": "Bambulab",
+      "title": "服务运营 - 培训方向",
+      "location": "深圳",
+      "appliedDate": "2026-08-27",
+      "url": "https://bambulab.jobs.feishu.cn/campus/position/7670507853891455273/detail",
+      "jdHash": "6850fbd043348cb0dfc581621f5f72676e41b3118163fe38102ef89de73004e7"
+    },
+    {
+      "jobId": "opp-single-url-4694828828",
+      "sourceJobId": "4694828828",
+      "company": "美团",
+      "title": "AI组织转型",
+      "location": "北京市/上海市",
+      "appliedDate": "2026-08-27",
+      "url": "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4694828828&jobShareType=1&highlightType=campus",
+      "jdHash": "b4d0d4c5cec88da3d9358978dac69e1af003bae7a455a7fede11a92b92eba550"
+    },
+    {
+      "jobId": "opp-single-url-7669694331025262911",
+      "sourceJobId": "7669694331025262911",
+      "company": "小鹏集团",
+      "title": "【27届校招】HRBP培训生（机器人）",
+      "location": "深圳",
+      "appliedDate": "2026-08-27",
+      "url": "https://xiaopeng.jobs.feishu.cn/campus/position/7669694331025262911/detail",
+      "jdHash": "3245363eb3f1a6c3da4ba5dea1112475d26e087a103996c6cdc0a8ad5cf97dea"
+    }
+  ],
+  "checks": {
+    "allApplied": true,
+    "exactUrlsPreserved": true,
+    "fullJdsCaptured": true,
+    "removedFromCurrentOpportunities": true,
+    "historyPreserved": true,
+    "duplicateCanonicalJobs": 0
+  },
+  "branch": "feature/campus-job-os-v2",
+  "mainMerged": false
+}

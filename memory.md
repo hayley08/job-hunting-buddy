@@ -40,5 +40,11 @@
 ## 2026-08-26
 
 - Added opt-in single job URL import. It maps real page/API data into the existing `Job` model, shared normalization and dedup keys, then upserts the existing `opportunities.json`, `jds.json`, and `opportunity-history.json` stores. It does not run as part of LinkedIn, JobsDB, or BOSS daily search.
-- The importer preserves the exact user URL in all canonical URL fields, stores full raw JD before derived fields, and fails without writing if title/company/JD cannot be verified. Feishu career pages use the public official job-detail endpoint; other sites require valid JobPosting JSON-LD.
+- The importer preserves the exact user URL in all canonical URL fields, stores full raw JD before derived fields, and fails without writing if title/company/JD cannot be verified. Feishu and Meituan career pages use their public official job-detail endpoints; other sites require valid JobPosting JSON-LD.
 - Real import baseline: 小鹏集团「【27届校招】HRBP培训生（机器人）」 (`sourceJobId=7669694331025262911`), 深圳, posted 2026-08-03, official URL `https://xiaopeng.jobs.feishu.cn/398875/position/7669694331025262911/detail`. Target-company status moved to OPEN.
+
+## 2026-08-27
+
+- User reported three newly submitted applications: Bambulab「服务运营 - 培训方向」 (`7670507853891455273`), 美团「AI组织转型」 (`4694828828`), and 小鹏集团「【27届校招】HRBP培训生（机器人）」 (`7669694331025262911`). All use `appliedDate = 2026-08-27`, preserve the exact user URLs and full official JDs, and live only in `data/applications.json`, not current Opportunities.
+- Meituan single-URL parsing now uses `/api/official/job/getJobDetail`; this job is in 北京/上海 under 人力资源平台 and its full JD covers AI-driven organization transformation, organization/talent research, HRAI products, talent review, level review, and HC budgeting.
+- The single-URL CLI supports `--applied-date YYYY-MM-DD` to transition an imported canonical job into the existing application funnel without losing its JD or historical snapshot.

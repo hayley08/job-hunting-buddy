@@ -75,6 +75,41 @@ class SingleUrlAdapterTests(unittest.TestCase):
             with self.assertRaisesRegex(JobImportError, "岗位详情接口"):
                 SingleUrlAdapter(URL).search()
 
+    def test_meituan_official_api_maps_full_jd_and_preserves_url(self):
+        url = "https://zhaopin.meituan.com/web/position/detail?jobUnionId=4694828828&jobShareType=1&highlightType=campus"
+        api = json.dumps(
+            {
+                "status": 1,
+                "data": {
+                    "jobUnionId": "4694828828",
+                    "name": "AI组织转型",
+                    "projectName": "2026年（2027届）秋季校招",
+                    "jobStatus": "000",
+                    "jobFamilyGroup": "人力资源",
+                    "cityList": [{"name": "北京市"}, {"name": "上海市"}],
+                    "department": [{"name": "人力资源平台"}],
+                    "jobDuty": "负责AI与组织的战略研究和方案设计。",
+                    "jobRequirement": "专业不限，具备跨领域思维。",
+                    "firstPostTime": 1786960994000,
+                },
+            },
+            ensure_ascii=False,
+        )
+
+        def fake_open(request, timeout):
+            body = api if "/api/official/job/getJobDetail" in request.full_url else "<html></html>"
+            return FakeResponse(body, request.full_url)
+
+        with patch("job_agent.adapters.single_url.urlopen", side_effect=fake_open):
+            job = SingleUrlAdapter(url).search()[0]
+
+        self.assertEqual(job.title, "AI组织转型")
+        self.assertEqual(job.company, "美团")
+        self.assertEqual(job.location, "北京市/上海市")
+        self.assertEqual(job.url, url)
+        self.assertIn("战略研究", job.jobDescription)
+        self.assertIn("跨领域思维", job.jobDescription)
+
     def test_existing_dedup_matches_canonical_url_even_when_ids_differ(self):
         incoming = normalize_job(
             Job(
@@ -107,6 +142,15 @@ class SingleUrlAdapterTests(unittest.TestCase):
             ]
         )
         self.assertFalse(deduplicate_job(incoming, set(), existing))
+
+    def test_query_identity_keeps_distinct_meituan_jobs_separate(self):
+        def make_job(job_id):
+            url = f"https://zhaopin.meituan.com/web/position/detail?jobUnionId={job_id}&jobShareType=1"
+            return normalize_job(Job(f"岗位{job_id}", "美团", "北京", "zhaopin.meituan.com", "", "", url, "2026-08-27", "JD", "", "", job_id, url))
+
+        seen = set()
+        self.assertTrue(deduplicate_job(make_job("1"), seen, set()))
+        self.assertTrue(deduplicate_job(make_job("2"), seen, set()))
 
 
 if __name__ == "__main__":
