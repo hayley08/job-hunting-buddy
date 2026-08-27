@@ -133,11 +133,35 @@ async function measure(ws) {
       })
       .filter((item) => item.right > vw + tolerance || item.left < -tolerance)
       .slice(0, 8);
+    const visibleDesktopGrid = (headSelector) => {
+      const head = document.querySelector(headSelector);
+      return head && getComputedStyle(head).display !== 'none';
+    };
+    const misalignedRows = [];
+    if (visibleDesktopGrid('.pipeline-grid-head')) {
+      document.querySelectorAll('.pipeline-row').forEach((row, rowIndex) => {
+        const rowBottom = row.getBoundingClientRect().bottom;
+        const cellBottoms = Array.from(row.children).map((cell) => cell.getBoundingClientRect().bottom);
+        if (cellBottoms.some((bottom) => Math.abs(bottom - rowBottom) > tolerance)) {
+          misalignedRows.push({ grid: 'pipeline', rowIndex, rowBottom, cellBottoms });
+        }
+      });
+    }
+    if (visibleDesktopGrid('.jd-grid-head')) {
+      document.querySelectorAll('.jd-main').forEach((row, rowIndex) => {
+        const rowBottom = row.getBoundingClientRect().bottom;
+        const cellBottoms = Array.from(row.children).map((cell) => cell.getBoundingClientRect().bottom);
+        if (cellBottoms.some((bottom) => Math.abs(bottom - rowBottom) > tolerance)) {
+          misalignedRows.push({ grid: 'jd', rowIndex, rowBottom, cellBottoms });
+        }
+      });
+    }
     return {
       clientWidth: vw,
       scrollWidth: document.documentElement.scrollWidth,
       bodyScrollWidth: document.body.scrollWidth,
-      overflowers
+      overflowers,
+      misalignedRows: misalignedRows.slice(0, 8)
     };
   })()`);
 }
@@ -159,7 +183,7 @@ try {
       await showState(ws, state);
       const result = await measure(ws);
       const hasDocumentOverflow = result.scrollWidth > result.clientWidth + 2 || result.bodyScrollWidth > result.clientWidth + 2;
-      if (hasDocumentOverflow || result.overflowers.length) {
+      if (hasDocumentOverflow || result.overflowers.length || result.misalignedRows.length) {
         failures.push({ viewport: `${width}x${height}`, state: state.name, ...result });
       }
     }

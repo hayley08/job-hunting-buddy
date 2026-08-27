@@ -498,7 +498,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.35fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 0.85fr) minmax(0, 0.85fr) minmax(0, 1.35fr);
   gap: 0;
-  align-items: start;
+  align-items: stretch;
 }
 
 .jd-grid-head,
@@ -506,7 +506,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.85fr) minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.45fr);
   gap: 0;
-  align-items: start;
+  align-items: stretch;
 }
 
 .pipeline-grid-head,

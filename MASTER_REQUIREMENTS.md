@@ -256,6 +256,8 @@ Story Bank and Resume Copy Tool are modules inside the 面试 tab. They must not
 
 Desktop and tablet use a fixed left sidebar. Mobile uses a collapsed left rail / hamburger drawer. Do not restore the six-item bottom navigation.
 
+Desktop Pipeline and JD grids must render as visually continuous tables: every cell in a row stretches to the full row height, column boundaries remain consistent with the header, and each horizontal separator forms one aligned line across the complete row. Variable-length notes must never create staggered per-cell underlines. Tablet/mobile may switch to the established card layout without horizontal page scrolling.
+
 ## Dashboard KPI
 
 Default home page shows 投递中, 已投递, 筛选中, 测评/笔试, 面试, Offer, 最近7天投递, and 最近7天进入面试. Conversion analytics must come from real `statusHistory`.
