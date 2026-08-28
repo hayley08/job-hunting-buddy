@@ -22,6 +22,8 @@ def main():
     archive_data = load_json("data/archive.json")
     archive = archive_data if isinstance(archive_data, list) else archive_data.get("records", [])
     story_bank = load_json("data/story-bank.json")
+    resumes = load_json("data/resumes.json")
+    resume_mirror = load_json("data/resume.json")
     reminders = load_json("data/reminders.json")
     jds = load_json("data/jds.json")
     pending = load_json("data/pending.json")
@@ -64,10 +66,16 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 11, "Application In Progress must not be counted as Applied KPI")
+    assert_true(applied_kpi_count == 13, "Application In Progress must not be counted as Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
+    insta360 = next(item for item in active_apps if item.get("company") == "Insta360 / 影石")
+    assert_true(insta360.get("applyUrl") == "https://arashivision.jobs.feishu.cn/campus/position/application", "Insta360 application-history URL missing")
+    hitachi = next(item for item in active_apps if item.get("jobId") == "app-hitachi-position-pending-2026-08-29")
+    anker = next(item for item in active_apps if item.get("jobId") == "app-anker-position-pending-2026-08-29")
+    assert_true(hitachi.get("title") == "职位名称待确认" and hitachi.get("appliedDate") == "2026-08-29", "Hitachi pending application missing")
+    assert_true(anker.get("title") == "职位名称待确认" and anker.get("appliedDate") == "2026-08-29", "Anker pending application missing")
     qwen = next(item for item in active_apps if item.get("company") == "阿里千问")
     assert_true(qwen.get("currentStatus") == "Application In Progress" and not qwen.get("appliedDate"), "Qwen must remain not submitted")
 
@@ -80,6 +88,21 @@ def main():
     assert_true(core.get("locked") is True, "core introduction must remain locked")
     assert_true(core.get("introCN60") == "Needs User Input", "core introduction changed unexpectedly")
     assert_true(len(story_bank.get("stories", [])) >= 17, "initial Story Bank scaffold incomplete")
+
+    assert_true(resumes.get("currentVersion") == "2026-08-28-resume", "August 28 resume must be current")
+    resume_versions = {item.get("version"): item for item in resumes.get("versions", [])}
+    assert_true({"2026-08-22-migration", "2026-08-28-resume"}.issubset(resume_versions), "resume history must be preserved")
+    current_resume = resume_versions["2026-08-28-resume"]
+    current_section_ids = [item.get("sectionId") for item in current_resume.get("sections", [])]
+    assert_true(current_section_ids == ["education-cuhk", "education-ncu", "binance", "aon", "midea", "jd", "skills-languages"], "current resume sections drifted")
+    assert_true("tiktok" not in current_section_ids and "bytedance" not in current_section_ids, "current resume must match the attached source")
+    old_section_ids = {item.get("sectionId") for item in resume_versions["2026-08-22-migration"].get("sections", [])}
+    assert_true({"tiktok", "bytedance"}.issubset(old_section_ids), "historical resume content was overwritten")
+    current_profile = current_resume.get("profile", {})
+    assert_true(current_profile.get("email") == "[redacted-email]" and current_profile.get("phone") == "[redacted-phone]", "public contact details must stay redacted")
+    binance_resume = next(item for item in current_resume.get("sections", []) if item.get("sectionId") == "binance")
+    assert_true(all(term in binance_resume.get("contentCN", "") for term in ["HC增长50%", "总保费涨幅控制在20%", "4场", "Wellbeing Portal", "保险问答Agent"]), "updated Binance resume facts missing")
+    assert_true([item.get("id") for item in resume_mirror.get("sections", [])] == current_section_ids, "legacy resume mirror is out of sync")
 
     git_pending = next(item for item in pending if item.get("pendingId") == "pending-git-branch")
     assert_true(git_pending.get("status") == "resolved", "obsolete Git blocker must be resolved in formal repository")
@@ -99,6 +122,8 @@ def main():
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
     assert_true(len(complete_jds) == 18, "single URL imports should include 18 structured JD records including partial/historical captures")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
+    missing_jd_ids = {item.get("jobId") for item in missing_jds}
+    assert_true({hitachi.get("jobId"), anker.get("jobId")}.issubset(missing_jd_ids), "unverified Hitachi/Anker jobs must remain JD Missing")
     for item in jds:
         raw = item.get("jdRaw") or item.get("jdSnapshot") or ""
         if item.get("jdStatus") == "JD Missing":

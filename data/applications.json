@@ -415,8 +415,8 @@
     "source": "User Provided JD",
     "sourceJobId": "",
     "jdUrl": "",
-    "applyUrl": "",
-    "officialUrl": "",
+    "applyUrl": "https://arashivision.jobs.feishu.cn/campus/position/application",
+    "officialUrl": "https://arashivision.jobs.feishu.cn/campus/position/application",
     "foundDate": "2026-08-23",
     "postedDate": "",
     "appliedDate": "2026-08-18",
@@ -461,7 +461,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "",
+    "notes": "用户于 2026-08-29 再次确认已投递，并提供影石官方投递记录页；该链接需要登录后查看，已有 HRBP助理 JD 保持不变。",
     "archived": false
   },
   {
@@ -1047,6 +1047,108 @@
     "sourceOfTruth": "user",
     "manualOverrides": {},
     "notes": "用户于 2026-08-27 报告已投递；岗位事实与完整 JD 来自官方职位页面。",
+    "archived": false
+  },
+  {
+    "jobId": "app-hitachi-position-pending-2026-08-29",
+    "company": "日立 / Hitachi",
+    "title": "职位名称待确认",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Technology / Industrial",
+    "market": "Mainland",
+    "source": "User Provided Official Careers Link",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://hitachi.wd1.myworkdayjobs.com/zh-CN/hitachi",
+    "officialUrl": "https://hitachi.wd1.myworkdayjobs.com/zh-CN/hitachi",
+    "foundDate": "2026-08-29",
+    "postedDate": "",
+    "appliedDate": "2026-08-29",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "",
+    "salary": "",
+    "experience": "",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "用户提供的是日立招聘首页，不含已投递岗位的职位编号、名称或 JD。"
+    ],
+    "risks": [
+      "当前公开招聘页存在多个 HR 相关岗位；在没有投递记录或职位详情链接前，不能安全判断实际投递的是哪一个。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-29",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-08-29",
+        "sourceOfTruth": "user",
+        "notes": "User reported a submitted Hitachi application and provided the official careers landing page. Exact job remains unverified."
+      }
+    ],
+    "englishInterviewPossible": true,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "已确认投递；岗位名称、职位编号、城市和 JD 待用户提供投递记录截图或具体职位链接后补全。",
+    "archived": false
+  },
+  {
+    "jobId": "app-anker-position-pending-2026-08-29",
+    "company": "安克创新 / Anker Innovations",
+    "title": "职位名称待确认",
+    "businessUnit": "",
+    "location": "Mainland China",
+    "industry": "Consumer Electronics / Technology",
+    "market": "Mainland",
+    "source": "User Provided Official Application History Link",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://anker-in.jobs.feishu.cn/campushirecn/position/application",
+    "officialUrl": "https://anker-in.jobs.feishu.cn/campushirecn/position/application",
+    "foundDate": "2026-08-29",
+    "postedDate": "",
+    "appliedDate": "2026-08-29",
+    "deadline": "",
+    "jobDescription": "",
+    "jdSnapshot": "",
+    "jdCapturedAt": "",
+    "jdKeywords": [],
+    "jobFamily": "",
+    "campusType": "2027 Campus Recruitment (unverified job)",
+    "salary": "",
+    "experience": "2027届（具体岗位待确认）",
+    "matchScore": 0,
+    "matchReasons": [],
+    "gaps": [
+      "官方投递记录页需要手机验证码登录，未登录页面不展示已投递岗位。"
+    ],
+    "risks": [
+      "岗位名称、职位编号、城市和 JD 均未从原始链接中验证，禁止用公开搜索到的其他安克岗位代替。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-29",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-08-29",
+        "sourceOfTruth": "user",
+        "notes": "User reported a submitted Anker application and provided the official application-history page. Exact job remains unverified."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "已确认投递；等待投递记录截图或具体职位详情链接后补全岗位与 JD。",
     "archived": false
   }
 ]

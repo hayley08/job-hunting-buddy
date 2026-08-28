@@ -1,0 +1,28 @@
+{
+  "runDate": "2026-08-28",
+  "runType": "RESUME_UPDATE",
+  "completedAt": "2026-08-28T10:00:00+08:00",
+  "processedInputs": [
+    "data/inbox/2026-08-28_resume-update.json"
+  ],
+  "currentResumeVersion": "2026-08-28-resume",
+  "previousResumeVersionPreserved": "2026-08-22-migration",
+  "currentSections": [
+    "education-cuhk",
+    "education-ncu",
+    "binance",
+    "aon",
+    "midea",
+    "jd",
+    "skills-languages"
+  ],
+  "checks": {
+    "sourcePdfVisuallyReviewed": true,
+    "currentVersionUpdated": true,
+    "historicalVersionPreserved": true,
+    "publicContactDetailsRedacted": true,
+    "legacyResumeMirrorUpdated": true
+  },
+  "branch": "feature/campus-job-os-v2",
+  "mainMerged": false
+}

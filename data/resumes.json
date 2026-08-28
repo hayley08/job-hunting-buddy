@@ -1,5 +1,5 @@
 {
-  "currentVersion": "2026-08-22-migration",
+  "currentVersion": "2026-08-28-resume",
   "versions": [
     {
       "version": "2026-08-22-migration",
@@ -95,6 +95,90 @@
         }
       ],
       "sourceOfTruth": "migration"
+    },
+    {
+      "version": "2026-08-28-resume",
+      "updatedAt": "2026-08-28T02:39:15+08:00",
+      "profile": {
+        "name": "Hayley Chen",
+        "chineseName": "陈卉仪",
+        "email": "[redacted-email]",
+        "phone": "[redacted-phone]",
+        "target": "2027 Mainland China early-career roles in HRBP, COE, C&B, OD, Talent Development, HR Operations, Employee Experience, and HR Digitalization."
+      },
+      "sections": [
+        {
+          "sectionId": "education-cuhk",
+          "title": "香港中文大学 / The Chinese University of Hong Kong - 电商与物流技术硕士 / MSc in E-Commerce and Logistics Technologies",
+          "period": "2025年09月 - 2026年11月",
+          "location": "香港",
+          "contentCN": "海外QS前100。核心课程：电子支付系统（密码学）、物流管理、数据挖掘技术、网络编程（HTML/CSS/JavaScript）、工程经济学等。",
+          "contentEN": "QS Top 100 university. Core coursework includes Electronic Payment Systems (Cryptography), Logistics Management, Data Mining Techniques, Web Programming (HTML/CSS/JavaScript), and Engineering Economics.",
+          "tags": ["HR Digitalization", "Data Analytics"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "education-ncu",
+          "title": "南昌大学 / Nanchang University - 工商管理本科 / BBA in Business Administration",
+          "period": "2021年09月 - 2025年06月",
+          "location": "南昌",
+          "contentCN": "211、双一流，经济管理学院。核心课程：公司治理、商务数据分析、Python、管理学、公共关系学、人力资源管理、管理决策与方法、市场营销等。",
+          "contentEN": "Project 211 and Double First-Class university, School of Economics and Management. Core coursework includes Corporate Governance, Business Data Analytics, Python, Management, Public Relations, Human Resource Management, Management Decision-Making and Methods, and Marketing.",
+          "tags": ["Business Management", "Human Resources"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "binance",
+          "title": "币安 / Binance - 薪酬福利实习生 / Compensation & Benefits Intern",
+          "period": "2026年02月 - 2026年07月",
+          "location": "香港",
+          "contentCN": "【福利管理】全流程支持菲律宾、越南、巴西人寿及医疗保险和全球EAP续约；基于历史理赔、HC与保费进行成本分析和方案对比，参与Broker与Insurer议价、合同签署和员工沟通。越南HC增长50%的情况下，结合较低历史Loss Ratio，将总保费涨幅控制在20%。\n【AI与数字化管理】使用AI Agent搭建一体化Wellbeing Portal，整合健康、心理、财务与社交四类资源，以及保险政策、EAP、内部活动和外部健康资源，形成一站式员工自助入口；搭建保险问答Agent，处理跨国家、保险公司和方案的碎片化及频繁更新信息。\n【活动运营】独立落地4场健康线上讲座及员工分享活动，满意度稳定在4.0/5.0以上；开发Wellness Webinar Clawbot Skill，实现活动记录与场次分析自动化。",
+          "contentEN": "【Benefits Management】Supported end-to-end renewals for life and medical insurance in the Philippines, Vietnam, and Brazil, as well as the global EAP. Analyzed historical claims, headcount, and premiums; compared options; and supported broker and insurer negotiations, contracting, and employee communications. Kept the total premium increase to 20% despite 50% headcount growth in Vietnam by leveraging the plan's low historical loss ratio.\n【AI & Digitalization】Built an AI-agent-enabled Wellbeing Portal integrating health, mental, financial, and social resources, including insurance policies, EAP, internal events, and external health resources, into a one-stop employee self-service experience. Built an insurance Q&A agent for fragmented and frequently changing country, insurer, and plan information.\n【Program Operations】Independently delivered four wellness webinars and employee-sharing sessions with satisfaction consistently above 4.0/5.0. Developed a Wellness Webinar Clawbot Skill to automate activity records and session analysis.",
+          "tags": ["C&B", "HR Digitalization", "Employee Experience", "Vendor Management", "AI / Automation"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "aon",
+          "title": "怡安·翰威特咨询 / Aon Hewitt Consulting - 人才发展项目实习生 / Talent Development Project Intern",
+          "period": "2025年04月 - 2025年08月",
+          "location": "广州",
+          "contentCN": "【领导力模型】为大型国企领导力模型项目编码战略文件并参与管理层访谈，将洞察与怡安素质库匹配，搭建模型并定义各子维度。\n【人才测评】参与BEI、360度和沙盘模拟测评；提取行为证据，使用AI辅助素质分析与评分并交付个人报告；梳理360度评价关系与交付流程；依据素质模型设计沙盘测评维度和行为标准。\n【综合研究】整合多源测评结果并输出管理层测评及项目总结；使用AI辅助文献与质性分析，完成韧性领导力专题研究。",
+          "contentEN": "【Leadership Model】Coded strategy documents and participated in management interviews for a large state-owned enterprise's leadership model project. Matched insights to the Aon Competency Library, built the model, and defined its sub-dimensions.\n【Talent Assessment】Supported BEI, 360-degree, and business-simulation assessments; extracted behavioral evidence; used AI-assisted competency analysis and scoring; and delivered individual reports. Structured 360-degree rater relationships and delivery, and designed simulation dimensions and behavioral standards based on the competency model.\n【Integrated Research】Integrated multi-source assessment results into management assessment and project summary reports. Used AI-assisted literature review and qualitative analysis for a study on resilient leadership.",
+          "tags": ["Talent Development", "Competency Assessment", "Organization Development", "AI / Automation"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "midea",
+          "title": "美的国际 / Midea International - 薪酬绩效实习生 / Compensation & Performance Intern",
+          "period": "2024年11月 - 2025年04月",
+          "location": "佛山",
+          "contentCN": "【绩效管理】参与绩效政策简化及绩效沟通界面中英文发布，组织2次UAT并支持后续答疑；参与新并购公司的绩效治理分权，梳理流程、权限与审批。\n【国际薪酬福利】参与EOR供应商议价与引入，梳理海外属地用工与组织归属；调研埃及及印尼白领员工保险与津贴，更新埃及保险方案；参与2025年度外派福利整理并形成探亲福利指引。\n【数据治理】与IT及海外BU HR协作治理全球核心员工数据，推动Band类核心数据完整度从10%提升至90%。",
+          "contentEN": "【Performance Management】Supported performance-policy simplification and the bilingual release of a performance communication interface, organized two UAT cycles, and handled follow-up questions. Helped define decentralized performance governance for a newly acquired company by mapping processes, authorities, and approvals.\n【International Compensation & Benefits】Supported EOR vendor negotiation and onboarding, and clarified local-employment records and organizational ownership across overseas entities. Benchmarked insurance and allowances for white-collar employees in Egypt and Indonesia, updated the Egypt insurance plan, and contributed to the 2025 expatriate-benefit review and family-visit benefit guide.\n【Data Governance】Worked with IT and overseas BU HR teams on global core employee data governance, increasing completeness of Band-level core data from 10% to 90%.",
+          "tags": ["C&B", "Performance", "International HR", "HR Data Governance", "Vendor Management"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "jd",
+          "title": "京东工业 / JD.com Industry - BOM业务部及工业国际团队HRBP实习生 / HRBP Intern",
+          "period": "2024年05月 - 2024年08月",
+          "location": "北京",
+          "contentCN": "【人力规划】为年中组织调整及下半年规划搭建员工级人力成本测算，滚动预测HC、人员异动、薪资与津贴，并结合GMV及业务拓展更新HC方案、支持策略会讨论。\n【绩效与人才】完成两个部门Q2绩效核算，与TD对齐指标、评分及口径；处理岗位归属调整与员工答疑，支持Q3目标及系统维护，并组织晋升与转正项目。\n【培训运营】运营面向中区域商品方案岗及解决方案岗的“夏季专业力大练兵”，完成线上线下共11场培训。",
+          "contentEN": "【Workforce Planning】Built employee-level workforce-cost models for a mid-year organization change and second-half planning. Produced rolling forecasts for headcount, employee movements, salary, and allowances, and updated headcount plans based on GMV and business expansion for strategy discussions.\n【Performance & Talent】Completed Q2 performance calculations for two departments and aligned metrics, scoring, and definitions with the TD team. Handled role-ownership transfers and employee questions, supported Q3 target and system maintenance, and organized promotion and probation-confirmation processes.\n【Learning Operations】Operated the Summer Capability Program for regional product-solution and solution roles, delivering 11 online and offline training sessions.",
+          "tags": ["HRBP", "Headcount Planning", "Performance", "Training Operations", "HR Analytics"],
+          "suitableRoles": []
+        },
+        {
+          "sectionId": "skills-languages",
+          "title": "技能与语言 / Skills & Languages",
+          "period": "",
+          "location": "",
+          "contentCN": "【工具】Office、Power BI、Python、SPSS、前端开发、SQL、PR、剪映、社交媒体运营与文案、AI；Lightroom基础及人像摄影。\n【语言】英语可作为工作语言，IELTS 7.0，CET-4 611，CET-6 520；粤语日常交流；韩语学习中。",
+          "contentEN": "【Tools】Office, Power BI, Python, SPSS, front-end development, SQL, Adobe Premiere Pro, CapCut, social-media operations and copywriting, and AI; basic Lightroom and portrait photography.\n【Languages】English as a working language (IELTS 7.0, CET-4 611, CET-6 520); conversational Cantonese; currently learning Korean.",
+          "tags": ["Power BI", "Python", "SQL", "English IELTS 7.0", "Cantonese"],
+          "suitableRoles": []
+        }
+      ],
+      "sourceOfTruth": "user-provided-resume"
     }
   ]
 }

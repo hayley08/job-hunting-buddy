@@ -49,3 +49,15 @@
 - Meituan single-URL parsing now uses `/api/official/job/getJobDetail`; this job is in 北京/上海 under 人力资源平台 and its full JD covers AI-driven organization transformation, organization/talent research, HRAI products, talent review, level review, and HC budgeting.
 - The single-URL CLI supports `--applied-date YYYY-MM-DD` to transition an imported canonical job into the existing application funnel without losing its JD or historical snapshot.
 - Fixed the desktop Pipeline/JD grid alignment: cells now stretch to the complete row height, so variable-length notes no longer produce staggered horizontal separators. Responsive regression now checks cell-bottom alignment as well as page overflow across all supported viewport widths.
+
+## 2026-08-28
+
+- The user-provided August 28 resume is the current website resume version (`2026-08-28-resume`); the August 22 migration version remains available as history.
+- Current resume scope is two education entries (CUHK MSc and Nanchang University BBA), plus Binance C&B, Aon Talent Development, Midea Compensation & Performance, JD.com Industry HRBP, and Skills & Languages. The current version does not include the older ByteDance/TikTok entry.
+- Updated durable facts include Binance completion in July 2026, four wellness sessions, Vietnam headcount growth of 50% with total premium growth controlled at 20%, AI-enabled Wellbeing Portal and insurance Q&A agent, plus revised Aon/Midea/JD responsibilities and metrics.
+- Public resume contact fields remain redacted. Do not publish the phone number or email from a private resume attachment unless the user explicitly authorizes it.
+
+## 2026-08-29
+
+- User re-confirmed the existing Insta360 / 影石 HRBP助理 application and supplied its official application-history URL. Reuse the existing full JD; do not create a duplicate.
+- User also confirmed Hitachi and Anker applications. Their exact user-provided URLs are preserved, but both point to a careers landing/application-history page that does not expose the specific job while logged out. Keep the records Applied with `JD Missing` and open pending items until a screenshot or exact job detail URL identifies title, requisition ID, city, and JD; never substitute a similar public posting.

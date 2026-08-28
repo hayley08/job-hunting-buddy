@@ -1,0 +1,40 @@
+{
+  "runDate": "2026-08-29",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "completedAt": "2026-08-29T10:00:00+08:00",
+  "processedInputs": [
+    "data/inbox/2026-08-29_application-update.json"
+  ],
+  "applications": [
+    {
+      "jobId": "app-insta360-hrbp-assistant-2026-08-18",
+      "company": "Insta360 / 影石",
+      "title": "HRBP助理",
+      "deduplicated": true,
+      "jdStatus": "Current JD",
+      "url": "https://arashivision.jobs.feishu.cn/campus/position/application"
+    },
+    {
+      "jobId": "app-hitachi-position-pending-2026-08-29",
+      "company": "日立 / Hitachi",
+      "title": "职位名称待确认",
+      "jdStatus": "JD Missing",
+      "url": "https://hitachi.wd1.myworkdayjobs.com/zh-CN/hitachi"
+    },
+    {
+      "jobId": "app-anker-position-pending-2026-08-29",
+      "company": "安克创新 / Anker Innovations",
+      "title": "职位名称待确认",
+      "jdStatus": "JD Missing",
+      "url": "https://anker-in.jobs.feishu.cn/campushirecn/position/application"
+    }
+  ],
+  "checks": {
+    "exactUserUrlsPreserved": true,
+    "insta360Deduplicated": true,
+    "unverifiedFactsNotInvented": true,
+    "pendingVerificationCreated": true
+  },
+  "branch": "feature/campus-job-os-v2",
+  "mainMerged": false
+}

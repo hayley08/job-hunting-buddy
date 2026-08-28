@@ -28,5 +28,25 @@
     "sourceOfTruth": "system",
     "resolvedAt": "2026-08-24T20:24:57+08:00",
     "resolution": "Both commits were pushed; GitHub and Vercel reported the feature-branch deployment successful."
+  },
+  {
+    "pendingId": "pending-hitachi-job-details-2026-08-29",
+    "createdAt": "2026-08-29T10:00:00+08:00",
+    "category": "application",
+    "status": "open",
+    "jobId": "app-hitachi-position-pending-2026-08-29",
+    "content": "User confirmed a Hitachi application but provided only the public careers landing page; exact title, requisition ID, city and JD are unverified.",
+    "nextAction": "Obtain the Hitachi application-record screenshot or exact Workday job detail URL, then update the existing application and JD Missing record without creating a duplicate.",
+    "sourceOfTruth": "user"
+  },
+  {
+    "pendingId": "pending-anker-job-details-2026-08-29",
+    "createdAt": "2026-08-29T10:00:00+08:00",
+    "category": "application",
+    "status": "open",
+    "jobId": "app-anker-position-pending-2026-08-29",
+    "content": "User confirmed an Anker application, but the provided application-history URL requires mobile verification login and exposes no job facts while logged out.",
+    "nextAction": "Obtain the Anker application-record screenshot or exact Feishu job detail URL, then update the existing application and JD Missing record without creating a duplicate.",
+    "sourceOfTruth": "user"
   }
 ]

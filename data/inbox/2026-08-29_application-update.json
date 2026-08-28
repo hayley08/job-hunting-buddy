@@ -1,0 +1,20 @@
+{
+  "inputDate": "2026-08-29",
+  "receivedAt": "2026-08-29T10:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-29T10:00:00+08:00",
+  "processedByRun": "MANUAL_APPLICATION_UPDATE",
+  "sourceOfTruth": "user",
+  "rawApplicationUrls": [
+    "https://arashivision.jobs.feishu.cn/campus/position/application",
+    "https://hitachi.wd1.myworkdayjobs.com/zh-CN/hitachi",
+    "https://anker-in.jobs.feishu.cn/campushirecn/position/application"
+  ],
+  "interpretation": "All three links were reported as submitted applications. Insta360 deduplicates to the existing HRBP Assistant record. Hitachi and Anker are saved as applied with exact links and JD Missing until the specific positions are verified.",
+  "appliedDate": "2026-08-29",
+  "canonicalJobIds": [
+    "app-insta360-hrbp-assistant-2026-08-18",
+    "app-hitachi-position-pending-2026-08-29",
+    "app-anker-position-pending-2026-08-29"
+  ]
+}

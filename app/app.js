@@ -860,10 +860,11 @@ function renderStory(story) {
 }
 
 function renderResumeSection(section) {
+  const sectionMeta = [section.period, section.location].filter(Boolean).map(escapeHtml).join(" · ");
   return `
     <details class="resume-section" open>
       <summary>${escapeHtml(section.title)}</summary>
-      <p class="muted">${escapeHtml(section.period || "")} · ${escapeHtml(section.location || "")}</p>
+      ${sectionMeta ? `<p class="muted">${sectionMeta}</p>` : ""}
       ${copyBlock("复制中文", section.contentCN)}
       ${copyBlock("Copy English", section.contentEN)}
       <div class="bullet-tools">

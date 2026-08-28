@@ -1,0 +1,12 @@
+{
+  "inputDate": "2026-08-28",
+  "receivedAt": "2026-08-28T10:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-08-28T10:00:00+08:00",
+  "processedByRun": "RESUME_UPDATE",
+  "sourceOfTruth": "user-provided-resume",
+  "sourceFile": "D:\\陈卉仪简历 Aug 28.pdf",
+  "resumeVersion": "2026-08-28-resume",
+  "interpretation": "Use the attached August 28 resume as the current website resume and preserve the previous version.",
+  "privacy": "Email and phone remain redacted on the public website pending explicit publication consent."
+}

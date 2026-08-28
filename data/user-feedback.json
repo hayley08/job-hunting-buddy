@@ -25,5 +25,23 @@
     "content": "Pipeline table cells and horizontal separators must remain aligned across each complete desktop row even when notes wrap to different heights.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-08-27T21:05:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-08-28-resume-update",
+    "createdAt": "2026-08-28T10:00:00+08:00",
+    "category": "resume",
+    "status": "implemented",
+    "content": "Update the website from the user-provided August 28 resume while preserving the previous resume version as history.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-08-28T10:00:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-08-29-new-applied-links",
+    "createdAt": "2026-08-29T10:00:00+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "User confirmed applications associated with the Insta360, Hitachi, and Anker official links and requested durable company, title, JD, and link capture. Insta360 deduplicates to the existing HRBP Assistant application; Hitachi and Anker remain explicit JD Missing records until their exact positions can be verified.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-08-29T10:00:00+08:00"
   }
 ]

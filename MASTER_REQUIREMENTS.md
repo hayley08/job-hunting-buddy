@@ -620,6 +620,8 @@ Interview Packs are generated only when there is a new application, JD change, r
 
 Resume Copy Tool must be available inside the 面试 tab. Resume content preserves 复制中文, Copy English, per-section copying, bullet-level copying when possible, and 查看全文. Each update creates a new version. Do not overwrite historical metadata.
 
+The public repository and deployed website must keep personal email and phone fields redacted unless the user explicitly authorizes publication. The private source resume remains authoritative for those fields; redaction must not alter the rest of the resume content.
+
 ## Archive / Records
 
 Archive includes Hong Kong old applications, Rejected, Closed, Withdrawn, Completed Process, and Old Recommendations. Archived records do not affect active KPI.
