@@ -634,6 +634,23 @@ Generate `reports/YYYY-MM-DD_daily-brief.md` with processing window, pipeline, s
 
 A run is complete only if raw inputs, corrections, feedback, overrides, unfinished applications, pending queue, status history, events, JD snapshots, interview pack versions, handoff, memory, daily report, JSON validation, and Git/deploy status are handled or explicitly marked blocked.
 
+## Feishu Base Data Management
+
+The durable daily data flow is:
+
+```text
+job search -> Feishu Base -> generated data/jobs.json -> existing dashboard JSON stores -> static dashboard
+```
+
+- Reuse the repository's current job fields, normalization, storage, and deduplication rules. Do not introduce a parallel job schema for Feishu.
+- Feishu Base is the user's daily editing surface for application status, notes, progress, and other fields that already exist in the current model.
+- Newly discovered jobs are upserted to Feishu by the existing canonical deduplication keys; sync must never create a second copy of an existing job.
+- `data/jobs.json` is generated sync output, not an independently hand-maintained source with divergent fields.
+- Preserve existing applications, opportunities, historical snapshots, JD records, status history, search adapters, and dashboard behavior.
+- Sync from Feishu at 18:00 UTC+8 every day and publish refreshed JSON without Codex participation or token usage.
+- Keep the existing static dashboard plus dynamic JSON architecture. Do not rebuild the UI for this integration.
+- Never commit Feishu, GitHub, webhook, or deployment credentials. Supply them only through the chosen runtime's secret configuration.
+
 ## Regression Tests
 
 Regression tests must check duplicate IDs, bad URL, URL-job mismatch, Applied job in Opportunities, Application In Progress not counted as Applied KPI, Application In Progress pending actions, continue-apply links, `applicationStartedAt` separated from `appliedDate`, Application In Progress history preservation after Applied, unfinished applications not auto-archived, deadline-priority reminders, Archived HK in Active, Closed counted as Rejected, missing statusHistory, invalid dates, past Upcoming events, manual override overwritten, auto-generated reminder/watch rows, JD Missing behavior, raw JD preservation, original excerpt substring validation, stable jdHash, JD versioning, Interview Pack refresh only on JD change, core introduction changed unexpectedly, story facts drifted, processed inbox reprocessed, and missing handoff.

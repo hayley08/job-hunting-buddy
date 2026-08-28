@@ -61,3 +61,5 @@
 
 - User re-confirmed the existing Insta360 / 影石 HRBP助理 application and supplied its official application-history URL. Reuse the existing full JD; do not create a duplicate.
 - User also confirmed Hitachi and Anker applications. Their exact user-provided URLs are preserved, but both point to a careers landing/application-history page that does not expose the specific job while logged out. Keep the records Applied with `JD Missing` and open pending items until a screenshot or exact job detail URL identifies title, requisition ID, city, and JD; never substitute a similar public posting.
+- The durable data-management direction is now job search -> Feishu Base -> generated `data/jobs.json` -> existing dashboard stores. Feishu is the daily editing surface, while the current schema, normalization, deduplication, history, adapters, and static dashboard remain authoritative and must be reused.
+- Feishu-to-dashboard refresh must run automatically every day at 18:00 UTC+8 without Codex/token usage. No Feishu, GitHub, webhook, or deployment secret may be committed. Initial table inspection is blocked until the user grants Feishu Base read/write authorization.

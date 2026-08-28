@@ -1,0 +1,20 @@
+{
+  "inboxId": "inbox-2026-08-29-feishu-base-sync",
+  "receivedAt": "2026-08-29T12:00:00+08:00",
+  "processed": false,
+  "sourceOfTruth": "user",
+  "request": {
+    "baseUrl": "https://my.feishu.cn/wiki/CKP8wSDlCiDaKhkkY2wcEoUDnPe?table=tblLboF1qeH7SD6m&view=vewppJdVIX",
+    "flow": "job search -> Feishu Base -> data/jobs.json -> existing dashboard",
+    "dailySyncAt": "18:00 UTC+8",
+    "constraints": [
+      "reuse existing job fields, normalization, storage, and deduplication",
+      "preserve current static dashboard and dynamic JSON",
+      "preserve historical data and search logic",
+      "do not commit Feishu or GitHub secrets",
+      "do not modify or merge main",
+      "daily operation must not require Codex tokens"
+    ]
+  },
+  "blocker": "Feishu user authorization is required before the actual Base fields and records can be inspected."
+}

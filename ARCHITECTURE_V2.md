@@ -264,3 +264,19 @@ Regression tests must verify:
 ## Current Repository State
 
 Development is connected to `hayley08/job-hunting-buddy` on `feature/campus-job-os-v2`. `main` is the Vercel production branch and must remain untouched until V2 is accepted.
+
+## Feishu Base Sync Boundary
+
+Feishu integration is an adapter around the existing canonical model, not a new model:
+
+```text
+existing search adapters
+-> existing normalization and deduplication
+-> Feishu Base upsert
+-> scheduled Feishu Base pull
+-> data/jobs.json generated mirror
+-> existing applications/opportunities/JD/history stores
+-> current static dashboard
+```
+
+Field mapping must be resolved from the actual Base table and the repository schema. Unknown Base columns are ignored; missing repository fields remain empty rather than causing schema expansion. The exact original job URL and raw JD retain their current integrity rules. A scheduled, non-Codex runtime performs the 18:00 Asia/Shanghai pull and commits only generated data changes to `feature/campus-job-os-v2`. Runtime credentials remain outside Git.

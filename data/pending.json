@@ -57,5 +57,14 @@
     "content": "Local commits 9838b24 and c622fcc are complete, but three push attempts failed because the environment could not connect to github.com:443.",
     "nextAction": "Retry git push origin feature/campus-job-os-v2 without rebasing, resetting, or rebuilding commits through the GitHub contents API; after success, verify the remote head and Vercel deployment for the actual pushed SHA.",
     "sourceOfTruth": "system"
+  },
+  {
+    "pendingId": "pending-feishu-base-auth-2026-08-29",
+    "createdAt": "2026-08-29T12:00:00+08:00",
+    "category": "integration",
+    "status": "open",
+    "content": "The target Feishu Base table cannot yet be inspected because the current Feishu CLI has no authorized user identity for wiki/Base field and record access.",
+    "nextAction": "User authorizes wiki node retrieval plus Base field/record read and record write; then inspect the actual table fields and finish the existing-schema mapping without guessing or adding fields.",
+    "sourceOfTruth": "system"
   }
 ]

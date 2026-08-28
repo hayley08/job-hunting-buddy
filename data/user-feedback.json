@@ -43,5 +43,13 @@
     "content": "User confirmed applications associated with the Insta360, Hitachi, and Anker official links and requested durable company, title, JD, and link capture. Insta360 deduplicates to the existing HRBP Assistant application; Hitachi and Anker remain explicit JD Missing records until their exact positions can be verified.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-08-29T10:00:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-08-29-feishu-data-management",
+    "createdAt": "2026-08-29T12:00:00+08:00",
+    "category": "workflow",
+    "status": "accepted",
+    "content": "Use the existing schema and deduplication flow for job search -> Feishu Base -> generated data/jobs.json -> existing static dashboard, with an automatic 18:00 UTC+8 refresh that does not consume Codex tokens and with all credentials kept outside the repository.",
+    "sourceOfTruth": "user"
   }
 ]
