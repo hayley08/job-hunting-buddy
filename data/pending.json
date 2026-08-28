@@ -48,5 +48,14 @@
     "content": "User confirmed an Anker application, but the provided application-history URL requires mobile verification login and exposes no job facts while logged out.",
     "nextAction": "Obtain the Anker application-record screenshot or exact Feishu job detail URL, then update the existing application and JD Missing record without creating a duplicate.",
     "sourceOfTruth": "user"
+  },
+  {
+    "pendingId": "pending-github-push-c622fcc",
+    "createdAt": "2026-08-29T10:30:00+08:00",
+    "category": "deployment",
+    "status": "open",
+    "content": "Local commits 9838b24 and c622fcc are complete, but three push attempts failed because the environment could not connect to github.com:443.",
+    "nextAction": "Retry git push origin feature/campus-job-os-v2 without rebasing, resetting, or rebuilding commits through the GitHub contents API; after success, verify the remote head and Vercel deployment for the actual pushed SHA.",
+    "sourceOfTruth": "system"
   }
 ]
