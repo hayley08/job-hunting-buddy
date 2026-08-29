@@ -51,6 +51,10 @@ After the feature deployment containing `/api/sync-feishu` is successful and the
 
 Do not enable the workflow before the endpoint is deployed and both secret headers are configured.
 
+## Current Deployment Blocker
+
+Implementation commit `ad7a0ab` is complete locally. Three push attempts failed with a reset connection, an empty GitHub response, and a `github.com:443` timeout. The Vercel endpoint therefore has not been deployed yet, and the Feishu timer workflow remains intentionally disabled.
+
 ## Safety
 
 - No credentials are committed.

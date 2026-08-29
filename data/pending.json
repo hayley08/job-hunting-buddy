@@ -54,8 +54,8 @@
     "createdAt": "2026-08-29T10:30:00+08:00",
     "category": "deployment",
     "status": "open",
-    "content": "Local commits 9838b24 and c622fcc are complete, but three push attempts failed because the environment could not connect to github.com:443.",
-    "nextAction": "Retry git push origin feature/campus-job-os-v2 without rebasing, resetting, or rebuilding commits through the GitHub contents API; after success, verify the remote head and Vercel deployment for the actual pushed SHA.",
+    "content": "Local commits through ad7a0ab are complete, but the 2026-08-29 Feishu implementation push failed three times with connection reset, empty response, and github.com:443 timeout. The branch is currently ahead 5 before this blocker-record commit.",
+    "nextAction": "Retry git push origin feature/campus-job-os-v2 without rebasing, resetting, or rebuilding commits; after success, verify remote HEAD and the Vercel deployment for ad7a0ab or its descendant.",
     "sourceOfTruth": "system"
   },
   {
