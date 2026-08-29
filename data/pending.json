@@ -62,9 +62,20 @@
     "pendingId": "pending-feishu-base-auth-2026-08-29",
     "createdAt": "2026-08-29T12:00:00+08:00",
     "category": "integration",
-    "status": "open",
+    "status": "resolved",
     "content": "The target Feishu Base table cannot yet be inspected because the current Feishu CLI has no authorized user identity for wiki/Base field and record access.",
     "nextAction": "User authorizes wiki node retrieval plus Base field/record read and record write; then inspect the actual table fields and finish the existing-schema mapping without guessing or adding fields.",
+    "sourceOfTruth": "system",
+    "resolvedAt": "2026-08-29T21:40:00+08:00",
+    "resolution": "User authorization completed; the actual Base was read, initialized from the repository schema, and populated with the 34-record baseline."
+  },
+  {
+    "pendingId": "pending-feishu-sync-runtime-config-2026-08-29",
+    "createdAt": "2026-08-29T21:40:00+08:00",
+    "category": "integration",
+    "status": "open",
+    "content": "The Feishu table and sync endpoint code are ready, but the 18:00 workflow cannot be safely enabled until the feature Preview has its external runtime secrets.",
+    "nextAction": "Configure FEISHU_APP_ID, FEISHU_APP_SECRET, GITHUB_SYNC_TOKEN, SYNC_WEBHOOK_SECRET and the non-secret Base/repo identifiers in Vercel Preview; configure a Vercel automation bypass secret while Deployment Protection is enabled; then deploy and enable the Base timer workflow.",
     "sourceOfTruth": "system"
   }
 ]

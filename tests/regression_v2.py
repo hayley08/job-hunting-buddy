@@ -26,11 +26,16 @@ def main():
     resume_mirror = load_json("data/resume.json")
     reminders = load_json("data/reminders.json")
     jds = load_json("data/jds.json")
+    jobs = load_json("data/jobs.json")
     pending = load_json("data/pending.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
     job_ids = [item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")]
     assert_true(len(job_ids) == len(set(job_ids)), "duplicate jobId detected")
+    mirror_ids = [item.get("jobId") for item in jobs]
+    expected_mirror_ids = {item.get("jobId") for item in applications + opportunities + historical_opportunities if item.get("jobId")}
+    assert_true(len(mirror_ids) == len(set(mirror_ids)), "duplicate jobId detected in data/jobs.json")
+    assert_true(set(mirror_ids) == expected_mirror_ids, "data/jobs.json must mirror the existing dashboard job stores")
 
     active_apps = [item for item in applications if item.get("market") == "Mainland" and not item.get("archived")]
     active_opps = [item for item in opportunities if item.get("market") == "Mainland" and not item.get("archived")]

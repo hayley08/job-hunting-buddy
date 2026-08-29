@@ -16,5 +16,13 @@
       "daily operation must not require Codex tokens"
     ]
   },
-  "blocker": "Feishu user authorization is required before the actual Base fields and records can be inspected."
+  "implementationStatus": {
+    "baseAuthorized": true,
+    "baseInitialized": true,
+    "baselineRecordCount": 34,
+    "fieldCount": 39,
+    "syncCodeImplemented": true,
+    "scheduledWorkflowEnabled": false
+  },
+  "blocker": "The scheduled workflow needs Vercel Preview environment secrets, a GitHub fine-grained Contents token, and a Vercel automation bypass secret before it can be safely enabled."
 }

@@ -77,6 +77,19 @@ Meituan detail URLs use Meituan's official public job-detail API. Other sites
 are accepted when the page exposes valid `JobPosting` JSON-LD.
 Unsupported or blocked pages fail with an explicit reason and are not saved.
 
+## Feishu Base Data Flow
+
+`job_agent.feishu_sync` consolidates the existing application, opportunity,
+historical-opportunity, and JD stores into the generated `data/jobs.json`
+mirror. It projects only existing repository field names into Feishu Base.
+
+The 18:00 UTC+8 endpoint first inserts repository/search jobs that are missing
+from Feishu by `jobId`, then reads Feishu as the user's editable status/notes
+surface, and materializes the result back into the dashboard's existing JSON
+stores. Unknown Base fields are ignored and the existing status/JD history is
+preserved. Runtime credentials are environment variables and are never stored
+in this repository.
+
 ## BOSS Adapter Rules
 
 `BossAdapter` is not a one-off scraper. It is a source adapter that:

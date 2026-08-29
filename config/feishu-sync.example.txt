@@ -1,0 +1,15 @@
+# Configure these as Vercel Preview environment variables.
+# Never put real secret values in this file or in Git.
+
+FEISHU_APP_ID=
+FEISHU_APP_SECRET=
+FEISHU_BASE_TOKEN=RPoxbsitla9js8sONOzcrGOonBh
+FEISHU_TABLE_ID=tblLboF1qeH7SD6m
+GITHUB_SYNC_TOKEN=
+GITHUB_SYNC_REPO=hayley08/job-hunting-buddy
+GITHUB_SYNC_BRANCH=feature/campus-job-os-v2
+SYNC_WEBHOOK_SECRET=
+
+# If Vercel Deployment Protection remains enabled, configure a Vercel
+# Protection Bypass for Automation secret and send it from the Feishu workflow
+# as the x-vercel-protection-bypass header. Do not commit that value.
