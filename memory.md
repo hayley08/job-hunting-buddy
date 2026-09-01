@@ -65,10 +65,11 @@
 - Feishu-to-dashboard refresh must run automatically every day at 18:00 UTC+8 without Codex/token usage. No Feishu, GitHub, webhook, or deployment secret may be committed. Initial table inspection is blocked until the user grants Feishu Base read/write authorization.
 - Feishu authorization was granted and the target `秋招面板底表` was initialized from the repo schema: 39 existing-schema fields and 34 unique job records. The original five empty placeholder rows were removed. Bot read access is verified.
 - The sync implementation uses `/api/sync-feishu`: repository/search additions missing in Base are inserted by `jobId`, Base edits generate `data/jobs.json`, and the same code materializes the dashboard's existing application/opportunity/historical/JD stores. Enabling the 18:00 Base workflow still requires Preview-only Vercel secrets and a GitHub fine-grained Contents token; deployment protection also requires an automation bypass secret.
-- Local implementation commit `ad7a0ab` could not be pushed after three attempts because GitHub 443 reset/timed out. Do not recreate, rebase, or reset it; retry the same feature-branch push later, then verify the Vercel Preview before enabling the Base workflow.
+- The earlier GitHub 443 blocker for `ad7a0ab` was resolved on 2026-09-01: the original commit chain was pushed without recreation/rebase/reset, GitHub and local branch heads matched, and the feature Preview reached Ready. The 18:00 Base workflow still needs its external secrets before it can be enabled.
 
 ## 2026-09-01
 
 - `测试` is now a first-level Assessment Tracker. Repository records live in `data/tests.json`; browser-created rows are visibly device-local drafts, stored under `campus-os-assessment-drafts-v1`, and can be exported as a dated `.xlsx` workbook with a `Tests` sheet.
 - Company and job title are required text. The optional `jobId` links to an existing canonical job only when safely matched. Assessment status is independent of application status and one job may have multiple tests.
 - Assessment deadlines are derived into Home Upcoming and 需要行动. Desktop uses a table and mobile/tablet use stacked cards without whole-page horizontal scrolling. Daily Run must validate and merge returned tracker workbooks without deleting prior assessment records.
+- Assessment Tracker commit `c4b4489` reached a Ready Vercel Preview and the stable feature-branch alias was attached to that deployment; later documentation-only deployment-state commits may advance the displayed web SHA.

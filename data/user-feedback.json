@@ -51,7 +51,7 @@
     "status": "in_progress",
     "content": "Use the existing schema and deduplication flow for job search -> Feishu Base -> generated data/jobs.json -> existing static dashboard, with an automatic 18:00 UTC+8 refresh that does not consume Codex tokens and with all credentials kept outside the repository.",
     "sourceOfTruth": "user",
-    "implementation": "Base fields and 34-row baseline are complete; sync code and endpoint are implemented locally. The 18:00 workflow remains disabled until Vercel/GitHub secret configuration is supplied."
+    "implementation": "Base fields and 34-row baseline are complete; sync code and endpoint are deployed on the feature Preview. The 18:00 workflow remains disabled until Vercel/GitHub secret configuration is supplied."
   },
   {
     "feedbackId": "feedback-2026-09-01-assessment-tracker",

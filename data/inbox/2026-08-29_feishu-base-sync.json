@@ -22,7 +22,9 @@
     "baselineRecordCount": 34,
     "fieldCount": 39,
     "syncCodeImplemented": true,
-    "scheduledWorkflowEnabled": false
+    "scheduledWorkflowEnabled": false,
+    "gitPushResolvedAt": "2026-09-01T15:34:00+08:00",
+    "previewDeploymentStatus": "READY"
   },
-  "blocker": "The scheduled workflow needs Vercel Preview environment secrets, a GitHub fine-grained Contents token, and a Vercel automation bypass secret before it can be safely enabled. In addition, three push attempts for local implementation commit ad7a0ab failed because github.com:443 was unavailable, so the endpoint is not deployed yet."
+  "blocker": "The scheduled workflow still needs Vercel Preview environment secrets, a GitHub fine-grained Contents token, and a Vercel automation bypass secret before it can be safely enabled. The earlier GitHub 443 push blocker is resolved and the sync endpoint is deployed in the feature Preview."
 }
