@@ -59,6 +59,7 @@ memory.md
 data/applications.json
 data/opportunities.json
 data/jds.json
+data/tests.json
 data/events.json
 data/interviews.json
 data/story-bank.json
@@ -82,6 +83,7 @@ Primary active data:
 - `data/opportunity-history.json`: append-only daily recommendation snapshot index containing dates and canonical `jobId` references, including zero-result days.
 - `data/target-company-watchlist.json`: durable per-company search status and evidence for core targets plus explicit user reminder companies.
 - `data/jds.json`: JD Knowledge records linked by `jobId`.
+- `data/tests.json`: independent assessment records; multiple records may link to one canonical `jobId`.
 - `data/events.json`: deadlines, assessments, interviews, follow-ups.
 - `data/interviews.json`: interview reviews.
 - `data/interview-packs.json`: generated interview preparation packs.
@@ -125,12 +127,13 @@ Pipeline reminder rows are explicit-only. The system must not create reminders f
 
 ## UI Architecture
 
-The PWA has five first-level navigation items:
+The PWA has six first-level navigation items:
 
 ```text
 首页
 机会
 流程
+测试
 面试
 我的
 ```
@@ -140,6 +143,7 @@ Pages:
 - Dashboard
 - Opportunities
 - Pipeline
+- Assessment Tracker
 - Interview Workspace
 - My Settings / Records
 
@@ -155,6 +159,8 @@ Mobile-first rules:
 - Pipeline uses responsive grid/card rows without whole-page horizontal scroll.
 - Drawers become full-screen panels.
 - One-tap copy for resume and story content.
+
+Assessment records merge repository JSON with device-local drafts at render time. Local drafts use the versioned `campus-os-assessment-drafts-v1` localStorage key and remain explicitly device-local. The browser exports the merged records as an `.xlsx` workbook with a `Tests` sheet using the vendored SheetJS runtime, which is cached with the offline shell. Daily Run may validate and import a returned workbook into `data/tests.json`; it must not replace existing records or alter application status.
 
 ## Search Pipeline
 

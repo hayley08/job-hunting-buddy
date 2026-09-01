@@ -1,0 +1,26 @@
+{
+  "inboxId": "inbox-2026-09-01-assessment-tracker",
+  "receivedAt": "2026-09-01T12:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-09-01T12:00:00+08:00",
+  "sourceOfTruth": "user",
+  "request": {
+    "feature": "first-level Assessment Tracker tab",
+    "requiredTextFields": ["company", "jobTitle"],
+    "storage": "repository JSON plus visibly marked device-local drafts",
+    "export": "dated .xlsx workbook with Tests sheet; no CSV",
+    "constraints": [
+      "controlled tag/select fields where practical",
+      "computed statistics only",
+      "desktop table and mobile stacked cards without page overflow",
+      "assessment status independent from application status",
+      "one job may link to multiple tests",
+      "approaching incomplete tests appear on Home"
+    ]
+  },
+  "implementation": {
+    "dataFile": "data/tests.json",
+    "schemaFile": "data/schemas/tests.schema.json",
+    "localStorageKey": "campus-os-assessment-drafts-v1"
+  }
+}

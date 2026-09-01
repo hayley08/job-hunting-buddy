@@ -1,5 +1,24 @@
 import { loadData, loadNavigation, saveNavigation } from "./store.js";
 import {
+  ASSESSMENT_SCOPE_OPTIONS,
+  REPEAT_ENTRY_OPTIONS,
+  TEST_DURATION_OPTIONS,
+  TEST_PLATFORM_OPTIONS,
+  TEST_STATUS_OPTIONS,
+  TEST_TYPE_OPTIONS,
+  assessmentPendingActions,
+  assessmentUpcomingEvents,
+  computeAssessmentStats,
+  createLocalAssessment,
+  displayTestType,
+  exportAssessmentsXlsx,
+  formatLocalDateTime,
+  loadAssessmentDrafts,
+  mergeAssessments,
+  saveAssessmentDraft,
+  validateAssessment
+} from "./assessments.js";
+import {
   applicationInProgress,
   activeApplications,
   activeOpportunities,
@@ -14,6 +33,7 @@ const tabs = [
   { id: "home", label: "首页", icon: "⌂" },
   { id: "opportunities", label: "机会", icon: "◎" },
   { id: "pipeline", label: "流程", icon: "▤" },
+  { id: "assessments", label: "测试", icon: "✓" },
   { id: "interviews", label: "面试", icon: "✦" },
   { id: "me", label: "我的", icon: "⚙" }
 ];
@@ -46,6 +66,7 @@ let drawerOpen = false;
 let pipelineFilter = "all";
 let opportunityDateFilter = "all";
 let selectedJobId = "";
+let assessmentModalOpen = false;
 let serviceWorkerReloading = false;
 
 init();
@@ -64,6 +85,7 @@ async function init() {
   }
 
   state = await loadData();
+  state.localAssessmentDrafts = loadAssessmentDrafts();
   render();
 }
 
@@ -77,6 +99,7 @@ function render() {
       </div>
       <main class="screen">${renderCurrentTab()}</main>
       ${selectedJobId ? renderDetailDrawer() : ""}
+      ${assessmentModalOpen ? renderAssessmentModal() : ""}
     </div>
   `;
 
@@ -136,6 +159,41 @@ function bindInteractions() {
       window.setTimeout(() => (button.textContent = button.dataset.label), 1200);
     });
   });
+
+  document.querySelectorAll("[data-assessment-new]").forEach((button) => {
+    button.addEventListener("click", () => {
+      assessmentModalOpen = true;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-assessment-cancel]").forEach((button) => {
+    button.addEventListener("click", () => {
+      assessmentModalOpen = false;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-assessment-export]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const message = document.querySelector("[data-assessment-export-message]");
+      try {
+        const result = exportAssessmentsXlsx(getAssessmentRecords());
+        if (message) message.textContent = `已导出 ${result.fileName}（${result.rowCount} 条）`;
+      } catch (error) {
+        if (message) message.textContent = error.message;
+      }
+    });
+  });
+
+  const assessmentForm = document.querySelector("[data-assessment-form]");
+  if (assessmentForm) {
+    assessmentForm.addEventListener("submit", handleAssessmentSubmit);
+    assessmentForm.elements.testType?.addEventListener("change", (event) => {
+      const custom = assessmentForm.querySelector("[data-custom-test-type]");
+      if (custom) custom.hidden = event.target.value !== "其他";
+    });
+  }
 }
 
 function normalizeTab(tab) {
@@ -146,6 +204,7 @@ function normalizeTab(tab) {
 function renderCurrentTab() {
   if (activeTab === "opportunities") return renderOpportunities();
   if (activeTab === "pipeline") return renderPipeline();
+  if (activeTab === "assessments") return renderAssessments();
   if (activeTab === "interviews") return renderInterviewWorkspace();
   if (activeTab === "me") return renderMe();
   return renderHome();
@@ -153,7 +212,7 @@ function renderCurrentTab() {
 
 function renderHome() {
   const kpis = computeKpis(state.applications || []);
-  const upcoming = byUpcomingDate(state.events || []).slice(0, 6);
+  const upcoming = byUpcomingDate([...(state.events || []), ...assessmentUpcomingEvents(getAssessmentRecords())]).slice(0, 6);
   const latestDaily = state.daily || {};
   const pendingActions = getPendingActions();
 
@@ -325,6 +384,158 @@ function renderPipeline() {
   `;
 }
 
+function renderAssessments() {
+  const records = getAssessmentRecords();
+  const stats = computeAssessmentStats(records);
+  return `
+    ${hero("测试", "Assessment Tracker", "独立记录海测、笔试、AI 面试和英语面试；不会改变岗位 application 状态")}
+    <section class="assessment-toolbar">
+      <div class="assessment-stats" aria-label="测试统计">
+        ${miniKpi("待完成", stats.pending)}
+        ${miniKpi("7天内截止", stats.dueWithin7Days)}
+        ${miniKpi("已完成", stats.completed)}
+        ${miniKpi("海测", stats.assessmentScope)}
+      </div>
+      <div class="assessment-toolbar-actions">
+        <button class="primary-button" data-assessment-new>+ 新建测试</button>
+        <button class="secondary-button" data-assessment-export>导出 Excel</button>
+      </div>
+    </section>
+    <p class="muted local-draft-note">网页手动新增的数据仅保存在当前浏览器并标记为 <strong>Local Draft</strong>；不会假装已同步到 GitHub 或其他设备。</p>
+    <p class="assessment-export-message" data-assessment-export-message aria-live="polite"></p>
+    <section class="table-panel assessment-panel">
+      <div class="assessment-grid" role="table" aria-label="Assessment tracker">
+        <div class="assessment-grid-head" role="row">
+          <span>公司</span><span>岗位</span><span>海测类型</span><span>测试类型</span><span>收到时间</span><span>截止时间</span><span>状态</span><span>测试重点</span><span>操作</span>
+        </div>
+        ${records.map(renderAssessmentRow).join("") || empty("暂无测试记录；点击“+ 新建测试”可先保存 Local Draft。")}
+      </div>
+    </section>
+  `;
+}
+
+function renderAssessmentRow(item) {
+  const recordedFocus = Array.isArray(item.preparationFocus) ? item.preparationFocus.join("；") : item.preparationFocus;
+  const focus = recordedFocus || item.summary || "待补充";
+  return `
+    <article class="assessment-row" role="row">
+      <div class="assessment-cell assessment-company" data-label="公司"><strong>${escapeHtml(item.company)}</strong>${item.localDraft ? `<small class="local-draft-badge">Local Draft</small>` : ""}</div>
+      <div class="assessment-cell assessment-title" data-label="岗位"><strong>${escapeHtml(item.jobTitle)}</strong>${item.jobId ? `<small>${escapeHtml(item.jobId)}</small>` : `<small>jobId 待关联</small>`}</div>
+      <div class="assessment-cell" data-label="海测类型">${tag(item.assessmentScope || "未记录")}</div>
+      <div class="assessment-cell" data-label="测试类型">${tag(displayTestType(item))}</div>
+      <div class="assessment-cell" data-label="收到时间">${escapeHtml(formatLocalDateTime(item.receivedAt))}</div>
+      <div class="assessment-cell" data-label="截止时间">${escapeHtml(formatLocalDateTime(item.dueAt))}</div>
+      <div class="assessment-cell" data-label="状态"><span class="status-pill ${assessmentStatusClass(item.status)}">${escapeHtml(item.status || "待完成")}</span></div>
+      <div class="assessment-cell assessment-focus" data-label="测试重点">${escapeHtml(shortText(focus, 160))}</div>
+      <div class="assessment-cell assessment-operation" data-label="操作">${item.testUrl ? `<a href="${escapeAttr(item.testUrl)}" target="_blank" rel="noreferrer">打开测试</a>` : `<span class="muted">链接待补</span>`}</div>
+    </article>
+  `;
+}
+
+function assessmentStatusClass(status) {
+  if (status === "已完成") return "green";
+  if (status === "已过期") return "gray";
+  return "amber";
+}
+
+function renderAssessmentModal() {
+  return `
+    <div class="modal-backdrop" role="presentation">
+      <section class="assessment-modal" role="dialog" aria-modal="true" aria-labelledby="assessment-modal-title">
+        <div class="modal-head">
+          <div><p class="eyebrow">Local Draft</p><h2 id="assessment-modal-title">新建测试</h2></div>
+          <button type="button" data-assessment-cancel aria-label="关闭">×</button>
+        </div>
+        <form class="assessment-form" data-assessment-form novalidate>
+          <div class="form-grid">
+            ${textField("company", "公司", "例如：小鹏汽车", true)}
+            ${textField("jobTitle", "岗位", "例如：HRBP 培训生", true)}
+          </div>
+          ${choiceField("assessmentScope", "海测类型", ASSESSMENT_SCOPE_OPTIONS, "非海测")}
+          <div class="form-grid">
+            ${selectField("testType", "测试类型", TEST_TYPE_OPTIONS, TEST_TYPE_OPTIONS[0])}
+            ${selectField("status", "状态", TEST_STATUS_OPTIONS, "待完成")}
+          </div>
+          <label class="form-field" data-custom-test-type hidden><span>自定义测试类型</span><input name="customTestType" type="text" placeholder="请输入测试类型"></label>
+          <div class="form-grid three-col-form">
+            ${dateTimeField("receivedAt", "收到时间")}
+            ${dateTimeField("dueAt", "截止时间")}
+            ${dateTimeField("completedAt", "完成时间")}
+          </div>
+          <div class="form-grid three-col-form">
+            ${selectField("testPlatform", "测试平台", TEST_PLATFORM_OPTIONS, "待确认")}
+            ${selectField("duration", "预计耗时", TEST_DURATION_OPTIONS, "待确认")}
+            ${selectField("repeatEntry", "是否可重复进入", REPEAT_ENTRY_OPTIONS, "未知")}
+          </div>
+          <label class="form-field"><span>测试链接</span><input name="testUrl" type="url" inputmode="url" placeholder="https://..."></label>
+          <div class="form-grid">
+            ${textareaField("summary", "信息总结", "基于实际通知/材料记录测试组成、题型、时间压力和特殊规则")}
+            ${textareaField("notes", "备注", "仅记录你确认过的事实和后续动作")}
+          </div>
+          <p class="assessment-form-error" data-assessment-form-error aria-live="assertive"></p>
+          <div class="modal-actions">
+            <button type="button" class="secondary-button" data-assessment-cancel>取消</button>
+            <button type="submit" class="primary-button">保存 Local Draft</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  `;
+}
+
+function handleAssessmentSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const input = Object.fromEntries(new FormData(form).entries());
+  input.jobId = findMatchingJobId(input.company, input.jobTitle);
+  const errors = validateAssessment(input);
+  const errorNode = form.querySelector("[data-assessment-form-error]");
+  if (errors.length) {
+    errorNode.textContent = errors.join("；");
+    return;
+  }
+  const record = createLocalAssessment(input);
+  state.localAssessmentDrafts = saveAssessmentDraft(record);
+  assessmentModalOpen = false;
+  render();
+}
+
+function getAssessmentRecords() {
+  return mergeAssessments(state.tests || [], state.localAssessmentDrafts || []);
+}
+
+function findMatchingJobId(company, title) {
+  const normalize = (value) => String(value || "").toLocaleLowerCase().replace(/[\s/／·・()（）\[\]【】_-]+/g, "");
+  const companyKey = normalize(company);
+  const titleKey = normalize(title);
+  if (!companyKey || !titleKey) return "";
+  const candidates = [...(state.applications || []), ...(state.opportunities || []), ...(state.historicalOpportunities || [])];
+  const exact = candidates.find((job) => normalize(job.company) === companyKey && normalize(job.title) === titleKey);
+  if (exact) return exact.jobId || "";
+  const close = candidates.find((job) => normalize(job.company) === companyKey && (normalize(job.title).includes(titleKey) || titleKey.includes(normalize(job.title))));
+  return close?.jobId || "";
+}
+
+function textField(name, label, placeholder, required = false) {
+  return `<label class="form-field"><span>${escapeHtml(label)}${required ? " *" : ""}</span><input name="${name}" type="text" placeholder="${escapeAttr(placeholder)}" ${required ? "required" : ""}></label>`;
+}
+
+function dateTimeField(name, label) {
+  return `<label class="form-field"><span>${escapeHtml(label)}</span><input name="${name}" type="datetime-local"></label>`;
+}
+
+function textareaField(name, label, placeholder) {
+  return `<label class="form-field"><span>${escapeHtml(label)}</span><textarea name="${name}" rows="4" placeholder="${escapeAttr(placeholder)}"></textarea></label>`;
+}
+
+function selectField(name, label, options, selected) {
+  return `<label class="form-field"><span>${escapeHtml(label)}</span><select name="${name}">${options.map((option) => `<option value="${escapeAttr(option)}" ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}</select></label>`;
+}
+
+function choiceField(name, label, options, selected) {
+  return `<fieldset class="choice-field"><legend>${escapeHtml(label)}</legend><div class="choice-row">${options.map((option) => `<label><input type="radio" name="${name}" value="${escapeAttr(option)}" ${option === selected ? "checked" : ""}><span>${escapeHtml(option)}</span></label>`).join("")}</div></fieldset>`;
+}
+
 function renderInterviewWorkspace() {
   return `
     ${hero("面试", "Interview Workspace", "面试记录、简历复制工具和 Story Bank 集中在这里")}
@@ -486,11 +697,14 @@ function matchesPipelineFilter(row, filter) {
 }
 
 function getPendingActions() {
-  return applicationInProgress(state.applications || []).map((job) => ({
+  const applications = applicationInProgress(state.applications || []).map((job) => ({
     ...job,
     actionPriority: deadlineDistance(job.deadline) !== "" ? "HIGH" : "HIGH",
-    reminder: inProgressReminder(job)
+    reminder: inProgressReminder(job),
+    actionLabel: "继续投递",
+    actionKind: "application"
   }));
+  return [...applications, ...assessmentPendingActions(getAssessmentRecords())];
 }
 
 function renderPendingActions(actions) {
@@ -500,7 +714,7 @@ function renderPendingActions(actions) {
       <div class="panel-head">
         <div>
           <h2>需要行动</h2>
-          <p class="muted">投递中属于高优先级 Pending Action。</p>
+          <p class="muted">投递中和 7 天内截止的未完成测试属于高优先级 Pending Action。</p>
         </div>
         <span>${actions.length}</span>
       </div>
@@ -511,7 +725,7 @@ function renderPendingActions(actions) {
               <strong>${escapeHtml(job.company || "未命名公司")} · ${escapeHtml(job.title || "未命名岗位")}</strong>
               <p>${escapeHtml(job.reminder)}</p>
             </div>
-            ${renderLink(job.applyUrl || job.jdUrl || job.officialUrl, "继续投递")}
+            ${renderLink(job.applyUrl || job.jdUrl || job.officialUrl, job.actionLabel || "继续处理")}
           </article>
         `).join("")}
       </div>

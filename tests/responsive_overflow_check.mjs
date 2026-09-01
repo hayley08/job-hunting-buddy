@@ -27,6 +27,8 @@ const STATES = [
   { name: "pipeline-watch", tab: "pipeline", filter: "watch" },
   { name: "pipeline-closed", tab: "pipeline", filter: "closed" },
   { name: "pipeline-jd", tab: "pipeline", filter: "jd" },
+  { name: "assessments", tab: "assessments" },
+  { name: "assessment-modal", tab: "assessments", modal: true },
   { name: "interviews", tab: "interviews" },
   { name: "me", tab: "me" }
 ];
@@ -108,10 +110,37 @@ async function waitForReady(ws) {
 }
 
 async function showState(ws, state) {
-  await evaluate(ws, `localStorage.setItem('campus-os-tab', ${JSON.stringify(state.tab)}); location.href = '${ROOT_URL}/index.html?check=${Date.now()}';`);
+  const assessmentDraft = [{
+    testId: "test-local-responsive",
+    company: "响应式测试公司",
+    jobTitle: "人力资源管理培训生（组织发展与人才发展方向）",
+    jobId: "",
+    assessmentScope: "海测",
+    testType: "笔试｜行测 + 图推 + 性格测试",
+    customTestType: "",
+    status: "待完成",
+    receivedAt: "2026-09-01T02:00:00.000Z",
+    dueAt: "2026-09-04T10:00:00.000Z",
+    completedAt: "",
+    testPlatform: "企业自建",
+    duration: "90–120 分钟",
+    repeatEntry: "不可重复进入",
+    testUrl: "https://example.com/assessment/very-long-responsive-test-link",
+    summary: "重点包含资料分析、图形推理、性格一致性与岗位动机，标题和标签需要在窄屏正常换行。",
+    preparationFocus: ["计时练习", "设备检查", "岗位动机"],
+    notes: "",
+    createdAt: "2026-09-01T02:00:00.000Z",
+    updatedAt: "2026-09-01T02:00:00.000Z",
+    sourceOfTruth: "local-draft"
+  }];
+  await evaluate(ws, `localStorage.setItem('campus-os-tab', ${JSON.stringify(state.tab)}); ${state.tab === "assessments" ? `localStorage.setItem('campus-os-assessment-drafts-v1', ${JSON.stringify(JSON.stringify(assessmentDraft))});` : ""} location.href = '${ROOT_URL}/index.html?check=${Date.now()}';`);
   await waitForReady(ws);
   if (state.filter) {
     await evaluate(ws, `document.querySelector('[data-filter="${state.filter}"]')?.click()`);
+    await wait(60);
+  }
+  if (state.modal) {
+    await evaluate(ws, `document.querySelector('[data-assessment-new]')?.click()`);
     await wait(60);
   }
 }
@@ -120,7 +149,7 @@ async function measure(ws) {
   return evaluate(ws, `(() => {
     const tolerance = 2;
     const vw = document.documentElement.clientWidth;
-    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
+    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .assessment-row, .assessment-modal, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
       .map((el) => {
         const rect = el.getBoundingClientRect();
         return {
@@ -153,6 +182,15 @@ async function measure(ws) {
         const cellBottoms = Array.from(row.children).map((cell) => cell.getBoundingClientRect().bottom);
         if (cellBottoms.some((bottom) => Math.abs(bottom - rowBottom) > tolerance)) {
           misalignedRows.push({ grid: 'jd', rowIndex, rowBottom, cellBottoms });
+        }
+      });
+    }
+    if (visibleDesktopGrid('.assessment-grid-head')) {
+      document.querySelectorAll('.assessment-row').forEach((row, rowIndex) => {
+        const rowBottom = row.getBoundingClientRect().bottom;
+        const cellBottoms = Array.from(row.children).map((cell) => cell.getBoundingClientRect().bottom);
+        if (cellBottoms.some((bottom) => Math.abs(bottom - rowBottom) > tolerance)) {
+          misalignedRows.push({ grid: 'assessment', rowIndex, rowBottom, cellBottoms });
         }
       });
     }

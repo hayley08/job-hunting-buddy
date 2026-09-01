@@ -52,5 +52,14 @@
     "content": "Use the existing schema and deduplication flow for job search -> Feishu Base -> generated data/jobs.json -> existing static dashboard, with an automatic 18:00 UTC+8 refresh that does not consume Codex tokens and with all credentials kept outside the repository.",
     "sourceOfTruth": "user",
     "implementation": "Base fields and 34-row baseline are complete; sync code and endpoint are implemented locally. The 18:00 workflow remains disabled until Vercel/GitHub secret configuration is supplied."
+  },
+  {
+    "feedbackId": "feedback-2026-09-01-assessment-tracker",
+    "createdAt": "2026-09-01T12:00:00+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Add a first-level 测试 tracker with required company/job text, controlled tags for other fields, real computed statistics, validated localStorage drafts, Home deadline linkage, responsive table/cards, and dated Excel .xlsx export with a Tests sheet; do not provide CSV or imply cross-device draft sync.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-01T12:00:00+08:00"
   }
 ]

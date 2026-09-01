@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tests.schema.json",
+  "title": "Campus assessment tracker record",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "testId",
+      "company",
+      "jobTitle",
+      "assessmentScope",
+      "testType",
+      "status",
+      "createdAt",
+      "updatedAt"
+    ],
+    "properties": {
+      "testId": { "type": "string", "minLength": 1 },
+      "company": { "type": "string", "minLength": 1 },
+      "jobTitle": { "type": "string", "minLength": 1 },
+      "jobId": { "type": "string" },
+      "assessmentScope": { "enum": ["海测", "非海测"] },
+      "testType": {
+        "enum": [
+          "笔试｜行测 + 图推 + 性格测试",
+          "笔试｜性格测试",
+          "AI 笔试",
+          "AI 面试",
+          "英语面试",
+          "其他"
+        ]
+      },
+      "customTestType": { "type": "string" },
+      "status": { "enum": ["待完成", "已完成", "已过期"] },
+      "receivedAt": { "type": "string" },
+      "dueAt": { "type": "string" },
+      "completedAt": { "type": "string" },
+      "testPlatform": { "type": "string" },
+      "duration": { "type": "string" },
+      "repeatEntry": { "enum": ["未知", "可重复进入", "不可重复进入"] },
+      "testUrl": { "type": "string" },
+      "summary": { "type": "string" },
+      "preparationFocus": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "array", "items": { "type": "string" } }
+        ]
+      },
+      "notes": { "type": "string" },
+      "createdAt": { "type": "string", "format": "date-time" },
+      "updatedAt": { "type": "string", "format": "date-time" },
+      "sourceOfTruth": { "enum": ["repo", "user", "daily-run", "local-draft"] }
+    },
+    "additionalProperties": false
+  }
+}

@@ -9,6 +9,7 @@ The dashboard reads these JSON files directly:
 - `opportunity-history.json`: append-only recommendation dates containing canonical `jobId` references; historical membership is never deleted when status changes
 - `target-company-watchlist.json`: durable target-company status and evidence from the latest search run
 - `jds.json`: complete raw JD snapshots and structured JD knowledge, linked by canonical `jobId`
+- `tests.json`: assessment tracker records, independently linked to canonical jobs by optional `jobId`
 - `resume.json`: reusable resume content cards with Chinese and English copy
 
 Daily automation should update JSON data only. It should not generate a new HTML dashboard.
@@ -19,3 +20,5 @@ The explicit single-URL importer writes into these same canonical stores. It
 does not create a parallel job table or a second schema.
 If the user reports the URL as submitted, the same canonical `jobId` moves to
 `applications.json`; its JD record and opportunity-history membership remain.
+
+Assessment records follow `data/schemas/tests.schema.json`. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.

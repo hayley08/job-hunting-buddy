@@ -1,11 +1,13 @@
-const CACHE_NAME = "hayley-campus-os-v2-20260823-2";
+const CACHE_NAME = "hayley-campus-os-v2-20260901-assessments-1";
 const SHELL_ASSETS = [
   "/",
   "/index.html",
   "/app/app.js",
+  "/app/assessments.js",
   "/app/store.js",
   "/app/filters.js",
   "/app/styles.css",
+  "/app/vendor/xlsx.full.min.js",
   "/manifest.json"
 ];
 

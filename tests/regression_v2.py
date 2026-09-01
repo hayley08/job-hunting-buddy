@@ -28,6 +28,8 @@ def main():
     jds = load_json("data/jds.json")
     jobs = load_json("data/jobs.json")
     pending = load_json("data/pending.json")
+    tests = load_json("data/tests.json")
+    tests_schema = load_json("data/schemas/tests.schema.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
     job_ids = [item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")]
@@ -112,6 +114,8 @@ def main():
     git_pending = next(item for item in pending if item.get("pendingId") == "pending-git-branch")
     assert_true(git_pending.get("status") == "resolved", "obsolete Git blocker must be resolved in formal repository")
     assert_true(handoff.get("runDate") == "2026-08-22", "handoff missing or wrong date")
+    assert_true(isinstance(tests, list), "assessment store must be a JSON array")
+    assert_true(tests_schema.get("type") == "array" and tests_schema.get("items", {}).get("additionalProperties") is False, "assessment schema must reject unplanned fields")
     assert_true(len(reminders) == 15, "user-image reminder list should contain 15 entries")
     assert_true(all(item.get("sourceOfTruth") == "user" for item in reminders), "reminders must be explicit user-provided records")
     assert_true(all(item.get("status") == "提醒列表" for item in reminders), "reminders must stay in 提醒列表 status")
@@ -170,9 +174,11 @@ def main():
     required_files = [
         "index.html",
         "app/app.js",
+        "app/assessments.js",
         "app/store.js",
         "app/filters.js",
         "app/styles.css",
+        "app/vendor/xlsx.full.min.js",
         "manifest.json",
         "service-worker.js",
         "vercel.json",
@@ -181,6 +187,8 @@ def main():
         "SKILL.md",
         "memory.md",
         "data/jds.json",
+        "data/tests.json",
+        "data/schemas/tests.schema.json",
         "data/historical-opportunities.json",
         "data/opportunity-history.json",
         "data/target-company-watchlist.json",
@@ -218,6 +226,7 @@ def main():
     assert_true("Version Visibility" in master and "append-only recommendation history" in master, "long-term UX rules missing")
     assert_true('label: "Story"' not in app_js, "Story must not be a first-level tab")
     assert_true('label: "面试"' in app_js, "面试 must be the first-level interview tab")
+    assert_true('label: "测试"' in app_js and 'activeTab === "assessments"' in app_js, "测试 must be a first-level tab")
     assert_true("bottom-nav" not in app_js and "bottom-nav" not in css, "bottom navigation must not be restored")
     assert_true("Resume Copy Tool" in app_js and "Story Bank" in app_js, "面试 tab must contain Resume Copy Tool and Story Bank")
     assert_true('label: "投递中"' in app_js, "pipeline must expose Application In Progress filter")
@@ -239,6 +248,13 @@ def main():
     assert_true("state.archive?.records" not in app_js, "pipeline must not auto-generate reminders from archive records")
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-grid" in css, "sidebar/mobile/responsive pipeline layout CSS missing")
     assert_true(".watchlist-grid" in css and ".opportunity-meta" in css, "responsive opportunity/watchlist styles missing")
+    assessments_js = (ROOT / "app" / "assessments.js").read_text(encoding="utf-8")
+    assert_true("campus-os-assessment-drafts-v1" in assessments_js and "sourceOfTruth: \"local-draft\"" in assessments_js, "assessment drafts must stay visibly local")
+    assert_true("buildAssessmentWorkbook" in assessments_js and '"Tests"' in assessments_js and "assessment-tracker.xlsx" in assessments_js, "Excel Tests export missing")
+    assert_true("CSV" not in app_js and "导出 Excel" in app_js, "assessment page must export Excel rather than CSV")
+    assert_true(all(text in assessments_js for text in ["公司不能为空", "岗位不能为空", "截止时间不能早于收到时间", "已完成状态请补充完成时间"]), "assessment validation rules missing")
+    assert_true("assessmentUpcomingEvents" in app_js and "assessmentPendingActions" in app_js, "assessment deadlines must link to Home")
+    assert_true(".assessment-grid" in css and ".assessment-modal" in css, "responsive assessment tracker styles missing")
 
     seed_daily = load_json("data/daily/2026-08-23_seed.json")
     assert_true(seed_daily.get("runType") == "SEED_TEST_RUN", "seed run type missing")

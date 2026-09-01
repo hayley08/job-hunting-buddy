@@ -6,6 +6,7 @@ const DATA_FILES = {
   opportunityHistory: "data/opportunity-history.json",
   targetCompanyWatchlist: "data/target-company-watchlist.json",
   events: "data/events.json",
+  tests: "data/tests.json",
   interviews: "data/interviews.json",
   interviewPacks: "data/interview-packs.json",
   storyBank: "data/story-bank.json",
