@@ -7,6 +7,7 @@ import {
   TEST_STATUS_OPTIONS,
   TEST_TYPE_OPTIONS,
   assessmentPendingActions,
+  assessmentSummaryBullets,
   assessmentUpcomingEvents,
   computeAssessmentStats,
   createLocalAssessment,
@@ -418,19 +419,80 @@ function renderAssessments() {
 }
 
 function renderAssessmentRow(item) {
-  const recordedFocus = Array.isArray(item.preparationFocus) ? item.preparationFocus.join("；") : item.preparationFocus;
-  const focus = recordedFocus || item.summary || "待补充";
+  const bullets = assessmentSummaryBullets(item);
   return `
-    <article class="assessment-row" role="row">
-      <div class="assessment-cell assessment-company" data-label="公司"><strong>${escapeHtml(item.company)}</strong>${item.localDraft ? `<small class="local-draft-badge">Local Draft</small>` : ""}</div>
-      <div class="assessment-cell assessment-title" data-label="岗位"><strong>${escapeHtml(item.jobTitle)}</strong>${item.jobId ? `<small>${escapeHtml(item.jobId)}</small>` : `<small>jobId 待关联</small>`}</div>
-      <div class="assessment-cell" data-label="海测类型">${tag(item.assessmentScope || "未记录")}</div>
-      <div class="assessment-cell" data-label="测试类型"><span class="assessment-type-tags">${displayTestType(item).split("；").map(tag).join("")}</span></div>
-      <div class="assessment-cell" data-label="截止日期">${escapeHtml(formatMonthDay(item.dueAt))}</div>
-      <div class="assessment-cell" data-label="状态"><span class="status-pill ${assessmentStatusClass(item.status)}">${escapeHtml(item.status || "待完成")}</span></div>
-      <div class="assessment-cell assessment-focus" data-label="测试重点">${escapeHtml(shortText(focus, 160))}</div>
-      <div class="assessment-cell assessment-operation" data-label="操作">${item.testUrl ? `<a href="${escapeAttr(item.testUrl)}" target="_blank" rel="noreferrer">打开测试</a>` : `<span class="muted">链接待补</span>`}</div>
+    <article class="assessment-record">
+      <div class="assessment-row" role="row">
+        <div class="assessment-cell assessment-company" data-label="公司"><strong>${escapeHtml(item.company)}</strong>${item.localDraft ? `<small class="local-draft-badge">Local Draft</small>` : ""}</div>
+        <div class="assessment-cell assessment-title" data-label="岗位"><strong>${escapeHtml(item.jobTitle)}</strong>${item.jobId ? `<small>${escapeHtml(item.jobId)}</small>` : `<small>jobId 待关联</small>`}</div>
+        <div class="assessment-cell" data-label="海测类型">${tag(item.assessmentScope || "未记录")}</div>
+        <div class="assessment-cell" data-label="测试类型"><span class="assessment-type-tags">${displayTestType(item).split("；").map(tag).join("")}</span></div>
+        <div class="assessment-cell" data-label="截止日期">${escapeHtml(formatMonthDay(item.dueAt))}</div>
+        <div class="assessment-cell" data-label="状态"><span class="status-pill ${assessmentStatusClass(item.status)}">${escapeHtml(item.status || "待完成")}</span></div>
+        <div class="assessment-cell assessment-focus" data-label="测试重点">${renderConciseAssessmentSummary(bullets, item.analysisStatus)}</div>
+        <div class="assessment-cell assessment-operation" data-label="操作">${item.testUrl ? `<a href="${escapeAttr(item.testUrl)}" target="_blank" rel="noreferrer">打开测试</a>` : `<span class="muted">链接待补</span>`}</div>
+      </div>
+      ${renderAssessmentDetail(item)}
     </article>
+  `;
+}
+
+function renderConciseAssessmentSummary(bullets, analysisStatus) {
+  if (!bullets.length) return `<span class="analysis-pending">${analysisStatus === "NEEDS_SOURCE" ? "缺少原始资料" : "待基于全部资料分析"}</span>`;
+  return `<ul class="assessment-focus-list">${bullets.slice(0, 6).map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>${analysisStatus === "STALE" ? `<small class="analysis-stale">有新资料，待重新分析</small>` : ""}`;
+}
+
+function renderAssessmentDetail(item) {
+  const summary = item.assessmentSummary;
+  const materials = item.sourceMaterials || [];
+  return `
+    <details class="assessment-detail-row">
+      <summary>查看完整分析与原始资料（${materials.length}）</summary>
+      <div class="assessment-detail-content">
+        <section class="assessment-analysis-panel">
+          <div class="panel-head"><h3>完整分析总结</h3>${analysisStatusBadge(item.analysisStatus)}</div>
+          ${summary ? `
+            ${analysisSection("测试组成", summary.testComposition)}
+            ${analysisSection("重点题型", summary.keyQuestionTypes)}
+            ${analysisSection("时间与节奏", summary.timingAndPacing)}
+            ${analysisSection("考察重点", summary.competenciesAssessed)}
+            ${analysisSection("高频信息", summary.recurringSignals)}
+            ${analysisSection("准备建议", summary.preparationAdvice)}
+            ${analysisSection("信息冲突 / 待确认", summary.conflicts, true)}
+            <p class="analysis-meta">综合材料 ${summary.sourceMaterialIds?.length || 0} 份 · 分析时间 ${escapeHtml(formatUpdatedAt(summary.analyzedAt))}</p>
+          ` : `<p class="analysis-pending">尚无分析结果。原始资料不会直接作为“测试重点”；需由 Codex / Daily Run 阅读全部材料后生成。</p>`}
+        </section>
+        <section class="assessment-sources-panel">
+          <h3>原始资料来源</h3>
+          ${materials.length ? materials.map(renderSourceMaterial).join("") : `<p class="muted">尚未保存原始资料。</p>`}
+        </section>
+      </div>
+    </details>
+  `;
+}
+
+function analysisSection(title, values, emphasize = false) {
+  const items = Array.isArray(values) ? values : [];
+  return `<div class="analysis-section ${emphasize && items.length ? "analysis-conflict" : ""}"><h4>${escapeHtml(title)}</h4>${items.length ? `<ul>${items.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul>` : `<p class="muted">材料未提供 / 未发现可靠信息</p>`}</div>`;
+}
+
+function analysisStatusBadge(status) {
+  const labels = { CURRENT: "分析已更新", STALE: "有新资料·待重新分析", NOT_ANALYZED: "待分析", NEEDS_SOURCE: "缺少资料" };
+  return `<span class="analysis-status ${String(status || "NEEDS_SOURCE").toLowerCase()}">${escapeHtml(labels[status] || labels.NEEDS_SOURCE)}</span>`;
+}
+
+function renderSourceMaterial(material) {
+  const sourceUrl = /^https?:\/\//i.test(material.sourceUrl || "") ? material.sourceUrl : "";
+  const reference = sourceUrl || material.storageRef || "";
+  return `
+    <details class="source-material">
+      <summary>${escapeHtml(material.title || "未命名资料")} · ${escapeHtml(material.materialType || "other")}</summary>
+      <div class="source-material-body">
+        <p class="muted">ID: ${escapeHtml(material.materialId || "")} · 保存时间: ${escapeHtml(formatUpdatedAt(material.capturedAt))}</p>
+        ${reference ? `<p>${sourceUrl ? `<a href="${escapeAttr(sourceUrl)}" target="_blank" rel="noreferrer">打开原始网页</a>` : escapeHtml(reference)}</p>` : ""}
+        ${material.rawContent ? `<pre>${escapeHtml(material.rawContent)}</pre>` : `<p class="muted">原文件通过引用保存，未内嵌文本。</p>`}
+      </div>
+    </details>
   `;
 }
 
@@ -468,7 +530,7 @@ function renderAssessmentModal() {
           </div>
           <label class="form-field"><span>测试链接</span><input name="testUrl" type="url" inputmode="url" placeholder="https://..."></label>
           <div class="form-grid">
-            ${textareaField("summary", "信息总结", "基于实际通知/材料记录测试组成、题型、时间压力和特殊规则")}
+            ${textareaField("sourceMaterialText", "原始资料（可选）", "粘贴通知或材料原文；这里只保存 sourceMaterials，不会直接显示为测试重点")}
             ${textareaField("notes", "备注", "仅记录你确认过的事实和后续动作")}
           </div>
           <p class="assessment-form-error" data-assessment-form-error aria-live="assertive"></p>

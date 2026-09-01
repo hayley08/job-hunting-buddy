@@ -28,6 +28,7 @@ const STATES = [
   { name: "pipeline-closed", tab: "pipeline", filter: "closed" },
   { name: "pipeline-jd", tab: "pipeline", filter: "jd" },
   { name: "assessments", tab: "assessments" },
+  { name: "assessment-details", tab: "assessments", details: true },
   { name: "assessment-modal", tab: "assessments", modal: true },
   { name: "interviews", tab: "interviews" },
   { name: "me", tab: "me" }
@@ -125,8 +126,29 @@ async function showState(ws, state) {
     duration: "90–120 分钟",
     repeatEntry: "不可重复进入",
     testUrl: "https://example.com/assessment/very-long-responsive-test-link",
-    summary: "重点包含资料分析、图形推理、性格一致性与岗位动机，标题和标签需要在窄屏正常换行。",
-    preparationFocus: ["计时练习", "设备检查", "岗位动机"],
+    sourceMaterials: [{
+      materialId: "material-responsive-text",
+      materialType: "text",
+      title: "原始通知长标题",
+      sourceUrl: "",
+      storageRef: "",
+      rawContent: "RAW_SOURCE_MARKER：这是只允许出现在详情里的原始长段文字，不得直接进入表格测试重点。",
+      capturedAt: "2026-09-01T02:00:00.000Z",
+      contentHash: "responsive-hash"
+    }],
+    assessmentSummary: {
+      testComposition: ["资料分析", "图形推理", "性格测试"],
+      keyQuestionTypes: ["数据计算", "图形规律"],
+      timingAndPacing: ["各模块限时，具体分钟数待确认"],
+      competenciesAssessed: ["数理分析", "抽象推理", "作答一致性"],
+      recurringSignals: ["多份材料均提到图推与性格测试"],
+      preparationAdvice: ["计时练习资料分析", "复盘常见图形规律", "保持性格题作答一致"],
+      conflicts: ["模块顺序信息不一致/待确认"],
+      conciseBullets: ["包含资料分析、图推和性格测试", "重点训练数据计算与图形规律", "各模块存在限时压力", "模块顺序待确认"],
+      sourceMaterialIds: ["material-responsive-text"],
+      analyzedAt: "2026-09-01T03:00:00.000Z"
+    },
+    analysisStatus: "CURRENT",
     notes: "",
     createdAt: "2026-09-01T02:00:00.000Z",
     updatedAt: "2026-09-01T02:00:00.000Z",
@@ -142,13 +164,17 @@ async function showState(ws, state) {
     await evaluate(ws, `document.querySelector('[data-assessment-new]')?.click()`);
     await wait(60);
   }
+  if (state.details) {
+    await evaluate(ws, `document.querySelector('.assessment-detail-row')?.setAttribute('open', ''); document.querySelector('.source-material')?.setAttribute('open', '')`);
+    await wait(60);
+  }
 }
 
 async function measure(ws) {
   return evaluate(ws, `(() => {
     const tolerance = 2;
     const vw = document.documentElement.clientWidth;
-    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .assessment-row, .assessment-modal, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
+    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .assessment-row, .assessment-detail-row, .assessment-detail-content, .source-material, .assessment-modal, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
       .map((el) => {
         const rect = el.getBoundingClientRect();
         return {
@@ -204,7 +230,11 @@ async function measure(ws) {
         testTypeCheckboxes: document.querySelectorAll('input[name="testType"][type="checkbox"]').length,
         receivedFields: document.querySelectorAll('[name="receivedAt"], [name="receivedMonth"], [name="receivedDay"]').length,
         dateTimeFields: document.querySelectorAll('.assessment-form input[type="datetime-local"], .assessment-form input[type="date"]').length,
-        monthDaySelects: document.querySelectorAll('.assessment-form [data-month-select]').length
+        monthDaySelects: document.querySelectorAll('.assessment-form [data-month-select]').length,
+        conciseBulletCount: document.querySelectorAll('.assessment-focus .assessment-focus-list li').length,
+        rawMaterialLeakedIntoFocus: (document.querySelector('.assessment-focus')?.textContent || '').includes('RAW_SOURCE_MARKER'),
+        sourceMaterialCount: document.querySelectorAll('.source-material').length,
+        analysisSectionCount: document.querySelectorAll('.assessment-analysis-panel .analysis-section').length
       }
     };
   })()`);
@@ -234,7 +264,13 @@ try {
         result.assessmentUi.dateTimeFields !== 0 ||
         result.assessmentUi.monthDaySelects !== 2
       );
-      if (hasDocumentOverflow || result.overflowers.length || result.misalignedRows.length || assessmentUiInvalid) {
+      const assessmentDataUiInvalid = state.tab === 'assessments' && !state.modal && (
+        result.assessmentUi.conciseBulletCount !== 4 ||
+        result.assessmentUi.rawMaterialLeakedIntoFocus ||
+        result.assessmentUi.sourceMaterialCount !== 1 ||
+        result.assessmentUi.analysisSectionCount !== 7
+      );
+      if (hasDocumentOverflow || result.overflowers.length || result.misalignedRows.length || assessmentUiInvalid || assessmentDataUiInvalid) {
         failures.push({ viewport: `${width}x${height}`, state: state.name, ...result });
       }
     }

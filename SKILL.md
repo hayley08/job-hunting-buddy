@@ -52,7 +52,7 @@ Hong Kong data is archive-only:
 3. Merge new facts without overwriting history.
 4. Preserve manual overrides.
 5. Update applications, events, interviews, and Story Bank.
-6. Validate assessment records and any explicitly supplied assessment-tracker workbook; merge by `testId`, preserve multiple tests per `jobId`, normalize `testType` as a multi-select array, keep `dueAt`/`completedAt` as `MM-DD`, discard `receivedAt`, and never infer application status from assessment status.
+6. Validate assessment records and any explicitly supplied assessment-tracker workbook; merge by `testId`, preserve multiple tests per `jobId`, normalize `testType` as a multi-select array, keep `dueAt`/`completedAt` as `MM-DD`, discard `receivedAt`, and never infer application status from assessment status. Append every new raw file/text/web input to `sourceMaterials` without deleting earlier evidence. Mark an existing analysis `STALE`, then read the complete material set and regenerate `assessmentSummary` by synthesis, deduplication and cross-checking. Require 3–6 concise table bullets, 3–5 preparation actions, explicit conflicts, and full current `sourceMaterialIds` coverage before setting `analysisStatus = CURRENT`; never copy raw text into table focus or add unsupported common-knowledge claims.
 7. Search new Mainland campus HR opportunities.
 8. Validate links, freshness, status, job identity, and relevance.
 9. Append today's immutable opportunity snapshot by `jobId`, including when the result is zero; never delete prior dates.

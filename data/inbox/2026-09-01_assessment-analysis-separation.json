@@ -1,0 +1,30 @@
+{
+  "inboxId": "inbox-2026-09-01-assessment-analysis-separation",
+  "receivedAt": "2026-09-01T17:30:00+08:00",
+  "processed": true,
+  "processedAt": "2026-09-02T01:30:00+08:00",
+  "sourceOfTruth": "user",
+  "request": {
+    "rawField": "sourceMaterials",
+    "derivedField": "assessmentSummary",
+    "tableRule": "show only 3–6 synthesized concise bullets, never raw material",
+    "detailRule": "show complete categorized analysis and separately traceable raw sources",
+    "analysisSections": [
+      "testComposition",
+      "keyQuestionTypes",
+      "timingAndPacing",
+      "competenciesAssessed",
+      "recurringSignals",
+      "preparationAdvice",
+      "conflicts"
+    ],
+    "refreshRule": "append new raw sources, preserve old raw sources, then reanalyze the full source set",
+    "integrityRules": [
+      "synthesize and deduplicate multiple materials",
+      "cross-check repeated information",
+      "mark conflicting information as inconsistent/to verify",
+      "do not add facts absent from source materials"
+    ]
+  },
+  "implementationStatus": "implemented-and-verified"
+}

@@ -12,6 +12,9 @@
       "assessmentScope",
       "testType",
       "status",
+      "sourceMaterials",
+      "assessmentSummary",
+      "analysisStatus",
       "createdAt",
       "updatedAt"
     ],
@@ -44,18 +47,92 @@
       "duration": { "type": "string" },
       "repeatEntry": { "enum": ["未知", "可重复进入", "不可重复进入"] },
       "testUrl": { "type": "string" },
-      "summary": { "type": "string" },
-      "preparationFocus": {
+      "sourceMaterials": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["materialId", "materialType", "title", "sourceUrl", "storageRef", "rawContent", "capturedAt", "contentHash"],
+          "properties": {
+            "materialId": { "type": "string", "minLength": 1 },
+            "materialType": { "enum": ["excel", "image", "text", "web", "pdf", "word", "other"] },
+            "title": { "type": "string", "minLength": 1 },
+            "sourceUrl": { "type": "string" },
+            "storageRef": { "type": "string" },
+            "rawContent": { "type": "string" },
+            "capturedAt": { "type": "string", "format": "date-time" },
+            "contentHash": { "type": "string" }
+          },
+          "anyOf": [
+            { "properties": { "sourceUrl": { "minLength": 1 } } },
+            { "properties": { "storageRef": { "minLength": 1 } } },
+            { "properties": { "rawContent": { "minLength": 1 } } }
+          ],
+          "additionalProperties": false
+        }
+      },
+      "assessmentSummary": {
         "oneOf": [
-          { "type": "string" },
-          { "type": "array", "items": { "type": "string" } }
+          { "type": "null" },
+          {
+            "type": "object",
+            "required": [
+              "testComposition",
+              "keyQuestionTypes",
+              "timingAndPacing",
+              "competenciesAssessed",
+              "recurringSignals",
+              "preparationAdvice",
+              "conflicts",
+              "conciseBullets",
+              "sourceMaterialIds",
+              "analyzedAt"
+            ],
+            "properties": {
+              "testComposition": { "$ref": "#/$defs/stringList" },
+              "keyQuestionTypes": { "$ref": "#/$defs/stringList" },
+              "timingAndPacing": { "$ref": "#/$defs/stringList" },
+              "competenciesAssessed": { "$ref": "#/$defs/stringList" },
+              "recurringSignals": { "$ref": "#/$defs/stringList" },
+              "preparationAdvice": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 5,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "conflicts": { "$ref": "#/$defs/stringList" },
+              "conciseBullets": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 6,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "sourceMaterialIds": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "analyzedAt": { "type": "string", "format": "date-time" }
+            },
+            "additionalProperties": false
+          }
         ]
       },
+      "analysisStatus": { "enum": ["NEEDS_SOURCE", "NOT_ANALYZED", "CURRENT", "STALE"] },
       "notes": { "type": "string" },
       "createdAt": { "type": "string", "format": "date-time" },
       "updatedAt": { "type": "string", "format": "date-time" },
       "sourceOfTruth": { "enum": ["repo", "user", "daily-run", "local-draft"] }
     },
     "additionalProperties": false
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
   }
 }

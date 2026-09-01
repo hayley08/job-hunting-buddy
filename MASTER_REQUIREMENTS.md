@@ -294,7 +294,7 @@ testType = [笔试｜行测 + 图推 + 性格测试, 笔试｜性格测试, AI �
 status = 待完成 | 已完成 | 已过期
 ```
 
-`assessmentScope` defaults to `海测`. `testType` is a required multi-select array and may contain more than one controlled option. `其他` requires `customTestType`. Optional controlled fields are `testPlatform`, `duration`, and `repeatEntry`; free text is reserved for company, job title, URL, summary, preparation focus, and notes.
+`assessmentScope` defaults to `海测`. `testType` is a required multi-select array and may contain more than one controlled option. `其他` requires `customTestType`. Optional controlled fields are `testPlatform`, `duration`, and `repeatEntry`; free text is reserved for company, job title, URL, raw source material, and notes.
 
 The assessment tracker does not collect `receivedAt`. It stores only `dueAt` and `completedAt`, both as yearless `MM-DD` values and displays them as `MM/DD`; the form must not request a year or time. Home deadline calculations may infer the nearest applicable calendar year at runtime, but must not write that inferred year back into the assessment record.
 
@@ -302,9 +302,30 @@ The page computes its top statistics from actual merged repository and local-dra
 
 `+ 新建测试` opens a modal. Before saving, company and job title and at least one test type are required; month/day values must be valid, and an 已完成 record requires `completedAt`. In this static PWA, manually created records are stored only in `localStorage` and visibly marked `Local Draft`; never imply that these records sync across devices or to GitHub.
 
-The tracker exports `.xlsx` only, with a `Tests` sheet and a date-prefixed filename such as `2026-09-01_assessment-tracker.xlsx`. CSV export is not part of this feature. Exported local drafts may later be supplied to Codex or a Daily Run for validated import into `data/tests.json`.
+The tracker exports `.xlsx` only, with a `Tests` sheet, a `Source Materials` sheet, and a date-prefixed filename such as `2026-09-01_assessment-tracker.xlsx`. CSV export is not part of this feature. Exported local drafts may later be supplied to Codex or a Daily Run for validated import into `data/tests.json`.
 
-When the user supplies assessment material (image, text, PDF, Word, or web page), summaries must be grounded in that material and cover test composition, key modules, question types or process, time pressure, special rules, the 3–5 highest-value preparation points, and uncertain information. Do not replace source-specific analysis with generic aptitude-test explanations.
+### Assessment Sources And Analysis
+
+User-provided Excel, image, text, PDF, Word, and web content is evidence, not a summary. Preserve every raw input in append-only `sourceMaterials` with a stable material ID, source type/title, raw content and/or original file/URL reference, capture time, and content hash when available. Never place raw source text directly into the table's 测试重点 column.
+
+`assessmentSummary` is a separate derived object that must be produced only after reading all current source materials for the assessment together. It must synthesize, deduplicate, and cross-check the sources rather than copying them one by one. It contains:
+
+```text
+testComposition
+keyQuestionTypes
+timingAndPacing
+competenciesAssessed
+recurringSignals
+preparationAdvice (3–5 items)
+conflicts
+conciseBullets (3–6 items)
+sourceMaterialIds
+analyzedAt
+```
+
+The table's 测试重点 displays only `assessmentSummary.conciseBullets`. If no valid analysis exists, show 待分析/缺少原始资料; never fall back to raw text. The details panel displays the complete categorized analysis and the separately traceable raw material sources.
+
+Every newly appended material must preserve all prior `sourceMaterials`, set `analysisStatus = STALE` when an older analysis exists (otherwise `NOT_ANALYZED`), and trigger a complete re-analysis against the full material set. Only an analysis whose `sourceMaterialIds` covers every current material may be `CURRENT`. Conflicting sources must be reported explicitly as 信息不一致/待确认. Never add facts from general knowledge when they are absent from the sources.
 
 ## Applications
 

@@ -160,7 +160,11 @@ Mobile-first rules:
 - Drawers become full-screen panels.
 - One-tap copy for resume and story content.
 
-Assessment records merge repository JSON with device-local drafts at render time. Local drafts use the versioned `campus-os-assessment-drafts-v1` localStorage key and remain explicitly device-local. `assessmentScope` defaults to 海测, `testType` is a multi-select array, and only yearless `MM-DD` due/completed dates are stored; `receivedAt`, calendar year, and clock time are not part of the assessment record. Legacy local drafts with a string test type or full ISO date are normalized in memory without expanding the repository schema. The browser exports the merged records as an `.xlsx` workbook with a `Tests` sheet using the vendored SheetJS runtime, which is cached with the offline shell. Daily Run may validate and import a returned workbook into `data/tests.json`; it must not replace existing records or alter application status.
+Assessment records merge repository JSON with device-local drafts at render time. Local drafts use the versioned `campus-os-assessment-drafts-v1` localStorage key and remain explicitly device-local. `assessmentScope` defaults to 海测, `testType` is a multi-select array, and only yearless `MM-DD` due/completed dates are stored; `receivedAt`, calendar year, and clock time are not part of the assessment record. Legacy local drafts with a string test type or full ISO date are normalized in memory without expanding the repository schema.
+
+Assessment evidence and analysis are separate layers. `sourceMaterials` is append-only raw evidence with stable IDs and file/URL/text provenance. `assessmentSummary` is a derived synthesis whose material ID coverage determines `analysisStatus` (`NEEDS_SOURCE`, `NOT_ANALYZED`, `STALE`, or `CURRENT`). The table consumes only 3–6 concise summary bullets; details expose the full categorized synthesis and raw sources separately. A new material changes the status to stale/not-analyzed and requires re-analysis of the complete retained source set.
+
+The browser exports the merged records as an `.xlsx` workbook with `Tests` and `Source Materials` sheets using the vendored SheetJS runtime, which is cached with the offline shell. Daily Run may validate and import a returned workbook into `data/tests.json`; it must not replace existing records or alter application status.
 
 ## Search Pipeline
 

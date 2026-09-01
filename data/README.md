@@ -10,6 +10,7 @@ The dashboard reads these JSON files directly:
 - `target-company-watchlist.json`: durable target-company status and evidence from the latest search run
 - `jds.json`: complete raw JD snapshots and structured JD knowledge, linked by canonical `jobId`
 - `tests.json`: assessment tracker records, independently linked to canonical jobs by optional `jobId`
+- `assessment-materials/`: append-only original assessment files referenced by `sourceMaterials.storageRef`
 - `resume.json`: reusable resume content cards with Chinese and English copy
 
 Daily automation should update JSON data only. It should not generate a new HTML dashboard.
@@ -21,4 +22,4 @@ does not create a parallel job table or a second schema.
 If the user reports the URL as submitted, the same canonical `jobId` moves to
 `applications.json`; its JD record and opportunity-history membership remain.
 
-Assessment records follow `data/schemas/tests.schema.json`. `testType` is an array, `assessmentScope` defaults to 海测 at creation, and only yearless `MM-DD` due/completed dates are retained. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.
+Assessment records follow `data/schemas/tests.schema.json`. `testType` is an array, `assessmentScope` defaults to 海测 at creation, and only yearless `MM-DD` due/completed dates are retained. Append-only `sourceMaterials` preserves raw evidence; separately derived `assessmentSummary` is the only source for table focus bullets, and its source ID coverage controls whether analysis is current or stale. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.

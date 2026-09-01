@@ -70,5 +70,15 @@
     "content": "Assessment creation defaults to 海测, removes receivedAt, records only due/completed month-day without year or time, and uses a multi-select testType. Organize the user's actual assessment records, analyze written-test preparation priorities from real material, and deploy to Vercel.",
     "sourceOfTruth": "user",
     "implementation": "Field/schema/UI revision is implemented, verified, and deployed to the stable feature Preview. The repository contains no supplied assessment records yet, so data-specific preparation analysis remains pending rather than inferred from QA examples."
+  },
+  {
+    "feedbackId": "feedback-2026-09-01-assessment-analysis-separation",
+    "createdAt": "2026-09-01T17:30:00+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Keep uploaded Excel/image/text/PDF/Word/web evidence in append-only sourceMaterials and never display raw text as 测试重点. Generate a separate cross-source assessmentSummary with the fixed analysis sections, 3–6 concise table bullets, 3–5 preparation actions and explicit conflicts; every new material triggers full-set reanalysis while retaining old raw sources.",
+    "sourceOfTruth": "user",
+    "implementation": "Raw source preservation, structured cross-source summary, stale-analysis refresh state, table/detail separation, two-sheet Excel export and Daily Run rules are implemented and regression-tested.",
+    "implementedAt": "2026-09-02T01:30:00+08:00"
   }
 ]
