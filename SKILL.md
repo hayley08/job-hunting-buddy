@@ -52,7 +52,7 @@ Hong Kong data is archive-only:
 3. Merge new facts without overwriting history.
 4. Preserve manual overrides.
 5. Update applications, events, interviews, and Story Bank.
-6. Validate assessment records and any explicitly supplied assessment-tracker workbook; merge by `testId`, preserve multiple tests per `jobId`, and never infer application status from assessment status.
+6. Validate assessment records and any explicitly supplied assessment-tracker workbook; merge by `testId`, preserve multiple tests per `jobId`, normalize `testType` as a multi-select array, keep `dueAt`/`completedAt` as `MM-DD`, discard `receivedAt`, and never infer application status from assessment status.
 7. Search new Mainland campus HR opportunities.
 8. Validate links, freshness, status, job identity, and relevance.
 9. Append today's immutable opportunity snapshot by `jobId`, including when the result is zero; never delete prior dates.

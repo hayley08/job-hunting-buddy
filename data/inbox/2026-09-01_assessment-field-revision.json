@@ -1,0 +1,26 @@
+{
+  "inboxId": "inbox-2026-09-01-assessment-field-revision",
+  "receivedAt": "2026-09-01T16:45:00+08:00",
+  "processed": false,
+  "sourceOfTruth": "user",
+  "request": {
+    "defaultAssessmentScope": "海测",
+    "removeFields": ["receivedAt"],
+    "dateFields": {
+      "fields": ["dueAt", "completedAt"],
+      "format": "MM-DD",
+      "display": "MM/DD",
+      "exclude": ["year", "time"]
+    },
+    "testType": "multi-select array",
+    "dataTask": "organize supplied assessment records and analyze written-test preparation priorities",
+    "deployment": "feature/campus-job-os-v2 Vercel Preview"
+  },
+  "implementationStatus": {
+    "fieldRevision": "implemented",
+    "dataImport": "pending-source-data",
+    "preparationAnalysis": "pending-source-data",
+    "deployment": "pending"
+  },
+  "blocker": "No actual assessment dataset or assessment-material attachment is present in the repository or current accessible workspace. Do not substitute the QA sample workbook or invent test details."
+}

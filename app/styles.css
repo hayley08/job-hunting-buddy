@@ -726,7 +726,7 @@ h3 {
 .assessment-grid-head,
 .assessment-row {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr) minmax(0, 0.7fr) minmax(0, 1.25fr) minmax(0, 0.85fr) minmax(0, 0.85fr) minmax(0, 0.65fr) minmax(0, 1.3fr) minmax(0, 0.65fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr) minmax(0, 0.7fr) minmax(0, 1.45fr) minmax(0, 0.75fr) minmax(0, 0.65fr) minmax(0, 1.3fr) minmax(0, 0.65fr);
   align-items: stretch;
 }
 
@@ -758,6 +758,12 @@ h3 {
 
 .assessment-cell small {
   color: var(--muted);
+}
+
+.assessment-type-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .assessment-operation a {
@@ -860,6 +866,12 @@ h3 {
   color: var(--text);
   font: inherit;
   font-weight: 500;
+}
+
+.month-day-input {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .form-field textarea {

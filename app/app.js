@@ -12,7 +12,7 @@ import {
   createLocalAssessment,
   displayTestType,
   exportAssessmentsXlsx,
-  formatLocalDateTime,
+  formatMonthDay,
   loadAssessmentDrafts,
   mergeAssessments,
   saveAssessmentDraft,
@@ -189,9 +189,12 @@ function bindInteractions() {
   const assessmentForm = document.querySelector("[data-assessment-form]");
   if (assessmentForm) {
     assessmentForm.addEventListener("submit", handleAssessmentSubmit);
-    assessmentForm.elements.testType?.addEventListener("change", (event) => {
+    assessmentForm.querySelectorAll('input[name="testType"]').forEach((input) => input.addEventListener("change", () => {
       const custom = assessmentForm.querySelector("[data-custom-test-type]");
-      if (custom) custom.hidden = event.target.value !== "其他";
+      if (custom) custom.hidden = !assessmentForm.querySelector('input[name="testType"][value="其他"]')?.checked;
+    }));
+    assessmentForm.querySelectorAll("[data-month-select]").forEach((select) => {
+      select.addEventListener("change", () => syncMonthDayOptions(assessmentForm, select.dataset.monthSelect));
     });
   }
 }
@@ -406,7 +409,7 @@ function renderAssessments() {
     <section class="table-panel assessment-panel">
       <div class="assessment-grid" role="table" aria-label="Assessment tracker">
         <div class="assessment-grid-head" role="row">
-          <span>公司</span><span>岗位</span><span>海测类型</span><span>测试类型</span><span>收到时间</span><span>截止时间</span><span>状态</span><span>测试重点</span><span>操作</span>
+          <span>公司</span><span>岗位</span><span>海测类型</span><span>测试类型</span><span>截止日期</span><span>状态</span><span>测试重点</span><span>操作</span>
         </div>
         ${records.map(renderAssessmentRow).join("") || empty("暂无测试记录；点击“+ 新建测试”可先保存 Local Draft。")}
       </div>
@@ -422,9 +425,8 @@ function renderAssessmentRow(item) {
       <div class="assessment-cell assessment-company" data-label="公司"><strong>${escapeHtml(item.company)}</strong>${item.localDraft ? `<small class="local-draft-badge">Local Draft</small>` : ""}</div>
       <div class="assessment-cell assessment-title" data-label="岗位"><strong>${escapeHtml(item.jobTitle)}</strong>${item.jobId ? `<small>${escapeHtml(item.jobId)}</small>` : `<small>jobId 待关联</small>`}</div>
       <div class="assessment-cell" data-label="海测类型">${tag(item.assessmentScope || "未记录")}</div>
-      <div class="assessment-cell" data-label="测试类型">${tag(displayTestType(item))}</div>
-      <div class="assessment-cell" data-label="收到时间">${escapeHtml(formatLocalDateTime(item.receivedAt))}</div>
-      <div class="assessment-cell" data-label="截止时间">${escapeHtml(formatLocalDateTime(item.dueAt))}</div>
+      <div class="assessment-cell" data-label="测试类型"><span class="assessment-type-tags">${displayTestType(item).split("；").map(tag).join("")}</span></div>
+      <div class="assessment-cell" data-label="截止日期">${escapeHtml(formatMonthDay(item.dueAt))}</div>
       <div class="assessment-cell" data-label="状态"><span class="status-pill ${assessmentStatusClass(item.status)}">${escapeHtml(item.status || "待完成")}</span></div>
       <div class="assessment-cell assessment-focus" data-label="测试重点">${escapeHtml(shortText(focus, 160))}</div>
       <div class="assessment-cell assessment-operation" data-label="操作">${item.testUrl ? `<a href="${escapeAttr(item.testUrl)}" target="_blank" rel="noreferrer">打开测试</a>` : `<span class="muted">链接待补</span>`}</div>
@@ -451,16 +453,13 @@ function renderAssessmentModal() {
             ${textField("company", "公司", "例如：小鹏汽车", true)}
             ${textField("jobTitle", "岗位", "例如：HRBP 培训生", true)}
           </div>
-          ${choiceField("assessmentScope", "海测类型", ASSESSMENT_SCOPE_OPTIONS, "非海测")}
-          <div class="form-grid">
-            ${selectField("testType", "测试类型", TEST_TYPE_OPTIONS, TEST_TYPE_OPTIONS[0])}
-            ${selectField("status", "状态", TEST_STATUS_OPTIONS, "待完成")}
-          </div>
+          ${choiceField("assessmentScope", "海测类型", ASSESSMENT_SCOPE_OPTIONS, "海测")}
+          ${multiChoiceField("testType", "测试类型（可多选）", TEST_TYPE_OPTIONS)}
+          ${selectField("status", "状态", TEST_STATUS_OPTIONS, "待完成")}
           <label class="form-field" data-custom-test-type hidden><span>自定义测试类型</span><input name="customTestType" type="text" placeholder="请输入测试类型"></label>
-          <div class="form-grid three-col-form">
-            ${dateTimeField("receivedAt", "收到时间")}
-            ${dateTimeField("dueAt", "截止时间")}
-            ${dateTimeField("completedAt", "完成时间")}
+          <div class="form-grid">
+            ${monthDayField("due", "截止日期")}
+            ${monthDayField("completed", "完成日期")}
           </div>
           <div class="form-grid three-col-form">
             ${selectField("testPlatform", "测试平台", TEST_PLATFORM_OPTIONS, "待确认")}
@@ -486,7 +485,11 @@ function renderAssessmentModal() {
 function handleAssessmentSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const input = Object.fromEntries(new FormData(form).entries());
+  const formData = new FormData(form);
+  const input = Object.fromEntries(formData.entries());
+  input.testType = formData.getAll("testType");
+  input.dueAt = monthDayFromForm(formData, "due");
+  input.completedAt = monthDayFromForm(formData, "completed");
   input.jobId = findMatchingJobId(input.company, input.jobTitle);
   const errors = validateAssessment(input);
   const errorNode = form.querySelector("[data-assessment-form-error]");
@@ -520,10 +523,6 @@ function textField(name, label, placeholder, required = false) {
   return `<label class="form-field"><span>${escapeHtml(label)}${required ? " *" : ""}</span><input name="${name}" type="text" placeholder="${escapeAttr(placeholder)}" ${required ? "required" : ""}></label>`;
 }
 
-function dateTimeField(name, label) {
-  return `<label class="form-field"><span>${escapeHtml(label)}</span><input name="${name}" type="datetime-local"></label>`;
-}
-
 function textareaField(name, label, placeholder) {
   return `<label class="form-field"><span>${escapeHtml(label)}</span><textarea name="${name}" rows="4" placeholder="${escapeAttr(placeholder)}"></textarea></label>`;
 }
@@ -534,6 +533,34 @@ function selectField(name, label, options, selected) {
 
 function choiceField(name, label, options, selected) {
   return `<fieldset class="choice-field"><legend>${escapeHtml(label)}</legend><div class="choice-row">${options.map((option) => `<label><input type="radio" name="${name}" value="${escapeAttr(option)}" ${option === selected ? "checked" : ""}><span>${escapeHtml(option)}</span></label>`).join("")}</div></fieldset>`;
+}
+
+function multiChoiceField(name, label, options) {
+  return `<fieldset class="choice-field"><legend>${escapeHtml(label)}</legend><div class="choice-row">${options.map((option) => `<label><input type="checkbox" name="${name}" value="${escapeAttr(option)}"><span>${escapeHtml(option)}</span></label>`).join("")}</div></fieldset>`;
+}
+
+function monthDayField(prefix, label) {
+  const months = Array.from({ length: 12 }, (_, index) => `<option value="${String(index + 1).padStart(2, "0")}">${index + 1} 月</option>`).join("");
+  const days = Array.from({ length: 31 }, (_, index) => `<option value="${String(index + 1).padStart(2, "0")}">${index + 1} 日</option>`).join("");
+  return `<label class="form-field"><span>${escapeHtml(label)}</span><span class="month-day-input"><select name="${prefix}Month" data-month-select="${prefix}" aria-label="${escapeAttr(label)}月份"><option value="">月份</option>${months}</select><select name="${prefix}Day" aria-label="${escapeAttr(label)}日期"><option value="">日期</option>${days}</select></span></label>`;
+}
+
+function monthDayFromForm(formData, prefix) {
+  const month = String(formData.get(`${prefix}Month`) || "");
+  const day = String(formData.get(`${prefix}Day`) || "");
+  if (!month && !day) return "";
+  return `${month || "00"}-${day || "00"}`;
+}
+
+function syncMonthDayOptions(form, prefix) {
+  const month = Number(form.elements[`${prefix}Month`]?.value || 0);
+  const daySelect = form.elements[`${prefix}Day`];
+  if (!daySelect) return;
+  const maxDays = month === 2 ? 29 : [4, 6, 9, 11].includes(month) ? 30 : 31;
+  [...daySelect.options].forEach((option) => {
+    option.disabled = Boolean(option.value) && Number(option.value) > maxDays;
+  });
+  if (Number(daySelect.value) > maxDays) daySelect.value = "";
 }
 
 function renderInterviewWorkspace() {
@@ -1044,7 +1071,7 @@ function renderCompactJob(job) {
 function renderEvent(event) {
   return `
     <div class="event">
-      <strong>${escapeHtml(`${event.date || ""} ${event.time || ""}`)}</strong>
+      <strong>${escapeHtml(`${event.displayDate || event.date || ""} ${event.time || ""}`)}</strong>
       <span>${escapeHtml(event.company || event.jobId || "未关联岗位")} · ${escapeHtml(event.eventType || "Event")}</span>
     </div>
   `;

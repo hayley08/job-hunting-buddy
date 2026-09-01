@@ -290,15 +290,17 @@ Controlled options:
 
 ```text
 assessmentScope = 海测 | 非海测
-testType = 笔试｜行测 + 图推 + 性格测试 | 笔试｜性格测试 | AI 笔试 | AI 面试 | 英语面试 | 其他
+testType = [笔试｜行测 + 图推 + 性格测试, 笔试｜性格测试, AI 笔试, AI 面试, 英语面试, 其他]
 status = 待完成 | 已完成 | 已过期
 ```
 
-`其他` requires `customTestType`. Optional controlled fields are `testPlatform`, `duration`, and `repeatEntry`; free text is reserved for company, job title, URL, summary, preparation focus, and notes.
+`assessmentScope` defaults to `海测`. `testType` is a required multi-select array and may contain more than one controlled option. `其他` requires `customTestType`. Optional controlled fields are `testPlatform`, `duration`, and `repeatEntry`; free text is reserved for company, job title, URL, summary, preparation focus, and notes.
+
+The assessment tracker does not collect `receivedAt`. It stores only `dueAt` and `completedAt`, both as yearless `MM-DD` values and displays them as `MM/DD`; the form must not request a year or time. Home deadline calculations may infer the nearest applicable calendar year at runtime, but must not write that inferred year back into the assessment record.
 
 The page computes its top statistics from actual merged repository and local-draft records: 待完成, 7天内截止, 已完成, and 海测. Desktop uses an aligned table. Mobile/tablet use compact stacked cards without whole-page horizontal scrolling.
 
-`+ 新建测试` opens a modal. Before saving, company and job title are required, `dueAt` must not precede `receivedAt`, and an 已完成 record requires `completedAt`. In this static PWA, manually created records are stored only in `localStorage` and visibly marked `Local Draft`; never imply that these records sync across devices or to GitHub.
+`+ 新建测试` opens a modal. Before saving, company and job title and at least one test type are required; month/day values must be valid, and an 已完成 record requires `completedAt`. In this static PWA, manually created records are stored only in `localStorage` and visibly marked `Local Draft`; never imply that these records sync across devices or to GitHub.
 
 The tracker exports `.xlsx` only, with a `Tests` sheet and a date-prefixed filename such as `2026-09-01_assessment-tracker.xlsx`. CSV export is not part of this feature. Exported local drafts may later be supplied to Codex or a Daily Run for validated import into `data/tests.json`.
 

@@ -116,11 +116,10 @@ async function showState(ws, state) {
     jobTitle: "人力资源管理培训生（组织发展与人才发展方向）",
     jobId: "",
     assessmentScope: "海测",
-    testType: "笔试｜行测 + 图推 + 性格测试",
+    testType: ["笔试｜行测 + 图推 + 性格测试", "AI 面试", "英语面试"],
     customTestType: "",
     status: "待完成",
-    receivedAt: "2026-09-01T02:00:00.000Z",
-    dueAt: "2026-09-04T10:00:00.000Z",
+    dueAt: "09-04",
     completedAt: "",
     testPlatform: "企业自建",
     duration: "90–120 分钟",
@@ -199,7 +198,14 @@ async function measure(ws) {
       scrollWidth: document.documentElement.scrollWidth,
       bodyScrollWidth: document.body.scrollWidth,
       overflowers,
-      misalignedRows: misalignedRows.slice(0, 8)
+      misalignedRows: misalignedRows.slice(0, 8),
+      assessmentUi: {
+        defaultScope: document.querySelector('input[name="assessmentScope"]:checked')?.value || '',
+        testTypeCheckboxes: document.querySelectorAll('input[name="testType"][type="checkbox"]').length,
+        receivedFields: document.querySelectorAll('[name="receivedAt"], [name="receivedMonth"], [name="receivedDay"]').length,
+        dateTimeFields: document.querySelectorAll('.assessment-form input[type="datetime-local"], .assessment-form input[type="date"]').length,
+        monthDaySelects: document.querySelectorAll('.assessment-form [data-month-select]').length
+      }
     };
   })()`);
 }
@@ -221,7 +227,14 @@ try {
       await showState(ws, state);
       const result = await measure(ws);
       const hasDocumentOverflow = result.scrollWidth > result.clientWidth + 2 || result.bodyScrollWidth > result.clientWidth + 2;
-      if (hasDocumentOverflow || result.overflowers.length || result.misalignedRows.length) {
+      const assessmentUiInvalid = state.modal && (
+        result.assessmentUi.defaultScope !== '海测' ||
+        result.assessmentUi.testTypeCheckboxes !== 6 ||
+        result.assessmentUi.receivedFields !== 0 ||
+        result.assessmentUi.dateTimeFields !== 0 ||
+        result.assessmentUi.monthDaySelects !== 2
+      );
+      if (hasDocumentOverflow || result.overflowers.length || result.misalignedRows.length || assessmentUiInvalid) {
         failures.push({ viewport: `${width}x${height}`, state: state.name, ...result });
       }
     }

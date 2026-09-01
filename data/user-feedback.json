@@ -61,5 +61,14 @@
     "content": "Add a first-level 测试 tracker with required company/job text, controlled tags for other fields, real computed statistics, validated localStorage drafts, Home deadline linkage, responsive table/cards, and dated Excel .xlsx export with a Tests sheet; do not provide CSV or imply cross-device draft sync.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-01T12:00:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-01-assessment-field-revision",
+    "createdAt": "2026-09-01T16:45:00+08:00",
+    "category": "workflow",
+    "status": "in_progress",
+    "content": "Assessment creation defaults to 海测, removes receivedAt, records only due/completed month-day without year or time, and uses a multi-select testType. Organize the user's actual assessment records, analyze written-test preparation priorities from real material, and deploy to Vercel.",
+    "sourceOfTruth": "user",
+    "implementation": "Field/schema/UI revision is implemented and verified. The repository contains no supplied assessment records yet, so data-specific preparation analysis remains pending rather than inferred from QA examples."
   }
 ]

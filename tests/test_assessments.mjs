@@ -8,6 +8,8 @@ import {
   buildAssessmentWorkbook,
   computeAssessmentStats,
   createLocalAssessment,
+  displayTestType,
+  formatMonthDay,
   loadAssessmentDrafts,
   mergeAssessments,
   saveAssessmentDraft,
@@ -24,11 +26,9 @@ const draft = createLocalAssessment({
   company: "示例公司",
   jobTitle: "HR 管培生",
   jobId: "job-example",
-  assessmentScope: "海测",
-  testType: "AI 面试",
+  testType: ["AI 面试", "英语面试"],
   status: "待完成",
-  receivedAt: "2026-09-01T10:00",
-  dueAt: "2026-09-04T18:00",
+  dueAt: "09-04",
   testPlatform: "企业自建",
   duration: "30–60 分钟",
   repeatEntry: "不可重复进入",
@@ -38,16 +38,22 @@ const draft = createLocalAssessment({
 }, { now, idFactory: () => "fixed" });
 
 assert.equal(validateAssessment(draft).length, 0);
-assert.deepEqual(validateAssessment({ company: "", jobTitle: "", receivedAt: "2026-09-02", dueAt: "2026-09-01" }), [
-  "公司不能为空", "岗位不能为空", "截止时间不能早于收到时间"
+assert.deepEqual(validateAssessment({ company: "", jobTitle: "", testType: [] }), [
+  "公司不能为空", "岗位不能为空", "请至少选择一种测试类型"
 ]);
-assert.deepEqual(validateAssessment({ company: "A", jobTitle: "B", status: "已完成" }), ["已完成状态请补充完成时间"]);
+assert.deepEqual(validateAssessment({ company: "A", jobTitle: "B", testType: ["AI 笔试"], dueAt: "02-30" }), ["截止日期格式无效"]);
+assert.deepEqual(validateAssessment({ company: "A", jobTitle: "B", testType: ["AI 笔试"], status: "已完成" }), ["已完成状态请补充完成日期"]);
+assert.equal(draft.assessmentScope, "海测");
+assert.ok(!("receivedAt" in draft));
+assert.deepEqual(draft.testType, ["AI 面试", "英语面试"]);
+assert.equal(displayTestType(draft), "AI 面试；英语面试");
+assert.equal(formatMonthDay(draft.dueAt), "09/04");
 
 saveAssessmentDraft(draft, storage);
 assert.equal(loadAssessmentDrafts(storage).length, 1);
 assert.ok(storageData.has(ASSESSMENT_STORAGE_KEY));
 
-const repoRecord = { ...draft, testId: "test-repo", sourceOfTruth: "repo", assessmentScope: "非海测", status: "已完成", completedAt: "2026-09-01T01:00:00.000Z" };
+const repoRecord = { ...draft, testId: "test-repo", sourceOfTruth: "repo", assessmentScope: "非海测", testType: "笔试｜性格测试", status: "已完成", completedAt: "08-30" };
 const merged = mergeAssessments([repoRecord], [draft]);
 assert.equal(merged.length, 2);
 assert.equal(merged[0].localDraft, true);
@@ -55,7 +61,8 @@ assert.deepEqual(computeAssessmentStats(merged, now), { pending: 1, dueWithin7Da
 const upcoming = assessmentUpcomingEvents(merged, now);
 assert.equal(upcoming.length, 1);
 assert.equal(upcoming[0].date, "2026-09-04");
-assert.equal(upcoming[0].time, "18:00");
+assert.equal(upcoming[0].displayDate, "09/04");
+assert.equal(upcoming[0].time, "");
 assert.equal(assessmentPendingActions(merged, now)[0].actionLabel, "开始测试");
 
 const xlsxContext = { console, TextEncoder, TextDecoder, setTimeout, clearTimeout };
@@ -71,5 +78,8 @@ const rows = xlsxContext.XLSX.utils.sheet_to_json(output.workbook.Sheets.Tests, 
 assert.equal(rows[0].company, "示例公司");
 assert.equal(rows[0].jobTitle, "HR 管培生");
 assert.equal(rows[0].sourceOfTruth, "local-draft");
+assert.equal(rows[0].dueAt, "09-04");
+assert.equal(rows[0].testType, "AI 面试；英语面试");
+assert.ok(!Object.hasOwn(rows[0], "receivedAt"));
 
 console.log("test_assessments: all checks passed");

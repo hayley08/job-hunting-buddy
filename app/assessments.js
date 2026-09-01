@@ -18,7 +18,11 @@ export function mergeAssessments(repoRecords = [], localRecords = []) {
   const merged = new Map();
   for (const item of [...repoRecords, ...localRecords]) {
     if (!item?.testId) continue;
-    merged.set(item.testId, { ...item, localDraft: item.sourceOfTruth === "local-draft" });
+    merged.set(item.testId, {
+      ...item,
+      testType: normalizeTestTypes(item.testType),
+      localDraft: item.sourceOfTruth === "local-draft"
+    });
   }
   return [...merged.values()].sort((a, b) => assessmentSortKey(a).localeCompare(assessmentSortKey(b)));
 }
@@ -45,11 +49,12 @@ export function validateAssessment(input) {
   const errors = [];
   if (!String(input.company || "").trim()) errors.push("公司不能为空");
   if (!String(input.jobTitle || "").trim()) errors.push("岗位不能为空");
-  const received = parseDate(input.receivedAt);
-  const due = parseDate(input.dueAt);
-  if (received && due && due < received) errors.push("截止时间不能早于收到时间");
-  if (input.status === "已完成" && !parseDate(input.completedAt)) errors.push("已完成状态请补充完成时间");
-  if (input.testType === "其他" && !String(input.customTestType || "").trim()) errors.push("选择“其他”后请填写自定义测试类型");
+  const testTypes = normalizeTestTypes(input.testType);
+  if (!testTypes.length) errors.push("请至少选择一种测试类型");
+  if (input.dueAt && !isValidMonthDay(input.dueAt)) errors.push("截止日期格式无效");
+  if (input.completedAt && !isValidMonthDay(input.completedAt)) errors.push("完成日期格式无效");
+  if (input.status === "已完成" && !isValidMonthDay(input.completedAt)) errors.push("已完成状态请补充完成日期");
+  if (testTypes.includes("其他") && !String(input.customTestType || "").trim()) errors.push("选择“其他”后请填写自定义测试类型");
   if (input.testUrl && !/^https:\/\//i.test(String(input.testUrl).trim())) errors.push("测试链接必须是有效的 HTTPS URL");
   return errors;
 }
@@ -65,13 +70,12 @@ export function createLocalAssessment(input, options = {}) {
     company,
     jobTitle,
     jobId: String(input.jobId || "").trim(),
-    assessmentScope: input.assessmentScope || "非海测",
-    testType: input.testType || TEST_TYPE_OPTIONS[0],
-    customTestType: input.testType === "其他" ? String(input.customTestType || "").trim() : "",
+    assessmentScope: input.assessmentScope || "海测",
+    testType: normalizeTestTypes(input.testType),
+    customTestType: normalizeTestTypes(input.testType).includes("其他") ? String(input.customTestType || "").trim() : "",
     status: input.status || "待完成",
-    receivedAt: normalizeDateTime(input.receivedAt),
-    dueAt: normalizeDateTime(input.dueAt),
-    completedAt: normalizeDateTime(input.completedAt),
+    dueAt: normalizeMonthDay(input.dueAt),
+    completedAt: normalizeMonthDay(input.completedAt),
     testPlatform: input.testPlatform || "待确认",
     duration: input.duration || "待确认",
     repeatEntry: input.repeatEntry || "未知",
@@ -99,14 +103,16 @@ export function assessmentUpcomingEvents(records, now = new Date()) {
   return records
     .filter((item) => item.status === "待完成" && isWithinNextDays(item.dueAt, 7, now))
     .map((item) => {
-      const localDue = shanghaiDateTimeParts(item.dueAt);
+      const due = resolveMonthDay(item.dueAt, now);
+      const localDue = shanghaiDateParts(due);
       return {
       eventId: `assessment-${item.testId}`,
       jobId: item.jobId || "",
       company: item.company,
       eventType: displayTestType(item),
       date: localDue.date,
-      time: localDue.time,
+      displayDate: formatMonthDay(item.dueAt),
+      time: "",
       completed: false,
       status: "scheduled",
       testId: item.testId,
@@ -122,14 +128,15 @@ export function assessmentPendingActions(records, now = new Date()) {
       company: item.company,
       title: `${item.jobTitle} · ${displayTestType(item)}`,
       applyUrl: item.testUrl,
-      reminder: item.dueAt ? `测试截止：${formatLocalDateTime(item.dueAt)}` : "测试待完成",
+      reminder: item.dueAt ? `测试截止：${formatMonthDay(item.dueAt)}` : "测试待完成",
       actionLabel: "开始测试",
       actionKind: "assessment"
     }));
 }
 
 export function displayTestType(item) {
-  return item.testType === "其他" && item.customTestType ? item.customTestType : item.testType || "未分类";
+  const labels = normalizeTestTypes(item.testType).map((type) => type === "其他" && item.customTestType ? item.customTestType : type);
+  return labels.join("；") || "未分类";
 }
 
 export function buildAssessmentWorkbook(records, xlsx = globalThis.XLSX, now = new Date()) {
@@ -142,9 +149,8 @@ export function buildAssessmentWorkbook(records, xlsx = globalThis.XLSX, now = n
     assessmentScope: item.assessmentScope || "",
     testType: displayTestType(item),
     status: item.status || "",
-    receivedAt: excelDate(item.receivedAt),
-    dueAt: excelDate(item.dueAt),
-    completedAt: excelDate(item.completedAt),
+    dueAt: normalizeMonthDay(item.dueAt),
+    completedAt: normalizeMonthDay(item.completedAt),
     testPlatform: item.testPlatform || "",
     duration: item.duration || "",
     repeatEntry: item.repeatEntry || "",
@@ -159,10 +165,10 @@ export function buildAssessmentWorkbook(records, xlsx = globalThis.XLSX, now = n
   const worksheet = xlsx.utils.json_to_sheet(rows, { cellDates: true });
   worksheet["!cols"] = [
     { wch: 34 }, { wch: 20 }, { wch: 28 }, { wch: 34 }, { wch: 12 }, { wch: 30 }, { wch: 12 },
-    { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 16 }, { wch: 16 }, { wch: 16 }, { wch: 42 },
+    { wch: 20 }, { wch: 20 }, { wch: 16 }, { wch: 16 }, { wch: 16 }, { wch: 42 },
     { wch: 42 }, { wch: 42 }, { wch: 42 }, { wch: 20 }, { wch: 20 }, { wch: 16 }
   ];
-  worksheet["!autofilter"] = { ref: `A1:T${Math.max(rows.length + 1, 1)}` };
+  worksheet["!autofilter"] = { ref: `A1:S${Math.max(rows.length + 1, 1)}` };
   worksheet["!freeze"] = { xSplit: 0, ySplit: 1 };
   const workbook = xlsx.utils.book_new();
   xlsx.utils.book_append_sheet(workbook, worksheet, "Tests");
@@ -176,9 +182,9 @@ export function exportAssessmentsXlsx(records, xlsx = globalThis.XLSX, now = new
   return output;
 }
 
-export function formatLocalDateTime(value) {
-  const parts = shanghaiDateTimeParts(value);
-  return parts.date ? `${parts.date} ${parts.time}` : "未记录";
+export function formatMonthDay(value) {
+  const normalized = normalizeMonthDay(value);
+  return normalized ? normalized.replace("-", "/") : "未记录";
 }
 
 function assessmentSortKey(item) {
@@ -187,7 +193,7 @@ function assessmentSortKey(item) {
 }
 
 function isWithinNextDays(value, days, now) {
-  const date = parseDate(value);
+  const date = resolveMonthDay(value, now);
   if (!date) return false;
   const start = new Date(now);
   const end = new Date(now);
@@ -201,23 +207,54 @@ function parseDate(value) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function normalizeDateTime(value) {
-  const date = parseDate(value);
-  return date ? date.toISOString() : "";
+function normalizeMonthDay(value) {
+  if (!value) return "";
+  const text = String(value).trim();
+  const shortMatch = text.match(/^(\d{1,2})[-/](\d{1,2})$/);
+  if (shortMatch) return `${shortMatch[1].padStart(2, "0")}-${shortMatch[2].padStart(2, "0")}`;
+  const date = parseDate(text);
+  if (!date) return "";
+  const parts = shanghaiDateParts(date);
+  return parts.date ? parts.date.slice(5) : "";
+}
+
+function isValidMonthDay(value) {
+  const normalized = normalizeMonthDay(value);
+  if (!normalized) return false;
+  const [month, day] = normalized.split("-").map(Number);
+  const maxDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return month >= 1 && month <= 12 && day >= 1 && day <= maxDays[month - 1];
 }
 
 function excelDate(value) {
   return parseDate(value) || "";
 }
 
-function shanghaiDateTimeParts(value) {
-  const date = parseDate(value);
-  if (!date) return { date: "", time: "" };
+function resolveMonthDay(value, now = new Date()) {
+  const normalized = normalizeMonthDay(value);
+  if (!normalized || !isValidMonthDay(normalized)) return null;
+  const current = shanghaiDateParts(now);
+  let year = Number(current.date.slice(0, 4));
+  let candidate = new Date(`${year}-${normalized}T23:59:59+08:00`);
+  const sixMonthsAgo = new Date(now);
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  if (candidate < sixMonthsAgo) candidate = new Date(`${year + 1}-${normalized}T23:59:59+08:00`);
+  return candidate;
+}
+
+function shanghaiDateParts(value) {
+  const date = value instanceof Date ? value : parseDate(value);
+  if (!date || Number.isNaN(date.getTime())) return { date: "" };
   const parts = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false
+    timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit"
   }).formatToParts(date);
   const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
-  return { date: `${values.year}-${values.month}-${values.day}`, time: `${values.hour}:${values.minute}` };
+  return { date: `${values.year}-${values.month}-${values.day}` };
+}
+
+function normalizeTestTypes(value) {
+  const values = Array.isArray(value) ? value : value ? [value] : [];
+  return [...new Set(values.filter((item) => TEST_TYPE_OPTIONS.includes(item)))];
 }
 
 function formatShanghaiDate(date) {

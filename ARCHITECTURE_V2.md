@@ -160,7 +160,7 @@ Mobile-first rules:
 - Drawers become full-screen panels.
 - One-tap copy for resume and story content.
 
-Assessment records merge repository JSON with device-local drafts at render time. Local drafts use the versioned `campus-os-assessment-drafts-v1` localStorage key and remain explicitly device-local. The browser exports the merged records as an `.xlsx` workbook with a `Tests` sheet using the vendored SheetJS runtime, which is cached with the offline shell. Daily Run may validate and import a returned workbook into `data/tests.json`; it must not replace existing records or alter application status.
+Assessment records merge repository JSON with device-local drafts at render time. Local drafts use the versioned `campus-os-assessment-drafts-v1` localStorage key and remain explicitly device-local. `assessmentScope` defaults to 海测, `testType` is a multi-select array, and only yearless `MM-DD` due/completed dates are stored; `receivedAt`, calendar year, and clock time are not part of the assessment record. Legacy local drafts with a string test type or full ISO date are normalized in memory without expanding the repository schema. The browser exports the merged records as an `.xlsx` workbook with a `Tests` sheet using the vendored SheetJS runtime, which is cached with the offline shell. Daily Run may validate and import a returned workbook into `data/tests.json`; it must not replace existing records or alter application status.
 
 ## Search Pipeline
 

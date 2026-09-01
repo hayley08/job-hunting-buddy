@@ -21,4 +21,4 @@ does not create a parallel job table or a second schema.
 If the user reports the URL as submitted, the same canonical `jobId` moves to
 `applications.json`; its JD record and opportunity-history membership remain.
 
-Assessment records follow `data/schemas/tests.schema.json`. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.
+Assessment records follow `data/schemas/tests.schema.json`. `testType` is an array, `assessmentScope` defaults to 海测 at creation, and only yearless `MM-DD` due/completed dates are retained. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.
