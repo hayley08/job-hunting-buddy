@@ -69,6 +69,6 @@
     "status": "in_progress",
     "content": "Assessment creation defaults to 海测, removes receivedAt, records only due/completed month-day without year or time, and uses a multi-select testType. Organize the user's actual assessment records, analyze written-test preparation priorities from real material, and deploy to Vercel.",
     "sourceOfTruth": "user",
-    "implementation": "Field/schema/UI revision is implemented and verified. The repository contains no supplied assessment records yet, so data-specific preparation analysis remains pending rather than inferred from QA examples."
+    "implementation": "Field/schema/UI revision is implemented, verified, and deployed to the stable feature Preview. The repository contains no supplied assessment records yet, so data-specific preparation analysis remains pending rather than inferred from QA examples."
   }
 ]

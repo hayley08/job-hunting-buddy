@@ -20,7 +20,8 @@
     "fieldRevision": "implemented",
     "dataImport": "pending-source-data",
     "preparationAnalysis": "pending-source-data",
-    "deployment": "pending"
+    "deployment": "READY",
+    "fieldRevisionCommit": "3e08705"
   },
   "blocker": "No actual assessment dataset or assessment-material attachment is present in the repository or current accessible workspace. Do not substitute the QA sample workbook or invent test details."
 }
