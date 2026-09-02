@@ -1,0 +1,19 @@
+{
+  "receivedAt": "2026-09-02T11:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-09-02T11:30:00+08:00",
+  "sourceOfTruth": "user",
+  "requirements": [
+    "面试 Tab must provide a new-record button and Excel export analogous to the assessment tracker.",
+    "Interview create/export must reuse current fields rather than creating a parallel model.",
+    "Create a reusable apply-summary skill for complete application messages; preserve raw JD, analyze it, deduplicate and save through canonical storage.",
+    "Application-history URLs must be saved exactly but must not be presented as verified job-detail links."
+  ],
+  "implementation": {
+    "interviewDraftStorage": "campus-os-interview-drafts-v1",
+    "interviewSchema": "data/schemas/interviews.schema.json",
+    "excelSheet": "Interviews",
+    "skill": "apply-summary",
+    "applicationEvidence": "data/inbox/2026-09-02_apply-summary-applications.json"
+  }
+}

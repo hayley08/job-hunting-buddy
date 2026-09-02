@@ -673,6 +673,10 @@ Initial Story Bank must include JiaYuan, ByteDance, JD, Aon, Midea, and Binance 
 
 The 面试 tab contains Interview Records, Resume Copy Tool, and Story Bank.
 
+Interview Records must provide `+ 新建面试` and `导出 Excel` actions. Browser-created records reuse the existing interview fields (`interviewId`, `company`, optional canonical `jobId`, `round`, `date`, `questions`, provenance timestamps), are visibly marked `Local Draft`, and remain device-local until imported into the repository. Company, round, and date are required; linking an existing application reuses its canonical company/job identity. Export uses a dated `YYYY-MM-DD_interview-tracker.xlsx` file with one `Interviews` sheet. Desktop and mobile must remain readable without whole-page horizontal scrolling.
+
+When the user provides a complete application message, use the reusable `apply-summary` workflow: preserve the raw user payload, resolve against the current canonical schema and deduplication rules, record `Applied` only when explicitly stated, preserve the exact supplied URL without title/link substitution, store full raw JD before analysis, and populate only existing job/JD fields. Application-history or careers-home URLs may prove user activity but must remain link-unverified for JD identity unless the exact job can be confirmed.
+
 Interview Packs are generated only when there is a new application, JD change, resume change, story change, interview-stage change, or explicit user request. If nothing changed, reuse the old version.
 
 ## Resume Versions

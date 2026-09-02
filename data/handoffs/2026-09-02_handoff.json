@@ -1,0 +1,30 @@
+{
+  "runDate": "2026-09-02",
+  "runType": "MANUAL_APPLICATION_AND_UX_UPDATE",
+  "branch": "feature/campus-job-os-v2",
+  "sourceOfTruth": "repository",
+  "completed": [
+    "面试 tab local draft creation using the existing interview fields",
+    "Interview Excel export with an Interviews sheet",
+    "Reusable personal apply-summary Codex skill",
+    "P&G, Nestlé/Totole, ABB and CATL canonical application/JD records",
+    "Four-row Feishu Base upsert with read-back verification",
+    "PWA shell cache version bump and interview module precache",
+    "Regression and responsive verification"
+  ],
+  "canonicalApplicationIds": [
+    "opp-single-url-cnc003210",
+    "app-nestle-hr-trainee-2026-09-02",
+    "opp-single-url-jr00044909",
+    "opp-single-url-83dd4f41-1db3-4b30-8f6d-48d6bc0349fd"
+  ],
+  "integrityNotes": [
+    "Nestlé URL is an official application-history page and remains unverified as a JD detail link.",
+    "Raw JD is preserved separately from derived analysis for every captured application.",
+    "No automatic application submission occurred."
+  ],
+  "pending": [
+    "The external 18:00 Feishu automation still requires its previously documented Vercel/GitHub secrets before it can run unattended."
+  ],
+  "report": "reports/2026-09-02_application-interview-update.md"
+}

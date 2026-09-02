@@ -683,6 +683,18 @@ h3 {
   justify-content: flex-end;
 }
 
+.interview-records-head {
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.interview-record-count {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .primary-button,
 .secondary-button {
   min-height: 44px;
@@ -1455,6 +1467,10 @@ h3 {
 
   .assessment-toolbar-actions button {
     flex: 1 1 140px;
+  }
+
+  .interview-records-head {
+    align-items: stretch;
   }
 
   .assessment-grid-head {

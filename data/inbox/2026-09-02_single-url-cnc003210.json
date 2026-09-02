@@ -1,0 +1,22 @@
+{
+  "inputDate": "2026-09-02",
+  "receivedAt": "2026-09-02T02:51:16+08:00",
+  "processed": true,
+  "processedAt": "2026-09-02T02:51:16+08:00",
+  "processedByRun": "SINGLE_URL_IMPORT",
+  "originalUrl": "https://careers.pg.com.cn/cn/en/job/CNC003210/-Chinese-Mainland-Campus-Recruiting-Human-Resources-Manager",
+  "result": {
+    "action": "created",
+    "jobId": "opp-single-url-cnc003210",
+    "sourceJobId": "CNC003210",
+    "title": "(Chinese Mainland) Campus Recruiting - Human Resources Manager",
+    "company": "Procter & Gamble - China",
+    "location": "Beijing, Beijing, Chinese Mainland - Greater China",
+    "postedDate": "2026-08-18",
+    "jdHash": "29b0bf555023e1f85f805017a481e1a8349e12de4c95e832825c8224df169867"
+  },
+  "notes": [
+    "The original user-provided URL is preserved exactly in the canonical job and JD records.",
+    "The full raw JD was captured before any summary fields were generated."
+  ]
+}

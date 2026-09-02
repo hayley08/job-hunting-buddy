@@ -30,6 +30,8 @@ def main():
     pending = load_json("data/pending.json")
     tests = load_json("data/tests.json")
     tests_schema = load_json("data/schemas/tests.schema.json")
+    interviews = load_json("data/interviews.json")
+    interviews_schema = load_json("data/schemas/interviews.schema.json")
     handoff = load_json("data/handoffs/2026-08-22_handoff.json")
 
     job_ids = [item.get("jobId") for item in applications + opportunities + historical_opportunities + archive if item.get("jobId")]
@@ -73,7 +75,7 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 13, "Application In Progress must not be counted as Applied KPI")
+    assert_true(applied_kpi_count == 17, "Application In Progress must not be counted as Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
@@ -83,6 +85,14 @@ def main():
     anker = next(item for item in active_apps if item.get("jobId") == "app-anker-position-pending-2026-08-29")
     assert_true(hitachi.get("title") == "职位名称待确认" and hitachi.get("appliedDate") == "2026-08-29", "Hitachi pending application missing")
     assert_true(anker.get("title") == "职位名称待确认" and anker.get("appliedDate") == "2026-08-29", "Anker pending application missing")
+    pg = next(item for item in active_apps if item.get("sourceJobId") == "CNC003210")
+    nestle = next(item for item in active_apps if item.get("jobId") == "app-nestle-hr-trainee-2026-09-02")
+    abb = next(item for item in active_apps if item.get("sourceJobId") == "JR00044909")
+    catl = next(item for item in active_apps if item.get("sourceJobId") == "83dd4f41-1db3-4b30-8f6d-48d6bc0349fd")
+    assert_true(pg.get("company") == "宝洁" and pg.get("currentStatus") == "Applied", "P&G application summary missing")
+    assert_true(nestle.get("applyUrl") == "https://app.mokahr.com/campus-recruitment/nestlezgc/91899#/candidateHome/applications" and not nestle.get("jdUrl"), "Nestle application-history URL integrity missing")
+    assert_true(abb.get("title") == "Power U 培训生-人力资源" and abb.get("appliedDate") == "2026-09-01", "ABB application summary missing")
+    assert_true(catl.get("company") == "宁德时代" and catl.get("currentStatus") == "Applied", "CATL application summary missing")
     qwen = next(item for item in active_apps if item.get("company") == "阿里千问")
     assert_true(qwen.get("currentStatus") == "Application In Progress" and not qwen.get("appliedDate"), "Qwen must remain not submitted")
 
@@ -115,6 +125,9 @@ def main():
     assert_true(git_pending.get("status") == "resolved", "obsolete Git blocker must be resolved in formal repository")
     assert_true(handoff.get("runDate") == "2026-08-22", "handoff missing or wrong date")
     assert_true(isinstance(tests, list), "assessment store must be a JSON array")
+    assert_true(isinstance(interviews, list), "interview store must be a JSON array")
+    assert_true(interviews_schema.get("items", {}).get("additionalProperties") is False, "interview schema must reject unplanned fields")
+    assert_true(set(interviews_schema.get("items", {}).get("required", [])) == {"interviewId", "company", "jobId", "round", "date", "questions", "sourceOfTruth", "createdAt", "updatedAt"}, "interview schema must reuse the canonical record fields")
     assessment_properties = tests_schema.get("items", {}).get("properties", {})
     assert_true(tests_schema.get("type") == "array" and tests_schema.get("items", {}).get("additionalProperties") is False, "assessment schema must reject unplanned fields")
     assert_true(assessment_properties.get("testType", {}).get("type") == "array", "assessment testType must be multi-select")
@@ -141,7 +154,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 18, "single URL imports should include 18 structured JD records including partial/historical captures")
+    assert_true(len(complete_jds) == 22, "captured JD count must include the four analyzed September application records")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     missing_jd_ids = {item.get("jobId") for item in missing_jds}
     assert_true({hitachi.get("jobId"), anker.get("jobId")}.issubset(missing_jd_ids), "unverified Hitachi/Anker jobs must remain JD Missing")
@@ -187,6 +200,7 @@ def main():
         "index.html",
         "app/app.js",
         "app/assessments.js",
+        "app/interviews.js",
         "app/store.js",
         "app/filters.js",
         "app/styles.css",
@@ -201,6 +215,7 @@ def main():
         "data/jds.json",
         "data/tests.json",
         "data/schemas/tests.schema.json",
+        "data/schemas/interviews.schema.json",
         "data/historical-opportunities.json",
         "data/opportunity-history.json",
         "data/target-company-watchlist.json",
@@ -261,6 +276,7 @@ def main():
     assert_true(".sidebar" in css and ".mobile-topbar" in css and ".pipeline-grid" in css, "sidebar/mobile/responsive pipeline layout CSS missing")
     assert_true(".watchlist-grid" in css and ".opportunity-meta" in css, "responsive opportunity/watchlist styles missing")
     assessments_js = (ROOT / "app" / "assessments.js").read_text(encoding="utf-8")
+    interviews_js = (ROOT / "app" / "interviews.js").read_text(encoding="utf-8")
     assert_true("campus-os-assessment-drafts-v1" in assessments_js and "sourceOfTruth: \"local-draft\"" in assessments_js, "assessment drafts must stay visibly local")
     assert_true("buildAssessmentWorkbook" in assessments_js and '"Tests"' in assessments_js and '"Source Materials"' in assessments_js and "assessment-tracker.xlsx" in assessments_js, "Excel assessment/source export missing")
     assert_true("CSV" not in app_js and "导出 Excel" in app_js, "assessment page must export Excel rather than CSV")
@@ -276,6 +292,10 @@ def main():
     assert_true(all(token in master for token in ["sourceMaterials", "assessmentSummary.conciseBullets", "信息不一致/待确认", "Never place raw source text directly"]), "durable assessment analysis separation rules missing")
     assert_true("assessmentUpcomingEvents" in app_js and "assessmentPendingActions" in app_js, "assessment deadlines must link to Home")
     assert_true(all(token in css for token in [".assessment-grid", ".assessment-modal", ".assessment-detail-row", ".source-material", ".assessment-focus-list"]), "responsive assessment tracker/detail styles missing")
+    assert_true("campus-os-interview-drafts-v1" in interviews_js and 'sourceOfTruth: "local-draft"' in interviews_js, "interview drafts must stay visibly local")
+    assert_true("buildInterviewWorkbook" in interviews_js and '"Interviews"' in interviews_js and "interview-tracker.xlsx" in interviews_js, "Excel interview export missing")
+    assert_true(all(token in app_js for token in ["data-interview-new", "data-interview-export", "新建面试", "Local Draft"]), "interview create/export UI missing")
+    assert_true('"/app/interviews.js"' in sw, "service worker shell must include interview module")
 
     seed_daily = load_json("data/daily/2026-08-23_seed.json")
     assert_true(seed_daily.get("runType") == "SEED_TEST_RUN", "seed run type missing")

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campus Job Search OS V2 Interview Records",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["interviewId", "company", "jobId", "round", "date", "questions", "sourceOfTruth", "createdAt", "updatedAt"],
+    "properties": {
+      "interviewId": { "type": "string", "minLength": 1 },
+      "company": { "type": "string", "minLength": 1 },
+      "jobId": { "type": "string" },
+      "round": { "type": "string", "minLength": 1 },
+      "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+      "questions": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": { "type": "string", "minLength": 1 }
+      },
+      "sourceOfTruth": { "enum": ["repo", "user", "daily-run", "local-draft"] },
+      "createdAt": { "type": "string", "format": "date-time" },
+      "updatedAt": { "type": "string", "format": "date-time" }
+    },
+    "additionalProperties": false
+  }
+}

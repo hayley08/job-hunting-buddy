@@ -31,6 +31,7 @@ const STATES = [
   { name: "assessment-details", tab: "assessments", details: true },
   { name: "assessment-modal", tab: "assessments", modal: true },
   { name: "interviews", tab: "interviews" },
+  { name: "interview-modal", tab: "interviews", interviewModal: true },
   { name: "me", tab: "me" }
 ];
 
@@ -164,6 +165,10 @@ async function showState(ws, state) {
     await evaluate(ws, `document.querySelector('[data-assessment-new]')?.click()`);
     await wait(60);
   }
+  if (state.interviewModal) {
+    await evaluate(ws, `document.querySelector('[data-interview-new]')?.click()`);
+    await wait(60);
+  }
   if (state.details) {
     await evaluate(ws, `document.querySelector('.assessment-detail-row')?.setAttribute('open', ''); document.querySelector('.source-material')?.setAttribute('open', '')`);
     await wait(60);
@@ -174,7 +179,7 @@ async function measure(ws) {
   return evaluate(ws, `(() => {
     const tolerance = 2;
     const vw = document.documentElement.clientWidth;
-    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .assessment-row, .assessment-detail-row, .assessment-detail-content, .source-material, .assessment-modal, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
+    const overflowers = Array.from(document.querySelectorAll('body, #app, .layout, .screen, .table-panel, .pipeline-row, .jd-record, .assessment-row, .assessment-detail-row, .assessment-detail-content, .source-material, .assessment-modal, .record-row, .copy-card, .story-card, .detail-drawer, a, pre, .tag'))
       .map((el) => {
         const rect = el.getBoundingClientRect();
         return {

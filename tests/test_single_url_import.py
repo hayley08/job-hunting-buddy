@@ -32,6 +32,25 @@ class FakeResponse:
 
 
 class SingleUrlAdapterTests(unittest.TestCase):
+    def test_json_ld_decodes_entity_encoded_html_before_stripping_tags(self):
+        html = """
+        <script type="application/ld+json">
+        {
+          "@type": "JobPosting",
+          "title": "HR Manager",
+          "hiringOrganization": {"name": "P&G"},
+          "identifier": {"value": "CNC003210"},
+          "description": "&lt;p&gt;Responsibilities:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Partner with business leaders.&lt;/li&gt;&lt;/ul&gt;"
+        }
+        </script>
+        """
+        generic_url = "https://careers.example.com/job/CNC003210/hr-manager"
+        with patch("job_agent.adapters.single_url.urlopen", return_value=FakeResponse(html, generic_url)):
+            job = SingleUrlAdapter(generic_url).search()[0]
+
+        self.assertEqual(job.jobDescription, "Responsibilities:\nPartner with business leaders.")
+        self.assertNotIn("<p>", job.jobDescription)
+
     def test_feishu_url_maps_to_existing_job_model_and_preserves_url(self):
         html = '<script id="js-websiteInfo" type="text/json">{"tenant_info":{"tenant_name":"小鹏集团"}}</script>'
         api = json.dumps(

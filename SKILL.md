@@ -53,18 +53,19 @@ Hong Kong data is archive-only:
 4. Preserve manual overrides.
 5. Update applications, events, interviews, and Story Bank.
 6. Validate assessment records and any explicitly supplied assessment-tracker workbook; merge by `testId`, preserve multiple tests per `jobId`, normalize `testType` as a multi-select array, keep `dueAt`/`completedAt` as `MM-DD`, discard `receivedAt`, and never infer application status from assessment status. Append every new raw file/text/web input to `sourceMaterials` without deleting earlier evidence. Mark an existing analysis `STALE`, then read the complete material set and regenerate `assessmentSummary` by synthesis, deduplication and cross-checking. Require 3–6 concise table bullets, 3–5 preparation actions, explicit conflicts, and full current `sourceMaterialIds` coverage before setting `analysisStatus = CURRENT`; never copy raw text into table focus or add unsupported common-knowledge claims.
-7. Search new Mainland campus HR opportunities.
-8. Validate links, freshness, status, job identity, and relevance.
-9. Append today's immutable opportunity snapshot by `jobId`, including when the result is zero; never delete prior dates.
-10. Write JSON data while preserving `firstRecommendedAt`, `recommendationDate`, `recommendationDates`, and current canonical status.
-11. Update the PWA dashboard data and derive approaching assessment events/actions from `data/tests.json`.
-12. Generate `data/daily/YYYY-MM-DD.json`.
-13. Generate `reports/YYYY-MM-DD_daily-brief.md`.
-14. Generate `snapshots/YYYY-MM-DD_campus-dashboard.html`.
-15. Append `memory.md` only for durable context.
-16. Write `data/handoffs/YYYY-MM-DD_handoff.json`.
-17. Run regression tests.
-18. Commit when the Git repository is valid.
+7. Validate returned interview-tracker workbooks against the existing interview fields, merge by `interviewId`, preserve multiple interviews per `jobId`, and never infer application status from an interview draft.
+8. Search new Mainland campus HR opportunities.
+9. Validate links, freshness, status, job identity, and relevance.
+10. Append today's immutable opportunity snapshot by `jobId`, including when the result is zero; never delete prior dates.
+11. Write JSON data while preserving `firstRecommendedAt`, `recommendationDate`, `recommendationDates`, and current canonical status.
+12. Update the PWA dashboard data and derive approaching assessment events/actions from `data/tests.json`.
+13. Generate `data/daily/YYYY-MM-DD.json`.
+14. Generate `reports/YYYY-MM-DD_daily-brief.md`.
+15. Generate `snapshots/YYYY-MM-DD_campus-dashboard.html`.
+16. Append `memory.md` only for durable context.
+17. Write `data/handoffs/YYYY-MM-DD_handoff.json`.
+18. Run regression tests.
+19. Commit when the Git repository is valid.
 
 ## Quality Rules
 

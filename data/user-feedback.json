@@ -80,5 +80,23 @@
     "sourceOfTruth": "user",
     "implementation": "Raw source preservation, structured cross-source summary, stale-analysis refresh state, table/detail separation, two-sheet Excel export and Daily Run rules are implemented and regression-tested.",
     "implementedAt": "2026-09-02T01:30:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-02-interview-create-export",
+    "createdAt": "2026-09-02T11:00:00+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Add + 新建面试 and dated Excel export to the 面试 tab using the existing interview fields, with visible device-local drafts and responsive desktop/mobile behavior.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-02T11:30:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-02-apply-summary",
+    "createdAt": "2026-09-02T11:00:00+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Create and use an apply-summary skill that parses a complete user application message into the existing canonical fields, preserves raw JD and exact URLs, analyzes JD, deduplicates, and uses current storage rather than inventing a parallel schema.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-02T11:30:00+08:00"
   }
 ]

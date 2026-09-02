@@ -20,6 +20,14 @@ import {
   validateAssessment
 } from "./assessments.js";
 import {
+  createLocalInterview,
+  exportInterviewsXlsx,
+  loadInterviewDrafts,
+  mergeInterviews,
+  saveInterviewDraft,
+  validateInterview
+} from "./interviews.js";
+import {
   applicationInProgress,
   activeApplications,
   activeOpportunities,
@@ -68,6 +76,7 @@ let pipelineFilter = "all";
 let opportunityDateFilter = "all";
 let selectedJobId = "";
 let assessmentModalOpen = false;
+let interviewModalOpen = false;
 let serviceWorkerReloading = false;
 
 init();
@@ -87,6 +96,7 @@ async function init() {
 
   state = await loadData();
   state.localAssessmentDrafts = loadAssessmentDrafts();
+  state.localInterviewDrafts = loadInterviewDrafts();
   render();
 }
 
@@ -101,6 +111,7 @@ function render() {
       <main class="screen">${renderCurrentTab()}</main>
       ${selectedJobId ? renderDetailDrawer() : ""}
       ${assessmentModalOpen ? renderAssessmentModal() : ""}
+      ${interviewModalOpen ? renderInterviewModal() : ""}
     </div>
   `;
 
@@ -187,6 +198,32 @@ function bindInteractions() {
     });
   });
 
+  document.querySelectorAll("[data-interview-new]").forEach((button) => {
+    button.addEventListener("click", () => {
+      interviewModalOpen = true;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-interview-cancel]").forEach((button) => {
+    button.addEventListener("click", () => {
+      interviewModalOpen = false;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-interview-export]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const message = document.querySelector("[data-interview-export-message]");
+      try {
+        const result = exportInterviewsXlsx(getInterviewRecords());
+        if (message) message.textContent = `已导出 ${result.fileName}（${result.rowCount} 条）`;
+      } catch (error) {
+        if (message) message.textContent = error.message;
+      }
+    });
+  });
+
   const assessmentForm = document.querySelector("[data-assessment-form]");
   if (assessmentForm) {
     assessmentForm.addEventListener("submit", handleAssessmentSubmit);
@@ -198,6 +235,9 @@ function bindInteractions() {
       select.addEventListener("change", () => syncMonthDayOptions(assessmentForm, select.dataset.monthSelect));
     });
   }
+
+  const interviewForm = document.querySelector("[data-interview-form]");
+  if (interviewForm) interviewForm.addEventListener("submit", handleInterviewSubmit);
 }
 
 function normalizeTab(tab) {
@@ -635,20 +675,92 @@ function renderInterviewWorkspace() {
 }
 
 function renderInterviewRecords() {
-  const interviews = state.interviews || [];
+  const interviews = getInterviewRecords();
   const packs = state.interviewPacks || [];
   return `
     <section class="panel section-block">
-      <div class="panel-head">
+      <div class="panel-head interview-records-head">
         <div>
           <h2>面试记录 / Interview Records</h2>
-          <p class="muted">真实发生的测评、笔试、面试和复盘会沉淀在这里。</p>
+          <p class="muted">真实发生的面试问题和轮次复盘会沉淀在这里。</p>
         </div>
-        <span>${interviews.length} records · ${packs.length} packs</span>
+        <div class="assessment-toolbar-actions">
+          <button class="primary-button" data-interview-new>+ 新建面试</button>
+          <button class="secondary-button" data-interview-export>导出 Excel</button>
+        </div>
       </div>
+      <p class="muted local-draft-note">网页手动新增的数据仅保存在当前浏览器并标记为 <strong>Local Draft</strong>；导出 Excel 后可交给 Codex / Daily Run 正式导入。</p>
+      <p class="assessment-export-message" data-interview-export-message aria-live="polite"></p>
+      <p class="interview-record-count">${interviews.length} records · ${packs.length} packs</p>
       ${interviews.length ? interviews.map(renderInterviewRecord).join("") : empty("暂无面试记录；收到测评或面试后会写入 persistent interview data。")}
     </section>
   `;
+}
+
+function renderInterviewModal() {
+  return `
+    <div class="modal-backdrop" role="presentation">
+      <section class="assessment-modal" role="dialog" aria-modal="true" aria-labelledby="interview-modal-title">
+        <div class="modal-head">
+          <div><p class="eyebrow">Local Draft</p><h2 id="interview-modal-title">新建面试</h2></div>
+          <button type="button" data-interview-cancel aria-label="关闭">×</button>
+        </div>
+        <form class="assessment-form" data-interview-form novalidate>
+          <div class="form-grid">
+            ${textField("company", "公司", "例如：宝洁", true)}
+            ${interviewJobSelect()}
+          </div>
+          <div class="form-grid">
+            ${textField("round", "面试轮次", "例如：HR Interview / 一面", true)}
+            <label class="form-field"><span>面试日期 *</span><input name="date" type="date" required></label>
+          </div>
+          ${textareaField("questions", "面试问题", "每行填写一个问题；保存后仍使用现有 questions 数组字段")}
+          <p class="assessment-form-error" data-interview-form-error aria-live="assertive"></p>
+          <div class="modal-actions">
+            <button type="button" class="secondary-button" data-interview-cancel>取消</button>
+            <button type="submit" class="primary-button">保存 Local Draft</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  `;
+}
+
+function interviewJobSelect() {
+  const options = (state.applications || []).filter((item) => item.jobId).map((item) =>
+    `<option value="${escapeAttr(item.jobId)}">${escapeHtml(`${item.company} · ${item.title}`)}</option>`
+  ).join("");
+  return `<label class="form-field"><span>关联岗位（可选）</span><select name="jobId"><option value="">暂不关联</option>${options}</select></label>`;
+}
+
+function handleInterviewSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const input = Object.fromEntries(new FormData(form).entries());
+  const linkedJob = (state.applications || []).find((item) => item.jobId === input.jobId);
+  if (linkedJob) input.company = linkedJob.company;
+  if (!input.jobId) input.jobId = findUniqueApplicationByCompany(input.company)?.jobId || "";
+  const errors = validateInterview(input);
+  const errorNode = form.querySelector("[data-interview-form-error]");
+  if (errors.length) {
+    errorNode.textContent = errors.join("；");
+    return;
+  }
+  const record = createLocalInterview(input);
+  state.localInterviewDrafts = saveInterviewDraft(record);
+  interviewModalOpen = false;
+  render();
+}
+
+function getInterviewRecords() {
+  return mergeInterviews(state.interviews || [], state.localInterviewDrafts || []);
+}
+
+function findUniqueApplicationByCompany(company) {
+  const normalize = (value) => String(value || "").toLocaleLowerCase().replace(/[\s/／·・()（）\[\]【】_-]+/g, "");
+  const companyKey = normalize(company);
+  const matches = (state.applications || []).filter((item) => normalize(item.company) === companyKey);
+  return matches.length === 1 ? matches[0] : null;
 }
 
 function renderResumeCopyTool() {
@@ -1140,10 +1252,12 @@ function renderEvent(event) {
 }
 
 function renderInterviewRecord(item) {
+  const linkedJob = (state.applications || []).find((job) => job.jobId === item.jobId);
   return `
     <article class="record-row">
-      <strong>${escapeHtml(item.company || item.jobId || "未命名")}</strong>
+      <strong>${escapeHtml(item.company || item.jobId || "未命名")}${item.localDraft ? ` <small class="local-draft-badge">Local Draft</small>` : ""}</strong>
       <span>${escapeHtml(item.round || "未记录轮次")} · ${escapeHtml(item.date || "未记录日期")}</span>
+      ${linkedJob ? `<small>${escapeHtml(linkedJob.title)}</small>` : ""}
       <small>${escapeHtml((item.questions || []).join("；") || "暂无问题记录")}</small>
     </article>
   `;

@@ -249,6 +249,23 @@ Story facts and answer versions are separated:
 
 Core Introduction is stable and locked by default. Daily runs must not rewrite it without explicit user approval.
 
+## Interview Draft and Application Summary Flow
+
+The Interview Records panel overlays repository records from `data/interviews.json` with device-local drafts from `localStorage` key `campus-os-interview-drafts-v1`. Both use the same interview fields and merge by `interviewId`; the browser never claims that a local draft is synchronized. Excel export produces a dated workbook with an `Interviews` sheet for later validated import.
+
+Complete user-reported applications are processed by the reusable `apply-summary` skill around the existing pipeline:
+
+```text
+raw user application message
+-> durable inbox evidence
+-> canonical identity/dedup check
+-> existing application + JD stores
+-> Feishu Base upsert
+-> generated jobs.json/dashboard
+```
+
+Raw JD, derived JD analysis, exact source URL, link-verification state, and application status remain separate facts. An application-history URL is not promoted to an exact JD URL without verification.
+
 ## Regression Protection
 
 Regression tests must verify:

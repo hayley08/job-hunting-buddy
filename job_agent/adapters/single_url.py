@@ -360,7 +360,8 @@ def _infer_experience(title: str, text: str) -> str:
 
 
 def _html_to_text(value: str) -> str:
-    text = re.sub(r"<br\s*/?>", "\n", value, flags=re.I)
+    text = unescape(value)
+    text = re.sub(r"<br\s*/?>", "\n", text, flags=re.I)
     text = re.sub(r"</(?:p|li|div|h\d)>", "\n", text, flags=re.I)
     text = re.sub(r"<[^>]+>", "", text)
     text = unescape(text).replace("\r\n", "\n").replace("\r", "\n")
