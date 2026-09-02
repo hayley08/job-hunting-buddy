@@ -1,7 +1,7 @@
 {
-  "runDate": "2026-09-02",
+  "runDate": "2026-09-03",
   "runType": "MANUAL_APPLICATION_UPDATE",
-  "dataUpdatedAt": "2026-09-02T11:30:00+08:00",
+  "dataUpdatedAt": "2026-09-03T10:30:00+08:00",
   "activeMarket": "Mainland",
   "processingWindow": {
     "mode": "USER_REPORTED_UPDATE",
@@ -34,13 +34,13 @@
   "duplicateRemoved": 2,
   "brokenLinks": 0,
   "unverifiedLinks": 9,
-  "jdCapturedCount": 22,
+  "jdCapturedCount": 25,
   "jdMissingCount": 31,
   "targetCompanyCheckedCount": 25,
   "newlyOpenedTargetCompanies": [],
-  "newApplications": 4,
-  "appliedCount": 17,
-  "activeMainlandApplications": 19,
+  "newApplications": 3,
+  "appliedCount": 19,
+  "activeMainlandApplications": 21,
   "applicationInProgressCount": 2,
   "activeOpportunities": 4,
   "topRecommendationJobIds": [
@@ -56,6 +56,7 @@
     "Alibaba Qwen remains Application In Progress while waiting for a referral code and does not count as Applied.",
     "On 2026-08-29, Hitachi and Anker were added as Applied with JD Missing pending exact job verification; Insta360 was deduplicated to its existing HRBP Assistant application and its official application-history link was saved.",
     "On 2026-09-02, P&G, Nestlé/Totole, ABB and CATL were recorded as Applied from explicit user reports; full supplied JDs and analyzed JD knowledge were preserved. Nestlé's application-history URL remains link-unverified as a JD page.",
+    "On 2026-09-03, Sangfor (applied 2026-08-26), Unilever and Baidu were recorded as Applied with full supplied JDs; OPPO was marked Rejected and archived from active KPIs. All three new links remain unverified as exact JD-detail URLs.",
     "Search metrics remain the 2026-08-23 seed baseline until the scheduled 2026-08-24 12:00 DAILY_RUN."
   ]
 }

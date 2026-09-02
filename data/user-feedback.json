@@ -98,5 +98,14 @@
     "content": "Create and use an apply-summary skill that parses a complete user application message into the existing canonical fields, preserves raw JD and exact URLs, analyzes JD, deduplicates, and uses current storage rather than inventing a parallel schema.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-02T11:30:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-03-applications-and-oppo-result",
+    "createdAt": "2026-09-03T10:30:00+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "Record Sangfor as applied on 2026-08-26, Unilever and Baidu as applied on 2026-09-03 from complete supplied JDs, and update the existing OPPO application to Rejected from the user's explicit outcome report.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-03T10:30:00+08:00"
   }
 ]

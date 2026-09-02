@@ -1,0 +1,25 @@
+{
+  "runDate": "2026-09-03",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "branch": "feature/campus-job-os-v2",
+  "sourceOfTruth": "repository",
+  "completed": [
+    "Recorded Sangfor application dated 2026-08-26 with full JD and explicit eligibility/location risks",
+    "Recorded Unilever and Baidu applications dated 2026-09-03 with full JD analysis",
+    "Moved OPPO to Rejected with append-only status history and archived it from active KPI",
+    "Updated generated jobs.json and target-company watchlist",
+    "Upserted Sangfor, Unilever and Baidu to Feishu and updated OPPO in place with read-back verification",
+    "Passed full regression, JSON, Excel and responsive checks"
+  ],
+  "canonicalApplicationIds": [
+    "app-sangfor-hr-management-trainee-nj-2026-08-26",
+    "app-unilever-hr-national-rotation-2026-09-03",
+    "app-baidu-hr-coe-j101242-2026-09-03"
+  ],
+  "integrityNotes": [
+    "All three supplied URLs are login/application-center pages, not verified exact JD-detail pages.",
+    "Sangfor source location conflicts between 南京 and 深圳 and the role targets 2026 graduates.",
+    "No automatic application submission occurred."
+  ],
+  "report": "reports/2026-09-03_application-update.md"
+}

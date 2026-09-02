@@ -1,0 +1,49 @@
+{
+  "receivedAt": "2026-09-03T10:30:00+08:00",
+  "processed": true,
+  "processedAt": "2026-09-03T10:30:00+08:00",
+  "sourceOfTruth": "user",
+  "eventType": "apply_summary_and_status_update",
+  "applications": [
+    {
+      "company": "深信服",
+      "title": "深信服26届校招-人力资源管培生（nj）",
+      "appliedDate": "2026-08-26",
+      "providedUrl": "https://hr.sangfor.com/login/scancode",
+      "linkMeaning": "QR-code login page; not an exact public JD page"
+    },
+    {
+      "company": "联合利华",
+      "title": "人力资源部（全国轮岗）",
+      "appliedDate": "2026-09-03",
+      "providedUrl": "https://q.yingjiesheng.com/pc/personal?tab=2&alichlgref=https%3A%2F%2Fq.yingjiesheng.com%2Fpc%2Fpersonal%3Ftab%3D2%26type__1808%3D2287582d28-ClvlxC%252Fk3qsVlCHqOwPO_pRvwWCb_NO6oenrGqCaOqTIANkrlsVLeILSB3wtHqeCtXRPCpXCGvrCwOXCaXCtCRxCCmCnHwBCVvsCkkR_COytOwECpmnClkCTCXNb_CAeJsRWCekwiC4lRGYOtUWpgqChHCfzvCg0sC0ZvCLfaifkgFCrfCSkR5tCqnYkj9CtMe2FPDW4xiC14jiSkCNkfCvEqdMkq6JX3OZrouDVcXGnCfqncsfSwXw_khlt1CFiqcXC&type__1808=2cc4c68a26-hLYLU1r4t4GSpOhfn1o1VGN1M164cKpmAodYKPBxSq51TUqJzu1%3DXL%3Dkni9fD%2FLGf1ELNE1uJj1U1F3Ng1f3NS1uZX6j67TJjW0tpmov1x4NW1cWqG51fxxF1G4NR1JR3rOV541kq1ahPqMUXxEONZHHXLD%3DSj5qO1Fu14q0o1q%3Dt6qj1",
+      "linkMeaning": "Yingjiesheng personal application center; not an exact public JD page"
+    },
+    {
+      "company": "百度",
+      "title": "北京-人力资源-COE方向(J101242)",
+      "sourceJobId": "J101242",
+      "appliedDate": "2026-09-03",
+      "providedUrl": "https://talent.baidu.com/jobs/center",
+      "linkMeaning": "Official recruitment center; not an exact public JD page"
+    }
+  ],
+  "statusUpdates": [
+    {
+      "jobId": "app-oppo-human-resources-2026-08-17",
+      "company": "OPPO",
+      "status": "Rejected",
+      "reportedAt": "2026-09-03",
+      "rawUserStatement": "oppo给我挂了"
+    }
+  ],
+  "jdRawByJobId": {
+    "app-sangfor-hr-management-trainee-nj-2026-08-26": "深信服26届校招-人力资源管培生（nj）\n南京\n本科及以上\n公共管理类·工商管理类\n\n职位描述：\n作为人力资源管培生，你将是我们人力资源团队的一员，参与到公司人才战略的制定和执行中来。这个职位旨在培养未来的人力资源领导者或专家，通过系统的培训和实践，让你全面了解人力资源管理的各个方面。\n工作地点：深圳\n主要职责：\n1、参与人力资源各个模块的工作，包括招聘、培训等。\n2、协助进行人才招聘，包括简历筛选、初步面试、面试安排等。\n3、参与员工培训和发展计划的设计与实施。\n4、收集和分析人力资源相关数据，为管理决策提供支持。\n5、完成管培生项目期间的各项学习和工作任务。\n\n任职要求：\n1、2026年应届本科以上学历。\n2、极强的成就导向，自我驱动力强。\n3、对新事物保持好奇心，有较强的学习能力。\n4、具备良好的沟通能力和团队合作精神。\n\n职业发展：\n该岗位提供实习机会，期间你将接受专业的培训，并有机会在不同的人力资源模块中轮岗学习。项目结束后，根据个人表现和公司需求，你将有机会定岗在人力资源部门的相关专业岗位，或进一步发展成为人力资源领域的领导者。",
+    "app-unilever-hr-national-rotation-2026-09-03": "人力资源部（全国轮岗）\n薪资：1-2万\n公司：联合利华服务（合肥）有限公司上海分公司\n学历：本科\n招聘人数：若干人\n性质：全职\n地点：上海\n\n职位描述\n关于人力资源部：\n人力资源部的轮岗将会帮助你提升识人水平，历练你的沟通技巧，同时还将培养你的前瞻性策略规划，激发你的无限潜能。这三年间，你将会得到横跨多个不同HR岗位，全方位接触不同U家品类的轮岗机会。在这里，你会接触到前沿的人力资源理念，数字化的人力资源生态以及扎实的人力资源技能。\n\n1. 经历从求职者到面试官的角色转换，为U家打开人才选拔的大门；\n2. 学习人力资源的理论与实际演练，融会贯通，改善流程，提升工作效率；\n3. 掌握U家组织发展壮大的诀窍，利用数据分析，帮助组织提供有效的建议；\n4. 了解U家的薪酬福利体系，提升员工幸福感；\n5. 深入了解不同业务部门的运转，了解U家的产品从一个想法到工厂生产，再到消费者面前的全链路，层层叠叠，逐步培养你向人力资源经理人迈进。\n\n我们将提供给你：\n6. 全球化的发展平台与清晰的晋升通道；\n7. 一流的轮岗制度与完善的培养体系；\n8. 洞察U家人才发展与组织架构的机会；\n9. 年轻而充满活力的团队氛围；\n10. 行业领先的薪酬福利。\n\n如果你是：\n11. 2027届海内外高校毕业的中国籍（含港澳台）应届毕业生（具体毕业时间请参考招聘简介）；\n12. 喜欢与人沟通，关注人员发展，关心组织体系；\n13. 乐于帮助员工发挥自己的潜能与特长；\n14. 勤于思考，热爱钻研，敢于提出不同见解；\n15. 擅长用数据说话，有极佳的逻辑性与洞察力，在数据中发现问题；\n16. 拥有强大的自驱力，能快速适应环境，对不确定性保持乐观。",
+    "app-baidu-hr-coe-j101242-2026-09-03": "北京-人力资源-COE方向(J101242)\n北京市\n校招\n综合\n招聘人数：5人\n发布日期：2026-07-21\n\n工作职责：\n- 深度贴合公司战略与管理理念，落地组织规划及管理方案设计\n- 开展组织诊断与研究，识别组织问题、输出优化建议并推动组织迭代\n- 持续调研行业前沿管理模式，输出前瞻性研究成果\n- 跟进AI前沿趋势，研判AI对组织形态、管理模式的影响，落地人机协同相关组织优化动作\n\n职责要求：\n- 硕士及以上学历，人力资源等相关专业\n- 主动关注AI时代组织变革、人机协同、超级个体等前沿议题，乐于学习创新\n- 具备良好的沟通表达能力，可高效输出管理观点与落地思路"
+  },
+  "notes": [
+    "No application was submitted automatically.",
+    "All three supplied URLs are preserved but remain unverified as exact JD detail links."
+  ]
+}

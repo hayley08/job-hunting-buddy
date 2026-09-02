@@ -82,3 +82,9 @@
 - 面试 now mirrors the assessment tracker interaction model without changing its schema: users can create device-local interview drafts from existing company/jobId/round/date/questions fields and export a dated Excel workbook with an `Interviews` sheet. Local drafts do not claim cross-device synchronization.
 - A reusable personal Codex skill named `apply-summary` processes complete user-reported applications through the repository's actual schema, normalization, deduplication, JD and storage flows. It preserves raw input/JD before analysis and never substitutes an unrelated job URL.
 - User explicitly reported applications to 宝洁 HR Manager (`CNC003210`), 雀巢/太太乐 HR Trainee, ABB Power U 培训生-人力资源 (`JR00044909`), and 宁德时代 人力资源 (`83dd4f41-1db3-4b30-8f6d-48d6bc0349fd`). Full supplied JDs and structured analysis are stored. The Nestlé URL is an official application-history page, so it is preserved as the apply/official URL while JD-link integrity remains unverified.
+
+## 2026-09-03
+
+- User reported 深信服「深信服26届校招-人力资源管培生（nj）」 as Applied on 2026-08-26, plus 联合利华「人力资源部（全国轮岗）」 and 百度「北京-人力资源-COE方向(J101242)」 as Applied on 2026-09-03. Full supplied JDs and structured analyses are stored.
+- The Sangfor source conflicts on location (南京 in the listing header, 深圳 in JD) and explicitly targets 2026 graduates; preserve both risks. Sangfor's QR login URL, Unilever's Yingjiesheng personal-center URL, and Baidu's recruitment-center URL are exact user-provided application links but are not verified job-detail URLs.
+- User reported “OPPO 给我挂了”; the existing OPPO application is now Rejected with an append-only 2026-09-03 status event and is archived out of active KPI while preserving its application history.

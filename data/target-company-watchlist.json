@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "runType": "SINGLE_URL_IMPORT",
-  "checkedAt": "2026-08-26T16:26:22+08:00",
+  "checkedAt": "2026-09-03T10:30:00+08:00",
   "count": 25,
   "companies": [
     {"company": "字节跳动", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方 2027 项目入口可访问，本轮未核实当前 HR 具体岗。", "sourceUrl": "https://jobs.bytedance.com/campus/page-6272Gc"},
@@ -13,7 +13,7 @@
     {"company": "比亚迪", "status": "UPCOMING", "note": "官方页面显示 26 届结束、27 届即将开放。", "sourceUrl": "https://job.byd.com/portal/mobile/school-home"},
     {"company": "美的", "status": "CLOSED", "note": "官方海外校招页面当前显示投递结束，未发现 2027 HR。", "sourceUrl": "https://careers.midea.com/recruit-school-out/"},
     {"company": "宝洁", "status": "NOT_FOUND_YET", "note": "本轮未发现可核验的中国大陆 2027 HR opening。"},
-    {"company": "联合利华", "status": "NOT_FOUND_YET", "note": "中国招聘主页可访问，但本轮未发现 2027 中国 HR 具体岗。", "sourceUrl": "https://careers.unilever.com/en/china"},
+    {"company": "联合利华", "status": "OPEN", "note": "用户于 2026-09-03 已投递 2027 人力资源部（全国轮岗）；完整 JD 已保存，详情页 URL 待核实。", "sourceUrl": "https://careers.unilever.com/en/china"},
     {"company": "捷普", "status": "CAMPUS_OPEN_HR_UNKNOWN", "note": "官方学生项目和 HR 职类存在，未找到中国大陆 2027 HR 具体岗。", "sourceUrl": "https://careers.jabil.com/cn/students-internship-apprenticeship-programs.html"},
     {"company": "派克汉尼汾", "status": "NOT_FOUND_YET", "note": "本轮未发现可靠 2027 中国 HR 管培信息。"},
     {"company": "德州仪器", "status": "OPEN", "note": "用户已有 Human Resources Generalist 的 Applied 记录；提醒仍保留对照。", "sourceUrl": "https://careers.ti.com/"},

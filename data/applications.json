@@ -503,14 +503,20 @@
     "risks": [
       "Current URL points to application history center; official JD link should be verified if needed."
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-08-17",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-03",
     "statusHistory": [
       {
         "status": "Applied",
         "date": "2026-08-17",
         "sourceOfTruth": "user",
         "notes": "User reported application."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-03",
+        "sourceOfTruth": "user",
+        "notes": "User reported OPPO rejected the application (挂了)."
       }
     ],
     "englishInterviewPossible": false,
@@ -518,8 +524,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "",
-    "archived": false
+    "notes": "用户于 2026-09-03 报告该申请已被拒绝（挂了）。",
+    "archived": true
   },
   {
     "jobId": "app-dji-human-resources-management-2026-07-17",
@@ -1405,6 +1411,194 @@
     "sourceOfTruth": "user",
     "manualOverrides": {},
     "notes": "用户于 2026-09-02 报告已投递；完整 JD 与岗位链接由用户提供，保存为同一 canonical application。",
+    "archived": false
+  },
+  {
+    "jobId": "app-sangfor-hr-management-trainee-nj-2026-08-26",
+    "company": "深信服",
+    "title": "深信服26届校招-人力资源管培生（nj）",
+    "businessUnit": "",
+    "location": "南京（岗位标题）/ 深圳（JD）",
+    "industry": "Technology / Cybersecurity",
+    "market": "Mainland",
+    "source": "User Provided Official Login Link",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://hr.sangfor.com/login/scancode",
+    "officialUrl": "https://hr.sangfor.com/login/scancode",
+    "foundDate": "2026-08-26",
+    "postedDate": "",
+    "appliedDate": "2026-08-26",
+    "deadline": "",
+    "jobDescription": "深信服26届校招-人力资源管培生（nj）\n南京\n本科及以上\n公共管理类·工商管理类\n\n职位描述：\n作为人力资源管培生，你将是我们人力资源团队的一员，参与到公司人才战略的制定和执行中来。这个职位旨在培养未来的人力资源领导者或专家，通过系统的培训和实践，让你全面了解人力资源管理的各个方面。\n工作地点：深圳\n主要职责：\n1、参与人力资源各个模块的工作，包括招聘、培训等。\n2、协助进行人才招聘，包括简历筛选、初步面试、面试安排等。\n3、参与员工培训和发展计划的设计与实施。\n4、收集和分析人力资源相关数据，为管理决策提供支持。\n5、完成管培生项目期间的各项学习和工作任务。\n\n任职要求：\n1、2026年应届本科以上学历。\n2、极强的成就导向，自我驱动力强。\n3、对新事物保持好奇心，有较强的学习能力。\n4、具备良好的沟通能力和团队合作精神。\n\n职业发展：\n该岗位提供实习机会，期间你将接受专业的培训，并有机会在不同的人力资源模块中轮岗学习。项目结束后，根据个人表现和公司需求，你将有机会定岗在人力资源部门的相关专业岗位，或进一步发展成为人力资源领域的领导者。",
+    "jdSnapshot": "深信服26届校招-人力资源管培生（nj）\n南京\n本科及以上\n公共管理类·工商管理类\n\n职位描述：\n作为人力资源管培生，你将是我们人力资源团队的一员，参与到公司人才战略的制定和执行中来。这个职位旨在培养未来的人力资源领导者或专家，通过系统的培训和实践，让你全面了解人力资源管理的各个方面。\n工作地点：深圳\n主要职责：\n1、参与人力资源各个模块的工作，包括招聘、培训等。\n2、协助进行人才招聘，包括简历筛选、初步面试、面试安排等。\n3、参与员工培训和发展计划的设计与实施。\n4、收集和分析人力资源相关数据，为管理决策提供支持。\n5、完成管培生项目期间的各项学习和工作任务。\n\n任职要求：\n1、2026年应届本科以上学历。\n2、极强的成就导向，自我驱动力强。\n3、对新事物保持好奇心，有较强的学习能力。\n4、具备良好的沟通能力和团队合作精神。\n\n职业发展：\n该岗位提供实习机会，期间你将接受专业的培训，并有机会在不同的人力资源模块中轮岗学习。项目结束后，根据个人表现和公司需求，你将有机会定岗在人力资源部门的相关专业岗位，或进一步发展成为人力资源领域的领导者。",
+    "jdCapturedAt": "2026-09-03T10:30:00+08:00",
+    "jdKeywords": [
+      "HR Management Trainee",
+      "Talent Strategy",
+      "Recruiting",
+      "Learning & Development",
+      "HR Analytics",
+      "Rotation"
+    ],
+    "jobFamily": "HR Management Trainee / Talent Acquisition / L&D / HR Analytics",
+    "campusType": "2026 Campus Recruitment",
+    "salary": "未披露",
+    "experience": "2026 年应届，本科及以上；公共管理类/工商管理类",
+    "matchScore": 7,
+    "matchReasons": [
+      "管培路径覆盖培训发展、HR 数据分析和跨模块轮岗，可对应候选人的人才发展、C&B 数据与综合 HR 经历。",
+      "参与人才战略与管理决策支持，能承接候选人的 HRBP 和数据分析能力。",
+      "培养目标为 HR 专家或领导者，长期发展路径清晰。"
+    ],
+    "gaps": [],
+    "risks": [
+      "岗位明确面向 2026 届，应届资格可能与当前 2027 校招目标不一致。",
+      "页面标题/地点显示南京，但 JD 正文写工作地点深圳，信息不一致/待确认。",
+      "职责中招聘执行占比较高。",
+      "提供的是扫码登录页，不是可公开核验的岗位详情页。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-08-26",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-08-26",
+        "sourceOfTruth": "user",
+        "notes": "User explicitly reported applying on 2026-08-26 and supplied the login URL plus full JD."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "用户明确于 2026-08-26 投递。原始扫码登录链接保留；岗位详情链接未验证，地点冲突保留。",
+    "archived": false
+  },
+  {
+    "jobId": "app-unilever-hr-national-rotation-2026-09-03",
+    "company": "联合利华",
+    "title": "人力资源部（全国轮岗）",
+    "businessUnit": "",
+    "location": "上海 / 全国轮岗",
+    "industry": "FMCG",
+    "market": "Mainland",
+    "source": "User Provided Yingjiesheng Application Center",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://q.yingjiesheng.com/pc/personal?tab=2&alichlgref=https%3A%2F%2Fq.yingjiesheng.com%2Fpc%2Fpersonal%3Ftab%3D2%26type__1808%3D2287582d28-ClvlxC%252Fk3qsVlCHqOwPO_pRvwWCb_NO6oenrGqCaOqTIANkrlsVLeILSB3wtHqeCtXRPCpXCGvrCwOXCaXCtCRxCCmCnHwBCVvsCkkR_COytOwECpmnClkCTCXNb_CAeJsRWCekwiC4lRGYOtUWpgqChHCfzvCg0sC0ZvCLfaifkgFCrfCSkR5tCqnYkj9CtMe2FPDW4xiC14jiSkCNkfCvEqdMkq6JX3OZrouDVcXGnCfqncsfSwXw_khlt1CFiqcXC&type__1808=2cc4c68a26-hLYLU1r4t4GSpOhfn1o1VGN1M164cKpmAodYKPBxSq51TUqJzu1%3DXL%3Dkni9fD%2FLGf1ELNE1uJj1U1F3Ng1f3NS1uZX6j67TJjW0tpmov1x4NW1cWqG51fxxF1G4NR1JR3rOV541kq1ahPqMUXxEONZHHXLD%3DSj5qO1Fu14q0o1q%3Dt6qj1",
+    "officialUrl": "https://q.yingjiesheng.com/pc/personal?tab=2&alichlgref=https%3A%2F%2Fq.yingjiesheng.com%2Fpc%2Fpersonal%3Ftab%3D2%26type__1808%3D2287582d28-ClvlxC%252Fk3qsVlCHqOwPO_pRvwWCb_NO6oenrGqCaOqTIANkrlsVLeILSB3wtHqeCtXRPCpXCGvrCwOXCaXCtCRxCCmCnHwBCVvsCkkR_COytOwECpmnClkCTCXNb_CAeJsRWCekwiC4lRGYOtUWpgqChHCfzvCg0sC0ZvCLfaifkgFCrfCSkR5tCqnYkj9CtMe2FPDW4xiC14jiSkCNkfCvEqdMkq6JX3OZrouDVcXGnCfqncsfSwXw_khlt1CFiqcXC&type__1808=2cc4c68a26-hLYLU1r4t4GSpOhfn1o1VGN1M164cKpmAodYKPBxSq51TUqJzu1%3DXL%3Dkni9fD%2FLGf1ELNE1uJj1U1F3Ng1f3NS1uZX6j67TJjW0tpmov1x4NW1cWqG51fxxF1G4NR1JR3rOV541kq1ahPqMUXxEONZHHXLD%3DSj5qO1Fu14q0o1q%3Dt6qj1",
+    "foundDate": "2026-09-03",
+    "postedDate": "",
+    "appliedDate": "2026-09-03",
+    "deadline": "",
+    "jobDescription": "人力资源部（全国轮岗）\n薪资：1-2万\n公司：联合利华服务（合肥）有限公司上海分公司\n学历：本科\n招聘人数：若干人\n性质：全职\n地点：上海\n\n职位描述\n关于人力资源部：\n人力资源部的轮岗将会帮助你提升识人水平，历练你的沟通技巧，同时还将培养你的前瞻性策略规划，激发你的无限潜能。这三年间，你将会得到横跨多个不同HR岗位，全方位接触不同U家品类的轮岗机会。在这里，你会接触到前沿的人力资源理念，数字化的人力资源生态以及扎实的人力资源技能。\n\n1. 经历从求职者到面试官的角色转换，为U家打开人才选拔的大门；\n2. 学习人力资源的理论与实际演练，融会贯通，改善流程，提升工作效率；\n3. 掌握U家组织发展壮大的诀窍，利用数据分析，帮助组织提供有效的建议；\n4. 了解U家的薪酬福利体系，提升员工幸福感；\n5. 深入了解不同业务部门的运转，了解U家的产品从一个想法到工厂生产，再到消费者面前的全链路，层层叠叠，逐步培养你向人力资源经理人迈进。\n\n我们将提供给你：\n6. 全球化的发展平台与清晰的晋升通道；\n7. 一流的轮岗制度与完善的培养体系；\n8. 洞察U家人才发展与组织架构的机会；\n9. 年轻而充满活力的团队氛围；\n10. 行业领先的薪酬福利。\n\n如果你是：\n11. 2027届海内外高校毕业的中国籍（含港澳台）应届毕业生（具体毕业时间请参考招聘简介）；\n12. 喜欢与人沟通，关注人员发展，关心组织体系；\n13. 乐于帮助员工发挥自己的潜能与特长；\n14. 勤于思考，热爱钻研，敢于提出不同见解；\n15. 擅长用数据说话，有极佳的逻辑性与洞察力，在数据中发现问题；\n16. 拥有强大的自驱力，能快速适应环境，对不确定性保持乐观。",
+    "jdSnapshot": "人力资源部（全国轮岗）\n薪资：1-2万\n公司：联合利华服务（合肥）有限公司上海分公司\n学历：本科\n招聘人数：若干人\n性质：全职\n地点：上海\n\n职位描述\n关于人力资源部：\n人力资源部的轮岗将会帮助你提升识人水平，历练你的沟通技巧，同时还将培养你的前瞻性策略规划，激发你的无限潜能。这三年间，你将会得到横跨多个不同HR岗位，全方位接触不同U家品类的轮岗机会。在这里，你会接触到前沿的人力资源理念，数字化的人力资源生态以及扎实的人力资源技能。\n\n1. 经历从求职者到面试官的角色转换，为U家打开人才选拔的大门；\n2. 学习人力资源的理论与实际演练，融会贯通，改善流程，提升工作效率；\n3. 掌握U家组织发展壮大的诀窍，利用数据分析，帮助组织提供有效的建议；\n4. 了解U家的薪酬福利体系，提升员工幸福感；\n5. 深入了解不同业务部门的运转，了解U家的产品从一个想法到工厂生产，再到消费者面前的全链路，层层叠叠，逐步培养你向人力资源经理人迈进。\n\n我们将提供给你：\n6. 全球化的发展平台与清晰的晋升通道；\n7. 一流的轮岗制度与完善的培养体系；\n8. 洞察U家人才发展与组织架构的机会；\n9. 年轻而充满活力的团队氛围；\n10. 行业领先的薪酬福利。\n\n如果你是：\n11. 2027届海内外高校毕业的中国籍（含港澳台）应届毕业生（具体毕业时间请参考招聘简介）；\n12. 喜欢与人沟通，关注人员发展，关心组织体系；\n13. 乐于帮助员工发挥自己的潜能与特长；\n14. 勤于思考，热爱钻研，敢于提出不同见解；\n15. 擅长用数据说话，有极佳的逻辑性与洞察力，在数据中发现问题；\n16. 拥有强大的自驱力，能快速适应环境，对不确定性保持乐观。",
+    "jdCapturedAt": "2026-09-03T10:30:00+08:00",
+    "jdKeywords": [
+      "HR Rotation",
+      "Talent Acquisition",
+      "Organization Development",
+      "HR Analytics",
+      "Compensation & Benefits",
+      "Business Acumen",
+      "Digital HR"
+    ],
+    "jobFamily": "HR Management Trainee / OD / C&B / Talent / HR Analytics",
+    "campusType": "2027 Campus Recruitment / Full Time",
+    "salary": "1-2万",
+    "experience": "2027 届海内外高校中国籍应届毕业生；本科",
+    "matchScore": 10,
+    "matchReasons": [
+      "三年 HR 轮岗覆盖组织发展、数据分析、薪酬福利和人才选拔，与候选人的 HRBP、TD、C&B 与 HR 数据经历形成完整匹配。",
+      "岗位强调深入业务全链路并用数据给组织建议，可直接对应候选人的业务理解、HC planning 与分析项目。",
+      "全球平台、数字化 HR 和经理人培养路径与候选人的国际 HR 和 AI 自动化方向高度一致。"
+    ],
+    "gaps": [],
+    "risks": [
+      "全国轮岗的具体城市和模块安排未披露。",
+      "包含人才选拔/招聘模块，但并非纯招聘岗位。",
+      "提供的是应届生求职网个人中心链接，不是可公开核验的岗位详情页。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-09-03",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-09-03",
+        "sourceOfTruth": "user",
+        "notes": "User explicitly reported applying on 2026-09-03 and supplied an application-center URL plus full JD."
+      }
+    ],
+    "englishInterviewPossible": true,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "用户明确于 2026-09-03 投递；申请中心链接原样保存，完整 JD 已分析，详情页 URL 待核实。",
+    "archived": false
+  },
+  {
+    "jobId": "app-baidu-hr-coe-j101242-2026-09-03",
+    "company": "百度",
+    "title": "北京-人力资源-COE方向(J101242)",
+    "businessUnit": "",
+    "location": "北京",
+    "industry": "Internet / AI",
+    "market": "Mainland",
+    "source": "User Provided Official Application Center",
+    "sourceJobId": "J101242",
+    "jdUrl": "",
+    "applyUrl": "https://talent.baidu.com/jobs/center",
+    "officialUrl": "https://talent.baidu.com/jobs/center",
+    "foundDate": "2026-09-03",
+    "postedDate": "2026-07-21",
+    "appliedDate": "2026-09-03",
+    "deadline": "",
+    "jobDescription": "北京-人力资源-COE方向(J101242)\n北京市\n校招\n综合\n招聘人数：5人\n发布日期：2026-07-21\n\n工作职责：\n- 深度贴合公司战略与管理理念，落地组织规划及管理方案设计\n- 开展组织诊断与研究，识别组织问题、输出优化建议并推动组织迭代\n- 持续调研行业前沿管理模式，输出前瞻性研究成果\n- 跟进AI前沿趋势，研判AI对组织形态、管理模式的影响，落地人机协同相关组织优化动作\n\n职责要求：\n- 硕士及以上学历，人力资源等相关专业\n- 主动关注AI时代组织变革、人机协同、超级个体等前沿议题，乐于学习创新\n- 具备良好的沟通表达能力，可高效输出管理观点与落地思路",
+    "jdSnapshot": "北京-人力资源-COE方向(J101242)\n北京市\n校招\n综合\n招聘人数：5人\n发布日期：2026-07-21\n\n工作职责：\n- 深度贴合公司战略与管理理念，落地组织规划及管理方案设计\n- 开展组织诊断与研究，识别组织问题、输出优化建议并推动组织迭代\n- 持续调研行业前沿管理模式，输出前瞻性研究成果\n- 跟进AI前沿趋势，研判AI对组织形态、管理模式的影响，落地人机协同相关组织优化动作\n\n职责要求：\n- 硕士及以上学历，人力资源等相关专业\n- 主动关注AI时代组织变革、人机协同、超级个体等前沿议题，乐于学习创新\n- 具备良好的沟通表达能力，可高效输出管理观点与落地思路",
+    "jdCapturedAt": "2026-09-03T10:30:00+08:00",
+    "jdKeywords": [
+      "COE",
+      "Organization Planning",
+      "Organization Diagnosis",
+      "Organization Research",
+      "AI Organization Transformation",
+      "Human-AI Collaboration"
+    ],
+    "jobFamily": "HR COE / Organization Development / Organization Effectiveness",
+    "campusType": "Campus Recruitment / 综合",
+    "salary": "未披露",
+    "experience": "硕士及以上，人力资源等相关专业",
+    "matchScore": 10,
+    "matchReasons": [
+      "岗位核心是组织规划、组织诊断和管理方案落地，与候选人的 competency assessment、人才发展和 HRBP 业务理解高度匹配。",
+      "明确研究 AI 对组织形态和人机协同的影响，可直接对应候选人的 HR 数字化与 AI 自动化项目。",
+      "前瞻研究、数据判断和管理观点输出要求，能由候选人的咨询、数据治理和跨 stakeholder 项目证明。"
+    ],
+    "gaps": [],
+    "risks": [
+      "明确要求硕士及以上和人力资源等相关专业，需要以当前硕士专业口径确认资格。",
+      "岗位偏组织研究与方案设计，面试需展示高质量结构化观点而不只是项目执行。",
+      "提供的是百度招聘中心链接，不是可公开核验的 J101242 详情页。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-09-03",
+    "statusHistory": [
+      {
+        "status": "Applied",
+        "date": "2026-09-03",
+        "sourceOfTruth": "user",
+        "notes": "User explicitly reported applying on 2026-09-03 and supplied the official application-center URL plus full JD."
+      }
+    ],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "用户明确于 2026-09-03 投递；职位编号、发布日期和完整 JD 已保存，官方详情页 URL 待核实。",
     "archived": false
   }
 ]
