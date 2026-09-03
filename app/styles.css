@@ -683,6 +683,18 @@ h3 {
   justify-content: flex-end;
 }
 
+.pipeline-toolbar {
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.pipeline-toolbar p {
+  margin: 4px 0 0;
+}
+
 .interview-records-head {
   align-items: flex-start;
   gap: 16px;

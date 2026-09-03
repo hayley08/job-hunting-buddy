@@ -1600,5 +1600,58 @@
     "manualOverrides": {},
     "notes": "用户明确于 2026-09-03 投递；职位编号、发布日期和完整 JD 已保存，官方详情页 URL 待核实。",
     "archived": false
+  },
+  {
+    "jobId": "app-horizon-hr-management-trainee-otd-cb-performance-2026-09-03",
+    "company": "地平线",
+    "title": "【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)",
+    "businessUnit": "人力数据与组织效能",
+    "location": "北京",
+    "industry": "Technology / Autonomous Driving / AI",
+    "market": "Mainland",
+    "source": "User Provided Official Application History",
+    "sourceJobId": "",
+    "jdUrl": "",
+    "applyUrl": "https://wecruit.hotjob.cn/SU64819a4f2f9d2433ba8b043a/pb/account.html#/myDeliver",
+    "officialUrl": "https://wecruit.hotjob.cn/SU64819a4f2f9d2433ba8b043a/pb/account.html#/myDeliver",
+    "foundDate": "2026-09-03",
+    "postedDate": "2026-08-10",
+    "appliedDate": "2026-09-03",
+    "deadline": "",
+    "jobDescription": "【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)\n职位类别：人力资源序列\n工作地点：北京市\n职位更新日期：2026-08-10\n招聘人数：若干人\n\n工作职责\n作为地平线人力数据与组织效能方向管培生，你将深度参与HR全模块核心工作，立足科技企业组织管理场景，以AI思维+数据能力为核心抓手，拆解组织特性、挖掘人力数据价值。通过数据分析、模型搭建、深度洞察，输出可落地的优化方案，持续迭代人力管理制度、流程与体系，驱动人力资源各模块专业化、精细化升级，赋能公司组织高效发展与人才梯队建设。\n\n任职要求\n1、思维缜密、擅长深度钻研，具备逻辑推演能力与业务洞察能力，乐于拆解复杂人力与组织问题；\n2、对人性规律与人才管理逻辑感兴趣，对人力资源数据分析、组织效能提升抱有极高热情与探索欲；\n3、熟练运用AI分析工具，具备开展人力数据建模、趋势预测、归因分析的实操能力；\n4、本科及以上学历，理工科、财务、商业分析、心理学、人力资源等相关背景优先；\n5、主动务实、敢于突破，愿意用技术思维重构传统人力工作，追求工作落地成效。\n6、能提前实习的同学优先",
+    "jdSnapshot": "【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)\n职位类别：人力资源序列\n工作地点：北京市\n职位更新日期：2026-08-10\n招聘人数：若干人\n\n工作职责\n作为地平线人力数据与组织效能方向管培生，你将深度参与HR全模块核心工作，立足科技企业组织管理场景，以AI思维+数据能力为核心抓手，拆解组织特性、挖掘人力数据价值。通过数据分析、模型搭建、深度洞察，输出可落地的优化方案，持续迭代人力管理制度、流程与体系，驱动人力资源各模块专业化、精细化升级，赋能公司组织高效发展与人才梯队建设。\n\n任职要求\n1、思维缜密、擅长深度钻研，具备逻辑推演能力与业务洞察能力，乐于拆解复杂人力与组织问题；\n2、对人性规律与人才管理逻辑感兴趣，对人力资源数据分析、组织效能提升抱有极高热情与探索欲；\n3、熟练运用AI分析工具，具备开展人力数据建模、趋势预测、归因分析的实操能力；\n4、本科及以上学历，理工科、财务、商业分析、心理学、人力资源等相关背景优先；\n5、主动务实、敢于突破，愿意用技术思维重构传统人力工作，追求工作落地成效。\n6、能提前实习的同学优先",
+    "jdCapturedAt": "2026-09-03T18:00:00+08:00",
+    "jdKeywords": ["HR Analytics", "Organization Effectiveness", "AI", "Data Modeling", "Trend Forecasting", "Attribution Analysis", "OTD", "C&B", "Performance"],
+    "jobFamily": "HR Management Trainee / OTD / C&B / Performance / HR Analytics",
+    "campusType": "2027 Campus Recruitment",
+    "salary": "未披露",
+    "experience": "本科及以上；相关专业优先；可提前实习优先",
+    "matchScore": 10,
+    "matchReasons": [
+      "岗位以 AI、HR 数据和组织效能为核心，直接对应候选人的 HR 数字化、数据分析与 AI 自动化项目。",
+      "OTD、C&B、绩效等方向与候选人的 competency assessment、人才发展、薪酬福利和绩效经历高度重合。",
+      "模型搭建、趋势预测、归因分析和业务洞察要求，能由候选人的咨询、HRBP 与跨团队分析经验证明。"
+    ],
+    "gaps": [],
+    "risks": [
+      "能提前实习为优先条件，需要确认可到岗时间。",
+      "标题涵盖 OTD、C&B、绩效等多个方向，实际定岗或轮岗机制尚未说明。",
+      "提供的是官方个人投递记录页，不是可公开核验的岗位详情页。"
+    ],
+    "currentStatus": "Applied",
+    "statusUpdatedAt": "2026-09-03",
+    "statusHistory": [{
+      "status": "Applied",
+      "date": "2026-09-03",
+      "sourceOfTruth": "user",
+      "notes": "User explicitly reported applying and supplied the official application-history URL plus full JD."
+    }],
+    "englishInterviewPossible": false,
+    "technicalInterviewPossible": false,
+    "interviewPackId": "",
+    "sourceOfTruth": "user",
+    "manualOverrides": {},
+    "notes": "用户于 2026-09-03 明确报告已投递；原始投递记录链接和完整 JD 已保存，岗位详情 URL 待核实。",
+    "archived": false
   }
 ]

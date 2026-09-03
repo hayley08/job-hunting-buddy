@@ -9,17 +9,26 @@
     "Moved OPPO to Rejected with append-only status history and archived it from active KPI",
     "Updated generated jobs.json and target-company watchlist",
     "Upserted Sangfor, Unilever and Baidu to Feishu and updated OPPO in place with read-back verification",
-    "Passed full regression, JSON, Excel and responsive checks"
+    "Passed full regression, JSON, Excel and responsive checks",
+    "Recorded Horizon Robotics HR Management Trainee as Applied with complete supplied JD and exact application-history URL",
+    "Upserted Horizon to Feishu with read-back verification",
+    "Added canonical Pipeline local drafts and a two-sheet offline workbook ordered as 流程 then 测评"
   ],
   "canonicalApplicationIds": [
     "app-sangfor-hr-management-trainee-nj-2026-08-26",
     "app-unilever-hr-national-rotation-2026-09-03",
-    "app-baidu-hr-coe-j101242-2026-09-03"
+    "app-baidu-hr-coe-j101242-2026-09-03",
+    "app-horizon-hr-management-trainee-otd-cb-performance-2026-09-03"
   ],
   "integrityNotes": [
     "All three supplied URLs are login/application-center pages, not verified exact JD-detail pages.",
     "Sangfor source location conflicts between 南京 and 深圳 and the role targets 2026 graduates.",
-    "No automatic application submission occurred."
+    "No automatic application submission occurred.",
+    "Horizon's supplied Hotjob URL is a personal application-history page, not a verified exact JD-detail URL.",
+    "Pipeline workbook offline edits are not synchronized until validated and imported by jobId/testId."
   ],
-  "report": "reports/2026-09-03_application-update.md"
+  "reports": [
+    "reports/2026-09-03_application-update.md",
+    "reports/2026-09-03_horizon-pipeline-offline.md"
+  ]
 }

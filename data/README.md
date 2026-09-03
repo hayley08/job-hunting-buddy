@@ -25,4 +25,6 @@ If the user reports the URL as submitted, the same canonical `jobId` moves to
 
 Assessment records follow `data/schemas/tests.schema.json`. `testType` is an array, `assessmentScope` defaults to 海测 at creation, and only yearless `MM-DD` due/completed dates are retained. Append-only `sourceMaterials` preserves raw evidence; separately derived `assessmentSummary` is the only source for table focus bullets, and its source ID coverage controls whether analysis is current or stale. Browser-created rows remain device-local drafts until a validated Excel import or Daily Run writes them to this file; assessment status never changes application status automatically.
 
+The Pipeline browser editor reuses `data/applications.json` fields and stores device-local overlays in `campus-os-pipeline-drafts-v1`. Its dated Excel export always places `流程` first and `测评` second. A returned workbook is input evidence only: validate identifiers, dates, status transitions, URLs, and structured JSON before merging by `jobId` / `testId`; never replace append-only histories or claim an offline change is already synchronized.
+
 Interview records follow `data/schemas/interviews.schema.json`. A browser draft uses `campus-os-interview-drafts-v1`, stays visibly local, and exports to a dated `.xlsx` workbook with an `Interviews` sheet. It does not imply cross-device or Git synchronization.

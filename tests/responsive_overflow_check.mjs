@@ -27,6 +27,7 @@ const STATES = [
   { name: "pipeline-watch", tab: "pipeline", filter: "watch" },
   { name: "pipeline-closed", tab: "pipeline", filter: "closed" },
   { name: "pipeline-jd", tab: "pipeline", filter: "jd" },
+  { name: "pipeline-modal", tab: "pipeline", pipelineModal: true },
   { name: "assessments", tab: "assessments" },
   { name: "assessment-details", tab: "assessments", details: true },
   { name: "assessment-modal", tab: "assessments", modal: true },
@@ -167,6 +168,10 @@ async function showState(ws, state) {
   }
   if (state.interviewModal) {
     await evaluate(ws, `document.querySelector('[data-interview-new]')?.click()`);
+    await wait(60);
+  }
+  if (state.pipelineModal) {
+    await evaluate(ws, `document.querySelector('[data-pipeline-new]')?.click()`);
     await wait(60);
   }
   if (state.details) {

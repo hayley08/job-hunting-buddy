@@ -107,5 +107,14 @@
     "content": "Record Sangfor as applied on 2026-08-26, Unilever and Baidu as applied on 2026-09-03 from complete supplied JDs, and update the existing OPPO application to Rejected from the user's explicit outcome report.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-03T10:30:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-03-horizon-and-pipeline-offline-workbook",
+    "createdAt": "2026-09-03T18:00:00+08:00",
+    "category": "workflow",
+    "status": "implemented",
+    "content": "Record the Horizon Robotics HR Management Trainee application from the complete supplied JD, and add + 新建流程 plus a dated Excel export whose first sheet is 流程 and second sheet is 测评 for offline status management and validated repository import.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-03T18:00:00+08:00"
   }
 ]

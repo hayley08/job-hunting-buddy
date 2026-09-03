@@ -261,6 +261,10 @@ Desktop and tablet use a fixed left sidebar. Mobile uses a collapsed left rail /
 
 Desktop Pipeline and JD grids must render as visually continuous tables: every cell in a row stretches to the full row height, column boundaries remain consistent with the header, and each horizontal separator forms one aligned line across the complete row. Variable-length notes must never create staggered per-cell underlines. Tablet/mobile may switch to the established card layout without horizontal page scrolling.
 
+The 流程 tab provides `+ 新建流程` and `导出 Excel`. Browser-created or edited pipeline records must reuse the existing application schema and canonical `jobId`; no parallel job model is allowed. They are saved under the versioned `campus-os-pipeline-drafts-v1` localStorage key, visibly marked `Local Draft`, and overlay the matching repository record only on that device. Required inputs are company, title, current status, and status date. An Applied or later-stage status also requires an applied date. Each status change appends an entry to the existing `statusHistory`.
+
+流程 export produces a dated `YYYY-MM-DD_pipeline-assessment-tracker.xlsx` workbook. Sheet order is fixed: the first/main sheet is `流程`, and the second sheet is `测评`. Both sheets retain stable IDs and existing canonical fields; arrays and structured values are serialized losslessly for round-trip import. The workbook is intended for offline status management and later validated import by Codex / Daily Run. It does not imply that localStorage or an edited workbook has synchronized to GitHub, Feishu, or another device. Import must merge by `jobId` / `testId`, validate controlled states and URLs, preserve append-only status/source history, and reject ambiguous identity changes.
+
 ## Dashboard KPI
 
 Default home page shows 投递中, 已投递, 筛选中, 测评/笔试, 面试, Offer, 最近7天投递, and 最近7天进入面试. Conversion analytics must come from real `statusHistory`.

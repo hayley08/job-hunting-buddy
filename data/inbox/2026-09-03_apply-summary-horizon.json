@@ -1,0 +1,22 @@
+{
+  "receivedAt": "2026-09-03T18:00:00+08:00",
+  "processed": true,
+  "processedAt": "2026-09-03T18:00:00+08:00",
+  "sourceOfTruth": "user",
+  "eventType": "apply_summary",
+  "application": {
+    "company": "地平线",
+    "title": "【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)",
+    "appliedDate": "2026-09-03",
+    "providedUrl": "https://wecruit.hotjob.cn/SU64819a4f2f9d2433ba8b043a/pb/account.html#/myDeliver",
+    "linkMeaning": "Official personal application-history page; not an exact public JD page",
+    "postedDate": "2026-08-10",
+    "location": "北京",
+    "headcount": "若干人"
+  },
+  "jdRaw": "【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)\n职位类别：人力资源序列\n工作地点：北京市\n职位更新日期：2026-08-10\n招聘人数：若干人\n\n工作职责\n作为地平线人力数据与组织效能方向管培生，你将深度参与HR全模块核心工作，立足科技企业组织管理场景，以AI思维+数据能力为核心抓手，拆解组织特性、挖掘人力数据价值。通过数据分析、模型搭建、深度洞察，输出可落地的优化方案，持续迭代人力管理制度、流程与体系，驱动人力资源各模块专业化、精细化升级，赋能公司组织高效发展与人才梯队建设。\n\n任职要求\n1、思维缜密、擅长深度钻研，具备逻辑推演能力与业务洞察能力，乐于拆解复杂人力与组织问题；\n2、对人性规律与人才管理逻辑感兴趣，对人力资源数据分析、组织效能提升抱有极高热情与探索欲；\n3、熟练运用AI分析工具，具备开展人力数据建模、趋势预测、归因分析的实操能力；\n4、本科及以上学历，理工科、财务、商业分析、心理学、人力资源等相关背景优先；\n5、主动务实、敢于突破，愿意用技术思维重构传统人力工作，追求工作落地成效。\n6、能提前实习的同学优先",
+  "notes": [
+    "No application was submitted automatically.",
+    "The exact supplied URL is preserved as the application link and remains unverified as a JD detail link."
+  ]
+}

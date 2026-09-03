@@ -1,10 +1,11 @@
-const CACHE_NAME = "hayley-campus-os-v2-20260902-interviews-1";
+const CACHE_NAME = "hayley-campus-os-v2-20260903-pipeline-1";
 const SHELL_ASSETS = [
   "/",
   "/index.html",
   "/app/app.js",
   "/app/assessments.js",
   "/app/interviews.js",
+  "/app/pipeline.js",
   "/app/store.js",
   "/app/filters.js",
   "/app/styles.css",

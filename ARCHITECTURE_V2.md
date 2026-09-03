@@ -151,6 +151,10 @@ Story Bank and Resume Copy Tool are modules inside the 面试 tab, not first-lev
 
 Pipeline has internal filters, including `JD`. JD Knowledge is a Pipeline sub-tab, not a primary navigation item.
 
+Pipeline records use the canonical application object end to end. The browser overlays repository applications with device-local drafts from `campus-os-pipeline-drafts-v1`, keyed by `jobId`; an existing record edit retains its full canonical fields and appends status history. A new local record receives an `app-local-*` identity but uses the same fields and must be reconciled during repository import.
+
+The Pipeline Excel boundary is one round-trip workbook with exactly two ordered sheets: `流程` first and `测评` second. It includes stable IDs and JSON-serialized structured fields so offline edits can be validated and merged without flattening histories or raw assessment evidence. Import is explicit and validation-based; it is not browser-to-repository synchronization.
+
 Desktop/tablet use a fixed left sidebar. Mobile uses a hamburger-triggered left drawer to preserve vertical space for tables, timelines, interview notes, resume copy, and Story Bank content.
 
 Mobile-first rules:

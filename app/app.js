@@ -28,6 +28,15 @@ import {
   validateInterview
 } from "./interviews.js";
 import {
+  PIPELINE_STATUS_OPTIONS,
+  createLocalPipelineDraft,
+  exportPipelineWorkbook,
+  loadPipelineDrafts,
+  mergePipelineApplications,
+  savePipelineDraft,
+  validatePipelineDraft
+} from "./pipeline.js";
+import {
   applicationInProgress,
   activeApplications,
   activeOpportunities,
@@ -77,6 +86,7 @@ let opportunityDateFilter = "all";
 let selectedJobId = "";
 let assessmentModalOpen = false;
 let interviewModalOpen = false;
+let pipelineModalOpen = false;
 let serviceWorkerReloading = false;
 
 init();
@@ -97,6 +107,7 @@ async function init() {
   state = await loadData();
   state.localAssessmentDrafts = loadAssessmentDrafts();
   state.localInterviewDrafts = loadInterviewDrafts();
+  state.localPipelineDrafts = loadPipelineDrafts();
   render();
 }
 
@@ -112,6 +123,7 @@ function render() {
       ${selectedJobId ? renderDetailDrawer() : ""}
       ${assessmentModalOpen ? renderAssessmentModal() : ""}
       ${interviewModalOpen ? renderInterviewModal() : ""}
+      ${pipelineModalOpen ? renderPipelineModal() : ""}
     </div>
   `;
 
@@ -179,6 +191,32 @@ function bindInteractions() {
     });
   });
 
+  document.querySelectorAll("[data-pipeline-new]").forEach((button) => {
+    button.addEventListener("click", () => {
+      pipelineModalOpen = true;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-pipeline-cancel]").forEach((button) => {
+    button.addEventListener("click", () => {
+      pipelineModalOpen = false;
+      render();
+    });
+  });
+
+  document.querySelectorAll("[data-pipeline-export]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const message = document.querySelector("[data-pipeline-export-message]");
+      try {
+        const result = exportPipelineWorkbook(getPipelineApplications(), getAssessmentRecords());
+        if (message) message.textContent = `已导出 ${result.fileName}（流程 ${result.pipelineCount} 条，测评 ${result.assessmentCount} 条）`;
+      } catch (error) {
+        if (message) message.textContent = error.message;
+      }
+    });
+  });
+
   document.querySelectorAll("[data-assessment-cancel]").forEach((button) => {
     button.addEventListener("click", () => {
       assessmentModalOpen = false;
@@ -238,6 +276,12 @@ function bindInteractions() {
 
   const interviewForm = document.querySelector("[data-interview-form]");
   if (interviewForm) interviewForm.addEventListener("submit", handleInterviewSubmit);
+
+  const pipelineForm = document.querySelector("[data-pipeline-form]");
+  if (pipelineForm) {
+    pipelineForm.addEventListener("submit", handlePipelineSubmit);
+    pipelineForm.elements.jobId?.addEventListener("change", () => fillPipelineFormFromApplication(pipelineForm));
+  }
 }
 
 function normalizeTab(tab) {
@@ -390,7 +434,7 @@ function findOpportunityHistoryJob(jobId) {
 function renderPipeline() {
   const rows = getPipelineRows();
   const filtered = rows.filter((row) => matchesPipelineFilter(row, pipelineFilter));
-  const kpis = computeKpis(state.applications || []);
+  const kpis = computeKpis(getPipelineApplications());
   const latestDaily = state.daily || {};
   const isJdTab = pipelineFilter === "jd";
 
@@ -408,6 +452,18 @@ function renderPipeline() {
         ${miniKpi("面试", kpis.interview)}
       </div>
     </section>
+    <section class="assessment-toolbar pipeline-toolbar">
+      <div>
+        <strong>流程离线管理</strong>
+        <p class="muted">新建/修改先保存在当前浏览器；导出的 Excel 第一张为「流程」，第二张为「测评」。</p>
+      </div>
+      <div class="assessment-toolbar-actions">
+        <button class="primary-button" data-pipeline-new>+ 新建流程</button>
+        <button class="secondary-button" data-pipeline-export>导出 Excel</button>
+      </div>
+    </section>
+    <p class="muted local-draft-note">Excel 可离线修改后交给 Codex / Daily Run 校验导入；Local Draft 不会自动跨设备同步。</p>
+    <p class="assessment-export-message" data-pipeline-export-message aria-live="polite"></p>
     <section class="table-panel">
       <div class="filter-row">
         ${pipelineFilters.map((filter) => `<button class="${filter.id === pipelineFilter ? "active" : ""}" data-filter="${filter.id}">${filter.label}</button>`).join("")}
@@ -426,6 +482,72 @@ function renderPipeline() {
       </div>`}
     </section>
   `;
+}
+
+function renderPipelineModal() {
+  const applications = getPipelineApplications().filter((item) => item.jobId && !item.localDraft);
+  const options = applications.map((item) => `<option value="${escapeAttr(item.jobId)}">${escapeHtml(`${item.company} · ${item.title}`)}</option>`).join("");
+  return `
+    <div class="modal-backdrop" role="presentation">
+      <section class="assessment-modal" role="dialog" aria-modal="true" aria-labelledby="pipeline-modal-title">
+        <div class="modal-head">
+          <div><p class="eyebrow">Local Draft</p><h2 id="pipeline-modal-title">新建 / 更新流程</h2></div>
+          <button type="button" data-pipeline-cancel aria-label="关闭">×</button>
+        </div>
+        <form class="assessment-form" data-pipeline-form novalidate>
+          <label class="form-field"><span>关联现有岗位（可选）</span><select name="jobId"><option value="">新岗位 / 暂不关联</option>${options}</select></label>
+          <div class="form-grid">
+            ${textField("company", "公司", "例如：地平线", true)}
+            ${textField("title", "岗位", "例如：人力资源管培生", true)}
+          </div>
+          <div class="form-grid">
+            ${selectField("currentStatus", "当前进度", PIPELINE_STATUS_OPTIONS, "Applied")}
+            <label class="form-field"><span>状态日期 *</span><input name="statusUpdatedAt" type="date" required></label>
+          </div>
+          <div class="form-grid">
+            <label class="form-field"><span>投递日期</span><input name="appliedDate" type="date"></label>
+            ${textField("location", "地点", "例如：北京")}
+          </div>
+          <label class="form-field"><span>岗位 / 投递链接</span><input name="applyUrl" type="url" inputmode="url" placeholder="https://..."></label>
+          ${textareaField("notes", "备注", "记录下一步、结果或需要核实的信息")}
+          <p class="assessment-form-error" data-pipeline-form-error aria-live="assertive"></p>
+          <div class="modal-actions">
+            <button type="button" class="secondary-button" data-pipeline-cancel>取消</button>
+            <button type="submit" class="primary-button">保存 Local Draft</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  `;
+}
+
+function handlePipelineSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const input = Object.fromEntries(new FormData(form).entries());
+  const baseRecord = (state.applications || []).find((item) => item.jobId === input.jobId);
+  const errors = validatePipelineDraft(input);
+  const errorNode = form.querySelector("[data-pipeline-form-error]");
+  if (errors.length) {
+    errorNode.textContent = errors.join("；");
+    return;
+  }
+  const record = createLocalPipelineDraft(input, { baseRecord });
+  state.localPipelineDrafts = savePipelineDraft(record);
+  pipelineModalOpen = false;
+  render();
+}
+
+function fillPipelineFormFromApplication(form) {
+  const record = (state.applications || []).find((item) => item.jobId === form.elements.jobId.value);
+  if (!record) return;
+  ["company", "title", "location", "currentStatus", "statusUpdatedAt", "appliedDate", "applyUrl", "notes"].forEach((key) => {
+    if (form.elements[key]) form.elements[key].value = record[key] || "";
+  });
+}
+
+function getPipelineApplications() {
+  return mergePipelineApplications(state.applications || [], state.localPipelineDrafts || []);
 }
 
 function renderAssessments() {
@@ -833,7 +955,7 @@ function renderSidebar() {
 }
 
 function getPipelineRows() {
-  const applications = activeApplications(state.applications || []).map((job) => ({
+  const applications = activeApplications(getPipelineApplications()).map((job) => ({
     ...job,
     rowType: inferApplicationRowType(job),
     rowLabel: statusLabel(job.currentStatus) || "已投递",
@@ -1055,7 +1177,7 @@ function renderPipelineRow(job) {
   const isInProgress = job.currentStatus === "Application In Progress";
   return `
     <article class="pipeline-row ${isInProgress ? "application-in-progress" : ""}" data-row-job="${escapeAttr(job.jobId)}" role="row">
-      <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small></div>
+      <div class="cell cell-company" data-label="公司"><strong>${escapeHtml(job.company || "未命名公司")}</strong><small>${escapeHtml(job.rowLabel || job.source || "")}</small>${job.localDraft ? `<small class="local-draft-badge">Local Draft</small>` : ""}</div>
       <div class="cell cell-title" data-label="岗位">${url ? `<a class="job-title-link ${isInProgress ? "in-progress-job-link" : ""}" href="${escapeAttr(url)}" target="_blank" rel="noreferrer" onclick="event.stopPropagation()">${escapeHtml(job.title || "未命名岗位")}</a>` : `<span class="${isInProgress ? "in-progress-job-link" : ""}">${escapeHtml(job.title || "未命名岗位")}</span><small>链接待验证</small>`}</div>
       <div class="cell" data-label="Base">${escapeHtml(job.location || job.base || "")}</div>
       <div class="cell" data-label="投递/记录日期">${escapeHtml(formatDate(job.rowDate || job.appliedDate || job.foundDate))}<small>${latest.date ? `最近 ${escapeHtml(formatDate(latest.date))}` : ""}</small></div>
