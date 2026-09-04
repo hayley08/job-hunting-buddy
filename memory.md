@@ -90,3 +90,8 @@
 - User reported “OPPO 给我挂了”; the existing OPPO application is now Rejected with an append-only 2026-09-03 status event and is archived out of active KPI while preserving its application history.
 - User reported 地平线「【2027届校招】人力资源管培生(OTD、C&B、绩效等方向)」 as Applied on 2026-09-03. Preserve the supplied Hotjob personal application-history URL as the exact apply link, but do not treat it as a verified JD-detail URL; the complete user-supplied JD and analysis are canonical.
 - 流程 now mirrors the local-draft interaction model without introducing a new job schema. `+ 新建流程` creates/updates device-local canonical application records and appends `statusHistory`. Its offline workbook is dated and always orders `流程` as sheet 1 and `测评` as sheet 2; returned workbooks require validated ID-based merge before repo/Feishu synchronization.
+
+## 2026-09-04
+
+- DJI / 大疆's existing 2026-07-17 application now preserves the official personal application-query URL; it remains a link-unverified JD detail page and does not create a duplicate application.
+- User reported 快手「HR-组织发展」 as Applied on 2026-08-31. The role is a full-time Beijing OD role posted 2026-08-26, centered on AI transformation, organization design, job architecture, performance/promotion, leadership and talent strategy. Full supplied JD and analysis are canonical; its personal application-history URL is not a verified detail URL.

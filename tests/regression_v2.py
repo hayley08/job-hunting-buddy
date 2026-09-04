@@ -75,7 +75,7 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 20, "Application In Progress and archived rejection must not inflate Applied KPI")
+    assert_true(applied_kpi_count == 21, "Application In Progress and archived rejection must not inflate Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
@@ -97,11 +97,15 @@ def main():
     unilever = next(item for item in active_apps if item.get("jobId") == "app-unilever-hr-national-rotation-2026-09-03")
     baidu = next(item for item in active_apps if item.get("sourceJobId") == "J101242")
     horizon = next(item for item in active_apps if item.get("jobId") == "app-horizon-hr-management-trainee-otd-cb-performance-2026-09-03")
+    dji = next(item for item in active_apps if item.get("jobId") == "app-dji-human-resources-management-2026-07-17")
+    kuaishou = next(item for item in active_apps if item.get("jobId") == "app-kuaishou-hr-organization-development-2026-08-31")
     oppo = next(item for item in applications if item.get("jobId") == "app-oppo-human-resources-2026-08-17")
     assert_true(sangfor.get("appliedDate") == "2026-08-26" and "南京" in sangfor.get("location", "") and "深圳" in sangfor.get("location", ""), "Sangfor application or location conflict missing")
     assert_true(unilever.get("appliedDate") == "2026-09-03" and not unilever.get("jdUrl"), "Unilever application-center link semantics missing")
     assert_true(baidu.get("title") == "北京-人力资源-COE方向(J101242)" and not baidu.get("jdUrl"), "Baidu application summary missing")
     assert_true(horizon.get("currentStatus") == "Applied" and horizon.get("appliedDate") == "2026-09-03" and not horizon.get("jdUrl"), "Horizon application/link semantics missing")
+    assert_true(dji.get("applyUrl") == "https://apply.careers.dji.com/candidate/applications/deliver-query/dji" and dji.get("appliedDate") == "2026-07-17", "DJI application link update must preserve original date")
+    assert_true(kuaishou.get("currentStatus") == "Applied" and kuaishou.get("appliedDate") == "2026-08-31" and kuaishou.get("postedDate") == "2026-08-26" and not kuaishou.get("jdUrl"), "Kuaishou application summary/link semantics missing")
     assert_true(oppo.get("currentStatus") == "Rejected" and oppo.get("archived") is True and any(event.get("status") == "Rejected" for event in oppo.get("statusHistory", [])), "OPPO rejection status/history missing")
     qwen = next(item for item in active_apps if item.get("company") == "阿里千问")
     assert_true(qwen.get("currentStatus") == "Application In Progress" and not qwen.get("appliedDate"), "Qwen must remain not submitted")
@@ -164,7 +168,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 26, "captured JD count must include all analyzed September application records")
+    assert_true(len(complete_jds) == 27, "captured JD count must include all analyzed September application records")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     missing_jd_ids = {item.get("jobId") for item in missing_jds}
     assert_true({hitachi.get("jobId"), anker.get("jobId")}.issubset(missing_jd_ids), "unverified Hitachi/Anker jobs must remain JD Missing")

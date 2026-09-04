@@ -116,5 +116,14 @@
     "content": "Record the Horizon Robotics HR Management Trainee application from the complete supplied JD, and add + 新建流程 plus a dated Excel export whose first sheet is 流程 and second sheet is 测评 for offline status management and validated repository import.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-03T18:00:00+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-04-dji-link-kuaishou-application",
+    "createdAt": "2026-09-04T21:18:31+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "Attach the official DJI application-query URL to its existing canonical application without changing the applied date, and record Kuaishou HR-组织发展 as applied on 2026-08-31 with the full supplied JD and official application-history URL.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-04T21:18:31+08:00"
   }
 ]

@@ -1,7 +1,7 @@
 {
-  "runDate": "2026-09-03",
+  "runDate": "2026-09-04",
   "runType": "MANUAL_APPLICATION_UPDATE",
-  "dataUpdatedAt": "2026-09-03T18:00:00+08:00",
+  "dataUpdatedAt": "2026-09-04T21:18:31+08:00",
   "activeMarket": "Mainland",
   "processingWindow": {
     "mode": "USER_REPORTED_UPDATE",
@@ -34,13 +34,13 @@
   "duplicateRemoved": 2,
   "brokenLinks": 0,
   "unverifiedLinks": 9,
-  "jdCapturedCount": 26,
+  "jdCapturedCount": 27,
   "jdMissingCount": 31,
   "targetCompanyCheckedCount": 25,
   "newlyOpenedTargetCompanies": [],
   "newApplications": 1,
-  "appliedCount": 20,
-  "activeMainlandApplications": 22,
+  "appliedCount": 21,
+  "activeMainlandApplications": 23,
   "applicationInProgressCount": 2,
   "activeOpportunities": 4,
   "topRecommendationJobIds": [
@@ -58,6 +58,7 @@
     "On 2026-09-02, P&G, Nestlé/Totole, ABB and CATL were recorded as Applied from explicit user reports; full supplied JDs and analyzed JD knowledge were preserved. Nestlé's application-history URL remains link-unverified as a JD page.",
     "On 2026-09-03, Sangfor (applied 2026-08-26), Unilever and Baidu were recorded as Applied with full supplied JDs; OPPO was marked Rejected and archived from active KPIs. All three new links remain unverified as exact JD-detail URLs.",
     "On 2026-09-03, Horizon Robotics was recorded as Applied with the complete supplied HR data and organization-effectiveness JD; the exact application-history URL is preserved and remains unverified as an exact JD-detail URL.",
+    "On 2026-09-04, DJI's existing application received its official application-query URL without changing the 2026-07-17 application date; Kuaishou HR-Organization Development was recorded as Applied on 2026-08-31 with complete supplied JD analysis. Both URLs are application-history pages, not verified exact JD-detail URLs.",
     "Search metrics remain the 2026-08-23 seed baseline until the scheduled 2026-08-24 12:00 DAILY_RUN."
   ]
 }

@@ -1,0 +1,34 @@
+{
+  "receivedAt": "2026-09-04T21:18:31+08:00",
+  "processed": true,
+  "processedAt": "2026-09-04T21:18:31+08:00",
+  "sourceOfTruth": "user",
+  "eventType": "apply_summary_and_link_update",
+  "applications": [
+    {
+      "jobId": "app-dji-human-resources-management-2026-07-17",
+      "company": "DJI / 大疆",
+      "providedUrl": "https://apply.careers.dji.com/candidate/applications/deliver-query/dji",
+      "linkMeaning": "Official personal application-query page; not an exact public JD page",
+      "action": "Update existing canonical record without changing its 2026-07-17 applied date"
+    },
+    {
+      "jobId": "app-kuaishou-hr-organization-development-2026-08-31",
+      "company": "快手",
+      "title": "HR-组织发展",
+      "appliedDate": "2026-08-31",
+      "postedDate": "2026-08-26",
+      "location": "北京",
+      "employmentType": "全职",
+      "providedUrl": "https://campus.kuaishou.cn/recruit/campus/e/#/campus/my-apply",
+      "linkMeaning": "Official personal application-history page; not an exact public JD page"
+    }
+  ],
+  "jdRawByJobId": {
+    "app-kuaishou-hr-organization-development-2026-08-31": "HR-组织发展\n全职\n职能类\n北京\n发布日期：2026-08-26\n\n职位描述\n在快手，AI正在研发、产品、运营、设计等各个领域影响着我们提供给用户/客户的服务，也影响着我们的工作，成为当下组织的最大变量。\n组织发展团队，负责从公司视角思考组织设计成怎样、需要怎样的人才、如何实现人才的发展等话题，并通过组织架构、岗位职级、绩效晋升、管理者、人才策略等方面的管理，帮助实现业务的成功、组织和人才的发展。\n加入组织发展团队，你将参与到方案规划设计与推动落地执行的过程中。\n\n【你将获得什么】\n1、有机会参与HR多模块工作（AI转型等、组织架构、岗位职级、绩效晋升、管理者、人才策略等），积累复合经验、实现快速成长；\n2、亲自上手经历一个公司级重要项目从方案规划设计到落地执行、拿到结果的全过程，实现策略思维和实操能力的同步发展；\n3、与企业文化、招聘管理、薪酬激励、HRBP、数据分析、企业应用系统等团队密切合作，推动项目落地。\n\n【为什么是快手】\n1、近距离参与到AI影响下的组织与人才演化，在实际落地场景中应用AI，并定义AI该做什么；\n2、多模块工作、跨领域协作的复合型成长机会，信任和授权的成长环境。\n\n任职要求\n1、本科及以上学历，不限专业，欢迎不同背景的伙伴；\n2、拥有结构化思维和独立思考的习惯，学习能力强，有好奇心、自驱；\n3、擅用AI解决实际问题。"
+  },
+  "notes": [
+    "No application was submitted automatically.",
+    "Both supplied URLs are preserved exactly and are not treated as verified job-detail URLs."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "runDate": "2026-09-04",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "branch": "feature/campus-job-os-v2",
+  "sourceOfTruth": "repository",
+  "completed": [
+    "Deduplicated DJI to its existing canonical application and attached the exact official application-query URL without changing its original status date",
+    "Recorded Kuaishou HR-Organization Development as Applied on 2026-08-31 with complete supplied JD and analysis",
+    "Regenerated data/jobs.json and synchronized both canonical records to Feishu with read-back verification",
+    "Passed JSON, schema, application, Excel and responsive regression checks"
+  ],
+  "canonicalApplicationIds": [
+    "app-dji-human-resources-management-2026-07-17",
+    "app-kuaishou-hr-organization-development-2026-08-31"
+  ],
+  "integrityNotes": [
+    "DJI and Kuaishou URLs are official personal application-history/query pages, not verified exact JD-detail URLs.",
+    "Kuaishou JD does not state a graduation cohort; 2027 eligibility remains a stated risk.",
+    "No automatic application submission occurred."
+  ],
+  "report": "reports/2026-09-04_dji-kuaishou-application-update.md"
+}
