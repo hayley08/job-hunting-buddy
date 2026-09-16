@@ -125,5 +125,14 @@
     "content": "Attach the official DJI application-query URL to its existing canonical application without changing the applied date, and record Kuaishou HR-组织发展 as applied on 2026-08-31 with the full supplied JD and official application-history URL.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-04T21:18:31+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-16-applications-and-rejections",
+    "createdAt": "2026-09-16T23:55:36+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "Record NIO HR Sparks as applied on 2026-09-07, Xiaomi Compensation HR Specialist as applied on 2026-09-05, promote the existing PDD HR Management Trainee opportunity to Applied without inventing its missing submission date, and mark Alibaba and Xiaopeng as Rejected while retaining the existing OPPO rejection event.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-16T23:55:36+08:00"
   }
 ]

@@ -95,3 +95,9 @@
 
 - DJI / 大疆's existing 2026-07-17 application now preserves the official personal application-query URL; it remains a link-unverified JD detail page and does not create a duplicate application.
 - User reported 快手「HR-组织发展」 as Applied on 2026-08-31. The role is a full-time Beijing OD role posted 2026-08-26, centered on AI transformation, organization design, job architecture, performance/promotion, leadership and talent strategy. Full supplied JD and analysis are canonical; its personal application-history URL is not a verified detail URL.
+
+## 2026-09-16
+
+- User reported 蔚来「校招-人力资源管理培训生 HR Sparks」 (`A73041`) as Applied on 2026-09-07 and 小米「人力资源专员-薪酬」 as Applied on 2026-09-05. Their complete supplied JDs and analyses are canonical; both supplied URLs are official personal application pages, not verified standalone JD-detail links.
+- User reported 阿里 and 小鹏 applications as Rejected on 2026-09-09. Alibaba's exact application date and final position title remain unknown, so `appliedDate` stays empty; Xiaopeng retains its 2026-08-27 applied date and exact official job URL. OPPO's existing 2026-09-03 rejection remains unchanged without a duplicate history event.
+- The existing 拼多多集团-PDD「HR管培生（上海）」 recommendation was promoted to Applied under the same canonical jobId, removed from active Opportunities, and updated with the exact official position-specific URL and complete user-supplied JD. The user did not provide the submission date, so `appliedDate` stays empty and the 2026-09-16 status event records only the report date.

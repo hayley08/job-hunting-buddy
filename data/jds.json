@@ -813,60 +813,6 @@
     "refreshReason": "jd-missing"
   },
   {
-    "jobId": "opp-pdd-hr-management-trainee-shanghai-2027",
-    "jdStatus": "Current JD",
-    "jdRaw": "岗位职责\n方向一：招聘配置。学习人力资源管理流程，参与管理培训生培养，完成人才库维护、简历搜索、面试组织、候选人入职跟进、招聘活动和招聘数据分析，并与业务部门协作。\n方向二：人力流程和信息效率。学习员工生命周期全流程，包括入职、绩效管理、薪酬管理、培训、员工关系及离职管理；参与流程诊断、SOP、HR系统功能设计和落地；通过调研和数据分析推动流程效能分析、系统改造和员工体验优化。\n方向三：员工关系。参与用工政策与合规、员工入离调转、保险、劳动关系以及全球HR协作。\n岗位要求\n2027届毕业生，本科及以上学历；人力资源管理、心理学、法学、小语种等相关专业优先；具备沟通、多任务处理、逻辑分析、自驱力和快速适应能力。",
-    "jdSnapshot": "岗位职责\n方向一：招聘配置。学习人力资源管理流程，参与管理培训生培养，完成人才库维护、简历搜索、面试组织、候选人入职跟进、招聘活动和招聘数据分析，并与业务部门协作。\n方向二：人力流程和信息效率。学习员工生命周期全流程，包括入职、绩效管理、薪酬管理、培训、员工关系及离职管理；参与流程诊断、SOP、HR系统功能设计和落地；通过调研和数据分析推动流程效能分析、系统改造和员工体验优化。\n方向三：员工关系。参与用工政策与合规、员工入离调转、保险、劳动关系以及全球HR协作。\n岗位要求\n2027届毕业生，本科及以上学历；人力资源管理、心理学、法学、小语种等相关专业优先；具备沟通、多任务处理、逻辑分析、自驱力和快速适应能力。",
-    "jdCapturedAt": "2026-08-23T21:30:00+08:00",
-    "jdSource": "nowcoder+official-program-verified",
-    "jdUrl": "https://www.nowcoder.com/jobs/detail/452278",
-    "jdHash": "9a63ced72a5a35a9897b66d9619431ed25ead8b9770a960b339a523f1ace6ea9",
-    "jdSummary": "三方向 HR 管培：招聘配置；员工生命周期、绩效、薪酬、培训和 HR 系统流程优化；员工关系与全球 HR 协作。",
-    "jdCoreResponsibilities": [
-      "招聘配置与数据分析",
-      "HR流程诊断、SOP和系统落地",
-      "员工关系与全球HR协作"
-    ],
-    "jdDistinctiveKeywords": [
-      "HR process optimization",
-      "HRIS",
-      "Employee lifecycle",
-      "Employee Experience",
-      "Global HR"
-    ],
-    "jdUniqueRequirements": [
-      "三个方向分流，需确认意向方向",
-      "快节奏互联网环境"
-    ],
-    "jdInterviewSignals": [
-      "准备 HR 流程优化和数据分析案例",
-      "说明为何更偏流程信息效率而非纯招聘"
-    ],
-    "jdMustHave": [
-      "2027届本科及以上",
-      "逻辑分析与业务需求理解",
-      "沟通与多任务处理"
-    ],
-    "jdNiceToHave": [
-      "HR/心理/法学/小语种背景",
-      "HR系统或流程优化经验"
-    ],
-    "jdKeyOriginalExcerpt": [
-      "方向二：人力流程和信息效率。",
-      "参与流程诊断、SOP、HR系统功能设计和落地",
-      "通过调研和数据分析推动流程效能分析、系统改造和员工体验优化。"
-    ],
-    "jdVersions": [
-      {
-        "capturedAt": "2026-08-23T21:30:00+08:00",
-        "hash": "9a63ced72a5a35a9897b66d9619431ed25ead8b9770a960b339a523f1ace6ea9",
-        "source": "nowcoder+official-program-verified"
-      }
-    ],
-    "interviewPackNeedsRefresh": true,
-    "refreshReason": "new-jd-hash"
-  },
-  {
     "jobId": "opp-positec-hr-specialist-suzhou-2027",
     "jdStatus": "Current JD",
     "jdRaw": "岗位职责\n1、员工发展体系支持：协助搭建与运营员工培训、人才盘点、继任者计划等发展项目，跟进项目全流程并输出复盘报告。\n2、组织发展项目执行：参与组织诊断、架构优化、敬业度调研等 OD 项目，负责数据收集、分析及成果落地跟进。\n3、人才数据与报表：维护人力资源数据看板，定期输出员工发展与组织健康度相关的分析报告。\n4、跨部门沟通协同：对接业务部门 HRBP 及团队负责人，收集发展需求并推动培训、辅导及组织变革。\n5、HR 工具与流程优化：参与流程制度梳理与优化，协助引入和落地数字化 HR 工具。\n岗位要求\n2027 届本科及以上；相关专业优先；具备数据分析能力，熟练 Excel，有 SPSS/Python 经验加分。",
@@ -2083,7 +2029,17 @@
       "输出可落地的制度、流程与体系优化方案。",
       "提升 HR 各模块专业化水平并赋能组织效能与人才梯队。"
     ],
-    "jdDistinctiveKeywords": ["HR Analytics", "Organization Effectiveness", "AI", "Data Modeling", "Trend Forecasting", "Attribution Analysis", "OTD", "C&B", "Performance"],
+    "jdDistinctiveKeywords": [
+      "HR Analytics",
+      "Organization Effectiveness",
+      "AI",
+      "Data Modeling",
+      "Trend Forecasting",
+      "Attribution Analysis",
+      "OTD",
+      "C&B",
+      "Performance"
+    ],
     "jdUniqueRequirements": [
       "能够使用 AI 分析工具开展人力数据建模、趋势预测和归因分析。",
       "对人性规律、人才管理逻辑和组织效能有强烈兴趣。",
@@ -2095,14 +2051,29 @@
       "连接既有 OTD、C&B、绩效经历与科技企业组织效能场景。",
       "明确可提前实习时间和更偏好的方向。"
     ],
-    "jdMustHave": ["本科及以上", "逻辑推演与业务洞察", "AI 分析工具", "人力数据建模/预测/归因能力", "主动务实并关注落地"],
-    "jdNiceToHave": ["理工科、财务、商业分析、心理学或人力资源背景", "可提前实习"],
+    "jdMustHave": [
+      "本科及以上",
+      "逻辑推演与业务洞察",
+      "AI 分析工具",
+      "人力数据建模/预测/归因能力",
+      "主动务实并关注落地"
+    ],
+    "jdNiceToHave": [
+      "理工科、财务、商业分析、心理学或人力资源背景",
+      "可提前实习"
+    ],
     "jdKeyOriginalExcerpt": [
       "以AI思维+数据能力为核心抓手，拆解组织特性、挖掘人力数据价值。",
       "具备开展人力数据建模、趋势预测、归因分析的实操能力；",
       "愿意用技术思维重构传统人力工作，追求工作落地成效。"
     ],
-    "jdVersions": [{"capturedAt": "2026-09-03T18:00:00+08:00", "hash": "c0740595faf26b519ea1fc513b264b45e8ea7b602098615e110aa1e440ef3a96", "source": "user-provided-jd"}],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-03T18:00:00+08:00",
+        "hash": "c0740595faf26b519ea1fc513b264b45e8ea7b602098615e110aa1e440ef3a96",
+        "source": "user-provided-jd"
+      }
+    ],
     "interviewPackNeedsRefresh": true,
     "refreshReason": "new-user-supplied-jd"
   },
@@ -2122,7 +2093,16 @@
       "与企业文化、招聘、薪酬、HRBP、数据分析和企业应用系统团队协作推动项目。",
       "研究并实践 AI 对组织与人才演化的影响。"
     ],
-    "jdDistinctiveKeywords": ["Organization Development", "AI Transformation", "Organization Design", "Job Architecture", "Performance & Promotion", "Leadership", "Talent Strategy", "Cross-functional Collaboration"],
+    "jdDistinctiveKeywords": [
+      "Organization Development",
+      "AI Transformation",
+      "Organization Design",
+      "Job Architecture",
+      "Performance & Promotion",
+      "Leadership",
+      "Talent Strategy",
+      "Cross-functional Collaboration"
+    ],
     "jdUniqueRequirements": [
       "本科及以上且不限专业。",
       "具备结构化思维、独立思考、好奇心和自驱力。",
@@ -2134,16 +2114,215 @@
       "说明如何协调 HRBP、C&B、数据和系统团队推进公司级项目。",
       "准备绩效、人才发展或 competency assessment 经历与 OD 岗的连接。"
     ],
-    "jdMustHave": ["本科及以上", "结构化与独立思考", "学习能力、好奇心和自驱力", "使用 AI 解决实际问题"],
-    "jdNiceToHave": ["组织发展/人才发展/绩效经验", "跨 HR 模块协作经验", "公司级项目落地经验"],
+    "jdMustHave": [
+      "本科及以上",
+      "结构化与独立思考",
+      "学习能力、好奇心和自驱力",
+      "使用 AI 解决实际问题"
+    ],
+    "jdNiceToHave": [
+      "组织发展/人才发展/绩效经验",
+      "跨 HR 模块协作经验",
+      "公司级项目落地经验"
+    ],
     "jdKeyOriginalExcerpt": [
       "通过组织架构、岗位职级、绩效晋升、管理者、人才策略等方面的管理，帮助实现业务的成功、组织和人才的发展。",
       "亲自上手经历一个公司级重要项目从方案规划设计到落地执行、拿到结果的全过程",
       "近距离参与到AI影响下的组织与人才演化，在实际落地场景中应用AI，并定义AI该做什么；",
       "擅用AI解决实际问题。"
     ],
-    "jdVersions": [{"capturedAt": "2026-09-04T21:18:31+08:00", "hash": "10adc69f5245e55847df5210574d1f18d81205a9e8e719797be569a86ec02e78", "source": "user-provided-jd"}],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-04T21:18:31+08:00",
+        "hash": "10adc69f5245e55847df5210574d1f18d81205a9e8e719797be569a86ec02e78",
+        "source": "user-provided-jd"
+      }
+    ],
     "interviewPackNeedsRefresh": true,
     "refreshReason": "new-user-supplied-jd"
+  },
+  {
+    "jobId": "app-nio-hr-sparks-a73041-2026-09-07",
+    "jdStatus": "Current JD - Link Unverified",
+    "jdRaw": "职位描述\n1. 参与人力资源三支柱：COE, HRBP及EPC三大模块的人力资源相关工作；\n2. 公司提供充分的轮岗机会 & 培训资源，让各位管理培训生尽快学习、了解、熟悉、掌握人力资源各职能模块的工作内容；\n3. 给予的人力资源项目任务，需配合完成实施跟进；\n4. 经过一定时期的轮岗后，将定向培养长期发展方向。\n\n职位要求\n1. 研究生及以上学历，英文听说读写能力好者优先；\n2. 有清晰的职业规划和职业发展目标，对于从事人力资源工作有饱满的热情；\n3. 优秀的沟通能力，逻辑分析能力及解决问题能力；\n4. 数据处理能力强，有很强的自我驱动力，有创新思维及判断力；\n5. 能熟练运用Office等办公软件，轮岗 & 定岗地点服从公司分配。",
+    "jdSnapshot": "职位描述\n1. 参与人力资源三支柱：COE, HRBP及EPC三大模块的人力资源相关工作；\n2. 公司提供充分的轮岗机会 & 培训资源，让各位管理培训生尽快学习、了解、熟悉、掌握人力资源各职能模块的工作内容；\n3. 给予的人力资源项目任务，需配合完成实施跟进；\n4. 经过一定时期的轮岗后，将定向培养长期发展方向。\n\n职位要求\n1. 研究生及以上学历，英文听说读写能力好者优先；\n2. 有清晰的职业规划和职业发展目标，对于从事人力资源工作有饱满的热情；\n3. 优秀的沟通能力，逻辑分析能力及解决问题能力；\n4. 数据处理能力强，有很强的自我驱动力，有创新思维及判断力；\n5. 能熟练运用Office等办公软件，轮岗 & 定岗地点服从公司分配。",
+    "jdCapturedAt": "2026-09-16T23:55:36+08:00",
+    "jdSource": "user-provided",
+    "jdUrl": "https://nio.jobs.feishu.cn/campus/position/application?spread=S3D643T",
+    "jdHash": "ac316f3c22d6a1743d41a0a9995eaf55495e0b995040f9291d0f17d1adc1b214",
+    "jdSummary": "人力资源管理培训生通过 COE、HRBP、EPC 三模块轮岗与项目实践建立综合 HR 能力，强调数据处理、沟通、逻辑分析、自驱力和地点灵活性。",
+    "jdCoreResponsibilities": [
+      "参与 COE、HRBP、EPC 三模块工作",
+      "通过轮岗与培训学习 HR 各职能",
+      "跟进人力资源项目实施",
+      "轮岗后定向培养长期方向"
+    ],
+    "jdDistinctiveKeywords": [
+      "COE",
+      "HRBP",
+      "EPC",
+      "Rotation",
+      "HR Projects",
+      "Data Processing"
+    ],
+    "jdUniqueRequirements": [
+      "硕士及以上",
+      "轮岗和定岗地点服从公司分配",
+      "EPC 的具体范围在材料中未解释"
+    ],
+    "jdInterviewSignals": [
+      "准备跨模块 HR 项目实施案例",
+      "用数据处理案例说明如何支持组织或人才决策",
+      "明确综合 HR 职业规划及地点灵活性"
+    ],
+    "jdMustHave": [
+      "研究生及以上学历",
+      "沟通、逻辑分析及解决问题能力",
+      "数据处理和自驱力",
+      "接受轮岗与定岗地点分配"
+    ],
+    "jdNiceToHave": [
+      "英文听说读写能力好",
+      "创新思维及判断力",
+      "熟练运用 Office"
+    ],
+    "jdKeyOriginalExcerpt": [
+      "参与人力资源三支柱：COE, HRBP及EPC三大模块的人力资源相关工作；",
+      "数据处理能力强，有很强的自我驱动力，有创新思维及判断力；",
+      "轮岗 & 定岗地点服从公司分配。"
+    ],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-16T23:55:36+08:00",
+        "hash": "ac316f3c22d6a1743d41a0a9995eaf55495e0b995040f9291d0f17d1adc1b214",
+        "source": "user-provided"
+      }
+    ],
+    "interviewPackNeedsRefresh": true,
+    "refreshReason": "new-jd-hash"
+  },
+  {
+    "jobId": "app-xiaomi-compensation-hr-specialist-2026-09-05",
+    "jdStatus": "Current JD - Link Unverified",
+    "jdRaw": "职位描述\n1、负责薪酬数据及人工成本分析，协同团队编制分析报告，通过数据洞察，为业务方提供管理决策支持；\n2、深度参与集团各类薪酬项目，协助推动薪酬相关体系迭代、政策更新等，确保薪酬策略的科学性和可持续性；\n3、市场动态及行业趋势追踪，为公司薪酬策略提供前沿、多维度视角支持。\n\n职位要求\n1、本科及以上学历，数据分析、人力资源管理、理工类专业优先；\n2、数字敏感度高、数据处理能力强，熟练使用Excel等工具；\n3、学习能力强，有好奇心。",
+    "jdSnapshot": "职位描述\n1、负责薪酬数据及人工成本分析，协同团队编制分析报告，通过数据洞察，为业务方提供管理决策支持；\n2、深度参与集团各类薪酬项目，协助推动薪酬相关体系迭代、政策更新等，确保薪酬策略的科学性和可持续性；\n3、市场动态及行业趋势追踪，为公司薪酬策略提供前沿、多维度视角支持。\n\n职位要求\n1、本科及以上学历，数据分析、人力资源管理、理工类专业优先；\n2、数字敏感度高、数据处理能力强，熟练使用Excel等工具；\n3、学习能力强，有好奇心。",
+    "jdCapturedAt": "2026-09-16T23:55:36+08:00",
+    "jdSource": "user-provided",
+    "jdUrl": "https://xiaomi.jobs.f.mioffice.cn/campus/position/application?spread=J7NS6YR",
+    "jdHash": "c2bf008f412bcb639541ae45647799490ef51ca6b467d5aa8a16a308112106b8",
+    "jdSummary": "薪酬专员岗位围绕薪酬数据、人工成本、管理报告、薪酬体系与政策迭代及市场趋势研究，为业务管理决策提供分析支持。",
+    "jdCoreResponsibilities": [
+      "薪酬数据与人工成本分析",
+      "编制管理分析报告",
+      "参与薪酬体系和政策项目",
+      "追踪市场及行业趋势"
+    ],
+    "jdDistinctiveKeywords": [
+      "Compensation",
+      "Labor Cost",
+      "HR Analytics",
+      "Management Reporting",
+      "Policy Design",
+      "Market Benchmarking",
+      "Excel"
+    ],
+    "jdUniqueRequirements": [
+      "岗位方向较专注于薪酬与人工成本",
+      "强调数据洞察对管理决策的支持"
+    ],
+    "jdInterviewSignals": [
+      "准备薪酬或福利数据分析案例",
+      "说明如何把数据转化为业务建议",
+      "准备薪酬政策或市场对标项目案例"
+    ],
+    "jdMustHave": [
+      "本科及以上学历",
+      "数字敏感度与数据处理能力",
+      "熟练使用 Excel",
+      "学习能力和好奇心"
+    ],
+    "jdNiceToHave": [
+      "数据分析、人力资源管理或理工类专业"
+    ],
+    "jdKeyOriginalExcerpt": [
+      "负责薪酬数据及人工成本分析，协同团队编制分析报告，通过数据洞察，为业务方提供管理决策支持；",
+      "深度参与集团各类薪酬项目，协助推动薪酬相关体系迭代、政策更新等",
+      "市场动态及行业趋势追踪，为公司薪酬策略提供前沿、多维度视角支持。"
+    ],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-16T23:55:36+08:00",
+        "hash": "c2bf008f412bcb639541ae45647799490ef51ca6b467d5aa8a16a308112106b8",
+        "source": "user-provided"
+      }
+    ],
+    "interviewPackNeedsRefresh": true,
+    "refreshReason": "new-jd-hash"
+  },
+  {
+    "jobId": "opp-pdd-hr-management-trainee-shanghai-2027",
+    "jdStatus": "Current JD",
+    "jdRaw": "岗位职责\n方向一：招聘配置\n1、全面学习人力资源管理工作流程，紧跟公司工作发展需求；\n2、参与管理培训生培养，通过实践熟悉人力资源不同模块的工作；\n3、分析岗位需求，完成招聘交付计划，满足业务对人员的需求，包括但不限于人才库维护、简历搜索、面试组织、候选人入职落地跟进、各项招聘活动的组织执行、招聘数据的统计及分析等；\n4、与相关业务部门保持有效的日常沟通，提供有效帮助；\n5、协助支持人力资源各专项任务，以及其他工作事宜。\n\n方向二：人力流程和信息效率\n1、学习人力资源管理体系与流程，了解员工生命周期全流程的运营逻辑，包括入职、绩效管理、薪酬管理、培训、员工关系及离职管理等模块；\n2、协助人力资源流程优化工作，在导师指导下参与流程诊断与优化，包括整理流程文档、设计标准化操作手册（SOP）、推动人力资源系统产品的功能设计和落地；\n3、通过项目调研、数据分析等方式，进行方案提出、报告输出、流程优化、专项开展等工作，协助推动流程效能分析和系统改造；\n4、与其他业务部门紧密合作，宣导新流程与工具，提供操作培训与落地支持，持续优化员工体验。\n\n方向三：员工关系\n1、协助制定用工规则，确保各项用工政策符合法规和公司标准；监督合规标准的执行，确保员工和供应商能够遵守相关法规和公司政策；\n2、调研市场，结合当地人才市场情况迭代公司政策，确保内外部人才竞争力；整合人力资源流程，确保人事管理的高效、一致以及合规；\n3、负责员工入离调转等工作管理以及员工各项手续办理，包括但不限于协助公司新签/续签劳动合同，及时完成各类保险缴纳与更新工作，协助其他员工关系工作；\n4、协调劳资关系，收集整理分析员工诉求，并及时反馈和解决；协助支持劳动关系，降低劳动用工风险；\n5、与全球人力资源团队紧密合作，共享最佳实践，推动人力资源管理的协调和整合。\n\n任职要求\n1、2027届毕业生，本科及以上学历，人力资源管理、心理学、法学、小语种等相关专业优先；\n2、做事认真负责，细心谨慎，具备良好的人际交往及沟通能力，具备多任务处理能力，具备自主解决问题能力；\n3、积极主动好学，逻辑思维清晰，洞察分析能力好，能快速理解和分析业务需求，形成有效的解决方案；\n4、具备较好的自驱力，愿意接受挑战，能适应快节奏、多变化、高速成长的互联网行业，认同公司企业文化。",
+    "jdSnapshot": "岗位职责\n方向一：招聘配置\n1、全面学习人力资源管理工作流程，紧跟公司工作发展需求；\n2、参与管理培训生培养，通过实践熟悉人力资源不同模块的工作；\n3、分析岗位需求，完成招聘交付计划，满足业务对人员的需求，包括但不限于人才库维护、简历搜索、面试组织、候选人入职落地跟进、各项招聘活动的组织执行、招聘数据的统计及分析等；\n4、与相关业务部门保持有效的日常沟通，提供有效帮助；\n5、协助支持人力资源各专项任务，以及其他工作事宜。\n\n方向二：人力流程和信息效率\n1、学习人力资源管理体系与流程，了解员工生命周期全流程的运营逻辑，包括入职、绩效管理、薪酬管理、培训、员工关系及离职管理等模块；\n2、协助人力资源流程优化工作，在导师指导下参与流程诊断与优化，包括整理流程文档、设计标准化操作手册（SOP）、推动人力资源系统产品的功能设计和落地；\n3、通过项目调研、数据分析等方式，进行方案提出、报告输出、流程优化、专项开展等工作，协助推动流程效能分析和系统改造；\n4、与其他业务部门紧密合作，宣导新流程与工具，提供操作培训与落地支持，持续优化员工体验。\n\n方向三：员工关系\n1、协助制定用工规则，确保各项用工政策符合法规和公司标准；监督合规标准的执行，确保员工和供应商能够遵守相关法规和公司政策；\n2、调研市场，结合当地人才市场情况迭代公司政策，确保内外部人才竞争力；整合人力资源流程，确保人事管理的高效、一致以及合规；\n3、负责员工入离调转等工作管理以及员工各项手续办理，包括但不限于协助公司新签/续签劳动合同，及时完成各类保险缴纳与更新工作，协助其他员工关系工作；\n4、协调劳资关系，收集整理分析员工诉求，并及时反馈和解决；协助支持劳动关系，降低劳动用工风险；\n5、与全球人力资源团队紧密合作，共享最佳实践，推动人力资源管理的协调和整合。\n\n任职要求\n1、2027届毕业生，本科及以上学历，人力资源管理、心理学、法学、小语种等相关专业优先；\n2、做事认真负责，细心谨慎，具备良好的人际交往及沟通能力，具备多任务处理能力，具备自主解决问题能力；\n3、积极主动好学，逻辑思维清晰，洞察分析能力好，能快速理解和分析业务需求，形成有效的解决方案；\n4、具备较好的自驱力，愿意接受挑战，能适应快节奏、多变化、高速成长的互联网行业，认同公司企业文化。",
+    "jdCapturedAt": "2026-09-16T23:55:36+08:00",
+    "jdSource": "user-provided-official-apply-link",
+    "jdUrl": "https://careers.pddglobalhr.com/campus/resume-apply?positionId=0c949a90-196a-4383-b0fb-2a3870b4b79f&batchId=8e154278-2638-46eb-a444-28e824111eaa&pageType=grad",
+    "jdHash": "7cb7fb9b57049b9c3d3b8a32b130450d3f081c95fcdea6fd60af709cc4013ec9",
+    "jdSummary": "三方向 HR 管培生：招聘配置；员工生命周期、流程诊断、SOP、HR 系统与数据分析；员工关系、合规及全球 HR 协作。流程和信息效率方向最贴合用户。",
+    "jdCoreResponsibilities": [
+      "招聘交付与招聘数据分析",
+      "员工全生命周期流程运营",
+      "流程诊断、SOP 与 HR 系统落地",
+      "流程效能分析与员工体验优化",
+      "员工关系、合规与全球 HR 协作"
+    ],
+    "jdDistinctiveKeywords": [
+      "HR Management Trainee",
+      "Recruiting",
+      "Employee Lifecycle",
+      "HR Process Optimization",
+      "HRIS",
+      "SOP",
+      "HR Analytics",
+      "Employee Relations",
+      "Global HR"
+    ],
+    "jdUniqueRequirements": [
+      "岗位按三个方向分流",
+      "2027届本科及以上",
+      "需要适应快节奏、多变化的互联网环境"
+    ],
+    "jdInterviewSignals": [
+      "明确流程和信息效率方向的优先意向",
+      "准备 HR 流程优化、系统落地或自动化案例",
+      "准备数据分析如何转化为流程/体验改善",
+      "准备高压、多任务和跨部门落地案例"
+    ],
+    "jdMustHave": [
+      "2027届毕业生，本科及以上",
+      "沟通与多任务处理",
+      "逻辑分析与业务需求理解",
+      "自驱力与快速适应能力"
+    ],
+    "jdNiceToHave": [
+      "人力资源、心理学、法学、小语种背景",
+      "HR 系统或流程优化经验",
+      "全球 HR 协作经验"
+    ],
+    "jdKeyOriginalExcerpt": [
+      "方向二：人力流程和信息效率",
+      "推动人力资源系统产品的功能设计和落地；",
+      "协助推动流程效能分析和系统改造；",
+      "与全球人力资源团队紧密合作，共享最佳实践，推动人力资源管理的协调和整合。"
+    ],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-16T23:55:36+08:00",
+        "hash": "7cb7fb9b57049b9c3d3b8a32b130450d3f081c95fcdea6fd60af709cc4013ec9",
+        "source": "user-provided-official-apply-link"
+      }
+    ],
+    "interviewPackNeedsRefresh": true,
+    "refreshReason": "new-jd-hash"
   }
 ]

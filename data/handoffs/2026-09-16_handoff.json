@@ -1,0 +1,40 @@
+{
+  "runDate": "2026-09-16",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "createdAt": "2026-09-16T23:55:36+08:00",
+  "sourceOfTruth": "user",
+  "applicationJobIds": [
+    "app-nio-hr-sparks-a73041-2026-09-07",
+    "app-xiaomi-compensation-hr-specialist-2026-09-05",
+    "opp-pdd-hr-management-trainee-shanghai-2027"
+  ],
+  "statusUpdates": [
+    {
+      "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+      "status": "Rejected",
+      "date": "2026-09-09"
+    },
+    {
+      "jobId": "opp-single-url-7669694331025262911",
+      "status": "Rejected",
+      "date": "2026-09-09"
+    },
+    {
+      "jobId": "app-oppo-human-resources-2026-08-17",
+      "status": "Rejected",
+      "date": "2026-09-03",
+      "action": "retained_without_duplicate"
+    }
+  ],
+  "linkIntegrity": {
+    "app-nio-hr-sparks-a73041-2026-09-07": "official application-history URL; JD detail link unverified",
+    "app-xiaomi-compensation-hr-specialist-2026-09-05": "official application-history URL; JD detail link unverified",
+    "opp-pdd-hr-management-trainee-shanghai-2027": "official position-specific apply URL preserved exactly"
+  },
+  "nextRunMustRead": [
+    "data/applications.json",
+    "data/jds.json",
+    "data/user-feedback.json",
+    "data/inbox/2026-09-16_apply-summary-nio-xiaomi-pdd-rejections.json"
+  ]
+}

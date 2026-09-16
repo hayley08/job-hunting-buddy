@@ -66,8 +66,8 @@ def main():
         assert_true(item.get("recommendationDate") == item.get("recommendationDates", [None])[0], f"first recommendation date drifted: {item.get('jobId')}")
 
     in_progress = [item for item in active_apps if item.get("currentStatus") == "Application In Progress"]
-    assert_true(len(in_progress) == 2, "expected 2 Application In Progress records")
-    assert_true({item.get("company") for item in in_progress} == {"联想", "阿里千问"}, "unexpected Application In Progress companies")
+    assert_true(len(in_progress) == 1, "expected 1 Application In Progress record")
+    assert_true({item.get("company") for item in in_progress} == {"联想"}, "unexpected Application In Progress companies")
     for item in in_progress:
         assert_true(item.get("applyUrl", "").startswith("https://"), f"Application In Progress must preserve applyUrl: {item.get('jobId')}")
         assert_true(item.get("applicationStartedAt") in {"2026-08-23", "2026-08-24"}, f"applicationStartedAt missing: {item.get('jobId')}")
@@ -75,7 +75,7 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 21, "Application In Progress and archived rejection must not inflate Applied KPI")
+    assert_true(applied_kpi_count == 23, "Application In Progress and archived rejection must not inflate Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
@@ -99,6 +99,9 @@ def main():
     horizon = next(item for item in active_apps if item.get("jobId") == "app-horizon-hr-management-trainee-otd-cb-performance-2026-09-03")
     dji = next(item for item in active_apps if item.get("jobId") == "app-dji-human-resources-management-2026-07-17")
     kuaishou = next(item for item in active_apps if item.get("jobId") == "app-kuaishou-hr-organization-development-2026-08-31")
+    nio = next(item for item in active_apps if item.get("jobId") == "app-nio-hr-sparks-a73041-2026-09-07")
+    xiaomi = next(item for item in active_apps if item.get("jobId") == "app-xiaomi-compensation-hr-specialist-2026-09-05")
+    pdd = next(item for item in active_apps if item.get("jobId") == "opp-pdd-hr-management-trainee-shanghai-2027")
     oppo = next(item for item in applications if item.get("jobId") == "app-oppo-human-resources-2026-08-17")
     assert_true(sangfor.get("appliedDate") == "2026-08-26" and "南京" in sangfor.get("location", "") and "深圳" in sangfor.get("location", ""), "Sangfor application or location conflict missing")
     assert_true(unilever.get("appliedDate") == "2026-09-03" and not unilever.get("jdUrl"), "Unilever application-center link semantics missing")
@@ -106,9 +109,13 @@ def main():
     assert_true(horizon.get("currentStatus") == "Applied" and horizon.get("appliedDate") == "2026-09-03" and not horizon.get("jdUrl"), "Horizon application/link semantics missing")
     assert_true(dji.get("applyUrl") == "https://apply.careers.dji.com/candidate/applications/deliver-query/dji" and dji.get("appliedDate") == "2026-07-17", "DJI application link update must preserve original date")
     assert_true(kuaishou.get("currentStatus") == "Applied" and kuaishou.get("appliedDate") == "2026-08-31" and kuaishou.get("postedDate") == "2026-08-26" and not kuaishou.get("jdUrl"), "Kuaishou application summary/link semantics missing")
-    assert_true(oppo.get("currentStatus") == "Rejected" and oppo.get("archived") is True and any(event.get("status") == "Rejected" for event in oppo.get("statusHistory", [])), "OPPO rejection status/history missing")
-    qwen = next(item for item in active_apps if item.get("company") == "阿里千问")
-    assert_true(qwen.get("currentStatus") == "Application In Progress" and not qwen.get("appliedDate"), "Qwen must remain not submitted")
+    assert_true(nio.get("sourceJobId") == "A73041" and nio.get("appliedDate") == "2026-09-07" and not nio.get("jdUrl"), "NIO application summary/link semantics missing")
+    assert_true(xiaomi.get("title") == "人力资源专员-薪酬" and xiaomi.get("appliedDate") == "2026-09-05" and not xiaomi.get("jdUrl"), "Xiaomi application summary/link semantics missing")
+    assert_true(pdd.get("currentStatus") == "Applied" and not pdd.get("appliedDate") and pdd.get("sourceJobId") == "0c949a90-196a-4383-b0fb-2a3870b4b79f", "PDD application must preserve unknown submission date and exact official position ID")
+    assert_true(pdd.get("applyUrl") == "https://careers.pddglobalhr.com/campus/resume-apply?positionId=0c949a90-196a-4383-b0fb-2a3870b4b79f&batchId=8e154278-2638-46eb-a444-28e824111eaa&pageType=grad", "PDD exact application URL changed")
+    assert_true(oppo.get("currentStatus") == "Rejected" and oppo.get("archived") is True and sum(event.get("status") == "Rejected" for event in oppo.get("statusHistory", [])) == 1, "OPPO rejection must be retained without duplicate history")
+    qwen = next(item for item in applications if item.get("company") == "阿里千问")
+    assert_true(qwen.get("currentStatus") == "Rejected" and qwen.get("archived") is True and not qwen.get("appliedDate"), "Qwen rejection must not invent an application date")
 
     for item in applications:
         if item.get("currentStatus") == "Closed":
@@ -168,7 +175,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 27, "captured JD count must include all analyzed September application records")
+    assert_true(len(complete_jds) == 29, "captured JD count must include all analyzed September application records")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     missing_jd_ids = {item.get("jobId") for item in missing_jds}
     assert_true({hitachi.get("jobId"), anker.get("jobId")}.issubset(missing_jd_ids), "unverified Hitachi/Anker jobs must remain JD Missing")
@@ -196,7 +203,7 @@ def main():
     xiaopeng = next(item for item in applications if item.get("sourceJobId") == "7669694331025262911")
     assert_true(xiaopeng.get("title") == "【27届校招】HRBP培训生（机器人）", "single URL import title mismatch")
     assert_true(all(xiaopeng.get(key) == xiaopeng_url for key in ("applyUrl", "jdUrl", "officialUrl")), "single URL import changed the original URL")
-    assert_true(xiaopeng.get("currentStatus") == "Applied" and xiaopeng.get("appliedDate") == "2026-08-27", "Xiaopeng application transition missing")
+    assert_true(xiaopeng.get("currentStatus") == "Rejected" and xiaopeng.get("archived") is True and xiaopeng.get("appliedDate") == "2026-08-27", "Xiaopeng rejection must preserve its application date")
     xiaopeng_jd = next(item for item in jds if item.get("jobId") == xiaopeng.get("jobId"))
     assert_true("负责对接业务部门" in xiaopeng_jd.get("jdRaw", "") and "能接受省内短途出差" in xiaopeng_jd.get("jdRaw", ""), "single URL import did not preserve the complete JD")
     existing_application_keys = {key for item in applications if item is not xiaopeng for key in item}

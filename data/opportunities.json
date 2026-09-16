@@ -1,51 +1,5 @@
 [
   {
-    "jobId": "opp-pdd-hr-management-trainee-shanghai-2027",
-    "sourceJobId": "452278",
-    "company": "拼多多集团-PDD",
-    "title": "HR管培生（上海-2027届）",
-    "location": "上海",
-    "market": "Mainland",
-    "industry": "互联网/电商",
-    "jobFamily": "HR Management Trainee",
-    "campusType": "2027应届生",
-    "classification": "APPLY_NOW",
-    "currentStatus": "Recommended",
-    "source": "牛客 + PDD官方校招",
-    "sourcePriority": "P0+P2",
-    "sourceUrl": "https://careers.pddglobalhr.com/campus",
-    "applyUrl": "https://www.nowcoder.com/jobs/detail/452278",
-    "jdUrl": "https://www.nowcoder.com/jobs/detail/452278",
-    "officialUrl": "https://careers.pddglobalhr.com/campus",
-    "linkStatus": "VERIFIED",
-    "postedDate": "2026-08-03",
-    "foundDate": "2026-08-23",
-    "foundAt": "2026-08-23T21:30:00+08:00",
-    "firstRecommendedAt": "2026-08-23T21:30:00+08:00",
-    "recommendationDate": "2026-08-23",
-    "recommendationDates": [
-      "2026-08-23"
-    ],
-    "deadline": "2026-09-30",
-    "salary": "12-18K × 16薪",
-    "experience": "2027届，本科及以上",
-    "matchScore": 9.4,
-    "matchScoreBreakdown": {
-      "candidateFit": 3.8,
-      "entryBarrier": 2.0,
-      "companyGrowth": 1.9,
-      "freshnessValidity": 1.7
-    },
-    "matchReasons": [
-      "JD 的人力流程与信息效率方向覆盖员工全生命周期、绩效、薪酬、培训、流程诊断、系统落地和员工体验；用户在京东做过 HC planning，在 Aon 有 C&B、competency assessment 和人才发展经历，并持续使用 AI/自动化改进 HR 工作，因此匹配点集中在业务理解、数据与流程优化，而不只是招聘执行。"
-    ],
-    "risks": [
-      "岗位按招聘配置、人力流程与信息效率、员工关系三个方向分流，最终方向需要在投递或面试时确认；官方站确认 2027 校招开放，但具体岗位详情来自牛客。"
-    ],
-    "jdStatus": "Current JD",
-    "jdSummary": "三方向 HR 管培：招聘配置；员工生命周期、绩效、薪酬、培训和 HR 系统流程优化；员工关系与全球 HR 协作。"
-  },
-  {
     "jobId": "opp-positec-hr-specialist-suzhou-2027",
     "sourceJobId": "461662",
     "company": "宝时得科技",
