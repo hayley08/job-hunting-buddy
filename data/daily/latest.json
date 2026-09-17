@@ -1,7 +1,7 @@
 {
-  "runDate": "2026-09-16",
+  "runDate": "2026-09-18",
   "runType": "MANUAL_APPLICATION_UPDATE",
-  "dataUpdatedAt": "2026-09-16T23:55:36+08:00",
+  "dataUpdatedAt": "2026-09-18T02:50:45+08:00",
   "activeMarket": "Mainland",
   "processingWindow": {
     "mode": "USER_REPORTED_UPDATE",
@@ -34,13 +34,13 @@
   "duplicateRemoved": 2,
   "brokenLinks": 0,
   "unverifiedLinks": 9,
-  "jdCapturedCount": 29,
+  "jdCapturedCount": 30,
   "jdMissingCount": 31,
   "targetCompanyCheckedCount": 25,
   "newlyOpenedTargetCompanies": [],
-  "newApplications": 3,
-  "appliedCount": 23,
-  "activeMainlandApplications": 24,
+  "newApplications": 1,
+  "appliedCount": 24,
+  "activeMainlandApplications": 25,
   "applicationInProgressCount": 1,
   "activeOpportunities": 3,
   "topRecommendationJobIds": [
@@ -60,6 +60,7 @@
     "On 2026-09-04, DJI's existing application received its official application-query URL without changing the 2026-07-17 application date; Kuaishou HR-Organization Development was recorded as Applied on 2026-08-31 with complete supplied JD analysis. Both URLs are application-history pages, not verified exact JD-detail URLs.",
     "Search metrics remain the 2026-08-23 seed baseline until the scheduled 2026-08-24 12:00 DAILY_RUN.",
     "On 2026-09-09, NIO HR Sparks (applied 2026-09-07) and Xiaomi Compensation HR Specialist (applied 2026-09-05) were recorded with complete supplied JDs; Alibaba and Xiaopeng were marked Rejected and archived. OPPO's existing 2026-09-03 rejection was retained without a duplicate status event.",
-    "On 2026-09-16, the existing PDD HR Management Trainee opportunity was promoted to Applied using the exact official position-specific URL and complete supplied JD. The exact submission date was not supplied, so appliedDate remains empty."
+    "On 2026-09-16, the existing PDD HR Management Trainee opportunity was promoted to Applied using the exact official position-specific URL and complete supplied JD. The exact submission date was not supplied, so appliedDate remains empty.",
+    "On 2026-09-18, Envision/AESC Performance and Compensation Trainee was recorded as Applied with the complete supplied JD and exact official position URL. The exact submission date was not supplied, so appliedDate remains empty; the employer-name discrepancy between 远景能源 and 远景动力 is preserved."
   ]
 }

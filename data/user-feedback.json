@@ -134,5 +134,14 @@
     "content": "Record NIO HR Sparks as applied on 2026-09-07, Xiaomi Compensation HR Specialist as applied on 2026-09-05, promote the existing PDD HR Management Trainee opportunity to Applied without inventing its missing submission date, and mark Alibaba and Xiaopeng as Rejected while retaining the existing OPPO rejection event.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-16T23:55:36+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-18-envision-application",
+    "createdAt": "2026-09-18T02:50:45+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "Record the Envision/AESC Performance and Compensation Trainee application from the complete supplied JD and exact official position URL without inventing the missing submission date; preserve the employer-name discrepancy between the user's wording and the job page.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-18T02:50:45+08:00"
   }
 ]

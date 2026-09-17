@@ -75,7 +75,7 @@ def main():
         assert_true(item.get("archived") is False, f"unfinished application must not be archived: {item.get('jobId')}")
         assert_true(any(event.get("status") == "Application In Progress" for event in item.get("statusHistory", [])), f"in-progress status history missing: {item.get('jobId')}")
     applied_kpi_count = sum(1 for item in active_apps if any(event.get("status") == "Applied" for event in item.get("statusHistory", [])) or item.get("currentStatus") == "Applied")
-    assert_true(applied_kpi_count == 23, "Application In Progress and archived rejection must not inflate Applied KPI")
+    assert_true(applied_kpi_count == 24, "Application In Progress and archived rejection must not inflate Applied KPI")
     assert_true(next(item for item in active_apps if item.get("company") == "米哈游").get("appliedDate") == "2026-08-24", "miHoYo status transition missing")
     assert_true(next(item for item in active_apps if item.get("company") == "中国人保").get("title") == "广东省管培", "PICC title update missing")
     assert_true(next(item for item in active_apps if item.get("company") == "施耐德电气").get("sourceJobId") == "131792", "Schneider application missing")
@@ -102,6 +102,7 @@ def main():
     nio = next(item for item in active_apps if item.get("jobId") == "app-nio-hr-sparks-a73041-2026-09-07")
     xiaomi = next(item for item in active_apps if item.get("jobId") == "app-xiaomi-compensation-hr-specialist-2026-09-05")
     pdd = next(item for item in active_apps if item.get("jobId") == "opp-pdd-hr-management-trainee-shanghai-2027")
+    envision = next(item for item in active_apps if item.get("jobId") == "app-envision-performance-compensation-trainee-268efce4-2026-09-18")
     oppo = next(item for item in applications if item.get("jobId") == "app-oppo-human-resources-2026-08-17")
     assert_true(sangfor.get("appliedDate") == "2026-08-26" and "南京" in sangfor.get("location", "") and "深圳" in sangfor.get("location", ""), "Sangfor application or location conflict missing")
     assert_true(unilever.get("appliedDate") == "2026-09-03" and not unilever.get("jdUrl"), "Unilever application-center link semantics missing")
@@ -113,6 +114,8 @@ def main():
     assert_true(xiaomi.get("title") == "人力资源专员-薪酬" and xiaomi.get("appliedDate") == "2026-09-05" and not xiaomi.get("jdUrl"), "Xiaomi application summary/link semantics missing")
     assert_true(pdd.get("currentStatus") == "Applied" and not pdd.get("appliedDate") and pdd.get("sourceJobId") == "0c949a90-196a-4383-b0fb-2a3870b4b79f", "PDD application must preserve unknown submission date and exact official position ID")
     assert_true(pdd.get("applyUrl") == "https://careers.pddglobalhr.com/campus/resume-apply?positionId=0c949a90-196a-4383-b0fb-2a3870b4b79f&batchId=8e154278-2638-46eb-a444-28e824111eaa&pageType=grad", "PDD exact application URL changed")
+    assert_true(envision.get("company") == "远景动力" and envision.get("sourceJobId") == "268efce4-2ef9-4745-8c23-44e6a6ddd6f4" and envision.get("currentStatus") == "Applied" and not envision.get("appliedDate"), "Envision application must preserve the page employer and unknown submission date")
+    assert_true(all(envision.get(key) == "https://envision-career.com/campus-recruitment/envisiongroup/43123/#/job/268efce4-2ef9-4745-8c23-44e6a6ddd6f4" for key in ("applyUrl", "jdUrl", "officialUrl")), "Envision exact job URL changed")
     assert_true(oppo.get("currentStatus") == "Rejected" and oppo.get("archived") is True and sum(event.get("status") == "Rejected" for event in oppo.get("statusHistory", [])) == 1, "OPPO rejection must be retained without duplicate history")
     qwen = next(item for item in applications if item.get("company") == "阿里千问")
     assert_true(qwen.get("currentStatus") == "Rejected" and qwen.get("archived") is True and not qwen.get("appliedDate"), "Qwen rejection must not invent an application date")
@@ -175,7 +178,7 @@ def main():
 
     complete_jds = [item for item in jds if item.get("jdStatus") != "JD Missing"]
     missing_jds = [item for item in jds if item.get("jdStatus") == "JD Missing"]
-    assert_true(len(complete_jds) == 29, "captured JD count must include all analyzed September application records")
+    assert_true(len(complete_jds) == 30, "captured JD count must include all analyzed September application records")
     assert_true(len(missing_jds) >= 1, "jobs without JD must be marked JD Missing")
     missing_jd_ids = {item.get("jobId") for item in missing_jds}
     assert_true({hitachi.get("jobId"), anker.get("jobId")}.issubset(missing_jd_ids), "unverified Hitachi/Anker jobs must remain JD Missing")
@@ -198,6 +201,8 @@ def main():
     ti_jd = next(item for item in jds if item.get("jobId") == "app-texas-instruments-human-resources-generalist-2026-08-19")
     assert_true(len(ti_jd.get("jdRaw", "")) > 1500, "Texas Instruments must be retained as long JD example")
     assert_true("English communication" in ti_jd.get("jdDistinctiveKeywords", []), "TI distinctive keywords must capture English signal")
+    envision_jd = next(item for item in jds if item.get("jobId") == envision.get("jobId"))
+    assert_true("参与公司绩效与薪酬激励方案的起草；" in envision_jd.get("jdRaw", "") and "英语可作为工作语言，口语流利；" in envision_jd.get("jdRaw", ""), "Envision full JD or English requirement missing")
 
     xiaopeng_url = "https://xiaopeng.jobs.feishu.cn/campus/position/7669694331025262911/detail"
     xiaopeng = next(item for item in applications if item.get("sourceJobId") == "7669694331025262911")

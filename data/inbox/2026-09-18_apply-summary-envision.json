@@ -1,0 +1,19 @@
+{
+  "inboxId": "inbox-2026-09-18-apply-summary-envision",
+  "receivedAt": "2026-09-18T02:50:45+08:00",
+  "sourceOfTruth": "user",
+  "processed": true,
+  "processedByRun": "MANUAL_APPLICATION_UPDATE_2026-09-18",
+  "records": [
+    {
+      "companyAsReported": "远景能源",
+      "companyOnJobPage": "远景动力",
+      "reportedAppliedDate": "",
+      "reportedAt": "2026-09-18",
+      "title": "培训生-绩效薪酬助理专员-中国/上海市",
+      "url": "https://envision-career.com/campus-recruitment/envisiongroup/43123/#/job/268efce4-2ef9-4745-8c23-44e6a6ddd6f4",
+      "sourceJobId": "268efce4-2ef9-4745-8c23-44e6a6ddd6f4",
+      "rawJd": "岗位职责\n1. 参与公司绩效与薪酬激励方案的起草；\n2. 负责绩效与薪酬激励工作的日常运营工作，与关联团队协作推进相关工作的开展；\n3. 基于日常运营工作，总结业务痛点和卡点，识别优化空间，进行流程和政策的持续优化。\n\n任职资格\n1. 学历要求：硕士及以上学历；\n2. 专业要求：人力资源管理、心理学、会计/统计学、经济学等相关专业；\n3. 语言能力：英语可作为工作语言，口语流利；\n4. 工作技能：良好的沟通协作能力，有快速学习的能力、逻辑思考能力和体系性思维。"
+    }
+  ]
+}

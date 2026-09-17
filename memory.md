@@ -101,3 +101,8 @@
 - User reported 蔚来「校招-人力资源管理培训生 HR Sparks」 (`A73041`) as Applied on 2026-09-07 and 小米「人力资源专员-薪酬」 as Applied on 2026-09-05. Their complete supplied JDs and analyses are canonical; both supplied URLs are official personal application pages, not verified standalone JD-detail links.
 - User reported 阿里 and 小鹏 applications as Rejected on 2026-09-09. Alibaba's exact application date and final position title remain unknown, so `appliedDate` stays empty; Xiaopeng retains its 2026-08-27 applied date and exact official job URL. OPPO's existing 2026-09-03 rejection remains unchanged without a duplicate history event.
 - The existing 拼多多集团-PDD「HR管培生（上海）」 recommendation was promoted to Applied under the same canonical jobId, removed from active Opportunities, and updated with the exact official position-specific URL and complete user-supplied JD. The user did not provide the submission date, so `appliedDate` stays empty and the 2026-09-16 status event records only the report date.
+
+## 2026-09-18
+
+- User reported the official Envision-group role「培训生-绩效薪酬助理专员-中国/上海市」 (`268efce4-2ef9-4745-8c23-44e6a6ddd6f4`) as Applied. The job page identifies the employer as 远景动力 while the user called it 远景能源; preserve this discrepancy until the actual contracting entity is confirmed.
+- The complete performance and compensation JD and exact position-specific URL are canonical. The role covers incentive-plan drafting, HR operations, business-pain-point diagnosis, and process/policy optimization; it requires a master's degree and fluent working English. No exact submission date was supplied, so `appliedDate` remains empty and the 2026-09-18 status event is only the report date.

@@ -2324,5 +2324,62 @@
     ],
     "interviewPackNeedsRefresh": true,
     "refreshReason": "new-jd-hash"
+  },
+  {
+    "jobId": "app-envision-performance-compensation-trainee-268efce4-2026-09-18",
+    "jdStatus": "Current JD",
+    "jdRaw": "岗位职责\n1. 参与公司绩效与薪酬激励方案的起草；\n2. 负责绩效与薪酬激励工作的日常运营工作，与关联团队协作推进相关工作的开展；\n3. 基于日常运营工作，总结业务痛点和卡点，识别优化空间，进行流程和政策的持续优化。\n\n任职资格\n1. 学历要求：硕士及以上学历；\n2. 专业要求：人力资源管理、心理学、会计/统计学、经济学等相关专业；\n3. 语言能力：英语可作为工作语言，口语流利；\n4. 工作技能：良好的沟通协作能力，有快速学习的能力、逻辑思考能力和体系性思维。",
+    "jdSnapshot": "岗位职责\n1. 参与公司绩效与薪酬激励方案的起草；\n2. 负责绩效与薪酬激励工作的日常运营工作，与关联团队协作推进相关工作的开展；\n3. 基于日常运营工作，总结业务痛点和卡点，识别优化空间，进行流程和政策的持续优化。\n\n任职资格\n1. 学历要求：硕士及以上学历；\n2. 专业要求：人力资源管理、心理学、会计/统计学、经济学等相关专业；\n3. 语言能力：英语可作为工作语言，口语流利；\n4. 工作技能：良好的沟通协作能力，有快速学习的能力、逻辑思考能力和体系性思维。",
+    "jdCapturedAt": "2026-09-18T02:50:45+08:00",
+    "jdSource": "user-provided-official-job-detail",
+    "jdUrl": "https://envision-career.com/campus-recruitment/envisiongroup/43123/#/job/268efce4-2ef9-4745-8c23-44e6a6ddd6f4",
+    "jdHash": "a2d4c98aeb67ff94ae2db7b3ab06a8feaf51f692e4029b3730f15a8bb41477f9",
+    "jdSummary": "绩效薪酬方向培训生，参与绩效与薪酬激励方案起草和日常运营，并从业务痛点出发持续优化流程与政策；要求硕士学历、相关专业及流利工作英语。",
+    "jdCoreResponsibilities": [
+      "参与绩效与薪酬激励方案起草",
+      "运营绩效与薪酬激励工作并协同关联团队",
+      "识别业务痛点和优化空间",
+      "持续优化流程与政策"
+    ],
+    "jdDistinctiveKeywords": [
+      "Performance Management",
+      "Compensation & Incentives",
+      "HR Operations",
+      "Policy Optimization",
+      "Process Optimization",
+      "English Working Language"
+    ],
+    "jdUniqueRequirements": [
+      "硕士及以上学历",
+      "人力资源、心理学、会计/统计学、经济学等相关专业",
+      "英语可作为工作语言且口语流利"
+    ],
+    "jdInterviewSignals": [
+      "准备绩效或薪酬激励方案项目案例",
+      "说明如何从运营数据或业务反馈识别流程卡点",
+      "准备跨团队推动政策或流程落地的 STAR 案例",
+      "准备英文工作沟通与口语表达"
+    ],
+    "jdMustHave": [
+      "硕士及以上学历",
+      "相关专业背景",
+      "英语可作为工作语言",
+      "沟通协作、快速学习、逻辑思考和体系性思维"
+    ],
+    "jdNiceToHave": [],
+    "jdKeyOriginalExcerpt": [
+      "参与公司绩效与薪酬激励方案的起草；",
+      "总结业务痛点和卡点，识别优化空间，进行流程和政策的持续优化。",
+      "英语可作为工作语言，口语流利；"
+    ],
+    "jdVersions": [
+      {
+        "capturedAt": "2026-09-18T02:50:45+08:00",
+        "hash": "a2d4c98aeb67ff94ae2db7b3ab06a8feaf51f692e4029b3730f15a8bb41477f9",
+        "source": "user-provided-official-job-detail"
+      }
+    ],
+    "interviewPackNeedsRefresh": true,
+    "refreshReason": "new-jd-hash"
   }
 ]

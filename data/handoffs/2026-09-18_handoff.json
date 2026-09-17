@@ -1,0 +1,22 @@
+{
+  "runDate": "2026-09-18",
+  "runType": "MANUAL_APPLICATION_UPDATE",
+  "createdAt": "2026-09-18T02:50:45+08:00",
+  "sourceOfTruth": "user",
+  "applicationJobIds": [
+    "app-envision-performance-compensation-trainee-268efce4-2026-09-18"
+  ],
+  "linkIntegrity": {
+    "app-envision-performance-compensation-trainee-268efce4-2026-09-18": "exact official position-specific job URL preserved"
+  },
+  "uncertainties": [
+    "Exact application date was not supplied.",
+    "User called the employer 远景能源 while the job page identifies 远景动力."
+  ],
+  "nextRunMustRead": [
+    "data/applications.json",
+    "data/jds.json",
+    "data/user-feedback.json",
+    "data/inbox/2026-09-18_apply-summary-envision.json"
+  ]
+}
