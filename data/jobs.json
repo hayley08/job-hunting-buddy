@@ -681,7 +681,7 @@
         "status": "Rejected",
         "date": "2026-09-03",
         "sourceOfTruth": "user",
-        "notes": "User reported OPPO rejected the application (挂了)."
+        "notes": "User clarified that OPPO rejected the resume at screening."
       }
     ],
     "englishInterviewPossible": false,
@@ -689,7 +689,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-03 报告该申请已被拒绝（挂了）。",
+    "notes": "用户补充确认 OPPO 是在简历筛选阶段被淘汰；原 2026-09-03 Rejected 事件保留且不重复追加。",
     "archived": true,
     "jdStatus": "JD Missing",
     "jdRaw": "",
@@ -3250,8 +3250,8 @@
       "招聘可能是部分分流方向，需在面试中突出综合 HR 与策略模块偏好。",
       "线下面试集中完成，准备节奏可能较快。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-08-24",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -3266,6 +3266,12 @@
         "sourceOfTruth": "user",
         "note": "User included this role in the 2026-08-24 submitted application list and supplied the full JD.",
         "notes": "User included this role in the 2026-08-24 submitted application list and supplied the full JD."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection after an interview; exact interview round and rejection date were not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": false,
@@ -3273,8 +3279,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-08-24 报告已投递，并补充完整人力资源岗位介绍。",
-    "archived": false,
+    "notes": "用户于 2026-08-24 报告已投递，并于 2026-09-18 报告在面试阶段被淘汰；具体面试轮次与实际淘汰日期未提供。",
+    "archived": true,
     "actionPriority": "HIGH",
     "jdStatus": "Complete JD",
     "jdRaw": "【米哈游人力资源介绍】\n1、核心挑战：【洞察协调类】\n潜在岗位：BP、员工关系、招聘\n喜欢并擅长沟通、在复杂信息中捕捉关键需求的你，作为组织与业务的关键桥梁：\n- 可以是精准理解业务需求，通过市场洞察或校园活动，定位并引入社招市场与校园优质人才的当家能手；\n- 可以是协助业务团队梳理用人需求、搭建和培养人才梯队、将“业务目标”与“人才”准确链接、推动业务团队正循环发展的业务伙伴；\n- 可以兼具组织与一线视角，理清业务复杂场景下的员工关系事务，助力公司人力管理制度的规则迭代，持续为组织健康工作氛围提供策略支持，站在组织视角，服务业务、连接员工、创造信任。\n实战场景一：某AI团队急需一位“AI产品经理”，业务说“要懂AI技术、能快速落地、最好有游戏行业经验”。但市场上几乎没有“AI+游戏+产品”的成熟人才。你要怎么理解这个需求的本质？是找“AI专家”还是“产品经理”？如何梳理人才画像、制定招聘策略？\n实战场景二：某同学流转进入新项目组，3个月后提出离职，说“和想象的不一样”。你会怎么复盘，怎么避免下次再发生？\n\n2、核心挑战：【策略规则类】\n潜在岗位：组织发展、绩效发展、薪酬福利、学习发展\n逻辑控、脑子活，遇到复杂问题愿意拆解到底的你，作为组织的“策略外挂”：\n- 可以是用调研和数据诊断组织健康，从绩效、人才梯队中发现问题、提出策略，让资源配置到对的事情上，成为组织的投顾；\n- 可以是设计和迭代绩效、薪酬、激励规则，既懂业务逻辑又能算清楚账，形成发展正循环的机制设计师；\n- 可以是参与HR产品建设，把复杂的管理动作变成好用的工具，让决策更高效、更智能的产品化推手。\n实战场景一：某团队的业务目标完成度不佳，没有达到年初的预期。但最终的绩效结果却又显示，绝大部分人都是“符合预期”。大家质疑“绩效体系是不是失效了”，“公司的绩效体系不公平”。你会怎么样诊断这个问题，并且去优化绩效体系。\n实战场景二：AI时代，团队人力盘点时，有人会说“AI会替代XX岗位”，也有人说“AI只是提效”而不会改变人力投入。你会怎么分析和设计验证？如果验证结果要影响明年的编制规划，你会怎么呈现和沟通？\n\n3、核心挑战三【内容创意类】\n潜在岗位：雇主品牌、企业文化、培训\n适合脑洞大开且绝对务实的你！\n- 希望你的创意能紧扣Z世代脉搏，既有活人感也有幽默感，对流行趋势有着敏锐洞察，也有独立思考的习惯。在想创意、写文案、策划活动等日常工作中，都能做到说人话、讲真话，用真挚的内容讲好米哈游的故事。\n- 也希望你信奉第一性原理，不搞虚头巴脑的形式主义。你的每一个idea，都能经得起推敲，并能通过你强悍的执行力，变成实打实的招聘转化、文化认同或培训价值。\n实战场景一：米哈游要在某高校做一场校园宣讲，目标是“让更多优秀学生了解并投递米哈游的岗位”。这几乎是所有公司都会做的事，流程也都大致相似。如果你负责策划这场活动，基于你对校园的理解、对学生求职心态以及当下信息获取习惯的把握，你认为我们应该怎么做才能实现既定目标？在哪些方面需要有所突破呢？\n实战场景二：你负责组织米哈游校招生的专业技能基础课，目标是帮助新同学掌握岗位基本技能，为快速上手工作做准备。现在课程内容已经有了，但存在两个问题：线下集中授课难以激发学习积极性；学习效果难以衡量，很难知道学员是否真的在工作中应用。请结合AI工具的应用与探索，重新设计一种更适合这个场景的学习方式。\n\n任职要求\n我们希望你：\n1、爱学习：拥有持续性的好奇心，乐于学习，有成长欲望，愿意去理解组织、业务和人的关系；（不是HR科班也没关系，但要对“人与组织”感兴趣）\n2、韧性好：带着创业者的韧性，自驱力、责任心强，能沟通、懂协作，也有独立分析和解决问题的能力；（遇到难题不逃避，愿意想办法解决）\n3、有温度：人际理解力强，逻辑好、情商高，能听懂“话外之音”，也能给出“理性有温度的回应”；（既能理性分析，又能共情理解）\n4、懂游戏：热爱游戏和科技，愿意与创作者和开发者一起成长，玩家/游戏行业相关实习实践经历都将是加分经历！（玩家/游戏行业实习经历是加分项，但不是必须）\n5、享AI：对新工具保持敏感与好奇，将AI引入日常工作，能运用AI技术解决真实问题，以AI驱动工作流重构！（具备技术/理工背景也是加分项，职业发展不设边界）\n\n项目筛选方式：我们的线下面试会集中时间完成，并在短期快速发放offer。",
@@ -3370,8 +3376,8 @@
     "risks": [
       "单岗位 URL 导入只保存网页事实；尚未执行个性化匹配评分。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-08-27",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Applied",
@@ -3379,6 +3385,12 @@
         "sourceOfTruth": "user",
         "note": "User reported this official job URL as a submitted application.",
         "notes": "User reported this official job URL as a submitted application."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection after an interview; exact interview round and rejection date were not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": false,
@@ -3386,8 +3398,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-08-27 报告已投递；岗位事实与完整 JD 来自官方职位页面。",
-    "archived": false,
+    "notes": "用户于 2026-09-18 报告该申请在面试阶段被淘汰；具体面试轮次与实际淘汰日期未提供。",
+    "archived": true,
     "jdStatus": "Current JD",
     "jdRaw": "职位描述\n1. 战略研究：基于公司发展战略和组织能力长期建设需求，深入研究AI对组织生产关系和人才策略的影响，识别组织能力和人才发展上需要被关注的问题与机会，推动相关问题的讨论与改变发生。\n2. 方案设计：结合不同业务的差异化性质、发展阶段和管理需求，综合数据分析、内部访谈、外部对标等手段，持续识别和发现组织能力和人才发展上需要被关注的问题/机会，并能够促进相关问题的讨论，撬动改变发生；\n3. 前瞻探索：围绕AI与组织的前沿话题，设计探索性的产品、工具与机制（如HRAI产品），推动从概念验证到实际落地的全链路工作。\n4. 制度与项目推进：参与公司组织与人才发展领域的政策制度迭代及年度重点项目（如组织与人才盘点、职级评审、HC预算规划等），运用访谈调研、数据分析和外部对标为决策提供依据。\n\n职位要求\n1. 愿力：对AI如何改变组织运作有清晰的构想和独立思考，不满足于\"AI是工具\"的浅层理解，愿意追问\"AI在改变什么底层逻辑\"。如果你写过关于AI与组织/工作/人的思考笔记或博客，欢迎附在简历里。\n2. 创造力：在更高层次的创造性突破上，AI目前仍有限——它擅长整合已有信息，但提出新方向、定义新问题、设计新路径，依然是人的主场。我们看中的不只是\"会用AI\"，而是能看见AI还看不到的东西。\n3. 判断力：在高度复杂、充满不确定性的环境中，依然能做出高质量决策。具体来说，能判断\"这件事AI能不能做、该不该做\"，能识别前沿的变化和真正的机会，也能主动迎接挑战，与不同利益相关方共同推进问题解决。\n4. 同理心：极度关注客户，善于理解不同业务、管理者和员工的实际体验与需求，具备敏锐的问题捕捉能力。能站在对方视角看问题，而不是站在自己的专业视角提方案。\n5. 跨领域思维：具备跨学科视野或跨领域好奇心，能同时用技术和管理的语言理解问题。专业不限，重要的是你用什么方法思考，而不是你学过什么专业。\n【岗位亮点】\n1. 直接参与AI时代的组织变革：不是旁观者，而是参与者——你的研究成果可能直接影响公司级人才政策和组织决策，这是传统OD岗位很难给到的参与深度。\n2. 成长曲线陡峭：总部专业团队，直接接触公司级战略项目，与资深管理者对话，快速建立全局视野和组织洞察力。\n3. 前沿探索空间：不局限于传统管理领域，有机会做AI+组织的前瞻性研究，甚至独立设计并推动产品化工具的落地。\n4. 团队文化务实：团队专业且开放，愿意提供培养人的责任和机会，主管+Mentor+Buddy全程帮助成长，成长路径清晰。",
     "jdSource": "official-job-page",
@@ -3592,10 +3604,10 @@
       "Need capture exact role title and JD after application page is available."
     ],
     "risks": [
-      "Application started but not submitted."
+      "确切投递日期、岗位名称和 JD 均未确认。"
     ],
-    "currentStatus": "Application In Progress",
-    "statusUpdatedAt": "2026-08-23",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -3603,6 +3615,12 @@
         "sourceOfTruth": "user",
         "note": "User started application but has not completed submission.",
         "notes": "User started application but has not completed submission."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection at resume screening. The application date, exact role title and JD remain unknown; no Applied event was invented."
       }
     ],
     "englishInterviewPossible": false,
@@ -3610,8 +3628,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
-    "archived": false,
+    "notes": "用户于 2026-09-18 报告联想申请在简历筛选阶段被淘汰。该结果说明申请曾进入筛选，但确切投递日期、岗位名称和 JD 均未提供，因此 appliedDate 保持为空且不补造 Applied 事件。",
+    "archived": true,
     "actionPriority": "HIGH",
     "jdStatus": "JD Missing",
     "jdRaw": "",
@@ -3836,14 +3854,20 @@
       "轮岗与定岗地点需服从公司分配。",
       "当前链接是官方个人申请页，不是已验证的独立 JD 详情页。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-09-07",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Applied",
         "date": "2026-09-07",
         "sourceOfTruth": "user",
         "notes": "User explicitly reported this application."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection at resume screening; exact rejection date was not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": true,
@@ -3851,8 +3875,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-07 报告已投递；完整 JD 来自用户提供，个人申请页不作为已验证 JD 详情页。",
-    "archived": false,
+    "notes": "用户于 2026-09-07 报告已投递，并于 2026-09-18 报告在简历筛选阶段被淘汰；实际淘汰日期未提供。",
+    "archived": true,
     "jdStatus": "Current JD - Link Unverified",
     "jdRaw": "职位描述\n1. 参与人力资源三支柱：COE, HRBP及EPC三大模块的人力资源相关工作；\n2. 公司提供充分的轮岗机会 & 培训资源，让各位管理培训生尽快学习、了解、熟悉、掌握人力资源各职能模块的工作内容；\n3. 给予的人力资源项目任务，需配合完成实施跟进；\n4. 经过一定时期的轮岗后，将定向培养长期发展方向。\n\n职位要求\n1. 研究生及以上学历，英文听说读写能力好者优先；\n2. 有清晰的职业规划和职业发展目标，对于从事人力资源工作有饱满的热情；\n3. 优秀的沟通能力，逻辑分析能力及解决问题能力；\n4. 数据处理能力强，有很强的自我驱动力，有创新思维及判断力；\n5. 能熟练运用Office等办公软件，轮岗 & 定岗地点服从公司分配。",
     "jdSource": "user-provided",
@@ -4070,7 +4094,7 @@
         "status": "Rejected",
         "date": "2026-09-09",
         "sourceOfTruth": "user",
-        "notes": "User reported Alibaba rejected the resume; exact submission date and position title remain unconfirmed."
+        "notes": "User clarified that Alibaba rejected the resume at screening; exact submission date and position title remain unconfirmed."
       }
     ],
     "englishInterviewPossible": false,
@@ -4078,7 +4102,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-09 报告阿里已淘汰；确切投递日期与职位名称仍未确认，因此不补填 appliedDate。",
+    "notes": "用户补充确认阿里千问是在简历筛选阶段被淘汰；原 2026-09-09 Rejected 事件保留且不重复追加。确切投递日期与职位名称仍未确认，因此 appliedDate 保持为空。",
     "archived": true,
     "actionPriority": "HIGH",
     "jdStatus": "JD Missing",

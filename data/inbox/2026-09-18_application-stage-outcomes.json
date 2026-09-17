@@ -1,0 +1,55 @@
+{
+  "inboxId": "inbox-2026-09-18-application-stage-outcomes",
+  "receivedAt": "2026-09-18T12:00:00+08:00",
+  "sourceOfTruth": "user",
+  "processed": true,
+  "processedByRun": "MANUAL_STATUS_UPDATE_2026-09-18",
+  "rawStatement": "美团面试挂了，米哈游面试挂了，阿里千问简历挂了，蔚来简历挂了，oppo简历挂了，联想简历挂了",
+  "records": [
+    {
+      "jobId": "opp-single-url-4694828828",
+      "company": "美团",
+      "outcome": "Rejected",
+      "stage": "Interview",
+      "exactRound": "",
+      "exactOutcomeDate": ""
+    },
+    {
+      "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+      "company": "米哈游",
+      "outcome": "Rejected",
+      "stage": "Interview",
+      "exactRound": "",
+      "exactOutcomeDate": ""
+    },
+    {
+      "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+      "company": "阿里千问",
+      "outcome": "Rejected",
+      "stage": "Resume Screening",
+      "action": "clarified_existing_event"
+    },
+    {
+      "jobId": "app-nio-hr-sparks-a73041-2026-09-07",
+      "company": "蔚来",
+      "outcome": "Rejected",
+      "stage": "Resume Screening",
+      "exactOutcomeDate": ""
+    },
+    {
+      "jobId": "app-oppo-human-resources-2026-08-17",
+      "company": "OPPO",
+      "outcome": "Rejected",
+      "stage": "Resume Screening",
+      "action": "clarified_existing_event"
+    },
+    {
+      "jobId": "app-lenovo-campus-resume-2026-08-23",
+      "company": "联想",
+      "outcome": "Rejected",
+      "stage": "Resume Screening",
+      "exactApplicationDate": "",
+      "exactOutcomeDate": ""
+    }
+  ]
+}

@@ -143,5 +143,14 @@
     "content": "Record the Envision/AESC Performance and Compensation Trainee application from the complete supplied JD and exact official position URL without inventing the missing submission date; preserve the employer-name discrepancy between the user's wording and the job page.",
     "sourceOfTruth": "user",
     "implementedAt": "2026-09-18T02:50:45+08:00"
+  },
+  {
+    "feedbackId": "feedback-2026-09-18-stage-specific-rejections",
+    "createdAt": "2026-09-18T12:00:00+08:00",
+    "category": "application_status",
+    "status": "implemented",
+    "content": "Record Meituan and miHoYo as rejected after interview; record NIO and Lenovo as rejected at resume screening; clarify the existing Alibaba Qwen and OPPO rejection events as resume-screening outcomes without duplicating history.",
+    "sourceOfTruth": "user",
+    "implementedAt": "2026-09-18T12:00:00+08:00"
   }
 ]

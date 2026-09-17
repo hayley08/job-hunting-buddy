@@ -516,7 +516,7 @@
         "status": "Rejected",
         "date": "2026-09-03",
         "sourceOfTruth": "user",
-        "notes": "User reported OPPO rejected the application (挂了)."
+        "notes": "User clarified that OPPO rejected the resume at screening."
       }
     ],
     "englishInterviewPossible": false,
@@ -524,7 +524,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-03 报告该申请已被拒绝（挂了）。",
+    "notes": "用户补充确认 OPPO 是在简历筛选阶段被淘汰；原 2026-09-03 Rejected 事件保留且不重复追加。",
     "archived": true
   },
   {
@@ -636,8 +636,8 @@
       "招聘可能是部分分流方向，需在面试中突出综合 HR 与策略模块偏好。",
       "线下面试集中完成，准备节奏可能较快。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-08-24",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -652,6 +652,12 @@
         "sourceOfTruth": "user",
         "note": "User included this role in the 2026-08-24 submitted application list and supplied the full JD.",
         "notes": "User included this role in the 2026-08-24 submitted application list and supplied the full JD."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection after an interview; exact interview round and rejection date were not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": false,
@@ -659,8 +665,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-08-24 报告已投递，并补充完整人力资源岗位介绍。",
-    "archived": false,
+    "notes": "用户于 2026-08-24 报告已投递，并于 2026-09-18 报告在面试阶段被淘汰；具体面试轮次与实际淘汰日期未提供。",
+    "archived": true,
     "actionPriority": "HIGH"
   },
   {
@@ -756,10 +762,10 @@
       "Need capture exact role title and JD after application page is available."
     ],
     "risks": [
-      "Application started but not submitted."
+      "确切投递日期、岗位名称和 JD 均未确认。"
     ],
-    "currentStatus": "Application In Progress",
-    "statusUpdatedAt": "2026-08-23",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Application In Progress",
@@ -767,6 +773,12 @@
         "sourceOfTruth": "user",
         "note": "User started application but has not completed submission.",
         "notes": "User started application but has not completed submission."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection at resume screening. The application date, exact role title and JD remain unknown; no Applied event was invented."
       }
     ],
     "englishInterviewPossible": false,
@@ -774,8 +786,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "⚠ 尚未完成投递。用户提供投递链接，需继续申请。",
-    "archived": false,
+    "notes": "用户于 2026-09-18 报告联想申请在简历筛选阶段被淘汰。该结果说明申请曾进入筛选，但确切投递日期、岗位名称和 JD 均未提供，因此 appliedDate 保持为空且不补造 Applied 事件。",
+    "archived": true,
     "actionPriority": "HIGH"
   },
   {
@@ -890,7 +902,7 @@
         "status": "Rejected",
         "date": "2026-09-09",
         "sourceOfTruth": "user",
-        "notes": "User reported Alibaba rejected the resume; exact submission date and position title remain unconfirmed."
+        "notes": "User clarified that Alibaba rejected the resume at screening; exact submission date and position title remain unconfirmed."
       }
     ],
     "englishInterviewPossible": false,
@@ -898,7 +910,7 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-09 报告阿里已淘汰；确切投递日期与职位名称仍未确认，因此不补填 appliedDate。",
+    "notes": "用户补充确认阿里千问是在简历筛选阶段被淘汰；原 2026-09-09 Rejected 事件保留且不重复追加。确切投递日期与职位名称仍未确认，因此 appliedDate 保持为空。",
     "archived": true,
     "actionPriority": "HIGH"
   },
@@ -983,8 +995,8 @@
     "risks": [
       "单岗位 URL 导入只保存网页事实；尚未执行个性化匹配评分。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-08-27",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Applied",
@@ -992,6 +1004,12 @@
         "sourceOfTruth": "user",
         "note": "User reported this official job URL as a submitted application.",
         "notes": "User reported this official job URL as a submitted application."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection after an interview; exact interview round and rejection date were not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": false,
@@ -999,8 +1017,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-08-27 报告已投递；岗位事实与完整 JD 来自官方职位页面。",
-    "archived": false
+    "notes": "用户于 2026-09-18 报告该申请在面试阶段被淘汰；具体面试轮次与实际淘汰日期未提供。",
+    "archived": true
   },
   {
     "jobId": "opp-single-url-7669694331025262911",
@@ -1787,14 +1805,20 @@
       "轮岗与定岗地点需服从公司分配。",
       "当前链接是官方个人申请页，不是已验证的独立 JD 详情页。"
     ],
-    "currentStatus": "Applied",
-    "statusUpdatedAt": "2026-09-07",
+    "currentStatus": "Rejected",
+    "statusUpdatedAt": "2026-09-18",
     "statusHistory": [
       {
         "status": "Applied",
         "date": "2026-09-07",
         "sourceOfTruth": "user",
         "notes": "User explicitly reported this application."
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-09-18",
+        "sourceOfTruth": "user",
+        "notes": "User reported rejection at resume screening; exact rejection date was not supplied, so this event uses the report date."
       }
     ],
     "englishInterviewPossible": true,
@@ -1802,8 +1826,8 @@
     "interviewPackId": "",
     "sourceOfTruth": "user",
     "manualOverrides": {},
-    "notes": "用户于 2026-09-07 报告已投递；完整 JD 来自用户提供，个人申请页不作为已验证 JD 详情页。",
-    "archived": false
+    "notes": "用户于 2026-09-07 报告已投递，并于 2026-09-18 报告在简历筛选阶段被淘汰；实际淘汰日期未提供。",
+    "archived": true
   },
   {
     "jobId": "app-xiaomi-compensation-hr-specialist-2026-09-05",

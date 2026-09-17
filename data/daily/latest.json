@@ -1,7 +1,7 @@
 {
   "runDate": "2026-09-18",
-  "runType": "MANUAL_APPLICATION_UPDATE",
-  "dataUpdatedAt": "2026-09-18T02:50:45+08:00",
+  "runType": "MANUAL_STATUS_UPDATE",
+  "dataUpdatedAt": "2026-09-18T12:00:00+08:00",
   "activeMarket": "Mainland",
   "processingWindow": {
     "mode": "USER_REPORTED_UPDATE",
@@ -38,10 +38,10 @@
   "jdMissingCount": 31,
   "targetCompanyCheckedCount": 25,
   "newlyOpenedTargetCompanies": [],
-  "newApplications": 1,
-  "appliedCount": 24,
-  "activeMainlandApplications": 25,
-  "applicationInProgressCount": 1,
+  "newApplications": 0,
+  "appliedCount": 21,
+  "activeMainlandApplications": 21,
+  "applicationInProgressCount": 0,
   "activeOpportunities": 3,
   "topRecommendationJobIds": [
     "opp-positec-hr-specialist-suzhou-2027",
@@ -61,6 +61,7 @@
     "Search metrics remain the 2026-08-23 seed baseline until the scheduled 2026-08-24 12:00 DAILY_RUN.",
     "On 2026-09-09, NIO HR Sparks (applied 2026-09-07) and Xiaomi Compensation HR Specialist (applied 2026-09-05) were recorded with complete supplied JDs; Alibaba and Xiaopeng were marked Rejected and archived. OPPO's existing 2026-09-03 rejection was retained without a duplicate status event.",
     "On 2026-09-16, the existing PDD HR Management Trainee opportunity was promoted to Applied using the exact official position-specific URL and complete supplied JD. The exact submission date was not supplied, so appliedDate remains empty.",
-    "On 2026-09-18, Envision/AESC Performance and Compensation Trainee was recorded as Applied with the complete supplied JD and exact official position URL. The exact submission date was not supplied, so appliedDate remains empty; the employer-name discrepancy between 远景能源 and 远景动力 is preserved."
+    "On 2026-09-18, Envision/AESC Performance and Compensation Trainee was recorded as Applied with the complete supplied JD and exact official position URL. The exact submission date was not supplied, so appliedDate remains empty; the employer-name discrepancy between 远景能源 and 远景动力 is preserved.",
+    "On 2026-09-18, Meituan and miHoYo were marked Rejected after interview; NIO and Lenovo were marked Rejected at resume screening. Existing Alibaba Qwen and OPPO rejection events were clarified as resume-screening outcomes without duplicate Rejected events. Exact interview rounds and outcome dates were not supplied."
   ]
 }

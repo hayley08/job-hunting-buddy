@@ -1,0 +1,52 @@
+{
+  "runDate": "2026-09-18",
+  "runType": "MANUAL_STATUS_UPDATE",
+  "createdAt": "2026-09-18T12:00:00+08:00",
+  "sourceOfTruth": "user",
+  "statusUpdates": [
+    {
+      "jobId": "opp-single-url-4694828828",
+      "status": "Rejected",
+      "stage": "Interview",
+      "eventDate": "2026-09-18"
+    },
+    {
+      "jobId": "app-mihoyo-campus-position-9221-2026-08-23",
+      "status": "Rejected",
+      "stage": "Interview",
+      "eventDate": "2026-09-18"
+    },
+    {
+      "jobId": "app-alibaba-qwen-cart-100100540113-2026-08-24",
+      "status": "Rejected",
+      "stage": "Resume Screening",
+      "eventDate": "2026-09-09",
+      "action": "clarified_without_duplicate"
+    },
+    {
+      "jobId": "app-nio-hr-sparks-a73041-2026-09-07",
+      "status": "Rejected",
+      "stage": "Resume Screening",
+      "eventDate": "2026-09-18"
+    },
+    {
+      "jobId": "app-oppo-human-resources-2026-08-17",
+      "status": "Rejected",
+      "stage": "Resume Screening",
+      "eventDate": "2026-09-03",
+      "action": "clarified_without_duplicate"
+    },
+    {
+      "jobId": "app-lenovo-campus-resume-2026-08-23",
+      "status": "Rejected",
+      "stage": "Resume Screening",
+      "eventDate": "2026-09-18",
+      "applicationDate": "unknown"
+    }
+  ],
+  "nextRunMustRead": [
+    "data/applications.json",
+    "data/user-feedback.json",
+    "data/inbox/2026-09-18_application-stage-outcomes.json"
+  ]
+}
